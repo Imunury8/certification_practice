@@ -1,4 +1,4 @@
-import type { TopicId } from "@/lib/types";
+import type { TopicId, ExamId } from "@/lib/types";
 
 export interface ConceptItem {
   term: string;
@@ -38,8 +38,9 @@ const item = (
   examTip,
 });
 
-export const CONCEPT_SECTIONS: ConceptSection[] = [
-  {
+export const CONCEPTS_BY_EXAM: Record<ExamId, ConceptSection[]> = {
+  "infosec-practical": [
+    {
     topicId: "design-patterns",
     items: [
       design(
@@ -472,4 +473,58 @@ export const CONCEPT_SECTIONS: ConceptSection[] = [
       item("Regression Testing", "변경(패치, 수정, 리팩토링)이 발생한 후에, 기존 기능에 예기치 못한 부작용이나 오류가 발생하지 않았는지 보증하기 위해 이전의 테스트를 다시 수행하는 테스트입니다.", ["기능 추가나 수정 시 기존 안정성을 담보하기 위해 필수적입니다.", "자동화 테스트 환경 구축과 함께 가장 적극적으로 활용되는 테스트 형태입니다."], "수정 후 기존 코드에 에러가 없는지 다시 검사하는 것은 회귀 테스트입니다."),
     ],
   },
-];
+  ],
+  "bigdata-written": [
+    {
+      topicId: "bigdata-planning",
+      items: [
+        item(
+          "Big Data 3V",
+          "빅데이터의 3대 핵심 특징입니다.",
+          [
+            "Volume(규모): 데이터의 물리적 크기 증가.",
+            "Variety(다양성): 정형/반정형/비정형 데이터의 혼재.",
+            "Velocity(속도): 데이터 생성 및 처리 주기의 실시간화."
+          ],
+          "규모(Volume), 다양성(Variety), 속도(Velocity)가 핵심 3V입니다."
+        )
+      ]
+    }
+  ],
+  "bigdata-practical": [
+    {
+      topicId: "bigdata-preprocessing",
+      items: [
+        item(
+          "Scaling (스케일링)",
+          "서로 다른 속성의 데이터 범위를 일정한 수준으로 맞추는 전처리 기법입니다.",
+          [
+            "Min-Max Scaling: 모든 값을 0과 1 사이로 변환.",
+            "Standardization (표준화): 평균이 0, 분산이 1인 정규분포로 변환.",
+            "이상치(Outlier)에 민감하므로 적절한 선택이 필요합니다."
+          ],
+          "데이터 범위를 균일하게 통일하여 모델 학습 효율을 높이는 기법은 스케일링입니다."
+        )
+      ]
+    }
+  ],
+  "sqlp": [
+    {
+      topicId: "sql-tuning",
+      items: [
+        item(
+          "Index Scan (인덱스 스캔)",
+          "테이블 전체를 읽지 않고, 인덱스를 활용하여 필요한 범위만 탐색하는 방식입니다.",
+          [
+            "Index Range Scan: 특정 수 범위나 매칭 조건으로 탐색.",
+            "Index Unique Scan: 기본키 등 유일성 매칭으로 단 1건만 탐색.",
+            "Index Full Scan: 인덱스 전체를 탐색하나 테이블 전체 스캔보다 효율적인 경우 사용."
+          ],
+          "조건 범위에 맞는 인덱스 리프 노드만 골라 읽는 방식은 Index Range Scan입니다."
+        )
+      ]
+    }
+  ]
+};
+
+export const CONCEPT_SECTIONS = CONCEPTS_BY_EXAM["infosec-practical"];

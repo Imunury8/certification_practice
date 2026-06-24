@@ -1,6 +1,7 @@
-import type { QuestionTemplate, Topic } from "@/lib/types";
+import type { QuestionTemplate, Topic, ExamId } from "@/lib/types";
 
-export const TOPICS: Topic[] = [
+export const TOPICS_BY_EXAM: Record<ExamId, Topic[]> = {
+  "infosec-practical": [
   {
     id: "design-patterns",
     name: "디자인 패턴",
@@ -55,9 +56,35 @@ export const TOPICS: Topic[] = [
     description: "블랙박스/화이트박스 테스트, 테스트 단계, 살충제 패러독스를 점검합니다.",
     keywords: ["Black Box", "White Box", "Test Levels", "Pesticide Paradox", "Regression"],
   },
-];
+  ],
+  "bigdata-written": [
+    {
+      id: "bigdata-planning",
+      name: "빅데이터 기획",
+      description: "빅데이터 기획 단계의 기획안 수립, 규제 검토에 대해 점검합니다.",
+      keywords: ["3V", "5V", "빅데이터 생명주기"],
+    }
+  ],
+  "bigdata-practical": [
+    {
+      id: "bigdata-preprocessing",
+      name: "데이터 전처리",
+      description: "결측치 처리, 이상치 제거 및 스케일링 전처리 기법을 다룹니다.",
+      keywords: ["Scaling", "Imputation", "Outlier"],
+    }
+  ],
+  "sqlp": [
+    {
+      id: "sql-tuning",
+      name: "SQL 튜닝",
+      description: "SQL 성능 최적화, 인덱스 설계, 조인 기법 튜닝을 평가합니다.",
+      keywords: ["Index Scan", "NL Join", "Hash Join"],
+    }
+  ]
+};
 
-export const QUESTION_BANK: QuestionTemplate[] = [
+export const QUESTION_BANK_BY_EXAM: Record<ExamId, QuestionTemplate[]> = {
+  "infosec-practical": [
   {
     topicId: "design-patterns",
     keyword: "Singleton",
@@ -359,4 +386,42 @@ export const QUESTION_BANK: QuestionTemplate[] = [
     answer: "Regression Test",
     explanation: "회귀 테스트(Regression Test)는 소스 코드 수정 후 발생할 수 있는 부작용을 검출하기 위해 수행하는 재시험입니다.",
   },
-];
+  ],
+  "bigdata-written": [
+    {
+      topicId: "bigdata-planning",
+      keyword: "3V",
+      difficulty: "easy",
+      type: "short",
+      prompt: "빅데이터의 3대 핵심 특징으로 데이터의 물리적 크기를 뜻하는 Volume, 형태의 다양성을 뜻하는 Variety와 함께 데이터 생성 및 처리 속도를 뜻하는 개념은 무엇인가?",
+      answer: "Velocity",
+      explanation: "빅데이터의 기본 3대 속성은 Volume, Variety, Velocity입니다.",
+    }
+  ],
+  "bigdata-practical": [
+    {
+      topicId: "bigdata-preprocessing",
+      keyword: "Scaling",
+      difficulty: "medium",
+      type: "multiple-choice",
+      prompt: "데이터의 최솟값을 0, 최댓값을 1로 변환하여 서로 다른 피처의 크기를 통일하는 스케일링 기법은 무엇인가?",
+      choices: ["Min-Max Scaling", "Standardization", "Robust Scaling", "Max-Abs Scaling"],
+      answer: "Min-Max Scaling",
+      explanation: "Min-Max Scaling은 모든 값을 [0, 1] 범위로 균일하게 변환해주는 기법입니다.",
+    }
+  ],
+  "sqlp": [
+    {
+      topicId: "sql-tuning",
+      keyword: "Index Scan",
+      difficulty: "hard",
+      type: "scenario",
+      prompt: "인덱스 구성 컬럼 중 조건절에 매칭되는 조건의 첫 번째 데이터 건부터 마지막 건까지 탐색하여 필요한 범위만 효율적으로 읽는 인덱스 스캔 방식은 무엇인가?",
+      answer: "Index Range Scan",
+      explanation: "Index Range Scan은 특정 범위의 리프 노드를 스캔하여 테이블 데이터를 조회하는 가장 대표적인 인덱스 스캔 기법입니다.",
+    }
+  ]
+};
+
+export const TOPICS = TOPICS_BY_EXAM["infosec-practical"];
+export const QUESTION_BANK = QUESTION_BANK_BY_EXAM["infosec-practical"];

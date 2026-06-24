@@ -1,3 +1,5 @@
+export type ExamId = "infosec-practical" | "bigdata-written" | "bigdata-practical" | "sqlp";
+
 export type TopicId =
   | "design-patterns"
   | "diagrams"
@@ -7,7 +9,10 @@ export type TopicId =
   | "modern-tech"
   | "software-engineering"
   | "database"
-  | "testing";
+  | "testing"
+  | "bigdata-planning"
+  | "bigdata-preprocessing"
+  | "sql-tuning";
 
 export type Difficulty = "easy" | "medium" | "hard";
 
@@ -39,6 +44,7 @@ export interface Question extends QuestionTemplate {
 }
 
 export interface GenerateQuestionInput {
+  examId?: ExamId;
   topicId: TopicId;
   difficulty: Difficulty;
   count: number;
@@ -47,4 +53,11 @@ export interface GenerateQuestionInput {
 
 export interface QuestionGenerator {
   generate(input: GenerateQuestionInput): Promise<Question[]> | Question[];
+}
+
+export interface ExamInfo {
+  id: ExamId;
+  name: string;
+  description: string;
+  category: string;
 }

@@ -1,7 +1,21 @@
 import Link from "next/link";
-import { ArrowRight, BookOpen, FileQuestion } from "lucide-react";
+import { ArrowRight, ShieldCheck, BarChart3, LineChart, Database } from "lucide-react";
 import { AppHeader } from "@/app/components/AppHeader";
-import { TOPICS } from "@/lib/questionBank";
+import { EXAMS } from "@/lib/exams";
+import type { ExamId } from "@/lib/types";
+
+const examIcons: Record<ExamId, any> = {
+  "infosec-practical": ShieldCheck,
+  "bigdata-written": BarChart3,
+  "bigdata-practical": LineChart,
+  "sqlp": Database,
+};
+
+const categoryBadgeClasses: Record<string, string> = {
+  "실기": "badge",
+  "필기": "badge warning",
+  "전문가": "badge success",
+};
 
 export default function Home() {
   return (
@@ -10,45 +24,43 @@ export default function Home() {
       <div className="shell">
         <section className="intro">
           <div>
-            <h1>정보처리기사 실기 개념 학습과 문제 풀이를 분리했습니다.</h1>
-            <p>
-              먼저 개념 설명에서 핵심 단서를 정리하고, 문제 풀이 페이지에서 답을 선택하며 바로 정답과 해설을
-              확인하세요.
-            </p>
+            <h1>자격증 시험 학습실</h1>
+            <p>공부하실 자격증 시험을 선택해 주세요. 핵심 이론 정리부터 기출 대비 문제 풀이까지 지원합니다.</p>
           </div>
           <div className="stats" aria-label="학습 구성 통계">
             <div className="stat">
-              <b>{TOPICS.length}</b>
-              <span>핵심 주제</span>
+              <b>{EXAMS.length}</b>
+              <span>지원 시험 수</span>
             </div>
             <div className="stat">
               <b>2</b>
-              <span>학습 페이지</span>
+              <span>학습 모드</span>
             </div>
             <div className="stat">
               <b>AI</b>
-              <span>연동 가능 구조</span>
+              <span>기반 생성 구조</span>
             </div>
           </div>
         </section>
 
-        <section className="landing-grid" aria-label="학습 메뉴">
-          <Link className="landing-card panel" href="/concepts">
-            <BookOpen size={34} />
-            <h2>개념 설명</h2>
-            <p>디자인 패턴, UML, OSI 7계층, 커버리지, 보안 공격, 최신 기술을 주제별로 정리합니다.</p>
-            <span>
-              개념 보러가기 <ArrowRight size={18} />
-            </span>
-          </Link>
-          <Link className="landing-card panel" href="/questions">
-            <FileQuestion size={34} />
-            <h2>문제 풀이</h2>
-            <p>주제와 난이도를 선택하고, 보기를 누르면 즉시 정답 여부와 해설을 확인합니다.</p>
-            <span>
-              문제 풀러가기 <ArrowRight size={18} />
-            </span>
-          </Link>
+        <section className="landing-grid" aria-label="시험 선택 목록">
+          {EXAMS.map((exam) => {
+            const IconComponent = examIcons[exam.id as ExamId];
+            const badgeClass = categoryBadgeClasses[exam.category] || "badge";
+            return (
+              <Link className="landing-card panel" href={`/exams/${exam.id}`} key={exam.id}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+                  <IconComponent size={34} style={{ color: "var(--primary)" }} />
+                  <span className={badgeClass}>{exam.category}</span>
+                </div>
+                <h2 style={{ marginTop: "12px", fontSize: "22px" }}>{exam.name}</h2>
+                <p style={{ fontSize: "14px", minHeight: "68px" }}>{exam.description}</p>
+                <span>
+                  학습 시작하기 <ArrowRight size={18} />
+                </span>
+              </Link>
+            );
+          })}
         </section>
       </div>
     </main>

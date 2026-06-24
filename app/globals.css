@@ -601,6 +601,12 @@ button {
   color: var(--warning);
 }
 
+.badge.success {
+  background: #f2fbf6;
+  border-color: #bfe8d0;
+  color: var(--success);
+}
+
 .question-card h3 {
   font-size: 18px;
   line-height: 1.55;

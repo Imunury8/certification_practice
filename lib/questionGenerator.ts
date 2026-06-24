@@ -1,5 +1,5 @@
-import { QUESTION_BANK, TOPICS } from "@/lib/questionBank";
-import type { Difficulty, GenerateQuestionInput, Question, QuestionGenerator, QuestionTemplate } from "@/lib/types";
+import { QUESTION_BANK_BY_EXAM, TOPICS_BY_EXAM } from "@/lib/questionBank";
+import type { Difficulty, GenerateQuestionInput, Question, QuestionGenerator, QuestionTemplate, ExamId } from "@/lib/types";
 
 const typeLabels = {
   short: "단답형",
@@ -17,12 +17,16 @@ const difficultyOrder: Difficulty[] = ["easy", "medium", "hard"];
 
 export class LocalQuestionGenerator implements QuestionGenerator {
   generate(input: GenerateQuestionInput): Question[] {
+    const examId = input.examId || "infosec-practical";
+    const topics = TOPICS_BY_EXAM[examId] || TOPICS_BY_EXAM["infosec-practical"];
+    const questionBank = QUESTION_BANK_BY_EXAM[examId] || QUESTION_BANK_BY_EXAM["infosec-practical"];
+
     const normalizedCount = Math.max(1, Math.min(input.count || 5, 20));
-    const topic = TOPICS.find((item) => item.id === input.topicId) ?? TOPICS[0];
-    const preferred = QUESTION_BANK.filter(
+    const topic = topics.find((item) => item.id === input.topicId) ?? topics[0];
+    const preferred = questionBank.filter(
       (question) => question.topicId === input.topicId && question.difficulty === input.difficulty,
     );
-    const fallback = QUESTION_BANK.filter((question) => question.topicId === input.topicId);
+    const fallback = questionBank.filter((question) => question.topicId === input.topicId);
     const candidates = preferred.length >= normalizedCount ? preferred : [...preferred, ...fallback];
 
     return repeatToCount(uniqueByPrompt(candidates), normalizedCount).map((template, index) =>
@@ -49,9 +53,9 @@ export function getSelectableChoices(question: Question): string[] {
     return question.choices;
   }
 
-  const distractors = QUESTION_BANK.filter(
-    (template) => template.topicId === question.topicId && template.answer !== question.answer,
-  )
+  const allQuestions = Object.values(QUESTION_BANK_BY_EXAM).flat();
+  const distractors = allQuestions
+    .filter((template) => template.topicId === question.topicId && template.answer !== question.answer)
     .map((template) => template.answer)
     .filter((answer, index, answers) => answers.indexOf(answer) === index)
     .slice(0, 3);
