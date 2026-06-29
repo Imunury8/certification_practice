@@ -202,10 +202,7 @@ export default function QuestionsPage() {
                     <div className="question-head">
                       <div className="badges">
                         <span className="badge">Q{index + 1}</span>
-                        <span className="badge">{question.typeLabel}</span>
-                        <span className="badge">{question.keyword}</span>
                       </div>
-                      <span className="badge warning">{question.difficultyLabel}</span>
                     </div>
                     <h3>{question.prompt}</h3>
                     <ol className="choices">
