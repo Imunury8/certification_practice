@@ -27,6 +27,7 @@ export default function QuestionsPage() {
   const [focus, setFocus] = useState("");
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [questions, setQuestions] = useState<Question[]>([]);
+  const [isCollapsed, setIsCollapsed] = useState(true);
 
   useEffect(() => {
     if (topics.length > 0) {
@@ -98,80 +99,94 @@ export default function QuestionsPage() {
         </section>
 
         <section className="workspace">
-          <aside className="panel controls" aria-label="문제 생성 설정">
-            <div className="panel-title">
-              <BrainCircuit size={22} />
-              <h2>문제 설정</h2>
-            </div>
-
-            <div className="field">
-              <span className="label">출제 주제</span>
-              <div className="topic-grid">
-                {topics.map((topic) => (
-                  <button
-                    className={`topic-button ${selectedTopic === topic.id ? "active" : ""}`}
-                    key={topic.id}
-                    onClick={() => setSelectedTopic(topic.id as TopicId)}
-                    type="button"
-                  >
-                    <span>{topic.name}</span>
-                    <small style={{ marginLeft: "4px" }}>{topic.keywords.length}개 키워드</small>
-                  </button>
-                ))}
+          <aside className={`panel controls ${isCollapsed ? "collapsed" : ""}`} aria-label="문제 생성 설정">
+            <div
+              className="panel-title"
+              onClick={() => setIsCollapsed(!isCollapsed)}
+              style={{ cursor: "pointer", display: "flex", width: "100%", alignItems: "center", justifyContent: "space-between" }}
+            >
+              <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                <BrainCircuit size={22} style={{ color: "var(--primary)" }} />
+                <h2 style={{ margin: 0, fontSize: "20px" }}>문제 설정</h2>
               </div>
-            </div>
-
-            <div className="field">
-              <span className="label">난이도</span>
-              <div className="segmented">
-                {difficulties.map((item) => (
-                  <button
-                    className={difficulty === item.value ? "active" : ""}
-                    key={item.value}
-                    onClick={() => setDifficulty(item.value)}
-                    type="button"
-                  >
-                    {item.label}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            <div className="field">
-              <label htmlFor="count">문항 수</label>
-              <select className="select" id="count" onChange={(event) => setCount(event.target.value)} value={count}>
-                {[5, 8, 10, 15].map((value) => (
-                  <option key={value} value={value}>
-                    {value}문항
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div className="field">
-              <label htmlFor="focus">추가 요청</label>
-              <textarea
-                className="textarea"
-                id="focus"
-                onChange={(event) => setFocus(event.target.value)}
-                placeholder="예: 약술형 위주, 키워드 암기, 실무 예시 포함"
-                value={focus}
-              />
-            </div>
-
-            <div className="actions">
-              <button className="primary-button" onClick={handleGenerate} type="button">
-                <Sparkles size={18} />
-                문제 생성
-              </button>
-              <button className="secondary-button" onClick={handleExport} type="button">
-                <Download size={18} />
-                TXT 내보내기
+              <button className="collapse-toggle-btn" type="button">
+                {isCollapsed ? "설정 펼치기" : "설정 접기"}
               </button>
             </div>
 
-            <div className="architecture">
-              현재는 내장 문제 은행을 사용합니다. 이후 AI 모델 연동 시 같은 풀이 화면에서 생성형 문제를 받을 수 있습니다.
+            <div className="controls-content">
+              <div className="field" style={{ marginTop: "18px" }}>
+                <span className="label">출제 주제</span>
+                <div className="topic-grid">
+                  {topics.map((topic) => (
+                    <button
+                      className={`topic-button ${selectedTopic === topic.id ? "active" : ""}`}
+                      key={topic.id}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setSelectedTopic(topic.id as TopicId);
+                      }}
+                      type="button"
+                    >
+                      <span>{topic.name}</span>
+                      <small style={{ marginLeft: "4px" }}>{topic.keywords.length}개 키워드</small>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="field">
+                <span className="label">난이도</span>
+                <div className="segmented">
+                  {difficulties.map((item) => (
+                    <button
+                      className={difficulty === item.value ? "active" : ""}
+                      key={item.value}
+                      onClick={() => setDifficulty(item.value)}
+                      type="button"
+                    >
+                      {item.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="field">
+                <label htmlFor="count">문항 수</label>
+                <select className="select" id="count" onChange={(event) => setCount(event.target.value)} value={count}>
+                  {[5, 8, 10, 15].map((value) => (
+                    <option key={value} value={value}>
+                      {value}문항
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="field">
+                <label htmlFor="focus">추가 요청</label>
+                <textarea
+                  className="textarea"
+                  id="focus"
+                  onChange={(event) => setFocus(event.target.value)}
+                  placeholder="예: 약술형 위주, 키워드 암기, 실무 예시 포함"
+                  value={focus}
+                />
+              </div>
+
+              <div className="actions">
+                <button className="primary-button" onClick={handleGenerate} type="button">
+                  <Sparkles size={18} />
+                  문제 생성
+                </button>
+                <button className="secondary-button" onClick={handleExport} type="button">
+                  <Download size={18} />
+                  TXT 내보내기
+                </button>
+              </div>
+
+              <div className="architecture">
+                현재는 내장 문제 은행을 사용합니다. 이후 AI 모델 연동 시 같은 풀이 화면에서 생성형 문제를 받을 수 있습니다.
+              </div>
             </div>
           </aside>
 

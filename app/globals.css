@@ -641,6 +641,9 @@ button {
   padding: 10px 12px;
   text-align: left;
   width: 100%;
+  white-space: normal;
+  word-break: keep-all;
+  height: auto;
 }
 
 .choice-button:hover {
@@ -717,6 +720,10 @@ button {
   padding: 12px;
 }
 
+.collapse-toggle-btn {
+  display: none;
+}
+
 @media (max-width: 900px) {
   .intro,
   .workspace,
@@ -726,6 +733,33 @@ button {
 
   .controls {
     position: static;
+    padding: 16px;
+  }
+
+  .controls.collapsed .controls-content {
+    display: none;
+  }
+
+  .collapse-toggle-btn {
+    display: inline-flex;
+    font-size: 12px;
+    font-weight: 700;
+    background: var(--panel-soft);
+    border: 1px solid #9dc0ff;
+    padding: 5px 10px;
+    border-radius: 6px;
+    color: #0f4fa8;
+    align-items: center;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+
+  .collapse-toggle-btn:hover {
+    background: #e1ecff;
+  }
+
+  .topic-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .stats {
@@ -807,5 +841,17 @@ button {
   .stats,
   .segmented {
     grid-template-columns: 1fr;
+  }
+
+  .topic-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .question-card {
+    padding: 14px;
+  }
+
+  .question-card h3 {
+    font-size: 16px;
   }
 }
