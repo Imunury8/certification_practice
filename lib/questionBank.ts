@@ -56,6 +56,12 @@ export const TOPICS_BY_EXAM: Record<ExamId, Topic[]> = {
     description: "블랙박스/화이트박스 테스트, 테스트 단계, 살충제 패러독스를 점검합니다.",
     keywords: ["Black Box", "White Box", "Test Levels", "Pesticide Paradox", "Regression"],
   },
+  {
+    id: "programming-languages",
+    name: "프로그래밍 언어 활용",
+    description: "정처기 실기 기출 1순위인 C, Java, Python 문법과 코드 분석 능력을 점검합니다.",
+    keywords: ["C", "Java", "Python", "Pointer", "Inheritance", "Slicing"],
+  },
   ],
   "bigdata-written": [
     {
@@ -385,6 +391,33 @@ export const QUESTION_BANK_BY_EXAM: Record<ExamId, QuestionTemplate[]> = {
     prompt: "최근 버그 수정을 거친 소프트웨어 모듈이 기존에 정상 작동하던 다른 영역에 부작용을 유발하지 않았는지 보증하기 위해 수행하는 재테스트 기법은 무엇인가?",
     answer: "Regression Test",
     explanation: "회귀 테스트(Regression Test)는 소스 코드 수정 후 발생할 수 있는 부작용을 검출하기 위해 수행하는 재시험입니다.",
+  },
+  {
+    topicId: "programming-languages",
+    keyword: "C",
+    difficulty: "easy",
+    type: "short",
+    prompt: "다음 C언어 코드가 실행되었을 때의 출력 결과(출력값)를 쓰시오.\n\n#include <stdio.h>\nint main() {\n    int a[5] = {10, 20, 30, 40, 50};\n    int *p = a;\n    printf(\"%d\", *(p + 2) + 5);\n    return 0;\n}",
+    answer: "35",
+    explanation: "C언어에서 배열명 a는 첫 번째 요소인 a[0]의 주소(&a[0])입니다. p+2는 a[2]의 주소를 뜻하므로 *(p+2)는 a[2]의 값인 30을 반환합니다. 여기에 5를 더하므로 출력값은 35가 됩니다.",
+  },
+  {
+    topicId: "programming-languages",
+    keyword: "Java",
+    difficulty: "medium",
+    type: "short",
+    prompt: "다음 Java 코드가 실행되었을 때 화면에 출력되는 문자(출력 결과)를 쓰시오.\n\nclass Parent {\n    void show() { System.out.print(\"P\"); }\n}\nclass Child extends Parent {\n    void show() { System.out.print(\"C\"); }\n}\npublic class Main {\n    public static void main(String[] args) {\n        Parent obj = new Child();\n        obj.show();\n    }\n}",
+    answer: "C",
+    explanation: "부모 클래스 타입의 참조 변수 obj가 자식 클래스 Child의 객체를 가리키고 있습니다. show() 메서드는 자식 클래스인 Child에서 오버라이딩(재정의)되었으므로, 자바의 동적 바인딩(Dynamic Binding) 규칙에 의해 실제 가리키는 Child 객체의 show() 메서드가 실행되어 'C'가 출력됩니다.",
+  },
+  {
+    topicId: "programming-languages",
+    keyword: "Python",
+    difficulty: "hard",
+    type: "short",
+    prompt: "다음 파이썬 코드가 실행되었을 때 화면에 출력되는 결과(출력값)를 쓰시오. (단, 리스트 형태 그대로 쓰시오)\n\na = [10, 20, 30, 40, 50, 60]\nprint(a[1:5:2])",
+    answer: "[20, 40]",
+    explanation: "파이썬의 슬라이싱 a[start:end:step]은 인덱스 start부터 end-1까지 step 크기 간격으로 원소를 추출합니다. a[1:5:2]는 인덱스 1부터 4까지 2의 간격으로 원소를 추출하므로, 인덱스 1인 20과 인덱스 3인 40이 추출되어 리스트 형태인 [20, 40]이 출력됩니다.",
   },
   ],
   "bigdata-written": [

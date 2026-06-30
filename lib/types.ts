@@ -12,7 +12,8 @@ export type TopicId =
   | "testing"
   | "bigdata-planning"
   | "bigdata-preprocessing"
-  | "sql-tuning";
+  | "sql-tuning"
+  | "programming-languages";
 
 export type Difficulty = "easy" | "medium" | "hard";
 
