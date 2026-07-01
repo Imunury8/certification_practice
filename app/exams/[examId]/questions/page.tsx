@@ -26,6 +26,7 @@ export default function QuestionsPage() {
   const [count, setCount] = useState("8");
   const [focus, setFocus] = useState("");
   const [answers, setAnswers] = useState<Record<string, string>>({});
+  const [showResult, setShowResult] = useState<Record<string, boolean>>({});
   const [questions, setQuestions] = useState<Question[]>([]);
   const [isCollapsed, setIsCollapsed] = useState(true);
 
@@ -42,6 +43,7 @@ export default function QuestionsPage() {
         }),
       );
       setAnswers({});
+      setShowResult({});
     }
   }, [examId, topics]);
 
@@ -61,17 +63,14 @@ export default function QuestionsPage() {
       }),
     );
     setAnswers({});
+    setShowResult({});
   }
 
   function handleExport() {
     const payload = questions
       .map((question, index) => {
-        const choices = getSelectableChoices(question)
-          .map((choice, choiceIndex) => `  ${choiceIndex + 1}. ${choice}`)
-          .join("\n");
         return [
           `${index + 1}. [${question.topicName} / ${question.difficultyLabel}] ${question.prompt}`,
-          choices,
           `정답: ${question.answer}`,
           `해설: ${question.explanation}`,
         ].join("\n");
@@ -210,8 +209,14 @@ export default function QuestionsPage() {
               </div>
             ) : (
               questions.map((question, index) => {
-                const selected = answers[question.id];
-                const isCorrect = selected === question.answer;
+                const selected = answers[question.id] || "";
+                const isSubmitted = !!showResult[question.id];
+                
+                // 대소문자 및 띄어쓰기를 배제하고 유연하게 채점
+                const isCorrect =
+                  selected.trim().toLowerCase().replace(/\s+/g, "") ===
+                  question.answer.trim().toLowerCase().replace(/\s+/g, "");
+
                 return (
                   <article className="question-card" key={question.id}>
                     <div className="question-head">
@@ -219,30 +224,43 @@ export default function QuestionsPage() {
                         <span className="badge">Q{index + 1}</span>
                       </div>
                     </div>
-                    <h3>{question.prompt}</h3>
-                    <ol className="choices">
-                      {getSelectableChoices(question).map((choice) => {
-                        const isSelected = selected === choice;
-                        const isAnswer = question.answer === choice;
-                        return (
-                          <li className="choice-item" key={choice}>
-                            <button
-                              className={`choice-button ${isSelected ? "selected" : ""} ${
-                                selected && isAnswer ? "correct" : ""
-                              } ${isSelected && !isCorrect ? "incorrect" : ""}`}
-                              onClick={() => setAnswers((current) => ({ ...current, [question.id]: choice }))}
-                              type="button"
-                            >
-                              {choice}
-                            </button>
-                          </li>
-                        );
-                      })}
-                    </ol>
-                    {selected && (
+                    
+                    <h3 style={{ whiteSpace: "pre-wrap" }}>{question.prompt}</h3>
+
+                    <div className="input-group">
+                      <input
+                        type="text"
+                        className="text-input"
+                        placeholder="정답을 입력하세요"
+                        value={selected}
+                        onChange={(e) => setAnswers((current) => ({ ...current, [question.id]: e.target.value }))}
+                        disabled={isSubmitted}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter" && selected.trim()) {
+                            setShowResult((current) => ({ ...current, [question.id]: true }));
+                          }
+                        }}
+                      />
+                      <button
+                        className="primary-button check-btn"
+                        onClick={() => setShowResult((current) => ({ ...current, [question.id]: true }))}
+                        disabled={!selected.trim() || isSubmitted}
+                        type="button"
+                      >
+                        정답 제출
+                      </button>
+                    </div>
+
+                    {isSubmitted && (
                       <div className={`answer-box ${isCorrect ? "correct" : "incorrect"}`}>
-                        <strong>{isCorrect ? "정답입니다." : `오답입니다. 정답: ${question.answer}`}</strong>
-                        <p className="explanation">{question.explanation}</p>
+                        <strong>
+                          {isCorrect ? "정답입니다! 🎉" : `오답입니다.`}
+                        </strong>
+                        <p style={{ marginTop: "4px", fontSize: "14px" }}>
+                          내 입력: <code style={{ background: "#eee", padding: "2px 6px", borderRadius: "4px" }}>{selected}</code> 
+                          | 실제 정답: <code style={{ background: "#e1ecff", padding: "2px 6px", borderRadius: "4px", color: "#0047b3", fontWeight: "bold" }}>{question.answer}</code>
+                        </p>
+                        <p className="explanation" style={{ marginTop: "8px" }}>{question.explanation}</p>
                       </div>
                     )}
                   </article>

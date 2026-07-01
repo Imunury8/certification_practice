@@ -18,7 +18,7 @@ export type TopicId =
 
 export type Difficulty = "easy" | "medium" | "hard";
 
-export type QuestionType = "short" | "multiple-choice" | "scenario";
+export type QuestionType = "short" | "scenario";
 
 export interface Topic {
   id: TopicId;
