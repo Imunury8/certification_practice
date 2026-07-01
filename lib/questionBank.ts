@@ -42,7 +42,13 @@ export const TOPICS_BY_EXAM: Record<ExamId, Topic[]> = {
     id: "software-engineering",
     name: "소프트웨어 개발 방법론",
     description: "전통적/애자일 개발 프로세스 및 SOLID 객체지향 설계 원칙을 이해합니다.",
-    keywords: ["Waterfall", "Agile", "XP", "Scrum", "SRP", "OCP", "LSP", "ISP", "DIP", "Cohesion", "Coupling"],
+    keywords: ["Waterfall", "Agile", "XP", "Scrum", "SRP", "OCP", "LSP", "ISP", "DIP"],
+  },
+  {
+    id: "cohesion-coupling",
+    name: "응집도와 결합도",
+    description: "소프트웨어 설계 품질 기준인 응집도의 7단계 및 결합도의 6단계의 특징을 학습합니다.",
+    keywords: ["응집도", "결합도", "우논시절통순기", "자스제외공내"],
   },
   {
     id: "database",
@@ -361,8 +367,8 @@ export const QUESTION_BANK_BY_EXAM: Record<ExamId, QuestionTemplate[]> = {
     explanation: "스크럼은 PO, 스크럼 마스터와 함께 주기적인 스프린트와 일일 스크럼 미팅을 통해 협업하는 관리 프레임워크입니다.",
   },
   {
-    topicId: "software-engineering",
-    keyword: "Cohesion",
+    topicId: "cohesion-coupling",
+    keyword: "응집도",
     difficulty: "medium",
     type: "short",
     prompt: "모듈 내부의 구성 요소들이 단일한 목적이나 하나의 기능만을 수행하기 위해 밀접하게 관련되어 있는 상태로, 독립성이 가장 높은 최우수의 응집도(한글 명칭)는 무엇인가?",
@@ -370,8 +376,8 @@ export const QUESTION_BANK_BY_EXAM: Record<ExamId, QuestionTemplate[]> = {
     explanation: "기능적 응집도(Functional Cohesion)는 모듈 내의 모든 요소가 단일 기능을 수행하기 위해 유기적으로 묶인 가장 강하고 이상적인 응집도 단계입니다.",
   },
   {
-    topicId: "software-engineering",
-    keyword: "Coupling",
+    topicId: "cohesion-coupling",
+    keyword: "결합도",
     difficulty: "hard",
     type: "short",
     prompt: "두 모듈이 파라미터나 인수로 데이터를 주고받지 않고, 동일한 전역 데이터 영역(Global Variable 등)을 공동으로 참조하여 상호작용하는 결합도로, 의존성이 높아 바람직하지 않은 결합도(한글 명칭)는 무엇인가?",

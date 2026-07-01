@@ -13,7 +13,8 @@ export type TopicId =
   | "bigdata-planning"
   | "bigdata-preprocessing"
   | "sql-tuning"
-  | "programming-languages";
+  | "programming-languages"
+  | "cohesion-coupling";
 
 export type Difficulty = "easy" | "medium" | "hard";
 
