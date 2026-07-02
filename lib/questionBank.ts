@@ -52,9 +52,9 @@ export const TOPICS_BY_EXAM: Record<ExamId, Topic[]> = {
   },
   {
     id: "database",
-    name: "데이터베이스 구축",
-    description: "트랜잭션 ACID 특징, 정규화 절차 및 반정규화 기법을 정리합니다.",
-    keywords: ["ACID", "Anomaly", "Normalization", "De-normalization"],
+    name: "데이터베이스 설계",
+    description: "트랜잭션 ACID 특징, DB 이상 현상, 정규화(1NF~5NF) 과정을 다룹니다.",
+    keywords: ["ACID", "Anomaly", "Normalization", "De-normalization", "4NF", "5NF"],
   },
   {
     id: "testing",
@@ -384,6 +384,24 @@ export const QUESTION_BANK_BY_EXAM: Record<ExamId, QuestionTemplate[]> = {
     prompt: "관계형 데이터베이스 설계에서 이행적 함수 종속성(A->B, B->C 일 때 A->C)을 제거하여 이상현상을 방지하는 정규화 단계는 무엇인가?",
     answer: "제 3정규형(3NF)",
     explanation: "제3정규형은 주 식별자 이외의 속성 간 이행적 함수 종속성을 제거하는 단계입니다.",
+  },
+  {
+    topicId: "database",
+    keyword: "4NF",
+    difficulty: "hard",
+    type: "short",
+    prompt: "관계형 데이터베이스 정규화 단계 중, 릴레이션 내에서 1:N 관계로 매핑되는 다치 종속(Multi-valued Dependency)을 제거하여 이상현상을 방지하는 정규형은 무엇인가?",
+    answer: "제 4정규형",
+    explanation: "제4정규형(4NF)은 릴레이션에 존재하는 다치 종속(MVD) 관계를 제거하는 정규화 단계입니다.",
+  },
+  {
+    topicId: "database",
+    keyword: "5NF",
+    difficulty: "hard",
+    type: "short",
+    prompt: "관계형 데이터베이스 정규화 단계 중, 모든 조인 종속(Join Dependency)이 릴레이션의 후보키를 통해서만 성립되도록 하여 조인 종속성을 이용하는 정규형은 무엇인가?",
+    answer: "제 5정규형",
+    explanation: "제5정규형(5NF) 혹은 PJ/NF는 릴레이션의 조인 종속성(JD)을 만족하는 후보키를 통해 릴레이션을 무손실 분해하는 정규화 단계입니다.",
   },
   {
     topicId: "testing",
