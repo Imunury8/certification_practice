@@ -270,7 +270,8 @@ button {
 
 .sidebar-link {
   border-radius: var(--radius);
-  color: #4a5568;
+  color: var(--text);
+  opacity: 0.85;
   display: block;
   font-size: 14px;
   font-weight: 600;
@@ -375,7 +376,7 @@ button {
 }
 
 .concept-card {
-  background: #fbfcff;
+  background: var(--panel);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 16px;
@@ -388,7 +389,8 @@ button {
 
 .concept-card p,
 .concept-card li {
-  color: #344054;
+  color: var(--text);
+  opacity: 0.9;
   line-height: 1.6;
 }
 
@@ -403,8 +405,8 @@ button {
 
 .tip {
   align-items: flex-start;
-  background: #fff7df;
-  border: 1px solid #ffe1a3;
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid var(--warning);
   border-radius: var(--radius);
   color: var(--warning);
   display: flex;
