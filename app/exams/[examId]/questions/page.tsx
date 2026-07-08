@@ -257,8 +257,8 @@ export default function QuestionsPage() {
                           {isCorrect ? "정답입니다! 🎉" : `오답입니다.`}
                         </strong>
                         <p style={{ marginTop: "4px", fontSize: "14px" }}>
-                          내 입력: <code style={{ background: "#eee", padding: "2px 6px", borderRadius: "4px" }}>{selected}</code> 
-                          | 실제 정답: <code style={{ background: "#e1ecff", padding: "2px 6px", borderRadius: "4px", color: "#0047b3", fontWeight: "bold" }}>{question.answer}</code>
+                          내 입력: <code className="code-user">{selected}</code> 
+                          | 실제 정답: <code className="code-answer">{question.answer}</code>
                         </p>
                         <p className="explanation" style={{ marginTop: "8px" }}>{question.explanation}</p>
                       </div>
