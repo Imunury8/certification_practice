@@ -1,5 +1,5 @@
 import { QUESTION_BANK_BY_EXAM, TOPICS_BY_EXAM } from "@/lib/questionBank";
-import type { Difficulty, GenerateQuestionInput, Question, QuestionGenerator, QuestionTemplate, ExamId } from "@/lib/types";
+import type { Difficulty, GenerateQuestionInput, Question, QuestionGenerator, QuestionTemplate } from "@/lib/types";
 
 const typeLabels = {
   short: "단답형",

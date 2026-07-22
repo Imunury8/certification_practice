@@ -11,8 +11,17 @@ export type TopicId =
   | "database"
   | "testing"
   | "bigdata-planning"
+  | "bigdata-exploration"
+  | "bigdata-modeling"
+  | "bigdata-evaluation"
   | "bigdata-preprocessing"
+  | "bigdata-model-training"
+  | "bigdata-practical-submission"
   | "sql-tuning"
+  | "sql-index-tuning"
+  | "sql-join-tuning"
+  | "sql-optimizer-plan"
+  | "db-lock-concurrency"
   | "programming-languages"
   | "cohesion-coupling";
 

@@ -5,7 +5,7 @@ import { useMemo, useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import { AppHeader } from "@/app/components/AppHeader";
 import { TOPICS_BY_EXAM } from "@/lib/questionBank";
-import { generateQuestions, getSelectableChoices } from "@/lib/questionGenerator";
+import { generateQuestions } from "@/lib/questionGenerator";
 import type { Difficulty, Question, TopicId, ExamId } from "@/lib/types";
 
 const difficulties: { label: string; value: Difficulty }[] = [
@@ -33,6 +33,7 @@ export default function QuestionsPage() {
   useEffect(() => {
     if (topics.length > 0) {
       const initialTopic = topics[0].id as TopicId;
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setSelectedTopic(initialTopic);
       setQuestions(
         generateQuestions({

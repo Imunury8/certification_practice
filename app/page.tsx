@@ -1,10 +1,11 @@
+import React from "react";
 import Link from "next/link";
 import { ArrowRight, ShieldCheck, BarChart3, LineChart, Database } from "lucide-react";
 import { AppHeader } from "@/app/components/AppHeader";
 import { EXAMS } from "@/lib/exams";
 import type { ExamId } from "@/lib/types";
 
-const examIcons: Record<ExamId, any> = {
+const examIcons: Record<ExamId, React.ComponentType<{ size?: number; style?: React.CSSProperties }>> = {
   "infosec-practical": ShieldCheck,
   "bigdata-written": BarChart3,
   "bigdata-practical": LineChart,

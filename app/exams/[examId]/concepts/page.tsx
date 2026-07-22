@@ -65,6 +65,7 @@ export default function ConceptsPage() {
     });
 
     if (conceptSections.length > 0) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setActiveTopic(conceptSections[0].topicId);
     }
 
@@ -75,7 +76,11 @@ export default function ConceptsPage() {
     e.preventDefault();
     const target = document.getElementById(topicId);
     if (target) {
-      const offsetTop = target.getBoundingClientRect().top + window.scrollY - 90;
+      const isMobile = window.innerWidth <= 900;
+      const isTiny = window.innerWidth <= 620;
+      const headerHeight = isTiny ? 96 : 66;
+      const navHeight = isMobile ? 50 : 0;
+      const offsetTop = target.getBoundingClientRect().top + window.scrollY - (headerHeight + navHeight + 16);
       window.scrollTo({
         top: offsetTop,
         behavior: "smooth",

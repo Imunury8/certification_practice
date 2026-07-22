@@ -73,24 +73,72 @@ export const TOPICS_BY_EXAM: Record<ExamId, Topic[]> = {
     {
       id: "bigdata-planning",
       name: "빅데이터 기획",
-      description: "빅데이터 기획 단계의 기획안 수립, 규제 검토에 대해 점검합니다.",
-      keywords: ["3V", "5V", "빅데이터 생명주기"],
+      description: "빅데이터 기획 단계의 기획안 수립, 생명주기 및 규제 검토를 다룹니다.",
+      keywords: ["3V", "5V", "CRISP-DM", "개인정보보호"],
+    },
+    {
+      id: "bigdata-exploration",
+      name: "데이터 탐색 및 통계",
+      description: "기술통계, 상관분석(피어슨/스피어만), 가설검정 p-value 및 PCA 기법을 학습합니다.",
+      keywords: ["Correlation", "p-value", "PCA"],
+    },
+    {
+      id: "bigdata-modeling",
+      name: "데이터 모델링",
+      description: "지도학습(SVM, 의사결정나무 등), 비지도학습(군집분석) 및 과적합 규제를 학습합니다.",
+      keywords: ["SVM", "K-Means", "L1/L2 Regularization"],
+    },
+    {
+      id: "bigdata-evaluation",
+      name: "분석 결과 해석",
+      description: "분류 모델 평가지표(ROC-AUC, F1), 회귀 평가지표 및 편향-분산 상충을 이해합니다.",
+      keywords: ["Precision/Recall", "R-squared", "Bias-Variance"],
     }
   ],
   "bigdata-practical": [
     {
       id: "bigdata-preprocessing",
-      name: "데이터 전처리",
-      description: "결측치 처리, 이상치 제거 및 스케일링 전처리 기법을 다룹니다.",
-      keywords: ["Scaling", "Imputation", "Outlier"],
+      name: "데이터 전처리 및 특성공학",
+      description: "결측치 보간(KNNImputer), 이상치 검출(IQR) 및 스케일러 적용 기법을 평가합니다.",
+      keywords: ["KNNImputer", "IQR", "Scaling"],
+    },
+    {
+      id: "bigdata-model-training",
+      name: "모델 학습 및 하이퍼파라미터 튜닝",
+      description: "층화 교차검증(Stratified K-Fold), 랜덤 포레스트/XGBoost 및 파라미터 조율을 다룹니다.",
+      keywords: ["Stratified K-Fold", "Random Forest", "XGBoost"],
+    },
+    {
+      id: "bigdata-practical-submission",
+      name: "실기 제출 및 평가",
+      description: "작업형 1유형 판다스 조작, 작업형 2유형 to_csv 저장 포맷, 작업형 3유형 scipy 통계 검정을 학습합니다.",
+      keywords: ["to_csv", "scipy.stats", "ttest_ind"],
     }
   ],
   "sqlp": [
     {
-      id: "sql-tuning",
-      name: "SQL 튜닝",
-      description: "SQL 성능 최적화, 인덱스 설계, 조인 기법 튜닝을 평가합니다.",
-      keywords: ["Index Scan", "NL Join", "Hash Join"],
+      id: "sql-index-tuning",
+      name: "인덱스 튜닝 및 설계",
+      description: "인덱스 스캔 방식(Range/Unique/Full/Skip) 및 결합 인덱스 컬럼 설계 순서를 다룹니다.",
+      keywords: ["Index Scan", "Index Skip Scan", "Covered Index"],
+    },
+    {
+      id: "sql-join-tuning",
+      name: "조인 튜닝",
+      description: "Nested Loops Join, Sort Merge Join, Hash Join 작동 방식과 최적화 기법을 학습합니다.",
+      keywords: ["NL Join", "Sort Merge Join", "Hash Join"],
+    },
+    {
+      id: "sql-optimizer-plan",
+      name: "옵티마이저와 실행계획",
+      description: "옵티마이저 비용 산정 방식, 핵심 힌트 사용법 및 실행계획 분석 기법을 점검합니다.",
+      keywords: ["Optimizer", "Hints", "Execution Plan"],
+    },
+    {
+      id: "db-lock-concurrency",
+      name: "락과 동시성 제어",
+      description: "공유/배타 락, 트랜잭션 격리 수준 및 MVCC 동시성 제어 모델을 평가합니다.",
+      keywords: ["Isolation Level", "Deadlock", "Undo Segment"],
     }
   ]
 };
@@ -452,34 +500,376 @@ export const QUESTION_BANK_BY_EXAM: Record<ExamId, QuestionTemplate[]> = {
   "bigdata-written": [
     {
       topicId: "bigdata-planning",
-      keyword: "3V",
+      keyword: "DIKW",
       difficulty: "easy",
       type: "short",
-      prompt: "빅데이터의 3대 핵심 특징으로 데이터의 물리적 크기를 뜻하는 Volume, 형태의 다양성을 뜻하는 Variety와 함께 데이터 생성 및 처리 속도를 뜻하는 개념은 무엇인가?",
-      answer: "Velocity",
-      explanation: "빅데이터의 기본 3대 속성은 Volume, Variety, Velocity입니다.",
+      prompt: "DIKW 피라미드에서 가공되지 않은 순수한 사실(Data)에 의미와 관계를 부여하여 만들어낸 결과물은 무엇인가?",
+      answer: "정보",
+      explanation: "DIKW 계층 구조는 Data(데이터) -> Information(정보) -> Knowledge(지식) -> Wisdom(지혜) 순으로 단계적으로 발전합니다."
+    },
+    {
+      topicId: "bigdata-planning",
+      keyword: "SECI",
+      difficulty: "medium",
+      type: "short",
+      prompt: "SECI 모델에서 개인의 경험이나 노하우 등 머릿속에 존재하는 암묵지를 문서, 보고서, 도면 등의 언어로 표출하는 지식 전환 단계는 무엇인가?",
+      answer: "표출화",
+      explanation: "암묵지를 형식지로 바꾸어 문서화하는 단계는 표출화(Externalization)입니다."
+    },
+    {
+      topicId: "bigdata-planning",
+      keyword: "Top-Down",
+      difficulty: "medium",
+      type: "short",
+      prompt: "해결해야 할 문제가 이미 명확하게 정의되어 있는 경우 [문제 발견 -> 문제 정의 -> 솔루션 탐색 -> 타당성 검토] 순서로 분석 과제를 도출하는 분석 기획 접근 방식은 무엇인가?",
+      answer: "하향식 접근 방식",
+      explanation: "문제가 명확할 때 단계적으로 해법을 찾아가는 기법은 하향식(Top-Down) 접근 방식입니다."
+    },
+    {
+      topicId: "bigdata-planning",
+      keyword: "CRISP-DM",
+      difficulty: "easy",
+      type: "short",
+      prompt: "비즈니스 이해, 데이터 이해, 데이터 준비, 모델링, 평가, 전개(Deployment)의 6단계 순환 구조를 특징으로 하는 대표적인 데이터 마이닝 방법론은 무엇인가?",
+      answer: "CRISP-DM",
+      explanation: "CRISP-DM(Cross Industry Standard Process for Data Mining)은 6단계 간 피드백 루프를 갖춘 표준 개발 프로세스입니다."
+    },
+    {
+      topicId: "bigdata-planning",
+      keyword: "가명처리",
+      difficulty: "hard",
+      type: "short",
+      prompt: "개인정보 비식별화 조치 중, 식별 가능한 개인 정보의 특정 항목을 다른 임의의 값이나 고유 식별코드로 대체하여 추가 정보 없이는 특정 개인을 알아볼 수 없도록 조치하는 전처리 기술은 무엇인가?",
+      answer: "가명처리",
+      explanation: "가명처리(Pseudonymization)는 추가 정보의 결합 없이는 특정 개인을 알아볼 수 없도록 식별 정보를 가명 키값으로 대체하는 기법입니다."
+    },
+    {
+      topicId: "bigdata-exploration",
+      keyword: "ANOVA",
+      difficulty: "easy",
+      type: "short",
+      prompt: "독립변수가 3개 이상의 범주형 집단이고 종속변수가 연속형 수치 데이터일 때, 각 집단 간의 평균 차이가 통계적으로 유의미한지 검정하는 통계 분석 기법은 무엇인가?",
+      answer: "ANOVA",
+      explanation: "분산분석(ANOVA)은 3개 이상 집단(범주형) 간의 평균(연속형) 차이를 분산 비교를 통해 검정하는 방법입니다."
+    },
+    {
+      topicId: "bigdata-exploration",
+      keyword: "카이제곱 검정",
+      difficulty: "medium",
+      type: "short",
+      prompt: "독립변수와 종속변수가 모두 범주형(명목/순서) 데이터일 때, 두 변수 간의 독립성이나 두 집단의 동질성을 검정하기 위해 교차표를 작성하고 시행하는 통계적 검정은 무엇인가?",
+      answer: "카이제곱 검정",
+      explanation: "범주형 변수와 범주형 변수 간의 관계(독립성/동일성)를 교차표로 검정할 때는 카이제곱(Chi-Square) 검정을 사용합니다."
+    },
+    {
+      topicId: "bigdata-exploration",
+      keyword: "스피어만 상관계수",
+      difficulty: "medium",
+      type: "short",
+      prompt: "피어슨 상관계수와 달리, 데이터의 서열이나 순위 정보를 기준으로 두 변수 간의 단조(Monotonic) 증가 또는 감소 관계의 강도를 나타내는 비모수적 상관계수는 무엇인가?",
+      answer: "스피어만 상관계수",
+      explanation: "스피어만 상관계수는 순위(Rank) 자료를 활용해 비선형적 단조 관계의 강도를 측정하는 비모수 통계량입니다."
+    },
+    {
+      topicId: "bigdata-exploration",
+      keyword: "p-value",
+      difficulty: "easy",
+      type: "short",
+      prompt: "통계적 가설 검정에서, 귀무가설이 참이라는 전제하에 실제 표본 데이터와 같거나 더 극단적인 결과가 관찰될 확률로, 유의수준(alpha)보다 작은 경우 귀무가설을 기각하게 만드는 값은 무엇인가?",
+      answer: "p-value",
+      explanation: "p-value(유의확률)가 지정한 유의수준(보통 0.05)보다 작으면 통계적으로 유의미한 차이가 존재한다고 판단하여 귀무가설을 기각합니다."
+    },
+    {
+      topicId: "bigdata-exploration",
+      keyword: "PCA",
+      difficulty: "hard",
+      type: "scenario",
+      prompt: "분석가가 고차원 데이터셋을 변수 간 다중공선성을 제거하기 위해 주성분 분석(PCA)을 수행하고자 한다. PCA 과정에서 공분산 행렬 또는 상관 행렬을 통해 데이터를 사영(Projection)할 방향으로 설정하는, 최대 분산 방향을 나타내는 직교 벡터들을 수학적으로 무엇이라 부르는가?",
+      answer: "고유벡터",
+      explanation: "PCA에서 주성분 축(Principal Components)은 공분산 행렬의 고유벡터(Eigenvector)에 해당하며, 고유값(Eigenvalue)의 크기는 각 축의 분산 설명력을 뜻합니다."
+    },
+    {
+      topicId: "bigdata-modeling",
+      keyword: "로지스틱 회귀",
+      difficulty: "easy",
+      type: "short",
+      prompt: "로지스틱 회귀 분석에서 성공 확률 p와 실패 확률 (1-p)의 비율인 p / (1-p)를 일컫는 통계학적 척도는 무엇인가?",
+      answer: "오즈비",
+      explanation: "성공 확률과 실패 확률의 비율 p / (1-p)를 오즈비(Odds Ratio)라 부르며, 여기에 로짓(Logit) 자연로그 변환을 적용합니다."
+    },
+    {
+      topicId: "bigdata-modeling",
+      keyword: "SVM",
+      difficulty: "medium",
+      type: "short",
+      prompt: "서포트 벡터 머신(SVM) 알고리즘에서 결정 초평면(Hyperplane)과 가장 인접하게 위치한 지지 데이터 포인트 사이의 거리를 무엇이라 부르는가?",
+      answer: "마진",
+      explanation: "SVM은 결정 초평면과 지원 벡터 간의 마진(Margin)을 극대화하여 일반화 예측 능력을 최대화합니다."
+    },
+    {
+      topicId: "bigdata-modeling",
+      keyword: "선독등비정",
+      difficulty: "hard",
+      type: "scenario",
+      prompt: "다중선형 회귀분석의 타당성을 진단하기 위한 잔차(Residuals)의 5대 기본 가정인 '선형성, 독립성, 등분산성, 비상관성, 정상성'을 신속히 암기하기 위한 두문자 축약어는 무엇인가?",
+      answer: "선독등비정",
+      explanation: "회귀 5대 기본 가정 두문자는 '선독등비정(선형성, 독립성, 등분산성, 비상관성, 정상성)'입니다."
+    },
+    {
+      topicId: "bigdata-modeling",
+      keyword: "랜덤 포레스트",
+      difficulty: "medium",
+      type: "short",
+      prompt: "의사결정나무 모델의 과적합을 방지하기 위해 부트스트랩 샘플링과 무작위 피처 선택으로 다수의 무작위 나무를 병렬 학습시킨 후 보팅(Voting)하는 배깅 기반 앙상블 알고리즘은 무엇인가?",
+      answer: "랜덤 포레스트",
+      explanation: "랜덤 포레스트(Random Forest)는 Bagging과 무작위 피처 선택 기법을 결합하여 개별 트리의 높았던 분산(Variance) 오차를 낮춥니다."
+    },
+    {
+      topicId: "bigdata-modeling",
+      keyword: "향상도",
+      difficulty: "hard",
+      type: "short",
+      prompt: "연관성 분석(Apriori)에서 두 항목 A와 B가 완전히 독립일 때 대비, A가 구매되었을 때 B가 함께 구매될 비율을 나타내며, 이 값이 1보다 크면 우수한 양의 연관규칙이 성립함을 나타내는 척도는 무엇인가?",
+      answer: "향상도",
+      explanation: "향상도(Lift = P(A∩B) / (P(A)*P(B)))가 1보다 크면 두 상품 구매 간에 유의미한 양(Positive)의 상관 규칙이 존재합니다."
+    },
+    {
+      topicId: "bigdata-evaluation",
+      keyword: "F1-Score",
+      difficulty: "easy",
+      type: "short",
+      prompt: "분류 모델의 평가지표 중 정밀도(Precision)와 재현율(Recall)의 조화평균(Harmonic Mean)을 통해 구해지는 성능 종합 지표는 무엇인가?",
+      answer: "F1-Score",
+      explanation: "F1-Score는 2 * (Precision * Recall) / (Precision + Recall) 공식으로 계산되는 정밀도와 재현율의 조화평균 지표입니다."
+    },
+    {
+      topicId: "bigdata-evaluation",
+      keyword: "ROC Curve",
+      difficulty: "medium",
+      type: "short",
+      prompt: "이진 분류 모델의 임계값 변화에 따른 TPR(민감도)과 FPR(1-특이도)의 궤적을 2차원 그래프로 나타내고, 그 곡선 아래 면적으로 모델 성능을 종합 평가하는 지표는 무엇인가?",
+      answer: "ROC-AUC",
+      explanation: "ROC 커브 아래 면적인 AUC(Area Under Curve)는 1에 가까울수록 분류 변별력이 높으며 무작위 추정 시 0.5값을 띱니다."
+    },
+    {
+      topicId: "bigdata-evaluation",
+      keyword: "LOOCV",
+      difficulty: "hard",
+      type: "short",
+      prompt: "데이터 표본 수가 적을 때, 전체 N개의 데이터 중 단 1개의 관측치만을 검증 셋으로 설정하고 나머지 (N-1)개로 학습을 진행하여 이를 N번 반복 수행하는 극단적 교차검증 기법은 무엇인가?",
+      answer: "LOOCV",
+      explanation: "Leave-One-Out Cross Validation(LOOCV)은 N번 반복하여 데이터 소실 없이 교차검증을 수행합니다."
+    },
+    {
+      topicId: "bigdata-evaluation",
+      keyword: "L1 규제",
+      difficulty: "hard",
+      type: "scenario",
+      prompt: "머신러닝 모델의 복잡도를 제어하여 과적합을 방지하기 위해 가중치(Weight)의 절대값 합계를 비용함수에 페널티로 부여함으로써, 중요하지 않은 일부 피처의 가중치를 완전히 0으로 수렴시켜 변수 선택 효과를 내는 규제 방식은 무엇인가?",
+      answer: "L1 규제",
+      explanation: "L1 규제(Lasso)는 비용함수에 가중치 절대값의 합(L1 노름)을 규제 항으로 추가하여 희소성(Sparsity)을 유도하고 피처 선택 효과를 얻습니다."
+    },
+    {
+      topicId: "bigdata-evaluation",
+      keyword: "R-squared",
+      difficulty: "medium",
+      type: "short",
+      prompt: "회귀 분석 모델의 평가지표 중 하나로, 실제값과 예측값의 오차 제곱합을 총 분산으로 나눈 뒤 1에서 빼는 연산으로 구하며, 모형의 설명력을 0에서 1 사이의 실수 값으로 나타내는 지표는 무엇인가?",
+      answer: "결정계수",
+      explanation: "결정계수(R2 score)는 독립변수가 종속변수의 분산을 얼마나 잘 설명하는지 보여주는 평가지표입니다."
     }
   ],
   "bigdata-practical": [
     {
       topicId: "bigdata-preprocessing",
       keyword: "Scaling",
+      difficulty: "easy",
+      type: "short",
+      prompt: "데이터 전처리 과정에서 수치형 변수들의 데이터 범위를 [0, 1] 사이로 한정하여 다른 피처들과의 절대적 스케일을 통일해 주는 변환 기법은 무엇인가?",
+      answer: "Min-Max Scaling",
+      explanation: "Min-Max 스케일링은 공식 (X - X_min) / (X_max - X_min)에 따라 데이터 범위를 0~1로 정제합니다."
+    },
+    {
+      topicId: "bigdata-preprocessing",
+      keyword: "KNNImputer",
       difficulty: "medium",
       type: "short",
-      prompt: "데이터의 최솟값을 0, 최댓값을 1로 변환하여 서로 다른 피처의 크기를 통일하는 스케일링 기법은 무엇인가?",
-      answer: "Min-Max Scaling",
-      explanation: "Min-Max Scaling은 모든 값을 [0, 1] 범위로 균일하게 변환해주는 기법입니다.",
+      prompt: "데이터프레임 내에서 결측치(Null/NaN)를 단순히 특정 행/열 제거 대신, 데이터셋의 다른 관측치들과의 거리가 가까운 K개의 이웃 값들을 기반으로 보간하여 대체해주는 sklearn 라이브러리의 클래스 이름은 무엇인가?",
+      answer: "KNNImputer",
+      explanation: "sklearn.impute 패키지의 KNNImputer는 결측값을 거리 기반 가중치 평균 등으로 대체해주는 유용한 결측치 보간 도구입니다."
+    },
+    {
+      topicId: "bigdata-preprocessing",
+      keyword: "IQR",
+      difficulty: "hard",
+      type: "scenario",
+      prompt: "상자 수염 그림(Box Plot)을 활용해 이상치를 판단하고자 한다. 3사분위수(Q3)와 1사분위수(Q1)의 차이인 IQR(Interquartile Range)이 주어졌을 때, 이상치 판별을 위한 상한값(Upper Fence)의 수학적 공식을 기술하시오.",
+      answer: "Q3 + 1.5 * IQR",
+      explanation: "IQR 방식을 통한 아웃라이어 상하한 경계선은 하한(Q1 - 1.5 * IQR) 및 상한(Q3 + 1.5 * IQR)으로 정의됩니다."
+    },
+    {
+      topicId: "bigdata-model-training",
+      keyword: "Random Forest",
+      difficulty: "easy",
+      type: "short",
+      prompt: "의사결정나무(Decision Tree)의 분산이 크고 과적합되기 쉬운 문제를 극복하기 위해, 여러 개의 결정나무를 부트스트랩 샘플링을 통해 병렬적으로 생성한 후 그 예측값을 다수결 또는 평균으로 취합하는 대표적인 배깅(Bagging) 기반 앙상블 알고리즘은 무엇인가?",
+      answer: "Random Forest",
+      explanation: "Random Forest는 개별 결정나무 모델의 과적합 문제를 Bagging 조합 및 무작위 피처 선택으로 개선한 모델입니다."
+    },
+    {
+      topicId: "bigdata-model-training",
+      keyword: "Stratified K-Fold",
+      difficulty: "medium",
+      type: "short",
+      prompt: "분류 문제에 대해 교차 검증(Cross Validation)을 수행할 때, 각 폴드(Fold) 내에서 타겟 레이블의 클래스 비율이 원본 데이터셋의 클래스 비율과 유사하게 유지되도록 데이터를 안배해 주는 폴드 스플리터 클래스는 무엇인가?",
+      answer: "Stratified K-Fold",
+      explanation: "Stratified K-Fold는 종속 변수의 클래스 분포 편향을 방지하여 더 안정적이고 신뢰도 높은 교차 검증을 보장합니다."
+    },
+    {
+      topicId: "bigdata-model-training",
+      keyword: "LightGBM",
+      difficulty: "hard",
+      type: "scenario",
+      prompt: "그리디 부스팅(Gradient Boosting) 프레임워크를 기반으로 하며, 리프 중심 트리 분할(Leaf-wise split) 방식을 차용하여 대용량 데이터에서도 학습 속도가 매우 빠르고 메모리 사용량이 적어 빅분기 실기 시험에서 애용되는 파이썬 패키지명은 무엇인가?",
+      answer: "LightGBM",
+      explanation: "LightGBM은 Level-wise 분할을 쓰는 기존 부스팅과 달리 Leaf-wise 방식으로 분할하여 속도가 빠르며 과적합 성능 면에서 뛰어납니다."
+    },
+    {
+      topicId: "bigdata-practical-submission",
+      keyword: "to_csv",
+      difficulty: "easy",
+      type: "short",
+      prompt: "작업형 2유형 모델링 결과를 제출하기 위해 Pandas DataFrame 형식의 예측 결과를 인덱스(index) 정보 없이 디스크 파일 'result.csv'로 저장하기 위해 호출해야 하는 DataFrame의 메서드는 무엇인가?",
+      answer: "to_csv",
+      explanation: "`df.to_csv('result.csv', index=False)` 명령을 통해 제출 포맷 규격을 올바르게 맞출 수 있습니다."
+    },
+    {
+      topicId: "bigdata-practical-submission",
+      keyword: "ttest_ind",
+      difficulty: "medium",
+      type: "short",
+      prompt: "가상의 학습 데이터에 대한 t-검정을 수행하려고 한다. 두 독립적인 집단(A군, B군) 간의 평균 차이가 통계적으로 유의미한지 확인하기 위해 호출하는 `scipy.stats` 패키지의 독립표본 t-검정 함수명은 무엇인가?",
+      answer: "ttest_ind",
+      explanation: "`scipy.stats.ttest_ind(groupA, groupB)`를 호출하면 검정통계량(t-statistic)과 유의확률(p-value)을 반환받을 수 있습니다."
+    },
+    {
+      topicId: "bigdata-practical-submission",
+      keyword: "predict_proba",
+      difficulty: "hard",
+      type: "scenario",
+      prompt: "작업형 2유형 분류 예측 문제에서 모델 성능 평가지표가 ROC-AUC로 설정되어 있다. 학습된 머신러닝 모형(model)에서 테스트 셋(X_test)에 대해 단순 클래스(0 또는 1) 분류 결과가 아닌, 양성 클래스(1)에 속할 확률값을 구하여 평가지표를 최적화하고자 할 때 호출해야 하는 모델 메서드는 무엇인가?",
+      answer: "predict_proba",
+      explanation: "ROC-AUC 평가는 확률값의 상대적 순위를 채점하므로, `predict()` 대신 `predict_proba()` 메서드를 통해 양성 클래스 확률을 예측하여 제출해야 안전하게 고득점을 획득합니다."
     }
   ],
   "sqlp": [
     {
-      topicId: "sql-tuning",
+      topicId: "sql-index-tuning",
       keyword: "Index Scan",
+      difficulty: "easy",
+      type: "short",
+      prompt: "인덱스를 구성하는 선두 컬럼이 조건절에 사용되지 않았더라도, 후행 컬럼 조건이 입력되었을 때 특정 범위만을 효율적으로 스캔할 수 있도록 유도하는 인덱스 스캔 방식은 무엇인가?",
+      answer: "Index Skip Scan",
+      explanation: "인덱스 스킵 스캔(Index Skip Scan)은 선두 컬럼의 카디널리티가 낮고 후행 컬럼의 카디널리티가 높을 때 조건에 누락된 선두 컬럼 블록을 건너뛰며 스캔하는 기법입니다."
+    },
+    {
+      topicId: "sql-index-tuning",
+      keyword: "Index Scan",
+      difficulty: "medium",
+      type: "scenario",
+      prompt: "사원 테이블에 [부서코드 + 급여] 순으로 결합 인덱스가 생성되어 있을 때, 다음 SQL문이 실행된다고 가정하자.\n\n`SELECT * FROM 사원 WHERE 부서코드 = 'D01' AND 급여 >= 5000000;`\n\n이 쿼리에서 '부서코드'와 '급여' 컬럼은 인덱스 스캔 과정에서 어떤 형태의 필터/액세스 조건 역할을 수행하는가?",
+      answer: "모두 액세스 조건",
+      explanation: "인덱스 선두 컬럼인 '부서코드'가 등치(=) 조건으로 비교되었기 때문에, 후행 컬럼인 '급여'의 조건(>=)까지도 스캔 시작 및 종료 지점을 결정하는 인덱스 액세스 조건으로 작동하게 됩니다."
+    },
+    {
+      topicId: "sql-index-tuning",
+      keyword: "Covered Index",
       difficulty: "hard",
       type: "scenario",
-      prompt: "인덱스 구성 컬럼 중 조건절에 매칭되는 조건의 첫 번째 데이터 건부터 마지막 건까지 탐색하여 필요한 범위만 효율적으로 읽는 인덱스 스캔 방식은 무엇인가?",
-      answer: "Index Range Scan",
-      explanation: "Index Range Scan은 특정 범위의 리프 노드를 스캔하여 테이블 데이터를 조회하는 가장 대표적인 인덱스 스캔 기법입니다.",
+      prompt: "데이터베이스 쿼리 튜닝 시, 테이블 데이터 블록을 전혀 읽지 않고 인덱스 리프 노드에 저장된 컬럼 정보만으로 쿼리의 모든 SELECT/WHERE 결과 처리를 완료하여 성능을 극대화하는 스캔 구조를 무엇이라 하는가?",
+      answer: "Covered Index",
+      explanation: "쿼리에 필요한 모든 컬럼이 인덱스의 일부분인 경우, 테이블 무작위 액세스(Random Access)를 완전히 피하고 인덱스만으로 처리가 가능하며, 이를 커버드 인덱스(Covered Index)라고 합니다."
+    },
+    {
+      topicId: "sql-join-tuning",
+      keyword: "Hash Join",
+      difficulty: "easy",
+      type: "short",
+      prompt: "조인 대상 중 한쪽 테이블(Build Input)을 메모리에 올려 해시 맵을 만든 후, 다른 한쪽 테이블(Probe Input)을 스캔하며 해시 함수 매칭을 통해 결과를 찾는 대용량 조인 기법은 무엇인가? (단, 등가 조인에서만 작동한다)",
+      answer: "Hash Join",
+      explanation: "해시 조인은 소형 테이블로 해시 맵을 구성하고 대형 테이블을 순회하며 조인하므로, 대용량 데이터를 고속으로 처리할 때 매우 유용하며 등가 조인(=)에서만 동작합니다."
+    },
+    {
+      topicId: "sql-join-tuning",
+      keyword: "NL Join",
+      difficulty: "medium",
+      type: "short",
+      prompt: "Nested Loops Join 실행 시, 내부 루프(Inner Table)의 레코드를 매번 디스크에서 무작위로 읽어오는 I/O 대기 오버헤드를 경감시키기 위해 다수의 Inner 블록을 캐시에 동시에 미리 적재하는 오버헤드 완화 기능은 무엇인가?",
+      answer: "Prefetch",
+      explanation: "인덱스 프리페치(Prefetch)는 NL 조인의 무작위 액세스 성능 문제를 개선하기 위해 여러 개의 데이터 블록을 병렬적으로 버퍼 캐시에 올리는 DBMS 최적화 기능입니다."
+    },
+    {
+      topicId: "sql-join-tuning",
+      keyword: "Hash Join",
+      difficulty: "hard",
+      type: "scenario",
+      prompt: "다음 SQL문과 힌트가 주어져 있을 때, 이 쿼리가 조인을 수행하는 실행 순서와 조인 방식을 순서대로 올바르게 기술하시오.\n\n`SELECT /*+ LEADING(A B) USE_HASH(B) */ * FROM EMP A, DEPT B WHERE A.DEPTNO = B.DEPTNO;`",
+      answer: "A에서 B 순서로 해시 조인",
+      explanation: "LEADING(A B) 힌트로 인해 A 테이블을 선두(Build Input)로 하고 B 테이블을 나중에 스캔(Probe Input)하며, USE_HASH(B) 힌트에 의해 두 테이블은 해시 조인을 수행하게 됩니다."
+    },
+    {
+      topicId: "sql-optimizer-plan",
+      keyword: "Optimizer",
+      difficulty: "easy",
+      type: "short",
+      prompt: "비용 기반 옵티마이저(CBO)가 쿼리 수행 비용을 올바르게 예측하고 효율적인 실행 계획을 작성할 수 있도록 돕기 위해, DBMS가 보관하고 갱신하는 테이블 행수, 블록수, 컬럼 분포도 등의 정보를 통칭하여 무엇이라 하는가?",
+      answer: "통계정보",
+      explanation: "비용 기반 옵티마이저는 데이터베이스의 물리적 정보가 기록된 오브젝트 '통계 정보(Statistics)'를 토대로 최적 실행계획 비용을 계산합니다."
+    },
+    {
+      topicId: "sql-optimizer-plan",
+      keyword: "Hints",
+      difficulty: "medium",
+      type: "short",
+      prompt: "서브쿼리를 메인쿼리와 단순 조인 형태로 풀어내지 않고(Unnesting하지 않음) 필터 방식으로 별개 수행하도록 강제할 때 사용하는 쿼리 제어용 Optimizer 힌트는 무엇인가?",
+      answer: "NO_UNNEST",
+      explanation: "서브쿼리 합치기를 방지하기 위해서는 NO_UNNEST 힌트를 서브쿼리 내부에 명시해야 합니다. 반대로 합치기를 유도할 때는 UNNEST를 씁니다."
+    },
+    {
+      topicId: "sql-optimizer-plan",
+      keyword: "Execution Plan",
+      difficulty: "hard",
+      type: "scenario",
+      prompt: "다음과 같은 쿼리 실행계획 트리 구조가 관찰될 때, 각 단계의 최종 실행 순서를 나열하시오.\n\n```\n0  SELECT STATEMENT\n1    HASH JOIN\n2      TABLE ACCESS FULL DEPT\n3      TABLE ACCESS FULL EMP\n```",
+      answer: "2 -> 3 -> 1 -> 0",
+      explanation: "실행계획은 들여쓰기가 깊을수록 먼저 시작되며, 깊이가 동일하면 위쪽 노드가 먼저 실행됩니다. 따라서 2번 DEPT 풀스캔과 3번 EMP 풀스캔이 먼저 순서대로 수행되고 1번 HASH JOIN 및 0번 SELECT STATEMENT 순서로 진행됩니다."
+    },
+    {
+      topicId: "db-lock-concurrency",
+      keyword: "Isolation Level",
+      difficulty: "easy",
+      type: "short",
+      prompt: "한 트랜잭션 도중 동일 쿼리를 반복해서 실행하였을 때, 다른 트랜잭션의 신규 INSERT로 인해 이전에 없던 행이 임의로 발견되는 격리 이상 현상은 무엇인가?",
+      answer: "Phantom Read",
+      explanation: "유령 읽기(Phantom Read)는 범위 쿼리 시 다른 트랜잭션의 삽입 동작으로 조회 결과 레코드 개수가 바뀌어 나타나는 현상입니다."
+    },
+    {
+      topicId: "db-lock-concurrency",
+      keyword: "Deadlock",
+      difficulty: "medium",
+      type: "short",
+      prompt: "동일 테이블의 자원들을 각각 다른 트랜잭션이 점유한 채로, 상대방이 소유한 락(Lock)의 해제를 교차하여 영구 대기하게 되는 교착 상태를 무엇이라 하는가?",
+      answer: "Deadlock",
+      explanation: "데드락(Deadlock, 교착상태)은 둘 이상의 트랜잭션이 영구적으로 락 점유를 기다리며 진행이 멈춰버리는 오류 상태입니다."
+    },
+    {
+      topicId: "db-lock-concurrency",
+      keyword: "Undo Segment",
+      difficulty: "hard",
+      type: "scenario",
+      prompt: "Oracle 데이터베이스에서 변경 작업(UPDATE) 중인 세션이 존재하더라도, 다른 읽기 세션이 락(Lock) 대기 없이 해당 변경 전 상태(일관된 과거 버전)의 데이터를 조회할 수 있도록 원본 정보를 임시 저장하는 공간은 어디인가?",
+      answer: "Undo Segment",
+      explanation: "Oracle은 다중 버전 동시성 제어(MVCC) 모델을 기반으로 변경 데이터의 이전 이미지(Before Image)를 Undo Segment에 적재해 두어 읽기 일관성을 제공하고 블로킹을 배제합니다."
     }
   ]
 };

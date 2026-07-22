@@ -22,6 +22,7 @@ export function AppHeader({ examId }: AppHeaderProps) {
       (!localStorage.getItem("theme") &&
         window.matchMedia("(prefers-color-scheme: dark)").matches);
     
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setDarkMode(isDark);
     if (isDark) {
       document.documentElement.classList.add("dark");
