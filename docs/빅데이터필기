@@ -1,0 +1,424 @@
+빅데이터분석기사 필기는 **4과목, 과목별 20문항으로 총 80문항·120분**이고, 과목당 40점 이상이면서 전체 평균 60점 이상이어야 합격이야. 공식 과목은 `분석기획 → 탐색 → 모델링 → 결과 해석` 순서다. ([kiu.ac.kr][1])
+
+# 1과목. 빅데이터 분석기획
+
+## 빅데이터 기본 개념
+
+* **빅데이터 5V**: Volume(규모), Variety(다양성), Velocity(속도), Veracity(신뢰성), Value(가치)
+* **DIKW 피라미드**: Data(데이터) → Information(정보) → Knowledge(지식) → Wisdom(지혜)
+* **정형 데이터**: 표 형태, RDB, CSV
+* **반정형 데이터**: JSON, XML, HTML, 로그 데이터 (구조 정의 포함)
+* **비정형 데이터**: 이미지, 음성, 영상, 텍스트 문서
+* **데이터 웨어하우스(DW)**: 분석 목적의 주제 중심적·통합적·비휘발성 데이터 저장소
+* **데이터 레이크(Data Lake)**: 정형·비정형 원천 데이터를 가공 전 상태(Raw Format)로 저장하는 대용량 저장소
+* **데이터 마트(DM)**: 특정 부서나 업무 단위 분석을 위한 소규모 맞춤형 데이터 저장소
+
+## 분석 방법론
+
+* **KDD (Knowledge Discovery in Databases)**: 데이터 선택 → 전처리 → 변환 → 데이터 마이닝 → 해석·평가
+* **CRISP-DM**: 업무 이해(Business Understanding) → 데이터 이해 → 데이터 준비 → 모델링 → 평가 → 전개(Deployment)
+* **SEMMA**: Sample → Explore → Modify → Model → Assess
+* **상향식 접근법 (Bottom-up)**: 데이터 자체에서 문제와 인사이트를 발굴 (발행 형태)
+* **하향식 접근법 (Top-down)**: 업무 문제를 먼저 정의하고 솔루션을 탐색 (문제 정의 형태)
+* **프로토타이핑**: 요구사항이 불명확할 때 빠르게 시제품을 만들고 피드백을 받아 반복 개선
+
+## 분석 계획
+
+* 분석 목표·범위 정의
+* KPI 및 성공 기준 설정
+* 분석 과제 우선순위 평가: 시급성(전략적 중요도) vs 난이도(기술·비용)
+* 시급성 우선: 3 → 4 → 2 → 1 / 난이도 우선: 3 → 1 → 2 → 4
+* 분석 로드맵 및 데이터 거버넌스 수립
+* 분석 조직 구조: 집중형(전담조직), 기능형(각 부서 배치), 분산형(현업 부서에 분석인력 직접 배치)
+
+## 수집·저장 기술
+
+* **ETL**: Extract(추출) → Transform(변환) → Load(적재)
+* **ELT**: Extract(추출) → Load(적재) → Transform(변환 - 저장소 내부 계산자원 활용)
+* **CDC (Change Data Capture)**: 변경된 최신 데이터만 추출하여 실시간 전송
+* 배치 처리(Batch)와 실시간 스트리밍(Streaming - Kafka, Storm, Spark Streaming)
+* NoSQL 유형: Key-Value (Redis), Document (MongoDB), Column Family (Cassandra), Graph (Neo4j)
+* Hadoop, HDFS(분산 파일 시스템), MapReduce, Apache Spark(메모리 기반 고속 처리)
+* 개인정보 처리: 가명처리(식별 불가 조치), 익명처리(재식별 불가 조치), 암호화, 접근통제
+
+공식 1과목 범위는 빅데이터의 이해, 데이터 분석 계획, 데이터 수집 및 저장 계획으로 구성된다. ([kiu.ac.kr][1])
+
+---
+
+# 2과목. 빅데이터 탐색
+
+## 데이터 전처리
+
+* **결측값(Missing Value) 처리**:
+  * 완전 제거(Listwise deletion), 수치형 대체(평균, 중앙값, 최빈값), 예측 모델 기반 대체(k-NN, 회귀)
+* **이상값(Outlier) 탐지 및 처리**:
+  * **IQR 기법**: $IQR = Q3 - Q1$, 정상 범위 $[Q1 - 1.5 \times IQR, Q3 + 1.5 \times IQR]$
+  * **Z-Score 기법**: $Z = (X - \mu) / \sigma$, 보통 $|Z| > 3$ 이면 이상치 판단
+* **범주형 변수 인코딩**:
+  * **Label Encoding**: 순서형 변수에 적합, 0, 1, 2... 순자 부여 (단순 선형 모델 시 크기 오해 주의)
+  * **One-Hot Encoding**: 명목형 변수에 적합, 0과 1의 다차원 가변수(Dummy Variable) 생성
+* **변수 변환**:
+  * 로그 변환(우측 왜도 왜곡 완화), 제곱근 변환, Box-Cox 변환(정규성 확보)
+* **데이터 표준화와 정규화**:
+  * **표준화 (Standardization)**: $Z = \frac{X - \mu}{\sigma}$ (평균 0, 표준편차 1로 변환)
+  * **정규화 (Normalization / Min-Max)**: $X' = \frac{X - X_{min}}{X_{max} - X_{min}}$ (값을 0~1 사이로 축소)
+* **클래스 불균형(Class Imbalance) 보정**:
+  * **Oversampling**: 소수 클래스 복제/생성 (SMOTE - k-NN 기반 보간 생성)
+  * **Undersampling**: 다수 클래스 샘플 삭제 (정보 손실 위험)
+
+## 기술통계 & 확률분포
+
+* **중앙 경향성**: 평균(Mean), 중앙값(Median), 최빈값(Mode)
+* **산포도**: 범위(Range), 분산(Variance), 표준편차(Standard Deviation), IQR
+* **분포 형태**:
+  * **왜도 (Skewness)**: 오른쪽 꼬리가 길면 양의 왜도($Mean > Median > Mode$), 왼쪽 꼬리가 길면 음의 왜도($Mode > Median > Mean$)
+  * **첨도 (Kurtosis)**: 3이면 정규분포, 3보다 크면 뾰족함(가파름)
+* **상관계수**:
+  * **피어슨 상관계수**: 양적 연속형 변수 간의 선형 상관관계 ( $-1 \le r \le 1$ )
+  * **스피어만 순위상관계수**: 서열/순위형 데이터 또는 비선형 관계 평가
+* **확률분포**:
+  * 이산 확률분포: 베르누이, 이항분포, 포아송분포
+  * 연속 확률분포: 정규분포, 표준정규분포(Z), t분포(표본 작을 때), 카이제곱분포(독립성/적합도), F분포(분산 비교)
+* **중심극한정리 (CLT)**: 모집단의 분포와 무관하게 표본 크기 $n$이 충분히 크면($n \ge 30$) 표본평균의 분포는 정규분포에 가까워짐
+
+## 가설검정 & 주요 통계검정
+
+* **가설 설정**:
+  * **귀무가설 ($H_0$)**: 기존 주장, 차이가 없다/효과가 없다 (기각이 목적)
+  * **대립가설 ($H_1$)**: 연구자의 새로운 주장, 차이가 있다/효과가 있다
+* **오류 유형**:
+  * **제1종 오류 ($\alpha$)**: 참인 귀무가설을 기각하는 오류 (**유의수준**)
+  * **제2종 오류 ($\beta$)**: 거짓인 귀무가설을 채택(기각하지 못함)하는 오류
+  * **검정력 ($1 - \beta$)**: 거짓인 귀무가설을 올바르게 기각할 확률
+* **p-value (유의확률)**: 귀무가설이 참이라는 가정하에 관측된 결과 이상의 극단적 값이 나올 확률. $p \le \alpha$이면 귀무가설 기각
+* **주요 통계 검정기법**:
+  * **t-검정**: 단일표본(평균 비교), 독립표본(두 집단 평균 비교), 대응표본(Paired - 사전/사후 비교)
+  * **ANOVA (분산분석)**: 3개 이상 집단의 평균 비교 ($F = \frac{\text{집단 간 분산}}{\text{집단 내 분산}}$)
+  * **카이제곱 검정**: 교차분석, 범주형 변수 간 독립성 검정 및 적합도 검정
+  * **비모수 검정**: 정규성 가정을 만족하지 못할 때 (Mann-Whitney U, Wilcoxon, Kruskal-Wallis)
+
+공식 2과목 범위는 데이터 전처리, 데이터 탐색, 통계기법 이해다. ([kiu.ac.kr][1])
+
+---
+
+# 3과목. 빅데이터 모델링
+
+## 모델링 기본 & 검증
+
+* **학습 유형**: 지도학습(정답 O: 회귀/분류), 비지도학습(정답 X: 군집/차원축소/연관분석), 강화학습(보상/상 기반)
+* **데이터 분할 및 교차검증**:
+  * Train / Validation / Test 세트 분할 (Hold-out)
+  * **K-Fold 교차검증**: 데이터를 K개 조각으로 나눠 K번 반복 검증하여 일반화 성능 측정
+  * **Stratified K-Fold**: 타깃 클래스 비율을 균등하게 유지하며 분할 (분류 모델에 필수)
+* **편향-분산 트레이드오프 (Bias-Variance Trade-off)**:
+  * 과소적합(Underfitting): 높은 편향, 낮은 분산 (모델이 너무 단순)
+  * 과적합(Overfitting): 낮은 편향, 높은 분산 (학습 데이터에만 과하게 적합)
+* **하이퍼파라미터 튜닝**: Grid Search(전수조사), Random Search(무작위 추출), Bayesian Optimization
+
+---
+
+## 회귀분석 & 규제 (Lasso & Ridge)
+
+* **선형회귀 기본 가정**: 선형성, 독립성(다중공선성 없음), 등분산성, 잔차의 정규성
+* **다중공선성 (Multicollinearity)**: 독립변수들 간에 강한 상관관계가 존재하는 현상. **VIF(분산팽창지수) > 10** 이면 다중공선성 존재 판단
+* **규제 선형회귀 (Regularization) - 과적합 방지 및 손실함수 페널티 추가**:
+  * **Ridge (릿지 - L2 규제)**:
+    * 손실함수: $MSE + \lambda \sum \beta_j^2$
+    * 특징: 계수의 크기를 줄여주지만 **계수를 0으로 만들지는 않음** (모든 변수 유지)
+    * 효과: **다중공선성 완화**, 변수 간 높은 상관성이 있을 때 우수한 안정성
+  * **Lasso (라쏘 - L1 규제)**:
+    * 손실함수: $MSE + \lambda \sum |\beta_j|$
+    * 특징: 중요도가 낮은 변수의 계수를 **정확히 0으로 수축 (Sparsity)**
+    * 효과: **자동 변수 선택 (Feature Selection)** 및 모델 간명화/해석력 극대화
+  * **Elastic Net (엘라스틱넷)**: L1 규제와 L2 규제를 결합 ($r \cdot L1 + (1-r) \cdot L2$)
+  * **규제 파라미터 $\lambda$ (alpha)**: $\lambda$가 커질수록 페널티가 강화되어 계수가 작아짐 (편향 증가, 분산 감소)
+
+---
+
+## 앙상블 기법 & 지도학습 알고리즘 (Bagging, Boosting, Random Forest)
+
+* **앙상블 (Ensemble)**: 여러 개의 약한 학습기(Weak Learner)를 결합하여 더 강력한 예측 성능을 도출하는 기법
+
+| 구분 | **Bagging (배깅)** | **Boosting (부스팅)** |
+| :--- | :--- | :--- |
+| **학습 방식** | 여러 학습기를 **병렬(Parallel)**로 독립 학습 | 이전 모델의 오차를 보완하며 **순차적(Sequential)** 학습 |
+| **샘플링** | **Bootstrap** (복원 추출) 샘플링 | 이전 오답 데이터에 **가중치(Weight)** 부여 |
+| **결합 방식** | 보팅(Voting: 다수결) 또는 평균(Average) | 가중합(Weighted Sum) 결합 |
+| **주요 목적** | **분산(Variance) 감소** 및 과적합 방지 | **편향(Bias) 감소** 및 예측 성능(정확도) 극대화 |
+| **대표 모델** | **Random Forest** | **AdaBoost, GBM, XGBoost, LightGBM, CatBoost** |
+
+* **랜덤 포레스트 (Random Forest)**:
+  * 배깅(Bagging)의 대표 알고리즘으로 **의사결정나무(Decision Tree)**를 기본 학습기로 사용
+  * 트리를 분할할 때 전체 변수 중 **무작위로 일부 변수만 추출하여 다변화** (트리 간 상관관계 감소)
+  * **OOB (Out-of-Bag) 데이터**: 복원 추출 시 선택되지 않은 37%의 데이터를 검증용으로 활용
+* **주요 부스팅(Boosting) 알고리즘**:
+  * **AdaBoost**: 잘못 예측한 데이터 가중치를 높여 후속 트리가 오답에 집중
+  * **GBM (Gradient Boosting)**: 경사하강법을 이용해 이전 트리의 **잔차(Residual 오차)**를 예측하도록 학습
+  * **XGBoost**: GBM 대비 빠른 속도, 병렬 처리 지원, **L1/L2 규제 포함**으로 과적합 방지
+  * **LightGBM**: 리프 중심 트리 분할(Leaf-wise), 대용량 처리 고속화
+  * **CatBoost**: 범주형 변수(Categorical) 자동 인코딩 및 처리 특화
+* **기타 지도학습 알고리즘**:
+  * **로지스틱 회귀**: 시그모이드(Sigmoid) 함수를 이용해 확률($0 \sim 1$) 도출, 이진 분류 수행
+  * **k-NN**: 거리(유클리드) 기반 가까운 k개 이웃의 다수결 분류 (게으른 학습 - Lazy Learning)
+  * **SVM (서포트 벡터 머신)**: 마진(Margin)을 최대화하는 결정 경계(Hyperplane) 탐색, 커널 트릭 활용
+  * **나이브 베이즈**: 베이즈 정리를 이용한 조건부 확률 기반 독립 가정 분류기
+
+---
+
+## 군집 알고리즘 (Clustering - K-Means, DBSCAN 등)
+
+비지도 학습으로 정답(Label)이 없는 데이터의 유사성을 측정해 그룹화하는 기법.
+
+### 1. K-Means (K-평균 군집화)
+* **원리**:
+  1. K개의 임의 중심점(Centroid) 설정
+  2. 모든 데이터를 가장 가까운 중심점에 군집 할당
+  3. 할당된 데이터들의 평균 위치로 중심점 재계산
+  4. 중심 위치 변화가 없을 때까지 반복
+* **장점**: 알고리즘이 단순하며 계산 속도가 빠름
+* **단점**: **군집 수 K를 사전에 직접 지정**해야 함, **이상치(Outlier)에 민감**, 구형(Spherical) 군집만 탐지 가능 (사슬형/동심원 군집 한계)
+
+### 2. DBSCAN (밀도 기반 군집화)
+* **원리**: 특정 반경 $\epsilon$ (eps) 내에 최소 포인트 수 `minPts` 이상이 존재하는 밀도 기반 군집화
+* **핵심 구성요소**:
+  * **Core Point (핵심점)**: 반경 $\epsilon$ 내에 `minPts` 개 이상의 이웃점을 가짐
+  * **Border Point (경계점)**: 핵심점의 반경 내에 있으나 스스로 핵심점이 되지 못함
+  * **Noise Point (노이즈/이상치)**: 핵심점도 경계점도 아닌 외딴 점
+* **장점**: **군집 개수 K를 사전 지정할 필요 없음**, **비구형(임의의 복잡한) 군집 구조 탐지 가능**, **이상치(Noise) 자동 구별 및 처리**
+
+### 3. 계층적 군집분석 (Hierarchical Clustering)
+* **응집형 (Agglomerative)**: 개별 데이터에서 시작해 가까운 군집끼리 묶어 올라가는 방식 (Bottom-up)
+* **분할형 (Divisive)**: 전체 데이터를 하나의 군집으로 시작해 분할하는 방식 (Top-down)
+* **결과 시각화**: **덴드로그램 (Dendrogram)** 나무 구조 형태
+* **군집 간 거리 측정법**: 단일(최단), 완전(최장), 평균, **와드(Ward - 군집 내 오차제곱합 증가량 최소화)**
+
+### 4. 군집 평가 지표
+* **실루엣 계수 (Silhouette Coefficient)**:
+  * $s(i) = \frac{b(i) - a(i)}{\max(a(i), b(i))}$ ( $a_i$: 군집 내 평균 거리, $b_i$: 가장 가까운 타 군집과의 평균 거리)
+  * 범위: $-1 \le s(i) \le 1$ (**1에 가까울수록 군집화가 잘 됨**, 0 부근은 군집 경계, 음수는 잘못 할당됨)
+* **엘보우 기법 (Elbow Method)**: K 증가에 따른 군집 내 SSE(오차제곱합) 감소 폭이 급격히 완만해지는 '엘보우' 지점으로 최적 K 선택
+
+---
+
+## 연관분석 (Association Analysis - 지지도, 신뢰도, 향상도)
+
+거래 데이터(장바구니) 내 항목 간의 동시 발생 연관 규칙($A \rightarrow B$)을 찾는 비지도 학습.
+
+* **1. 지지도 (Support)**:
+  * 전체 거래 중 A와 B 항목이 **동시에 포함된 거래의 비율**
+  * $\text{Support}(A \rightarrow B) = P(A \cap B) = \frac{n(A \cap B)}{N}$
+  * 의미: 규칙의 출현 빈도 (최소 지지도 미달 시 유효하지 않은 규칙으로 배제)
+* **2. 신뢰도 (Confidence)**:
+  * A를 포함하는 거래 중 **B도 함께 포함된 조건부 확률**
+  * $\text{Confidence}(A \rightarrow B) = P(B|A) = \frac{P(A \cap B)}{P(A)} = \frac{n(A \cap B)}{n(A)}$
+  * 의미: A를 샀을 때 B도 살 확률 (규칙의 확실성)
+* **3. 향상도 (Lift)**:
+  * A 구매가 B 구매 확율을 **우연(독립) 대비 얼마나 향상시키는지** 나타내는 지표
+  * $\text{Lift}(A \rightarrow B) = \frac{P(A \cap B)}{P(A) \cdot P(B)} = \frac{\text{Confidence}(A \rightarrow B)}{P(B)}$
+  * **Lift > 1**: **양의 상관관계** (A 구매가 B 구매를 촉진, 유의미하고 품목 간 연관성이 높음)
+  * **Lift = 1**: **상호 독립** (A와 B 사이에 연관성이 전혀 없음)
+  * **Lift < 1**: **음의 상관관계** (A 구매가 B 구매를 억제)
+* **Apriori 알고리즘**: "한 항목집합이 빈발(Frequent)하면 그 집합의 모든 부분집합도 빈발하다"는 가지치기(Pruning)로 탐색 속도 향상
+
+공식 3과목 범위는 분석모형 설계와 분석기법 적용이다. ([kiu.ac.kr][1])
+
+---
+
+# 4과목. 빅데이터 결과 해석
+
+## 분류모델 평가 & 혼동행렬 (Confusion Matrix)
+
+### 1. 혼동행렬 (오차 행렬) 구조
+
+| 실제 \ 예측 | **Positive (양성 예측)** | **Negative (음성 예측)** |
+| :--- | :--- | :--- |
+| **Actual Positive (실제 양성)** | **TP** (True Positive: 양성을 맞게 예측) | **FN** (False Negative: 양성을 음성으로 오진 - **제2종 오류**) |
+| **Actual Negative (실제 음성)** | **FP** (False Positive: 음성을 양성으로 오진 - **제1종 오류**) | **TN** (True Negative: 음성을 맞게 예측) |
+
+### 2. 주요 분류 평가 지표 및 공식
+
+* **정확도 (Accuracy)**:
+  * $\text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN}$
+  * 전체 예측 중 올바르게 맞힌 비율. (단, 클래스 불균형 시 착시 현상 발생)
+* **정밀도 (Precision)**:
+  * $\text{Precision} = \frac{TP}{TP + FP}$
+  * 모델이 **Positive라고 예측한 것 중** 실제 Positive인 비율.
+  * **FP(음성을 양성으로 잘못 예측)가 치명적일 때 강조** (예: 스팸 메일 판별, 식용 버섯 판별)
+* **재현율 (Recall / Sensitivity / 민감도)**:
+  * $\text{Recall} = \frac{TP}{TP + FN}$
+  * **실제 Positive인 것 중** 모델이 찾아낸 비율.
+  * **FN(양성을 음성으로 놓침)이 치명적일 때 강조** (예: 암 진단, 금융 사기 탐지, 도난 탐지)
+* **특이도 (Specificity)**:
+  * $\text{Specificity} = \frac{TN}{TN + FP}$
+  * 실제 Negative인 것 중 올바르게 음성으로 분류한 비율 ($1 - FPR$)
+* **F1-Score**:
+  * $\text{F1} = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}$
+  * 정밀도와 재현율의 **조화평균**. 클래스 불균형 데이터셋 평가의 대표 지표
+
+---
+
+## ROC 곡선 & AUC (Receiver Operating Characteristic & Area Under Curve)
+
+### 1. ROC 곡선 개념 및 축
+* 분류 임계값(Threshold)을 1에서 0으로 변화시키며 모델의 성능 변화 패턴을 시각화한 그래프
+* **X축: FPR (False Positive Rate)** $= 1 - \text{Specificity} = \frac{FP}{TN + FP}$ (실제 음성 중 양성 오진 비율)
+* **Y축: TPR (True Positive Rate / Recall)** $= \frac{TP}{TP + FN}$ (실제 양성 중 맞춘 비율)
+
+### 2. AUC (Area Under Curve) 특징
+* ROC 곡선 아래의 **면적 넓이** (범위: $0.5 \sim 1.0$)
+* **AUC = 1.0**: 완벽한 분류기 (FPR이 0일 때 TPR이 1)
+* **AUC = 0.5**: 무작위 예측 (대각선 직선 형태, 분류 성능 없음)
+* **장점**: 임계값 설정에 무관하게 모델의 전반적인 식별 능력을 종합 평가할 수 있으며, 클래스 불균형에 덜 민감함
+
+---
+
+## 회귀모델 평가
+
+* **MAE (Mean Absolute Error)**: $\frac{1}{n}\sum |Y_i - \hat{Y}_i|$ (절댓값 오차 평균, 이상치 영향 적음)
+* **MSE (Mean Squared Error)**: $\frac{1}{n}\sum (Y_i - \hat{Y}_i)^2$ (제곱 오차 평균, 이상치에 민감)
+* **RMSE (Root MSE)**: $\sqrt{MSE}$ (실제 단위와 동일하게 맞춤)
+* **MAPE**: 백분율 오차 평균
+* **결정계수 ($R^2$)**: $R^2 = 1 - \frac{SSE}{SST}$ (총 변동 중 모델이 설명하는 비율, $0 \le R^2 \le 1$)
+* **수정 결정계수 (Adjusted $R^2$)**: 독립변수의 수가 증가함에 따라 $R^2$가 무조건 증가하는 단점을 보완
+
+## 모델 개선 및 유지보수
+
+* **특성 공학 및 선택**: 상관관계 높은 불필요 변수 제거, 규제(L1/L2) 적용
+* **데이터 누수 (Data Leakage) 방지**: 평가 데이터의 정보가 학습 과정에 유출되는 현상 철저 단속 (전처리 스케일링은 Train 기준으로 수행)
+* **데이터 Drift & 개념 Drift 관측**:
+  * **Data Drift**: 시간 경과에 따른 입력 데이터 분포 변화
+  * **Concept Drift**: 입력 데이터와 타깃 정답 간의 실제 관계 패턴 변화 (모델 재학습 필요)
+
+## 결과 활용 & 설명 가능성 (XAI)
+
+* 변수 중요도 (Feature Importance - Tree 기반 MDI 또는 SHAP/LIME)
+* 통계적 유의성(p-value)과 비즈니스 실무 유의성 구분
+* 모델 설명 가능성(XAI)으로 편향 및 공정성 검토
+
+---
+
+# 시험에서 자주 헷갈리는 핵심 비교 요약
+
+* **Ridge (L2)**: 계수를 작게 만듦 (모든 변수 유지, 다중공선성 방지)
+* **Lasso (L1)**: 계수를 **0으로 수축** (자동 변수 선택, Sparsity)
+* **Bagging**: 독립 트리를 **병렬 학습**, **분산 감소** (대표: Random Forest)
+* **Boosting**: 오답 보완하며 **순차 학습**, **편향 감소** (대표: XGBoost, LightGBM)
+* **K-Means**: 구형 군집, **K 사전 지정 필요**, **이상치 민감**
+* **DBSCAN**: 밀도 기반, **비구형 군집 가능**, **K 지정 불필요**, **이상치(Noise) 자동 탐지**
+* **지지도 (Support)**: $P(A \cap B)$ - 전체 중 동시 발생 비율
+* **신뢰도 (Confidence)**: $P(B|A)$ - A 선택 시 B 선택 확률
+* **향상도 (Lift)**: $\frac{P(A \cap B)}{P(A)P(B)}$ - 우연 대비 연관성 (1 초과 시 양의 상관)
+* **Precision**: 예측한 양성 중 실제 양성 (FP 오진이 치명적일 때)
+* **Recall (Sensitivity)**: 실제 양성 중 맞춘 비율 (FN 놓침이 치명적일 때)
+* **ROC 곡선**: X축 **FPR ($1 - \text{특이도}$)** vs Y축 **TPR (재현율)**
+* **AUC**: ROC 곡선 아래 면적, 1에 가까울수록 최우수
+
+## 우선순위 공부 가이드
+
+1. **전처리와 기초통계**: IQR, 표준화/정규화, 이상치/결측치, 상관계수
+2. **가설검정과 확률분포**: p-value, 1종/2종 오류, t-검정, ANOVA, 카이제곱
+3. **회귀·분류·군집 알고리즘**: Lasso/Ridge, Bagging/Boosting, K-Means/DBSCAN
+4. **혼동행렬과 평가 지표**: Precision/Recall, F1, ROC-AUC, $R^2$, RMSE
+5. **연관분석**: 지지도, 신뢰도, 향상도 공식 계산 문제
+6. **빅데이터 플랫폼 & CRISP-DM**: 데이터 레이크, NoSQL, 분석 절차
+
+필기는 **계산을 깊게 파는 것보다 용어 간 차이와 상황별 적용 방법을 정확히 구분하는 것**이 중요해. 특히 `정밀도/재현율`, `1종/2종 오류`, `Bagging/Boosting`, `Ridge/Lasso`, `K-Means/DBSCAN`, `지지도/신뢰도/향상도`는 반드시 비교해서 외워야 한다.
+
+[1]: https://www.kiu.ac.kr/HOME/globalbiz/sub.htm?mode=view&mv_data=aWR4PTc3JnN0YXJ0UGFnZT0wJmxpc3RObz0zNCZ0YWJsZT1leF9iYnNfZGF0YV9nbG9iYWxiaXombmF2X2NvZGU9Z2xvMTY4MDA1NTE3MyZjb2RlPWpUZ0ZHZU1BTmIyUSZzZWFyY2hfaXRlbT0mc2VhcmNoX29yZGVyPSZvcmRlcl9saXN0PSZsaXN0X3NjYWxlPSZ2aWV3X2xldmVsPSZ2aWV3X2NhdGU9JnZpZXdfY2F0ZTI9JnNpdGVfY29kZT1nbG9iYWxiaXoz%3D%7C%7C "글로벌비즈니스학과"
+��분석
+* 고유값·고유벡터
+* 설명된 분산
+
+## 연관분석
+
+* **지지도**: 전체 거래 중 항목집합이 함께 등장한 비율
+* **신뢰도**: A가 있을 때 B도 등장할 확률
+* **향상도**: A와 B의 연관성이 우연보다 얼마나 강한지
+* Apriori 알고리즘
+
+공식 3과목 범위는 분석모형 설계와 분석기법 적용이다. ([kiu.ac.kr][1])
+
+# 4과목. 빅데이터 결과 해석
+
+## 분류모델 평가
+
+혼동행렬에서 반드시 구분해야 함.
+
+* TP: 양성을 양성으로 예측
+* TN: 음성을 음성으로 예측
+* FP: 음성을 양성으로 잘못 예측
+* FN: 양성을 음성으로 잘못 예측
+* 정확도: 전체 중 맞힌 비율
+* 정밀도: 양성이라고 예측한 것 중 실제 양성
+* 재현율: 실제 양성 중 찾아낸 비율
+* 특이도: 실제 음성 중 음성으로 맞힌 비율
+* F1-score: 정밀도와 재현율의 조화평균
+* ROC 곡선
+* AUC
+* 임계값 Threshold
+
+## 회귀모델 평가
+
+* MAE: 절댓값 오차 평균
+* MSE: 제곱오차 평균
+* RMSE: MSE의 제곱근
+* MAPE: 백분율 오차
+* 결정계수 (R^2)
+* 수정 결정계수
+* 잔차 분석
+
+## 모델 개선
+
+* 특성 선택
+* 불필요 변수 제거
+* 규제 적용
+* 교차검증
+* 하이퍼파라미터 조정
+* 불균형 데이터 보정
+* 데이터 누수 방지
+* 앙상블
+* 모델 재학습
+* 데이터·개념 드리프트 감시
+
+## 결과 활용
+
+* 분석 결과 시각화
+* 막대·선·산점도·히트맵·박스플롯
+* 대시보드
+* 데이터 스토리텔링
+* 통계적 유의성과 실무적 유의성 구분
+* 모델 설명가능성
+* 변수 중요도
+* 분석 결과의 업무 적용
+* 개인정보·편향·공정성 검토
+
+공식 4과목 범위는 분석모형 평가 및 개선, 분석결과 해석 및 활용이다. ([kiu.ac.kr][1])
+
+# 시험에서 자주 헷갈리는 핵심 비교
+
+* **표준화**: 평균 0, 표준편차 1로 변환
+* **정규화**: 보통 값을 0~1 범위로 변환
+* **상관관계 ≠ 인과관계**
+* **Bagging**: 여러 모델을 병렬 학습, 분산 감소
+* **Boosting**: 이전 오답을 보완하며 순차 학습
+* **Precision**: 양성 예측의 정확성
+* **Recall**: 실제 양성을 놓치지 않는 능력
+* **Ridge**: 변수 계수를 작게 만듦
+* **Lasso**: 일부 계수를 0으로 만들어 변수 선택
+* **PCA**: 분산을 최대한 보존하며 차원축소
+* **p-value가 작다**: 귀무가설과 관측 결과가 잘 맞지 않는다는 뜻
+* **유의수준보다 p-value가 작다**: 귀무가설 기각
+* **과적합**: 학습 성능은 좋지만 새로운 데이터 성능이 나쁨
+
+## 우선순위로 공부하면
+
+1. 전처리와 기초통계
+2. 가설검정과 확률분포
+3. 회귀·분류·군집 알고리즘 특징
+4. 혼동행렬과 평가 지표
+5. CRISP-DM·KDD·분석기획
+6. 빅데이터 플랫폼과 개인정보 개념
+
+필기는 **계산을 깊게 파는 것보다 용어 간 차이와 상황별 적용 방법을 정확히 구분하는 것**이 중요해. 특히 `정밀도/재현율`, `1종/2종 오류`, `Bagging/Boosting`, `Ridge/Lasso`, `표준화/정규화`는 반드시 비교해서 외워야 한다.
+
+[1]: https://www.kiu.ac.kr/HOME/globalbiz/sub.htm?mode=view&mv_data=aWR4PTc3JnN0YXJ0UGFnZT0wJmxpc3RObz0zNCZ0YWJsZT1leF9iYnNfZGF0YV9nbG9iYWxiaXombmF2X2NvZGU9Z2xvMTY0MDA1NTE3MyZjb2RlPWpUZ0ZHZU1BTmIyUSZzZWFyY2hfaXRlbT0mc2VhcmNoX29yZGVyPSZvcmRlcl9saXN0PSZsaXN0X3NjYWxlPSZ2aWV3X2xldmVsPSZ2aWV3X2NhdGU9JnZpZXdfY2F0ZTI9JnNpdGVfY29kZT1nbG9iYWxiaXo%3D%7C%7C "글로벌비즈니스학과"

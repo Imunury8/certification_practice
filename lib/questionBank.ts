@@ -544,6 +544,24 @@ export const QUESTION_BANK_BY_EXAM: Record<ExamId, QuestionTemplate[]> = {
       explanation: "가명처리(Pseudonymization)는 추가 정보의 결합 없이는 특정 개인을 알아볼 수 없도록 식별 정보를 가명 키값으로 대체하는 기법입니다."
     },
     {
+      topicId: "bigdata-planning",
+      keyword: "데이터 레이크",
+      difficulty: "medium",
+      type: "short",
+      prompt: "정형 데이터뿐만 아니라 이미지, 음성, 텍스트, 반정형 로그 등 다양한 원천 데이터를 가공 전 원시 상태(Raw Data) 그대로 보관하는 대용량 저장소 아키텍처는 무엇인가?",
+      answer: "데이터 레이크",
+      explanation: "데이터 레이크(Data Lake)는 모든 형태의 raw 데이터를 사전에 가공하지 않고 있는 그대로 저장하는 중앙 저장소입니다."
+    },
+    {
+      topicId: "bigdata-planning",
+      keyword: "ELT",
+      difficulty: "hard",
+      type: "short",
+      prompt: "대용량 빅데이터 파이프라인 구축 기법 중, 원천 데이터를 일단 추출(Extract)하여 분석 저장소에 먼저 적재(Load)한 후, 필요 시 내부 파워를 통해 변환(Transform)을 수행하는 방식은 무엇인가?",
+      answer: "ELT",
+      explanation: "ELT는 Extract -> Load -> Transform 순서로 적재를 먼저 수행하여 대용량 분산 환경에 유연하게 대응하는 데이터 통합 기법입니다."
+    },
+    {
       topicId: "bigdata-exploration",
       keyword: "ANOVA",
       difficulty: "easy",
@@ -587,6 +605,24 @@ export const QUESTION_BANK_BY_EXAM: Record<ExamId, QuestionTemplate[]> = {
       prompt: "분석가가 고차원 데이터셋을 변수 간 다중공선성을 제거하기 위해 주성분 분석(PCA)을 수행하고자 한다. PCA 과정에서 공분산 행렬 또는 상관 행렬을 통해 데이터를 사영(Projection)할 방향으로 설정하는, 최대 분산 방향을 나타내는 직교 벡터들을 수학적으로 무엇이라 부르는가?",
       answer: "고유벡터",
       explanation: "PCA에서 주성분 축(Principal Components)은 공분산 행렬의 고유벡터(Eigenvector)에 해당하며, 고유값(Eigenvalue)의 크기는 각 축의 분산 설명력을 뜻합니다."
+    },
+    {
+      topicId: "bigdata-exploration",
+      keyword: "왜도",
+      difficulty: "medium",
+      type: "short",
+      prompt: "데이터 값의 분포가 정규분포 대비 얼마나 좌우 비대칭인가를 나타내는 통계량으로, 오른쪽으로 긴 꼬리를 갖는 비대칭 분포일 때 양수(> 0)의 값을 나타내는 지표는 무엇인가?",
+      answer: "왜도",
+      explanation: "왜도(Skewness)는 분포의 비대칭성을 측정하며, 오른쪽 긴 꼬리(왼쪽 집중) 분포 시 양수(>0)를 가집니다."
+    },
+    {
+      topicId: "bigdata-exploration",
+      keyword: "제1종 오류",
+      difficulty: "hard",
+      type: "short",
+      prompt: "통계적 가설 검정 과정에서 실제로는 귀무가설(H0)이 참(True)인데도 귀무가설을 잘못하여 기각(오류 채택)하는 과오를 무엇이라 부르는가?",
+      answer: "제1종 오류",
+      explanation: "제1종 오류(alpha error)는 참인 귀무가설을 기각해버리는 오류를 뜻합니다."
     },
     {
       topicId: "bigdata-modeling",
@@ -634,6 +670,24 @@ export const QUESTION_BANK_BY_EXAM: Record<ExamId, QuestionTemplate[]> = {
       explanation: "향상도(Lift = P(A∩B) / (P(A)*P(B)))가 1보다 크면 두 상품 구매 간에 유의미한 양(Positive)의 상관 규칙이 존재합니다."
     },
     {
+      topicId: "bigdata-modeling",
+      keyword: "VIF",
+      difficulty: "hard",
+      type: "short",
+      prompt: "다중선형 회귀분석에서 독립변수들 간에 다중공선성이 존재하는지 진단하는 척도로, 수치가 보통 10 이상이면 다중공선성이 심각하다고 판단하는 지표는 무엇인가?",
+      answer: "분산팽창지수",
+      explanation: "VIF(Variance Inflation Factor)는 1 / (1 - R2) 식에 의해 산출되며 10 이상 시 강한 다중공선성을 가리킵니다."
+    },
+    {
+      topicId: "bigdata-modeling",
+      keyword: "실루엣 계수",
+      difficulty: "medium",
+      type: "short",
+      prompt: "군집 분석 평가 시 군집 내 응집도와 군집 간 분리도를 종합 계산하여 -1에서 +1 사이 수치로 군집화가 잘 구성되었는지 진단하는 평가지표는 무엇인가?",
+      answer: "실루엣 계수",
+      explanation: "실루엣 계수(Silhouette Coefficient)는 1에 가까울수록 적절한 군집 형성을 가리킵니다."
+    },
+    {
       topicId: "bigdata-evaluation",
       keyword: "F1-Score",
       difficulty: "easy",
@@ -677,6 +731,24 @@ export const QUESTION_BANK_BY_EXAM: Record<ExamId, QuestionTemplate[]> = {
       prompt: "회귀 분석 모델의 평가지표 중 하나로, 실제값과 예측값의 오차 제곱합을 총 분산으로 나눈 뒤 1에서 빼는 연산으로 구하며, 모형의 설명력을 0에서 1 사이의 실수 값으로 나타내는 지표는 무엇인가?",
       answer: "결정계수",
       explanation: "결정계수(R2 score)는 독립변수가 종속변수의 분산을 얼마나 잘 설명하는지 보여주는 평가지표입니다."
+    },
+    {
+      topicId: "bigdata-evaluation",
+      keyword: "수정 결정계수",
+      difficulty: "medium",
+      type: "short",
+      prompt: "독립변수의 수가 늘어남에 따라 무조건 값이 증가하는 결정계수(R2)의 단점을 보완하기 위하여, 독립변수의 개수(p)와 샘플 수(n)에 따른 페널티를 적용하여 회귀 모형의 설명력을 조정한 지표는 무엇인가?",
+      answer: "수정 결정계수",
+      explanation: "수정 결정계수(Adjusted R2)는 불필요한 독립변수가 추가될 때 페널티를 주어 과적합된 모델의 착시를 방지합니다."
+    },
+    {
+      topicId: "bigdata-evaluation",
+      keyword: "데이터 누수",
+      difficulty: "hard",
+      type: "scenario",
+      prompt: "모델 전처리 및 훈련 단계에서 검증(Validation) 및 평가(Test) 데이터의 정보가 유출되어 학습에 포함됨으로써, 학습 시에는 과도하게 높은 성적이 나오고 실제 테스트 시 성능이 급락하는 부정 오류 현상은 무엇인가?",
+      answer: "데이터 누수",
+      explanation: "데이터 누수(Data Leakage)는 모델이 본래 보지 말아야 할 테스트 데이터의 스케일러 평균이나 타깃 정보를 사전에 습득해 왜곡이 발생하는 현상입니다."
     }
   ],
   "bigdata-practical": [
