@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 350" width="100%" height="100%">
+  <rect width="760" height="350" fill="#ffffff" rx="12" />
+  
+  <!-- Left Diagram: 오른꼬리 분포 -->
+  <g transform="translate(10, 10)">
+    <!-- Header Title -->
+    <text x="180" y="36" font-family="'Pretendard', sans-serif" font-size="17" font-weight="700" fill="#1e293b" text-anchor="middle">최빈값 &lt; 중앙값 &lt; 평균</text>
+    
+    <!-- Axes -->
+    <line x1="35" y1="260" x2="345" y2="260" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow)" />
+    <line x1="35" y1="260" x2="35" y2="70" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow)" />
+
+    <!-- Curve -->
+    <path d="M 37 255 C 50 230, 75 105, 105 105 C 145 105, 185 200, 335 255" fill="none" stroke="#7ab885" stroke-width="4" stroke-linecap="round" />
+
+    <!-- Vertical Lines -->
+    <!-- 최빈값 (Mode) - 점선 -->
+    <line x1="105" y1="108" x2="105" y2="252" stroke="#7ab885" stroke-width="2.5" stroke-dasharray="3,3" marker-end="url(#arrow-green)" />
+    <!-- 중앙값 (Median) - 파선 -->
+    <line x1="145" y1="142" x2="145" y2="252" stroke="#64748b" stroke-width="2" stroke-dasharray="6,4" marker-end="url(#arrow-gray)" />
+    <!-- 평균 (Mean) - 실선 -->
+    <line x1="190" y1="182" x2="190" y2="252" stroke="#334155" stroke-width="2" marker-end="url(#arrow-dark)" />
+
+    <!-- Bottom Title -->
+    <text x="190" y="300" font-family="'Pretendard', sans-serif" font-size="18" font-weight="700" fill="#0f172a" text-anchor="middle">오른꼬리 분포</text>
+    <text x="190" y="322" font-family="'Pretendard', sans-serif" font-size="13" font-weight="600" fill="#64748b" text-anchor="middle">(양의 왜도, Skewness &gt; 0)</text>
+  </g>
+
+  <!-- Right Diagram: 왼꼬리 분포 -->
+  <g transform="translate(390, 10)">
+    <!-- Header Title -->
+    <text x="180" y="36" font-family="'Pretendard', sans-serif" font-size="17" font-weight="700" fill="#1e293b" text-anchor="middle">평균 &lt; 중앙값 &lt; 최빈값</text>
+
+    <!-- Axes -->
+    <line x1="25" y1="260" x2="335" y2="260" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow)" />
+    <line x1="25" y1="260" x2="25" y2="70" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow)" />
+
+    <!-- Curve -->
+    <path d="M 30 255 C 180 200, 220 105, 260 105 C 290 105, 315 230, 328 255" fill="none" stroke="#7ab885" stroke-width="4" stroke-linecap="round" />
+
+    <!-- Vertical Lines -->
+    <!-- 평균 (Mean) - 실선 -->
+    <line x1="175" y1="182" x2="175" y2="252" stroke="#334155" stroke-width="2" marker-end="url(#arrow-dark)" />
+    <!-- 중앙값 (Median) - 파선 -->
+    <line x1="220" y1="142" x2="220" y2="252" stroke="#64748b" stroke-width="2" stroke-dasharray="6,4" marker-end="url(#arrow-gray)" />
+    <!-- 최빈값 (Mode) - 점선 -->
+    <line x1="260" y1="108" x2="260" y2="252" stroke="#7ab885" stroke-width="2.5" stroke-dasharray="3,3" marker-end="url(#arrow-green)" />
+
+    <!-- Bottom Title -->
+    <text x="175" y="300" font-family="'Pretendard', sans-serif" font-size="18" font-weight="700" fill="#0f172a" text-anchor="middle">왼꼬리 분포</text>
+    <text x="175" y="322" font-family="'Pretendard', sans-serif" font-size="13" font-weight="600" fill="#64748b" text-anchor="middle">(음의 왜도, Skewness &lt; 0)</text>
+  </g>
+
+  <!-- Marker Definitions -->
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#94a3b8" />
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#7ab885" />
+    </marker>
+    <marker id="arrow-gray" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#64748b" />
+    </marker>
+    <marker id="arrow-dark" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#334155" />
+    </marker>
+  </defs>
+</svg>

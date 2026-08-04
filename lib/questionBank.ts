@@ -613,7 +613,7 @@ export const QUESTION_BANK_BY_EXAM: Record<ExamId, QuestionTemplate[]> = {
       type: "short",
       prompt: "데이터 값의 분포가 정규분포 대비 얼마나 좌우 비대칭인가를 나타내는 통계량으로, 오른쪽으로 긴 꼬리를 갖는 비대칭 분포일 때 양수(> 0)의 값을 나타내는 지표는 무엇인가?",
       answer: "왜도",
-      explanation: "왜도(Skewness)는 분포의 비대칭성을 측정하며, 오른쪽 긴 꼬리(왼쪽 집중) 분포 시 양수(>0)를 가집니다."
+      explanation: "왜도(Skewness)는 분포의 비대칭성을 측정합니다. 오른꼬리 분포(양수 > 0)는 최빈값 < 중앙값 < 평균이며, 왼꼬리 분포(음수 < 0)는 평균 < 중앙값 < 최빈값 순입니다."
     },
     {
       topicId: "bigdata-exploration",

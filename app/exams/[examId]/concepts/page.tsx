@@ -156,6 +156,12 @@ export default function ConceptsPage() {
                                 <li key={detail}>{detail}</li>
                               ))}
                             </ul>
+                            {item.imageUrl && (
+                              <div className="concept-image-container">
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                <img src={item.imageUrl} alt={item.term} className="concept-image" />
+                              </div>
+                            )}
                             <div className="tip">
                               <Lightbulb size={16} />
                               <span>{item.examTip}</span>

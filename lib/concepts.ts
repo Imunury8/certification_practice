@@ -5,6 +5,7 @@ export interface ConceptItem {
   summary: string;
   details: string[];
   examTip: string;
+  imageUrl?: string;
 }
 
 export interface ConceptSection {
@@ -31,11 +32,13 @@ const item = (
   summary: string,
   details: string[],
   examTip: string,
+  imageUrl?: string,
 ): ConceptItem => ({
   term,
   summary,
   details,
   examTip,
+  imageUrl,
 });
 
 export const CONCEPTS_BY_EXAM: Record<ExamId, ConceptSection[]> = {
@@ -577,11 +580,12 @@ export const CONCEPTS_BY_EXAM: Record<ExamId, ConceptSection[]> = {
           "기술통계 및 비대칭성 (왜도 & 첨도)",
           "데이터 분포의 형태와 비대칭성을 정량 수치로 표현하는 지표입니다.",
           [
-            "왜도 (Skewness): 분포의 좌우 비대칭 정도. 왜도 > 0 (양수)이면 오른쪽 긴 꼬리(왼쪽 치우침), 왜도 < 0 (음수)이면 왼쪽 긴 꼬리.",
+            "왜도 (Skewness): 분포의 좌우 비대칭 정도. 왜도 > 0 (오른꼬리 분포: 최빈값 < 중앙값 < 평균), 왜도 < 0 (왼꼬리 분포: 평균 < 중앙값 < 최빈값).",
             "첨도 (Kurtosis): 분포의 뾰족한 정도. 정규분포의 첨도는 3(또는 0 기준)이며, 높을수록 중앙 중심 집중도가 강하고 뾰족함.",
             "이상값 탐지: IQR (사분위범위 = Q3 - Q1) 이용 시 [Q1 - 1.5*IQR, Q3 + 1.5*IQR] 범위를 벗어나면 이상값 간주."
           ],
-          "데이터 분포가 오른쪽으로 긴 꼬리를 가지면 왜도는 양수(Skewness > 0)입니다."
+          "오른꼬리 분포는 최빈값 < 중앙값 < 평균 (왜도 > 0), 왼꼬리 분포는 평균 < 중앙값 < 최빈값 (왜도 < 0) 대소 관계를 가집니다.",
+          "/images/skewness.svg"
         ),
         item(
           "데이터 스케일링 & 클래스 불균형 (표준화 vs 정규화 & SMOTE)",
