@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 380" width="100%" height="100%">
+  <rect width="780" height="380" fill="#ffffff" rx="12" />
+  
+  <!-- Main Title -->
+  <text x="390" y="32" font-family="'Pretendard', sans-serif" font-size="20" font-weight="800" fill="#0f172a" text-anchor="middle">의사결정나무 분할지표 &amp; 회귀 평가 매핑 (핵심 시험 문제)</text>
+
+  <!-- Left Card: Decision Tree Algorithms Mapping -->
+  <g transform="translate(20, 55)">
+    <rect width="360" height="300" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" rx="10" />
+    <text x="180" y="28" font-family="'Pretendard', sans-serif" font-size="15" font-weight="800" fill="#1e293b" text-anchor="middle">1. 의사결정나무 알고리즘 ➔ 불순도 지표</text>
+
+    <!-- Mapping Item 1: CART -> Gini -->
+    <g transform="translate(15, 42)">
+      <rect width="330" height="52" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5" rx="8" />
+      <text x="25" y="32" font-family="'Pretendard', sans-serif" font-size="15" font-weight="800" fill="#1d4ed8">CART</text>
+      <text x="100" y="32" font-family="'Pretendard', sans-serif" font-size="14" font-weight="800" fill="#2563eb">➔</text>
+      <text x="125" y="32" font-family="'Pretendard', sans-serif" font-size="15" font-weight="800" fill="#1e40af">지니 계수 (Gini Index)</text>
+      <text x="25" y="45" font-family="'Pretendard', sans-serif" font-size="10" font-weight="600" fill="#3b82f6">(이진 분할, 범주형/연속형 모두 지원)</text>
+    </g>
+
+    <!-- Mapping Item 2: ID3 -> Information Gain -->
+    <g transform="translate(15, 102)">
+      <rect width="330" height="52" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5" rx="8" />
+      <text x="25" y="32" font-family="'Pretendard', sans-serif" font-size="15" font-weight="800" fill="#15803d">ID3</text>
+      <text x="100" y="32" font-family="'Pretendard', sans-serif" font-size="14" font-weight="800" fill="#16a34a">➔</text>
+      <text x="125" y="32" font-family="'Pretendard', sans-serif" font-size="15" font-weight="800" fill="#166534">정보 이득 (Information Gain)</text>
+      <text x="25" y="45" font-family="'Pretendard', sans-serif" font-size="10" font-weight="600" fill="#15803d">(엔트로피 기반 불순도 감소량 측별 다치 분할)</text>
+    </g>
+
+    <!-- Mapping Item 3: C4.5 -> Gain Ratio -->
+    <g transform="translate(15, 162)">
+      <rect width="330" height="52" fill="#fff7ed" stroke="#fed7aa" stroke-width="1.5" rx="8" />
+      <text x="25" y="32" font-family="'Pretendard', sans-serif" font-size="15" font-weight="800" fill="#c2410c">C4.5</text>
+      <text x="100" y="32" font-family="'Pretendard', sans-serif" font-size="14" font-weight="800" fill="#ea580c">➔</text>
+      <text x="125" y="32" font-family="'Pretendard', sans-serif" font-size="15" font-weight="800" fill="#9a3412">정보 이득비 (Gain Ratio)</text>
+      <text x="25" y="45" font-family="'Pretendard', sans-serif" font-size="10" font-weight="600" fill="#c2410c">(ID3의 다치 변수 편향 단점 보완 개선)</text>
+    </g>
+
+    <!-- Mapping Item 4: CHAID -> Chi-square -->
+    <g transform="translate(15, 222)">
+      <rect width="330" height="52" fill="#fcf4ff" stroke="#f5d0fe" stroke-width="1.5" rx="8" />
+      <text x="25" y="32" font-family="'Pretendard', sans-serif" font-size="15" font-weight="800" fill="#86198f">CHAID</text>
+      <text x="100" y="32" font-family="'Pretendard', sans-serif" font-size="14" font-weight="800" fill="#a21caf">➔</text>
+      <text x="125" y="32" font-family="'Pretendard', sans-serif" font-size="15" font-weight="800" fill="#701a75">카이제곱 통계량 / F-검정</text>
+      <text x="25" y="45" font-family="'Pretendard', sans-serif" font-size="10" font-weight="600" fill="#a21caf">(독립성 검정 기반 다치 분할)</text>
+    </g>
+  </g>
+
+  <!-- Right Card: Regression Assessment Metrics Mapping -->
+  <g transform="translate(400, 55)">
+    <rect width="360" height="300" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" rx="10" />
+    <text x="180" y="28" font-family="'Pretendard', sans-serif" font-size="15" font-weight="800" fill="#1e293b" text-anchor="middle">2. 회귀 진단 &amp; 설명력 지표 매핑</text>
+
+    <!-- Metric 1: RMSE -> Regression Error Evaluation -->
+    <g transform="translate(15, 42)">
+      <rect width="330" height="74" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" rx="8" />
+      <text x="25" y="30" font-family="'Pretendard', sans-serif" font-size="16" font-weight="800" fill="#0f172a">RMSE</text>
+      <text x="95" y="30" font-family="'Pretendard', sans-serif" font-size="14" font-weight="800" fill="#475569">➔</text>
+      <text x="120" y="30" font-family="'Pretendard', sans-serif" font-size="15" font-weight="800" fill="#1e293b">회귀모형 오차 평가</text>
+      <text x="25" y="48" font-family="'Pretendard', sans-serif" font-size="11" font-weight="600" fill="#475569">√[ Σ(예측 - 실제)² / n ]</text>
+      <text x="25" y="64" font-family="'Pretendard', sans-serif" font-size="11" font-weight="600" fill="#64748b">실제 타겟 데이터와 동일 단위의 오차 산출</text>
+    </g>
+
+    <!-- Metric 2: VIF -> Multicollinearity -->
+    <g transform="translate(15, 124)">
+      <rect width="330" height="74" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" rx="8" />
+      <text x="25" y="30" font-family="'Pretendard', sans-serif" font-size="16" font-weight="800" fill="#b91c1c">VIF</text>
+      <text x="95" y="30" font-family="'Pretendard', sans-serif" font-size="14" font-weight="800" fill="#475569">➔</text>
+      <text x="120" y="30" font-family="'Pretendard', sans-serif" font-size="15" font-weight="800" fill="#991b1b">다중공선성 진단 (≥ 10)</text>
+      <text x="25" y="48" font-family="'Pretendard', sans-serif" font-size="11" font-weight="600" fill="#dc2626">1 / (1 - Rᵢ²)</text>
+      <text x="25" y="64" font-family="'Pretendard', sans-serif" font-size="11" font-weight="600" fill="#b91c1c">독립변수 간 과도한 선형 상관성 진단 척도</text>
+    </g>
+
+    <!-- Metric 3: Adjusted R² -> Regression Model Explanatory Power -->
+    <g transform="translate(15, 206)">
+      <rect width="330" height="74" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" rx="8" />
+      <text x="25" y="30" font-family="'Pretendard', sans-serif" font-size="16" font-weight="800" fill="#047857">Adjusted R²</text>
+      <text x="135" y="30" font-family="'Pretendard', sans-serif" font-size="14" font-weight="800" fill="#475569">➔</text>
+      <text x="160" y="30" font-family="'Pretendard', sans-serif" font-size="15" font-weight="800" fill="#065f46">회귀모형 설명력</text>
+      <text x="25" y="48" font-family="'Pretendard', sans-serif" font-size="11" font-weight="600" fill="#059669">1 - [ (1 - R²)(n - 1) / (n - p - 1) ]</text>
+      <text x="25" y="64" font-family="'Pretendard', sans-serif" font-size="11" font-weight="600" fill="#047857">독립변수 개수(p) 증가에 따른 착시 보정</text>
+    </g>
+  </g>
+</svg>

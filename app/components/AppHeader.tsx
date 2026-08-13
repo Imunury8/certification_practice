@@ -18,16 +18,21 @@ export function AppHeader({ examId }: AppHeaderProps) {
 
   useEffect(() => {
     const isDark =
+      document.documentElement.classList.contains("dark") ||
       localStorage.getItem("theme") === "dark" ||
       (!localStorage.getItem("theme") &&
         window.matchMedia("(prefers-color-scheme: dark)").matches);
-    
+
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setDarkMode(isDark);
     if (isDark) {
       document.documentElement.classList.add("dark");
+      document.body.classList.add("dark");
+      document.documentElement.setAttribute("data-theme", "dark");
     } else {
       document.documentElement.classList.remove("dark");
+      document.body.classList.remove("dark");
+      document.documentElement.setAttribute("data-theme", "light");
     }
   }, []);
 
@@ -36,9 +41,13 @@ export function AppHeader({ examId }: AppHeaderProps) {
     setDarkMode(newDark);
     if (newDark) {
       document.documentElement.classList.add("dark");
+      document.body.classList.add("dark");
+      document.documentElement.setAttribute("data-theme", "dark");
       localStorage.setItem("theme", "dark");
     } else {
       document.documentElement.classList.remove("dark");
+      document.body.classList.remove("dark");
+      document.documentElement.setAttribute("data-theme", "light");
       localStorage.setItem("theme", "light");
     }
   };

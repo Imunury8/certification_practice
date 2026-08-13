@@ -635,12 +635,30 @@ export const QUESTION_BANK_BY_EXAM: Record<ExamId, QuestionTemplate[]> = {
     },
     {
       topicId: "bigdata-modeling",
-      keyword: "SVM",
+      keyword: "마진",
       difficulty: "medium",
       type: "short",
       prompt: "서포트 벡터 머신(SVM) 알고리즘에서 결정 초평면(Hyperplane)과 가장 인접하게 위치한 지지 데이터 포인트 사이의 거리를 무엇이라 부르는가?",
       answer: "마진",
       explanation: "SVM은 결정 초평면과 지원 벡터 간의 마진(Margin)을 극대화하여 일반화 예측 능력을 최대화합니다."
+    },
+    {
+      topicId: "bigdata-modeling",
+      keyword: "지지 벡터",
+      difficulty: "medium",
+      type: "short",
+      prompt: "서포트 벡터 머신(SVM)에서 결정 초평면(Hyperplane)의 경계를 결정짓는 최외곽 선상에 위치하며, 마진(Margin) 계산의 기준이 되는 핵심 관측치 데이터 포인트들을 무엇이라 하는가?",
+      answer: "지지 벡터",
+      explanation: "지지 벡터(Support Vector)는 결정 초평면에 가장 인접한 데이터 포인트로, 이 벡터들만이 결정 경계 수식을 결정합니다."
+    },
+    {
+      topicId: "bigdata-modeling",
+      keyword: "커널 트릭",
+      difficulty: "hard",
+      type: "short",
+      prompt: "SVM에서 저차원 공간의 데이터를 선형으로 분리할 수 없을 때, 데이터를 고차원 사영 공간으로 변환하여 선형 결정 초평면 구분을 가능하게 해주는 수학적 기법을 무엇이라 하는가?",
+      answer: "커널 트릭",
+      explanation: "커널 트릭(Kernel Trick)은 RBF(가우시안), Polynomial 등의 커널 함수를 사용해 직접 고차원 좌표를 계산하지 않고도 고차원 내적을 효율적으로 계산하여 비선형 데이터를 분류합니다."
     },
     {
       topicId: "bigdata-modeling",
@@ -662,6 +680,33 @@ export const QUESTION_BANK_BY_EXAM: Record<ExamId, QuestionTemplate[]> = {
     },
     {
       topicId: "bigdata-modeling",
+      keyword: "CART 불순도 지표",
+      difficulty: "medium",
+      type: "short",
+      prompt: "의사결정나무 알고리즘 중 이진 분할(Binary Split)을 기본 구조로 가지는 CART(Classification and Regression Trees)가 분할 기준으로 사용하는 불순도 지표는 무엇인가?",
+      answer: "지니 계수",
+      explanation: "CART 알고리즘은 지니 계수(Gini Index) 불순도 감소량을 기준으로 최적 분할을 수행합니다."
+    },
+    {
+      topicId: "bigdata-modeling",
+      keyword: "ID3 불순도 지표",
+      difficulty: "medium",
+      type: "short",
+      prompt: "Quinlan이 개발한 의사결정나무 ID3 알고리즘이 노드 분할 시 불순도를 측정하고 최대화하기 위해 사용하는 지표는 무엇인가?",
+      answer: "정보 이득",
+      explanation: "ID3 알고리즘은 엔트로피(Entropy)를 이용하여 정보 이득(Information Gain)이 가장 큰 변수를 선택해 다치 분할합니다."
+    },
+    {
+      topicId: "bigdata-modeling",
+      keyword: "C4.5 분할 지표",
+      difficulty: "hard",
+      type: "short",
+      prompt: "의사결정나무 알고리즘 중 ID3가 범주(가지) 수가 많은 독립변수를 부적절하게 선호하는 단점을 보완하기 위하여 개발된 C4.5 알고리즘의 분할 지표는 무엇인가?",
+      answer: "정보 이득비",
+      explanation: "C4.5 알고리즘은 ID3의 다치 변수 편향 결점을 정보 이득비(Gain Ratio)를 사용하여 보완 및 개선하였습니다."
+    },
+    {
+      topicId: "bigdata-modeling",
       keyword: "향상도",
       difficulty: "hard",
       type: "short",
@@ -676,7 +721,34 @@ export const QUESTION_BANK_BY_EXAM: Record<ExamId, QuestionTemplate[]> = {
       type: "short",
       prompt: "다중선형 회귀분석에서 독립변수들 간에 다중공선성이 존재하는지 진단하는 척도로, 수치가 보통 10 이상이면 다중공선성이 심각하다고 판단하는 지표는 무엇인가?",
       answer: "분산팽창지수",
-      explanation: "VIF(Variance Inflation Factor)는 1 / (1 - R2) 식에 의해 산출되며 10 이상 시 강한 다중공선성을 가리킵니다."
+      explanation: "분산팽창지수(VIF, Variance Inflation Factor)는 1 / (1 - R²) 수식으로 구하며 10 이상일 때 다중공선성이 심각한 것으로 간주합니다."
+    },
+    {
+      topicId: "bigdata-modeling",
+      keyword: "다중공선성",
+      difficulty: "medium",
+      type: "short",
+      prompt: "다중 회귀분석에서 독립변수들 사이에 강한 선형 상관관계가 존재하여 회귀계수 추정치의 분산이 과도하게 커지고 p-value 및 통계적 유의성 해석이 왜곡되는 현상을 무엇이라 하는가?",
+      answer: "다중공선성",
+      explanation: "다중공선성(Multicollinearity)은 독립변수 간 높은 상관성으로 인해 회귀계수가 불안정해지고 표준오차가 팽창하는 문제 현상입니다."
+    },
+    {
+      topicId: "bigdata-modeling",
+      keyword: "VIF 계산",
+      difficulty: "hard",
+      type: "short",
+      prompt: "어느 독립변수 X1을 다른 독립변수들로 회귀 분석했을 때의 결정계수(R²)가 0.9로 측정되었다. 이때 독립변수 X1의 분산팽창지수(VIF) 값은 얼마인가?",
+      answer: "10",
+      explanation: "VIF = 1 / (1 - R²) 수식에 따라 1 / (1 - 0.9) = 1 / 0.1 = 10 이 됩니다. VIF가 10에 도달하므로 다중공선성이 존재하는 것으로 진단합니다."
+    },
+    {
+      topicId: "bigdata-modeling",
+      keyword: "다중공선성 완화 기법",
+      difficulty: "hard",
+      type: "short",
+      prompt: "다중 회귀분석에서 독립변수 간 다중공선성(Multicollinearity) 문제가 발생하였을 때, 이를 완화하기 위한 대책 3가지를 기술하시오.",
+      answer: "상관관계가 높은 독립변수 제거, L2 Ridge 규제 적용, PCA(주성분 분석)를 통한 직교 차원 축소",
+      explanation: "다중공선성은 1) 높은 상관변수 제거, 2) 계수 크기를 수축하는 Ridge(L2) 규제 모델 활용, 3) 변수들을 직교 축으로 재사영하는 PCA 차원 축소를 통해 해결합니다."
     },
     {
       topicId: "bigdata-modeling",
@@ -704,6 +776,51 @@ export const QUESTION_BANK_BY_EXAM: Record<ExamId, QuestionTemplate[]> = {
       prompt: "이진 분류 모델의 임계값 변화에 따른 TPR(민감도)과 FPR(1-특이도)의 궤적을 2차원 그래프로 나타내고, 그 곡선 아래 면적으로 모델 성능을 종합 평가하는 지표는 무엇인가?",
       answer: "ROC-AUC",
       explanation: "ROC 커브 아래 면적인 AUC(Area Under Curve)는 1에 가까울수록 분류 변별력이 높으며 무작위 추정 시 0.5값을 띱니다."
+    },
+    {
+      topicId: "bigdata-evaluation",
+      keyword: "임계값과 재현율·정밀도",
+      difficulty: "hard",
+      type: "short",
+      prompt: "이진 분류 모델에서 양성(1)을 판정하는 임계값(Threshold)을 기존 0.5에서 0.3으로 낮추었을 때, 재현율(Recall)과 정밀도(Precision)는 각각 어떻게 변화하는지 기술하시오.",
+      answer: "재현율(Recall)은 증가하고, 정밀도(Precision)는 감소한다",
+      explanation: "임계값을 낮추면 더 많은 데이터가 양성(1)으로 분류되어 FN이 감소(재현율 증가)하지만, FP 오진 판단이 함께 증가하여 정밀도는 감소합니다."
+    },
+    {
+      topicId: "bigdata-evaluation",
+      keyword: "임계값 튜닝 목적",
+      difficulty: "medium",
+      type: "short",
+      prompt: "암 진단이나 사기 감지(FDS) 시스템처럼 양성(1) 데이터를 놓치는 미진(FN)의 피해가 치명적인 분야에서는 분류 모델의 임계값(Threshold)을 어떻게 조정해야 하는가?",
+      answer: "임계값을 디폴트(0.5)보다 낮춘다",
+      explanation: "임계값을 낮추면 진양성(TP)을 구출할 확률(재현율)이 상승하고 놓치는 오판(FN)을 최소화할 수 있습니다."
+    },
+    {
+      topicId: "bigdata-evaluation",
+      keyword: "과대적합",
+      difficulty: "easy",
+      type: "short",
+      prompt: "머신러닝 모델이 훈련 데이터(Train Data)에만 과도하게 적합되어 훈련 성능은 매우 높으나 새로운 테스트 데이터(Test Data)에서는 예측 오차가 급격히 커지는 현상을 무엇이라 하는가?",
+      answer: "과대적합",
+      explanation: "과대적합(Overfitting)은 모델 복잡도가 커서 훈련 데이터의 노이즈까지 지나치게 단순 암기 학습했을 때 발생합니다."
+    },
+    {
+      topicId: "bigdata-evaluation",
+      keyword: "과소적합",
+      difficulty: "easy",
+      type: "short",
+      prompt: "머신러닝 모델의 복잡도가 지나치게 단순하여 훈련 데이터의 패턴을 충분히 학습하지 못해, 훈련 데이터와 검증 데이터 모두에서 성능이 낮게 형성되는 현상을 무엇이라 하는가?",
+      answer: "과소적합",
+      explanation: "과소적합(Underfitting)은 높은 편향(High Bias)으로 인해 발생하며, 모델 복잡도 향상 및 파생변수 추가로 해결합니다."
+    },
+    {
+      topicId: "bigdata-evaluation",
+      keyword: "과대적합 방지 대책",
+      difficulty: "hard",
+      type: "short",
+      prompt: "머신러닝 모델 학습 중 과대적합(Overfitting) 현상이 발생하였을 때 이를 방지 및 완화하기 위한 기술적 대책 3가지를 기술하시오.",
+      answer: "가중치 규제(L1/L2 Regularization) 적용, 교차검증(Cross Validation) 수행, 데이터 추가 수집 및 피처 차원 축소",
+      explanation: "과대적합 방지책으로는 L1/L2 규제, 교차검증, 데이터 증강/추가, 트리 가지치기(Pruning), 딥러닝 Dropout, 차원 축소가 있습니다."
     },
     {
       topicId: "bigdata-evaluation",
@@ -740,6 +857,15 @@ export const QUESTION_BANK_BY_EXAM: Record<ExamId, QuestionTemplate[]> = {
       prompt: "독립변수의 수가 늘어남에 따라 무조건 값이 증가하는 결정계수(R2)의 단점을 보완하기 위하여, 독립변수의 개수(p)와 샘플 수(n)에 따른 페널티를 적용하여 회귀 모형의 설명력을 조정한 지표는 무엇인가?",
       answer: "수정 결정계수",
       explanation: "수정 결정계수(Adjusted R2)는 불필요한 독립변수가 추가될 때 페널티를 주어 과적합된 모델의 착시를 방지합니다."
+    },
+    {
+      topicId: "bigdata-evaluation",
+      keyword: "RMSE",
+      difficulty: "easy",
+      type: "short",
+      prompt: "회귀 모형의 예측 성능 평가 지표 중 하나로, 실제 타깃값과 예측값 오차 제곱의 평균(MSE)에 제곱근(루트)을 씌워 오차를 타깃 변수와 동일한 단위로 산출하는 회귀 오차 평가지표는 무엇인가?",
+      answer: "RMSE",
+      explanation: "RMSE(Root Mean Squared Error)는 MSE에 루트를 취해 실제 수치 단위와 일치시킨 회귀 모형의 오차 평가 척도입니다."
     },
     {
       topicId: "bigdata-evaluation",

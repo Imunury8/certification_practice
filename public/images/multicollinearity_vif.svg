@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 360" width="100%" height="100%">
+  <rect width="780" height="360" fill="#ffffff" rx="12" />
+  
+  <!-- Title Header -->
+  <text x="390" y="32" font-family="'Pretendard', sans-serif" font-size="20" font-weight="800" fill="#0f172a" text-anchor="middle">다중공선성(Multicollinearity)과 VIF(분산팽창지수) 진단</text>
+
+  <!-- Left Box: Multicollinearity Concept & Symptom -->
+  <g transform="translate(20, 50)">
+    <rect width="360" height="290" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" rx="10" />
+    <text x="180" y="30" font-family="'Pretendard', sans-serif" font-size="16" font-weight="700" fill="#1e293b" text-anchor="middle">1. 다중공선성의 발생과 증상</text>
+    
+    <!-- Independent Variables Correlation Graphic -->
+    <circle cx="120" cy="95" r="38" fill="#3b82f6" fill-opacity="0.15" stroke="#2563eb" stroke-width="2.5" />
+    <text x="120" y="99" font-family="'Pretendard', sans-serif" font-size="14" font-weight="700" fill="#1d4ed8" text-anchor="middle">독립변수 X₁</text>
+
+    <circle cx="180" cy="95" r="38" fill="#ef4444" fill-opacity="0.15" stroke="#dc2626" stroke-width="2.5" />
+    <text x="180" y="99" font-family="'Pretendard', sans-serif" font-size="14" font-weight="700" fill="#b91c1c" text-anchor="middle">독립변수 X₂</text>
+
+    <text x="150" y="155" font-family="'Pretendard', sans-serif" font-size="13" font-weight="700" fill="#d97706" text-anchor="middle">강한 상관관계 (|r| ≈ 1.0)</text>
+
+    <!-- Symptoms box -->
+    <rect x="20" y="170" width="320" height="100" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" rx="6" />
+    <text x="30" y="193" font-family="'Pretendard', sans-serif" font-size="13" font-weight="700" fill="#b91c1c">• 회귀계수 분산 팽창 (표준오차 급증)</text>
+    <text x="30" y="215" font-family="'Pretendard', sans-serif" font-size="13" font-weight="600" fill="#334155">• 높은 결정계수(R²) 대비 p-value가 비유의함</text>
+    <text x="30" y="237" font-family="'Pretendard', sans-serif" font-size="13" font-weight="600" fill="#334155">• 계수의 부호 반전 및 추정치 불안정성</text>
+    <text x="30" y="259" font-family="'Pretendard', sans-serif" font-size="13" font-weight="600" fill="#475569">• 해결: 변수 제거, Ridge(L2), PCA 직교 사영</text>
+  </g>
+
+  <!-- Right Box: VIF Formula & Thresholds -->
+  <g transform="translate(400, 50)">
+    <rect width="360" height="290" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" rx="10" />
+    <text x="180" y="30" font-family="'Pretendard', sans-serif" font-size="16" font-weight="700" fill="#1e293b" text-anchor="middle">2. VIF (Variance Inflation Factor) 수식 &amp; 기준</text>
+
+    <!-- Formula Box -->
+    <rect x="30" y="48" width="300" height="60" fill="#eff6ff" stroke="#bfdbfe" stroke-width="2" rx="8" />
+    <text x="180" y="78" font-family="'Pretendard', sans-serif" font-size="18" font-weight="800" fill="#1e40af" text-anchor="middle">VIFᵢ = 1 / (1 - Rᵢ²)</text>
+    <text x="180" y="98" font-family="'Pretendard', sans-serif" font-size="11" font-weight="600" fill="#3b82f6" text-anchor="middle">(Rᵢ²: i번째 변수를 다른 변수들로 회귀분석 시 설명력)</text>
+
+    <!-- Threshold Gauges / Cards -->
+    <!-- Level 1: VIF = 1 -->
+    <rect x="30" y="122" width="300" height="40" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5" rx="6" />
+    <text x="45" y="146" font-family="'Pretendard', sans-serif" font-size="14" font-weight="700" fill="#166534">VIF = 1</text>
+    <text x="130" y="146" font-family="'Pretendard', sans-serif" font-size="13" font-weight="600" fill="#15803d">완전 독립 (상관관계 없음)</text>
+
+    <!-- Level 2: 1 < VIF < 5/10 -->
+    <rect x="30" y="170" width="300" height="40" fill="#fffbeb" stroke="#fde68a" stroke-width="1.5" rx="6" />
+    <text x="45" y="194" font-family="'Pretendard', sans-serif" font-size="14" font-weight="700" fill="#92400e">VIF &lt; 5 ~ 10</text>
+    <text x="145" y="194" font-family="'Pretendard', sans-serif" font-size="13" font-weight="600" fill="#b45309">보통 수준 (상용 허용 범위)</text>
+
+    <!-- Level 3: VIF >= 10 -->
+    <rect x="30" y="218" width="300" height="54" fill="#fef2f2" stroke="#fecaca" stroke-width="2" rx="6" />
+    <text x="45" y="240" font-family="'Pretendard', sans-serif" font-size="14" font-weight="800" fill="#991b1b">VIF ≥ 10 ★</text>
+    <text x="135" y="240" font-family="'Pretendard', sans-serif" font-size="13" font-weight="700" fill="#dc2626">심각한 다중공선성 존재!</text>
+    <text x="135" y="260" font-family="'Pretendard', sans-serif" font-size="12" font-weight="600" fill="#b91c1c">예: Rᵢ² = 0.9 ➔ VIF = 1 / (1-0.9) = 10</text>
+  </g>
+</svg>

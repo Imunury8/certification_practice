@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 360" width="100%" height="100%">
+  <rect width="780" height="360" fill="#ffffff" rx="12" />
+  
+  <!-- Title Header -->
+  <text x="390" y="32" font-family="'Pretendard', sans-serif" font-size="20" font-weight="800" fill="#0f172a" text-anchor="middle">분류 모델 임계값(Threshold) 이동과 정밀도 · 재현율 트레이드오프</text>
+
+  <!-- Left Box: Low Threshold (0.3) -->
+  <g transform="translate(20, 55)">
+    <rect width="235" height="280" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5" rx="10" />
+    <text x="117" y="30" font-family="'Pretendard', sans-serif" font-size="15" font-weight="800" fill="#1e40af" text-anchor="middle">임계값 낮춤 (e.g. 0.3)</text>
+    
+    <!-- Threshold line graphic -->
+    <rect x="20" y="45" width="195" height="24" fill="#dbeafe" rx="4" />
+    <line x1="75" y1="45" x2="75" y2="69" stroke="#2563eb" stroke-width="3" />
+    <text x="40" y="61" font-family="'Pretendard', sans-serif" font-size="11" font-weight="700" fill="#1e3a8a">0</text>
+    <text x="75" y="61" font-family="'Pretendard', sans-serif" font-size="11" font-weight="800" fill="#2563eb" text-anchor="middle">0.3</text>
+    <text x="200" y="61" font-family="'Pretendard', sans-serif" font-size="11" font-weight="700" fill="#1e3a8a">1.0</text>
+
+    <!-- Details -->
+    <rect x="15" y="80" width="205" height="185" fill="#ffffff" stroke="#bfdbfe" stroke-width="1" rx="6" />
+    <text x="25" y="103" font-family="'Pretendard', sans-serif" font-size="13" font-weight="800" fill="#1d4ed8">• 양성(1) 판단 기준 완화</text>
+    <text x="25" y="127" font-family="'Pretendard', sans-serif" font-size="12" font-weight="700" fill="#166534">➔ TP ↑, FP ↑, FN ↓, TN ↓</text>
+    <text x="25" y="152" font-family="'Pretendard', sans-serif" font-size="13" font-weight="800" fill="#15803d">★ 재현율(Recall) 상승 ↑</text>
+    <text x="25" y="174" font-family="'Pretendard', sans-serif" font-size="12" font-weight="600" fill="#b91c1c">▼ 정밀도(Precision) 하락 ↓</text>
+    
+    <text x="25" y="202" font-family="'Pretendard', sans-serif" font-size="12" font-weight="700" fill="#1e293b">[적용 목적]</text>
+    <text x="25" y="222" font-family="'Pretendard', sans-serif" font-size="11" font-weight="600" fill="#475569">진양성(Positive)을 절대로</text>
+    <text x="25" y="238" font-family="'Pretendard', sans-serif" font-size="11" font-weight="600" fill="#475569">놓치면 안 되는 시스템</text>
+    <text x="25" y="254" font-family="'Pretendard', sans-serif" font-size="11" font-weight="700" fill="#2563eb">(암 진단, 금융사기/FDS)</text>
+  </g>
+
+  <!-- Middle Box: Standard Threshold (0.5) -->
+  <g transform="translate(272, 55)">
+    <rect width="235" height="280" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" rx="10" />
+    <text x="117" y="30" font-family="'Pretendard', sans-serif" font-size="15" font-weight="800" fill="#334155" text-anchor="middle">기본 임계값 (0.5)</text>
+
+    <!-- Threshold line graphic -->
+    <rect x="20" y="45" width="195" height="24" fill="#e2e8f0" rx="4" />
+    <line x1="117" y1="45" x2="117" y2="69" stroke="#475569" stroke-width="3" />
+    <text x="40" y="61" font-family="'Pretendard', sans-serif" font-size="11" font-weight="700" fill="#475569">0</text>
+    <text x="117" y="61" font-family="'Pretendard', sans-serif" font-size="11" font-weight="800" fill="#0f172a" text-anchor="middle">0.5</text>
+    <text x="200" y="61" font-family="'Pretendard', sans-serif" font-size="11" font-weight="700" fill="#475569">1.0</text>
+
+    <!-- Details -->
+    <rect x="15" y="80" width="205" height="185" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" rx="6" />
+    <text x="25" y="103" font-family="'Pretendard', sans-serif" font-size="13" font-weight="800" fill="#334155">• 표준 이진 분류 디폴트</text>
+    <text x="25" y="127" font-family="'Pretendard', sans-serif" font-size="12" font-weight="600" fill="#475569">➔ 정밀도와 재현율의 균형</text>
+    <text x="25" y="152" font-family="'Pretendard', sans-serif" font-size="13" font-weight="700" fill="#0f172a">★ F1-Score 조화평균 최적</text>
+    <text x="25" y="174" font-family="'Pretendard', sans-serif" font-size="12" font-weight="600" fill="#64748b">ROC-AUC 곡선 기준점</text>
+    
+    <text x="25" y="202" font-family="'Pretendard', sans-serif" font-size="12" font-weight="700" fill="#1e293b">[특징]</text>
+    <text x="25" y="222" font-family="'Pretendard', sans-serif" font-size="11" font-weight="600" fill="#475569">클래스 데이터가 비대칭/불균형</text>
+    <text x="25" y="238" font-family="'Pretendard', sans-serif" font-size="11" font-weight="600" fill="#475569">할 경우 임계값을 별도 튜닝</text>
+    <text x="25" y="254" font-family="'Pretendard', sans-serif" font-size="11" font-weight="700" fill="#475569">(Youden's J statistic)</text>
+  </g>
+
+  <!-- Right Box: High Threshold (0.7) -->
+  <g transform="translate(525, 55)">
+    <rect width="235" height="280" fill="#fff7ed" stroke="#fdba74" stroke-width="1.5" rx="10" />
+    <text x="117" y="30" font-family="'Pretendard', sans-serif" font-size="15" font-weight="800" fill="#c2410c" text-anchor="middle">임계값 높임 (e.g. 0.7)</text>
+
+    <!-- Threshold line graphic -->
+    <rect x="20" y="45" width="195" height="24" fill="#ffedd5" rx="4" />
+    <line x1="160" y1="45" x2="160" y2="69" stroke="#ea580c" stroke-width="3" />
+    <text x="40" y="61" font-family="'Pretendard', sans-serif" font-size="11" font-weight="700" fill="#9a3412">0</text>
+    <text x="160" y="61" font-family="'Pretendard', sans-serif" font-size="11" font-weight="800" fill="#ea580c" text-anchor="middle">0.7</text>
+    <text x="200" y="61" font-family="'Pretendard', sans-serif" font-size="11" font-weight="700" fill="#9a3412">1.0</text>
+
+    <!-- Details -->
+    <rect x="15" y="80" width="205" height="185" fill="#ffffff" stroke="#fed7aa" stroke-width="1" rx="6" />
+    <text x="25" y="103" font-family="'Pretendard', sans-serif" font-size="13" font-weight="800" fill="#c2410c">• 양성(1) 판단 기준 엄격화</text>
+    <text x="25" y="127" font-family="'Pretendard', sans-serif" font-size="12" font-weight="700" fill="#b91c1c">➔ TP ↓, FP ↓, FN ↑, TN ↑</text>
+    <text x="25" y="152" font-family="'Pretendard', sans-serif" font-size="13" font-weight="800" fill="#ea580c">★ 정밀도(Precision) 상승 ↑</text>
+    <text x="25" y="174" font-family="'Pretendard', sans-serif" font-size="12" font-weight="600" fill="#b91c1c">▼ 재현율(Recall) 하락 ↓</text>
+    
+    <text x="25" y="202" font-family="'Pretendard', sans-serif" font-size="12" font-weight="700" fill="#1e293b">[적용 목적]</text>
+    <text x="25" y="222" font-family="'Pretendard', sans-serif" font-size="11" font-weight="600" fill="#475569">오탐(FP: 잘못된 오진)을</text>
+    <text x="25" y="238" font-family="'Pretendard', sans-serif" font-size="11" font-weight="600" fill="#475569">최소화해야 하는 마케팅</text>
+    <text x="25" y="254" font-family="'Pretendard', sans-serif" font-size="11" font-weight="700" fill="#c2410c">(VIP 표적 발송, 고비용 타겟)</text>
+  </g>
+</svg>

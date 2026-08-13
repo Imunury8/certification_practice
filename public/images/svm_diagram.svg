@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 380" width="100%" height="100%">
+  <rect width="780" height="380" fill="#ffffff" rx="12" />
+  
+  <!-- Title Header -->
+  <text x="390" y="32" font-family="'Pretendard', sans-serif" font-size="20" font-weight="800" fill="#0f172a" text-anchor="middle">서포트 벡터 머신 (SVM) 결정 경계 &amp; 커널 트릭 (Kernel Trick)</text>
+
+  <!-- Left Box: Linear SVM & Margin -->
+  <g transform="translate(20, 52)">
+    <rect width="360" height="305" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" rx="10" />
+    <text x="180" y="26" font-family="'Pretendard', sans-serif" font-size="15" font-weight="800" fill="#1e293b" text-anchor="middle">1. 마진 극대화 &amp; 지지 벡터 (Support Vector)</text>
+    
+    <!-- Graph Canvas -->
+    <rect x="15" y="40" width="330" height="250" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" rx="6" />
+
+    <!-- Negative Margin Line (Dashed) -->
+    <line x1="45" y1="240" x2="265" y2="60" stroke="#94a3b8" stroke-width="2" stroke-dasharray="5,4" />
+    <text x="50" y="255" font-family="'Pretendard', sans-serif" font-size="10" font-weight="700" fill="#64748b">wᵀx + b = -1</text>
+
+    <!-- Main Decision Hyperplane (Solid Red) -->
+    <line x1="75" y1="260" x2="295" y2="80" stroke="#dc2626" stroke-width="3" />
+    <text x="175" y="155" font-family="'Pretendard', sans-serif" font-size="11" font-weight="800" fill="#b91c1c" transform="rotate(-38, 175, 155)">결정 초평면 (wᵀx + b = 0)</text>
+
+    <!-- Positive Margin Line (Dashed) -->
+    <line x1="105" y1="280" x2="325" y2="100" stroke="#94a3b8" stroke-width="2" stroke-dasharray="5,4" />
+    <text x="260" y="85" font-family="'Pretendard', sans-serif" font-size="10" font-weight="700" fill="#64748b">wᵀx + b = +1</text>
+
+    <!-- Margin Arrow -->
+    <line x1="130" y1="130" x2="175" y2="185" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow-blue)" marker-start="url(#arrow-blue)" />
+    <rect x="135" y="145" width="60" height="20" fill="#eff6ff" stroke="#bfdbfe" rx="3" />
+    <text x="165" y="159" font-family="'Pretendard', sans-serif" font-size="11" font-weight="800" fill="#1d4ed8" text-anchor="middle">마진 (Margin)</text>
+
+    <!-- Data Points: Class A (Blue circles) -->
+    <circle cx="65" cy="180" r="7" fill="#3b82f6" />
+    <circle cx="100" cy="220" r="7" fill="#3b82f6" />
+    <circle cx="130" cy="240" r="7" fill="#3b82f6" />
+    <!-- Class A Support Vector (Drawn with highlighted ring) -->
+    <circle cx="155" cy="150" r="9" fill="none" stroke="#2563eb" stroke-width="3" />
+    <circle cx="155" cy="150" r="6" fill="#2563eb" />
+    <text x="100" y="140" font-family="'Pretendard', sans-serif" font-size="10" font-weight="800" fill="#1d4ed8">지지 벡터(SV)</text>
+
+    <!-- Data Points: Class B (Green Squares) -->
+    <rect x="235" y="130" width="12" height="12" fill="#16a34a" rx="2" />
+    <rect x="275" y="90" width="12" height="12" fill="#16a34a" rx="2" />
+    <rect x="250" y="60" width="12" height="12" fill="#16a34a" rx="2" />
+    <!-- Class B Support Vector (Drawn with highlighted ring) -->
+    <rect x="187" y="167" width="14" height="14" fill="none" stroke="#15803d" stroke-width="3" rx="2" />
+    <rect x="190" y="170" width="8" height="8" fill="#15803d" rx="1" />
+    <text x="215" y="195" font-family="'Pretendard', sans-serif" font-size="10" font-weight="800" fill="#15803d">지지 벡터(SV)</text>
+  </g>
+
+  <!-- Right Box: Kernel Trick Concept -->
+  <g transform="translate(400, 52)">
+    <rect width="360" height="305" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" rx="10" />
+    <text x="180" y="26" font-family="'Pretendard', sans-serif" font-size="15" font-weight="800" fill="#1e293b" text-anchor="middle">2. 비선형 분리와 커널 트릭 (Kernel Trick)</text>
+
+    <!-- Graphic Container -->
+    <g transform="translate(15, 40)">
+      <!-- Low Dimensional Non-linear Data -->
+      <rect width="150" height="140" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" rx="6" />
+      <text x="75" y="20" font-family="'Pretendard', sans-serif" font-size="11" font-weight="800" fill="#64748b" text-anchor="middle">저차원 (비선형 분리 불가)</text>
+      <!-- Concentric circles/squares -->
+      <circle cx="75" cy="80" r="14" fill="#2563eb" />
+      <circle cx="75" cy="80" r="38" fill="none" stroke="#16a34a" stroke-width="4" stroke-dasharray="4,3" />
+
+      <!-- Arrow: Kernel Mapping -->
+      <path d="M 160 70 L 195 70" stroke="#7c3aed" stroke-width="3" marker-end="url(#arrow-purple)" />
+      <text x="178" y="60" font-family="'Pretendard', sans-serif" font-size="10" font-weight="800" fill="#6d28d9" text-anchor="middle">커널 사영 Φ(x)</text>
+      <text x="178" y="90" font-family="'Pretendard', sans-serif" font-size="10" font-weight="700" fill="#7c3aed" text-anchor="middle">RBF / Poly</text>
+
+      <!-- High Dimensional Linear Hyperplane Separation -->
+      <g transform="translate(205, 0)">
+        <rect width="125" height="140" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" rx="6" />
+        <text x="62" y="20" font-family="'Pretendard', sans-serif" font-size="11" font-weight="800" fill="#64748b" text-anchor="middle">고차원 사영 공간</text>
+        <line x1="15" y1="120" x2="110" y2="40" stroke="#dc2626" stroke-width="2.5" />
+        <circle cx="30" cy="50" r="6" fill="#2563eb" />
+        <circle cx="45" cy="40" r="6" fill="#2563eb" />
+        <rect x="75" y="95" width="10" height="10" fill="#16a34a" rx="2" />
+        <rect x="90" y="85" width="10" height="10" fill="#16a34a" rx="2" />
+        <text x="62" y="132" font-family="'Pretendard', sans-serif" font-size="10" font-weight="700" fill="#b91c1c" text-anchor="middle">선형 초평면 분리 성공</text>
+      </g>
+
+      <!-- SVM Hyperparameters summary box -->
+      <rect x="0" y="152" width="330" height="100" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" rx="6" />
+      <text x="15" y="173" font-family="'Pretendard', sans-serif" font-size="12" font-weight="800" fill="#0f172a">[핵심 하이퍼파라미터 튜닝]</text>
+      <text x="15" y="193" font-family="'Pretendard', sans-serif" font-size="11" font-weight="700" fill="#b91c1c">• 비용 C (Cost): 오류 허용도. C↑ ➔ 하드마진(과대적합)</text>
+      <text x="15" y="211" font-family="'Pretendard', sans-serif" font-size="11" font-weight="700" fill="#6d28d9">• 감마 γ (RBF): 영향 범위. γ↑ ➔ 경계 복잡(과대적합)</text>
+      <text x="15" y="231" font-family="'Pretendard', sans-serif" font-size="11" font-weight="700" fill="#15803d">• 소프트 마진(Soft Margin): 슬랙변수(ξ)로 오분류 양해</text>
+    </g>
+  </g>
+
+  <!-- Markers -->
+  <defs>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#2563eb" />
+    </marker>
+    <marker id="arrow-purple" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#7c3aed" />
+    </marker>
+  </defs>
+</svg>

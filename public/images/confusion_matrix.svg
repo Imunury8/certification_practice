@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 500" width="100%" height="100%">
+  <rect width="840" height="500" fill="#ffffff" rx="16" />
+  
+  <style>
+    .title-main { font-family: 'Pretendard', sans-serif; font-size: 19px; font-weight: 800; fill: #0f172a; text-anchor: middle; }
+    .title-sub { font-family: 'Pretendard', sans-serif; font-size: 16px; font-weight: 700; fill: #334155; text-anchor: middle; }
+    .cell-code { font-family: 'Pretendard', sans-serif; font-size: 26px; font-weight: 800; fill: #0f172a; text-anchor: middle; }
+    .err-tag { font-family: 'Pretendard', sans-serif; font-size: 14px; font-weight: 800; fill: #db2777; text-anchor: middle; }
+    .formula-title { font-family: 'Pretendard', sans-serif; font-size: 15px; font-weight: 700; fill: #0f172a; text-anchor: middle; }
+    .formula-sub { font-family: 'Pretendard', sans-serif; font-size: 12px; font-weight: 600; fill: #64748b; text-anchor: middle; }
+    .formula-text { font-family: 'Pretendard', sans-serif; font-size: 14px; font-weight: 700; fill: #2563eb; text-anchor: middle; }
+    .brace { stroke: #db2777; stroke-width: 2.5; fill: none; stroke-linecap: round; }
+  </style>
+
+  <!-- Top Bracket Label: Predicted Class -->
+  <path d="M 285 45 Q 285 30 460 30 Q 635 30 635 45" class="brace" />
+  <path d="M 460 30 L 460 22" class="brace" />
+  <text x="460" y="16" class="title-main">Predicted Class</text>
+
+  <!-- Left Bracket Label: Actual Class -->
+  <path d="M 145 105 Q 130 105 130 225 Q 130 345 145 345" class="brace" stroke-linecap="round" />
+  <path d="M 130 225 L 122 225" class="brace" />
+  <text x="65" y="230" class="title-main">Actual Class</text>
+
+  <!-- 2x2 Header Labels -->
+  <!-- Top Headers (Predicted) -->
+  <rect x="280" y="55" width="180" height="45" fill="#fdf2f8" stroke="#f472b6" stroke-width="1.5" rx="6" />
+  <text x="370" y="83" class="title-sub">Positive</text>
+
+  <rect x="465" y="55" width="180" height="45" fill="#fdf2f8" stroke="#f472b6" stroke-width="1.5" rx="6" />
+  <text x="555" y="83" class="title-sub">Negative</text>
+
+  <!-- Left Headers (Actual) -->
+  <rect x="160" y="105" width="115" height="115" fill="#fdf2f8" stroke="#f472b6" stroke-width="1.5" rx="6" />
+  <text x="217" y="172" class="title-sub">Positive</text>
+
+  <rect x="160" y="225" width="115" height="115" fill="#fdf2f8" stroke="#f472b6" stroke-width="1.5" rx="6" />
+  <text x="217" y="292" class="title-sub">Negative</text>
+
+  <!-- Main 2x2 Grid Highlight Border -->
+  <rect x="280" y="105" width="365" height="235" fill="none" stroke="#db2777" stroke-width="3" rx="8" />
+
+  <!-- Core Cell 1: TP -->
+  <rect x="283" y="108" width="174" height="109" fill="#ffffff" rx="4" />
+  <text x="370" y="171" class="cell-code">TP</text>
+
+  <!-- Core Cell 2: FN (Type II Error) -->
+  <rect x="468" y="108" width="174" height="109" fill="#fff1f2" rx="4" />
+  <text x="555" y="156" class="cell-code">FN</text>
+  <text x="555" y="188" class="err-tag">Type II Error</text>
+
+  <!-- Core Cell 3: FP (Type I Error) -->
+  <rect x="283" y="228" width="174" height="109" fill="#fff1f2" rx="4" />
+  <text x="370" y="276" class="cell-code">FP</text>
+  <text x="370" y="308" class="err-tag">Type I Error</text>
+
+  <!-- Core Cell 4: TN -->
+  <rect x="468" y="228" width="174" height="109" fill="#ffffff" rx="4" />
+  <text x="555" y="291" class="cell-code">TN</text>
+
+  <!-- Divider lines inside 2x2 grid -->
+  <line x1="461" y1="105" x2="461" y2="340" stroke="#f472b6" stroke-width="2" />
+  <line x1="280" y1="222" x2="645" y2="222" stroke="#f472b6" stroke-width="2" />
+
+  <!-- Formula Cells (Right Side) -->
+  <!-- Sensitivity -->
+  <rect x="650" y="105" width="170" height="115" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" rx="8" />
+  <text x="735" y="140" class="formula-title">Sensitivity</text>
+  <line x1="685" y1="172" x2="785" y2="172" stroke="#2563eb" stroke-width="2" />
+  <text x="735" y="165" class="formula-text">TP</text>
+  <text x="735" y="192" class="formula-text">TP + FN</text>
+
+  <!-- Specificity -->
+  <rect x="650" y="225" width="170" height="115" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" rx="8" />
+  <text x="735" y="260" class="formula-title">Specificity</text>
+  <line x1="685" y1="292" x2="785" y2="292" stroke="#2563eb" stroke-width="2" />
+  <text x="735" y="285" class="formula-text">TN</text>
+  <text x="735" y="312" class="formula-text">TN + FP</text>
+
+  <!-- Formula Cells (Bottom Side) -->
+  <!-- Precision -->
+  <rect x="280" y="345" width="180" height="135" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" rx="8" />
+  <text x="370" y="378" class="formula-title">Precision</text>
+  <line x1="320" y1="418" x2="420" y2="418" stroke="#2563eb" stroke-width="2" />
+  <text x="370" y="410" class="formula-text">TP</text>
+  <text x="370" y="438" class="formula-text">TP + FP</text>
+
+  <!-- Negative Predictive Value -->
+  <rect x="465" y="345" width="180" height="135" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" rx="8" />
+  <text x="555" y="372" class="formula-title">Negative Predictive</text>
+  <text x="555" y="388" class="formula-sub">Value</text>
+  <line x1="505" y1="418" x2="605" y2="418" stroke="#2563eb" stroke-width="2" />
+  <text x="555" y="410" class="formula-text">TN</text>
+  <text x="555" y="438" class="formula-text">TN + FN</text>
+
+  <!-- Accuracy (Bottom Right) -->
+  <rect x="650" y="345" width="170" height="135" fill="#eff6ff" stroke="#93c5fd" stroke-width="2" rx="8" />
+  <text x="735" y="378" class="formula-title" fill="#1e40af">Accuracy</text>
+  <line x1="665" y1="418" x2="805" y2="418" stroke="#2563eb" stroke-width="2" />
+  <text x="735" y="410" class="formula-text">TP + TN</text>
+  <text x="735" y="438" class="formula-text">TP + TN + FP + FN</text>
+</svg>

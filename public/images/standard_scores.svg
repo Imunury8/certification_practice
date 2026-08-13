@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" width="100%" height="100%">
+  <rect width="800" height="420" fill="#ffffff" rx="16" />
+  
+  <style>
+    .curve-line { fill: none; stroke: #2563eb; stroke-width: 3.5; stroke-linecap: round; }
+    .fill-curve { fill: #eff6ff; opacity: 0.6; }
+    .axis-line { stroke: #94a3b8; stroke-width: 2; }
+    .grid-line { stroke: #cbd5e1; stroke-width: 1.5; stroke-dasharray: 4,4; }
+    .center-line { stroke: #dc2626; stroke-width: 2; stroke-dasharray: 4,4; }
+    .text-title { font-family: 'Pretendard', sans-serif; font-size: 18px; font-weight: 800; fill: #0f172a; text-anchor: middle; }
+    .text-label { font-family: 'Pretendard', sans-serif; font-size: 14px; font-weight: 700; fill: #1e293b; }
+    .text-num { font-family: 'Pretendard', sans-serif; font-size: 13px; font-weight: 700; fill: #334155; text-anchor: middle; }
+    .text-center { font-family: 'Pretendard', sans-serif; font-size: 14px; font-weight: 800; fill: #dc2626; text-anchor: middle; }
+    .badge-bg { fill: #f1f5f9; stroke: #cbd5e1; stroke-width: 1; rx: 6; }
+  </style>
+
+  <!-- Header Title -->
+  <text x="400" y="32" class="text-title">표준정규분포와 대표 표준점수 (Z-Score &amp; T-Score)</text>
+
+  <g transform="translate(40, 30)">
+    <!-- Normal Distribution Curve area -->
+    <path d="M 50 180 C 150 180, 250 170, 320 60 C 350 20, 370 20, 400 20 C 430 20, 450 20, 480 60 C 550 170, 650 180, 750 180 Z" class="fill-curve" />
+    <path d="M 50 180 C 150 180, 250 170, 320 60 C 350 20, 370 20, 400 20 C 430 20, 450 20, 480 60 C 550 170, 650 180, 750 180" class="curve-line" />
+
+    <!-- Base Axis Line -->
+    <line x1="40" y1="180" x2="760" y2="180" class="axis-line" />
+
+    <!-- Grid Vertical Lines for SDs (-3SD to +3SD) -->
+    <!-- -3SD -->
+    <line x1="150" y1="170" x2="150" y2="350" class="grid-line" />
+    <!-- -2SD -->
+    <line x1="233" y1="150" x2="233" y2="350" class="grid-line" />
+    <!-- -1SD -->
+    <line x1="316" y1="100" x2="316" y2="350" class="grid-line" />
+    <!-- Mean (0) -->
+    <line x1="400" y1="20" x2="400" y2="350" class="center-line" />
+    <!-- +1SD -->
+    <line x1="484" y1="100" x2="484" y2="350" class="grid-line" />
+    <!-- +2SD -->
+    <line x1="567" y1="150" x2="567" y2="350" class="grid-line" />
+    <!-- +3SD -->
+    <line x1="650" y1="170" x2="650" y2="350" class="grid-line" />
+
+    <!-- Labels for rows -->
+    <!-- Row Backgrounds -->
+    <rect x="30" y="210" width="740" height="36" class="badge-bg" />
+    <text x="45" y="233" class="text-label" fill="#2563eb">Z-점수 (m=0, SD=1)</text>
+    <text x="150" y="233" class="text-num">-3</text>
+    <text x="233" y="233" class="text-num">-2</text>
+    <text x="316" y="233" class="text-num">-1</text>
+    <text x="400" y="233" class="text-center">0 (평균)</text>
+    <text x="484" y="233" class="text-num">+1</text>
+    <text x="567" y="233" class="text-num">+2</text>
+    <text x="650" y="233" class="text-num">+3</text>
+
+    <!-- Row 2: T-Score -->
+    <rect x="30" y="256" width="740" height="36" class="badge-bg" />
+    <text x="45" y="279" class="text-label" fill="#0d9488">T-점수 (m=50, SD=10)</text>
+    <text x="150" y="279" class="text-num">20</text>
+    <text x="233" y="279" class="text-num">30</text>
+    <text x="316" y="279" class="text-num">40</text>
+    <text x="400" y="279" class="text-center">50</text>
+    <text x="484" y="279" class="text-num">60</text>
+    <text x="567" y="279" class="text-num">70</text>
+    <text x="650" y="279" class="text-num">80</text>
+
+    <!-- Row 3: IQ Score -->
+    <rect x="30" y="302" width="740" height="36" class="badge-bg" />
+    <text x="45" y="325" class="text-label" fill="#7c3aed">IQ-점수 (m=100, SD=15)</text>
+    <text x="150" y="325" class="text-num">55</text>
+    <text x="233" y="325" class="text-num">70</text>
+    <text x="316" y="325" class="text-num">85</text>
+    <text x="400" y="325" class="text-center">100</text>
+    <text x="484" y="325" class="text-num">115</text>
+    <text x="567" y="325" class="text-num">130</text>
+    <text x="650" y="325" class="text-num">145</text>
+  </g>
+</svg>
