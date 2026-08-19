@@ -625,6 +625,51 @@ export const QUESTION_BANK_BY_EXAM: Record<ExamId, QuestionTemplate[]> = {
       explanation: "제1종 오류(alpha error)는 참인 귀무가설을 기각해버리는 오류를 뜻합니다."
     },
     {
+      topicId: "bigdata-exploration",
+      keyword: "F-검정",
+      difficulty: "medium",
+      type: "short",
+      prompt: "두 집단 이상의 분산(Variance) 비율이 서로 동질한지 비교하거나, 3개 이상 집단의 평균 비교(ANOVA), 또는 다중 회귀 모형 전체의 통계적 유의성을 검정할 때 활용되는 검정 기법은 무엇인가?",
+      answer: "F-검정",
+      explanation: "F-검정(F-test)은 두 분산의 비율(s1² / s2² 또는 MSB / MSW)을 F-분포에 비추어 검정하는 통계 검정법입니다."
+    },
+    {
+      topicId: "bigdata-exploration",
+      keyword: "t-검정",
+      difficulty: "easy",
+      type: "short",
+      prompt: "모집단의 표준편차(분산)를 알지 못하며 표본의 크기가 30 미만으로 작은 소표본 데이터 집단에 대해, 모평균의 차이가 통계적으로 유의미한지 검정할 때 사용하는 기법은 무엇인가?",
+      answer: "t-검정",
+      explanation: "모분산을 모르거나 소표본(n < 30)일 때는 표준정규분포 대신 t-분포 기반의 t-검정(t-test)을 사용합니다."
+    },
+    {
+      topicId: "bigdata-exploration",
+      keyword: "Levene 검정",
+      difficulty: "hard",
+      type: "short",
+      prompt: "독립표본 t-검정이나 분산분석(ANOVA)을 수행하기 전, 두 개 이상의 그룹 간 분산이 서로 동일한지(등분산성) 검정할 때 정규성 가정에 덜 민감하여 가장 널리 사용되는 대표적 통계 검정법은 무엇인가?",
+      answer: "Levene 검정",
+      explanation: "Levene 검정(르빈 검정)은 데이터 정규성 충족 여부에 구애받지 않고 등분산성을 강건(Robust)하게 검정하는 기법입니다."
+    },
+    {
+      topicId: "bigdata-modeling",
+      keyword: "이분산성",
+      difficulty: "medium",
+      type: "short",
+      prompt: "회귀분석 기본 가정 중 잔차의 분산이 일정하다는 등분산성 가정이 깨지고, 독립변수의 크기가 커짐에 따라 잔차의 분산이 부채꼴이나 나팔 모양으로 퍼져 통계적 검정의 신뢰성이 저하되는 현상을 무엇이라 하는가?",
+      answer: "이분산성",
+      explanation: "이분산성(Heteroscedasticity)은 잔차의 분산이 일정하지 않고 변수의 크기에 따라 변화하는 위배 현상으로, p-value 왜곡을 일으킵니다."
+    },
+    {
+      topicId: "bigdata-modeling",
+      keyword: "이분산성 대책",
+      difficulty: "hard",
+      type: "short",
+      prompt: "선형 회귀분석에서 예측값의 크기가 증가함에 따라 오차항(잔차)의 분산이 부채꼴 모양으로 넓어지는 이분산성 현상이 발생했을 때, 이를 등분산 상태로 완화하기 위해 종속변수 Y에 취하는 대표적인 변수 변환 기법은 무엇인가?",
+      answer: "로그 변환",
+      explanation: "잔차의 분산이 커지는 이분산성 문제를 해결하기 위하여 종속변수 Y에 자연로그를 취하는 로그 변환(log Y)이나 제곱근 변환, Box-Cox 변환을 적용합니다."
+    },
+    {
       topicId: "bigdata-modeling",
       keyword: "로지스틱 회귀",
       difficulty: "easy",

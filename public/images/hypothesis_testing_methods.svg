@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 380" width="100%" height="100%">
+  <rect width="780" height="380" fill="#ffffff" rx="12" />
+  
+  <!-- Main Title -->
+  <text x="390" y="32" font-family="'Pretendard', sans-serif" font-size="20" font-weight="800" fill="#0f172a" text-anchor="middle">가설검정 4대 통계검정 기법 비교 (Z-검정 · t-검정 · F-검정 · 카이제곱)</text>
+
+  <!-- Card 1: Z-test -->
+  <g transform="translate(18, 55)">
+    <rect width="175" height="300" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5" rx="8" />
+    <text x="87" y="28" font-family="'Pretendard', sans-serif" font-size="16" font-weight="800" fill="#1d4ed8" text-anchor="middle">Z-검정 (Z-test)</text>
+
+    <rect x="12" y="42" width="151" height="22" fill="#dbeafe" rx="4" />
+    <text x="87" y="57" font-family="'Pretendard', sans-serif" font-size="11" font-weight="800" fill="#1e40af" text-anchor="middle">모분산 알 때 / 대표본</text>
+
+    <rect x="12" y="72" width="151" height="215" fill="#ffffff" stroke="#dbeafe" stroke-width="1" rx="6" />
+    <text x="22" y="93" font-family="'Pretendard', sans-serif" font-size="12" font-weight="800" fill="#1d4ed8">• 조건</text>
+    <text x="22" y="112" font-family="'Pretendard', sans-serif" font-size="11" font-weight="600" fill="#334155">모집단 분산(σ²) 인지</text>
+    <text x="22" y="128" font-family="'Pretendard', sans-serif" font-size="11" font-weight="600" fill="#334155">또는 샘플 수 n ≥ 30</text>
+
+    <text x="22" y="153" font-family="'Pretendard', sans-serif" font-size="12" font-weight="800" fill="#1d4ed8">• 사용 분포</text>
+    <text x="22" y="172" font-family="'Pretendard', sans-serif" font-size="11" font-weight="700" fill="#1e40af">표준정규분포 N(0, 1)</text>
+
+    <text x="22" y="197" font-family="'Pretendard', sans-serif" font-size="12" font-weight="800" fill="#1d4ed8">• 검정 목적</text>
+    <text x="22" y="216" font-family="'Pretendard', sans-serif" font-size="11" font-weight="600" fill="#334155">단일/두 집단의 모평균</text>
+    <text x="22" y="232" font-family="'Pretendard', sans-serif" font-size="11" font-weight="600" fill="#334155">유의미성 비교 검정</text>
+
+    <text x="22" y="258" font-family="'Pretendard', sans-serif" font-size="10" font-weight="700" fill="#2563eb">[Z = (X̄ - μ) / (σ/√n)]</text>
+  </g>
+
+  <!-- Card 2: t-test -->
+  <g transform="translate(208, 55)">
+    <rect width="175" height="300" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5" rx="8" />
+    <text x="87" y="28" font-family="'Pretendard', sans-serif" font-size="16" font-weight="800" fill="#15803d" text-anchor="middle">t-검정 (t-test)</text>
+
+    <rect x="12" y="42" width="151" height="22" fill="#dcfce7" rx="4" />
+    <text x="87" y="57" font-family="'Pretendard', sans-serif" font-size="11" font-weight="800" fill="#166534" text-anchor="middle">모분산 모를 때 / 소표본</text>
+
+    <rect x="12" y="72" width="151" height="215" fill="#ffffff" stroke="#dcfce7" stroke-width="1" rx="6" />
+    <text x="22" y="93" font-family="'Pretendard', sans-serif" font-size="12" font-weight="800" fill="#166534">• 조건</text>
+    <text x="22" y="112" font-family="'Pretendard', sans-serif" font-size="11" font-weight="600" fill="#334155">모분산 미지 (s 사용)</text>
+    <text x="22" y="128" font-family="'Pretendard', sans-serif" font-size="11" font-weight="600" fill="#334155">샘플 수 n &lt; 30 소표본</text>
+
+    <text x="22" y="153" font-family="'Pretendard', sans-serif" font-size="12" font-weight="800" fill="#166534">• 사용 분포</text>
+    <text x="22" y="172" font-family="'Pretendard', sans-serif" font-size="11" font-weight="700" fill="#15803d">t-분포 (자유도 df)</text>
+
+    <text x="22" y="197" font-family="'Pretendard', sans-serif" font-size="12" font-weight="800" fill="#166534">• 검정 유형</text>
+    <text x="22" y="216" font-family="'Pretendard', sans-serif" font-size="11" font-weight="600" fill="#334155">• 단일표본 (1개 평균)</text>
+    <text x="22" y="232" font-family="'Pretendard', sans-serif" font-size="11" font-weight="600" fill="#334155">• 독립표본 (2집단 비교)</text>
+    <text x="22" y="248" font-family="'Pretendard', sans-serif" font-size="11" font-weight="600" fill="#334155">• 대응표본 (사전/사후)</text>
+  </g>
+
+  <!-- Card 3: F-test (Highlighted★) -->
+  <g transform="translate(398, 55)">
+    <rect width="175" height="300" fill="#fff7ed" stroke="#fdba74" stroke-width="2" rx="8" />
+    <text x="87" y="28" font-family="'Pretendard', sans-serif" font-size="16" font-weight="800" fill="#c2410c" text-anchor="middle">F-검정 (F-test) ★</text>
+
+    <rect x="12" y="42" width="151" height="22" fill="#ffedd5" rx="4" />
+    <text x="87" y="57" font-family="'Pretendard', sans-serif" font-size="11" font-weight="800" fill="#9a3412" text-anchor="middle">분산 비교 &amp; ANOVA</text>
+
+    <rect x="12" y="72" width="151" height="215" fill="#ffffff" stroke="#fed7aa" stroke-width="1" rx="6" />
+    <text x="22" y="93" font-family="'Pretendard', sans-serif" font-size="12" font-weight="800" fill="#c2410c">• 검정 목적</text>
+    <text x="22" y="112" font-family="'Pretendard', sans-serif" font-size="11" font-weight="700" fill="#ea580c">1) 두 집단 분산 비교</text>
+    <text x="22" y="128" font-family="'Pretendard', sans-serif" font-size="11" font-weight="700" fill="#ea580c">2) 3집단+ ANOVA 평균</text>
+    <text x="22" y="144" font-family="'Pretendard', sans-serif" font-size="11" font-weight="700" fill="#ea580c">3) 회귀모형 유의성 검정</text>
+
+    <text x="22" y="169" font-family="'Pretendard', sans-serif" font-size="12" font-weight="800" fill="#c2410c">• 통계량 수식</text>
+    <text x="22" y="188" font-family="'Pretendard', sans-serif" font-size="11" font-weight="800" fill="#9a3412">F = s₁² / s₂²</text>
+    <text x="22" y="204" font-family="'Pretendard', sans-serif" font-size="10" font-weight="600" fill="#475569">(MSB / MSW: 분산 비율)</text>
+
+    <text x="22" y="229" font-family="'Pretendard', sans-serif" font-size="12" font-weight="800" fill="#c2410c">• 사용 분포</text>
+    <text x="22" y="248" font-family="'Pretendard', sans-serif" font-size="11" font-weight="700" fill="#9a3412">F-분포 (두 자유도 df1,df2)</text>
+  </g>
+
+  <!-- Card 4: Chi-square test -->
+  <g transform="translate(588, 55)">
+    <rect width="175" height="300" fill="#fcf4ff" stroke="#f5d0fe" stroke-width="1.5" rx="8" />
+    <text x="87" y="28" font-family="'Pretendard', sans-serif" font-size="16" font-weight="800" fill="#86198f" text-anchor="middle">카이제곱 (χ²-test)</text>
+
+    <rect x="12" y="42" width="151" height="22" fill="#fae8ff" rx="4" />
+    <text x="87" y="57" font-family="'Pretendard', sans-serif" font-size="11" font-weight="800" fill="#701a75" text-anchor="middle">범주형 데이터 독립성</text>
+
+    <rect x="12" y="72" width="151" height="215" fill="#ffffff" stroke="#f5d0fe" stroke-width="1" rx="6" />
+    <text x="22" y="93" font-family="'Pretendard', sans-serif" font-size="12" font-weight="800" fill="#86198f">• 대상 데이터</text>
+    <text x="22" y="112" font-family="'Pretendard', sans-serif" font-size="11" font-weight="600" fill="#334155">범주형(Qualitative) 변수</text>
+    <text x="22" y="128" font-family="'Pretendard', sans-serif" font-size="11" font-weight="600" fill="#334155">교차분석표(Contingency)</text>
+
+    <text x="22" y="153" font-family="'Pretendard', sans-serif" font-size="12" font-weight="800" fill="#86198f">• 검정 종류</text>
+    <text x="22" y="172" font-family="'Pretendard', sans-serif" font-size="11" font-weight="600" fill="#334155">• 독립성 검정</text>
+    <text x="22" y="188" font-family="'Pretendard', sans-serif" font-size="11" font-weight="600" fill="#334155">• 적합도 검정</text>
+    <text x="22" y="204" font-family="'Pretendard', sans-serif" font-size="11" font-weight="600" fill="#334155">• 동질성 검정</text>
+
+    <text x="22" y="229" font-family="'Pretendard', sans-serif" font-size="12" font-weight="800" fill="#86198f">• 통계량 수식</text>
+    <text x="22" y="248" font-family="'Pretendard', sans-serif" font-size="10" font-weight="700" fill="#a21caf">χ² = Σ (O - E)² / E</text>
+  </g>
+</svg>

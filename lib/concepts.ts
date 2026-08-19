@@ -623,6 +623,18 @@ export const CONCEPTS_BY_EXAM: Record<ExamId, ConceptSection[]> = {
           "참인 귀무가설을 잘못하여 기각하는 오류는 제1종 오류(α)입니다."
         ),
         item(
+          "핵심 통계 검정 기법 비교 (Z-검정 vs t-검정 vs F-검정 vs 카이제곱)",
+          "표본 데이터와 연구 목적에 따른 통계적 검정 방법(Z, t, F, Chi-square)의 비교 분류입니다.",
+          [
+            "Z-검정 (Z-test): 모집단의 분산(σ²)을 알거나 표본 크기가 큰 경우(n >= 30) 모평균을 검정하는 표준정규분포 N(0, 1) 기반 검정.",
+            "t-검정 (t-test): 모집단 분산을 모르는 소표본(n < 30)의 모평균을 검정하는 t-분포 기반 검정 (단일표본, 독립표본 2집단, 대응표본 사전/사후).",
+            "F-검정 (F-test): 1) 두 집단의 분산(Variance) 비율 동질성 비교(F = s1² / s2²), 2) 3개 이상 집단 평균을 비교하는 ANOVA, 3) 회귀모형 전체 유의성 검정에 사용하는 F-분포 기반 검정.",
+            "카이제곱 검정 (χ²-test): 범주형 변수의 관측 빈도와 기대 빈도 차이를 바탕으로 독립성, 적합도, 동질성을 검정하는 χ²-분포 기반 검정."
+          ],
+          "두 집단 이상의 분산 비율 비교, ANOVA 평균 비교, 회귀모형 전체 유의성 검정에 사용하는 검정은 F-검정입니다.",
+          "/images/hypothesis_testing_methods.svg"
+        ),
+        item(
           "상관분석 및 PCA 주성분분석",
           "변수 간의 상관관계 탐색 및 다차원 피처 차원 축소 기법입니다.",
           [
@@ -643,11 +655,24 @@ export const CONCEPTS_BY_EXAM: Record<ExamId, ConceptSection[]> = {
           [
             "선형성: 종속변수와 독립변수 간에 선형적 관계가 존재해야 함.",
             "독립성: 오차항 간에 상관관계가 없어야 함 (Durbin-Watson 통계량 진단).",
-            "등분산성: 오차항의 분산이 독립변수 모든 수준에서 일정해야 함.",
+            "등분산성: 오차항의 분산이 독립변수 모든 수준에서 일정해야 함 (잔차 산점도, Levene, Breusch-Pagan 진단).",
             "비상관성: 오차항과 독립변수 간에 상관이 없어야 함.",
-            "정상성(정규성): 오차항의 잔차 분포가 정규분포를 따라야 함 (Shapiro, Q-Q Plot 진단)."
+            "정상성(정규성): 오차항의 잔차 분포가 정규분포를 따라야 함 (Shapiro-Wilk, Q-Q Plot 진단)."
           ],
           "회귀 진단 5대 핵심 가주는 '선독등비정(선형성, 독립성, 등분산성, 비상관성, 정상성)'입니다."
+        ),
+        item(
+          "등분산성(Homoscedasticity) vs 이분산성(Heteroscedasticity) 진단 및 대책",
+          "회귀 오차항의 분산 동질성(등분산성)과 이분산성 발생 시 폐해, 통계적 진단 검정 및 해결 대책입니다.",
+          [
+            "등분산성 (Homoscedasticity): 회귀모형 오차항(Residuals)의 분산 Var(ε_i) = σ² 이 독립변수(X)의 전 값 범위에서 일정하게 유지되는 성질 (회귀분석 5대 기본가정 & t-검정/ANOVA 집단 간 분산 동질성 전제조건).",
+            "이분산성 (Heteroscedasticity): 독립변수 크기에 따라 잔차의 분산이 일정하지 않고 나팔/부채꼴(Funnel) 형태로 커지거나 불규칙하게 변화하는 현상.",
+            "이분산성의 폐해: 회귀계수 자체는 비편향(Unbiased)을 유지하지만, 표준오차가 왜곡되어 p-value, t-검정, F-검정 신뢰성이 붕괴되고 최소분산 비편향 추정량(BLUE) 성질을 상실함.",
+            "이분산성 진단 검정 기법: 1) 시각적 진단: 잔차 산점도 (Residual Plot - 예측값 vs 잔차), 2) 회귀 이분산성 검정: Breusch-Pagan 검정, White 검정, 3) 집단 등분산 검정: Levene 검정 (르빈), Bartlett 검정 (바틀렛).",
+            "이분산성 해결 대책 4가지: 1) 종속변수 로그 변환(log Y), 제곱근 변환(√Y), Box-Cox 변환, 2) 가중회귀분석 (WLS, Weighted Least Squares) 적용, 3) 이분산성 강건 표준오차 (Robust Standard Errors / White SE) 사용, 4) t-검정 시 Welch's t-test (equal_var=False) 적용."
+          ],
+          "독립변수에 따라 잔차 분산이 일정하지 않고 나팔 모양으로 퍼지는 현상은 '이분산성'이며, 로그 변환(log Y)과 가중회귀분석(WLS), White 강건 표준오차로 해결합니다.",
+          "/images/homoscedasticity_diagram.svg"
         ),
         item(
           "규제 회귀 (Ridge vs Lasso vs ElasticNet)",
