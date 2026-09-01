@@ -643,6 +643,24 @@ export const QUESTION_BANK_BY_EXAM: Record<ExamId, QuestionTemplate[]> = {
       explanation: "모분산을 모르거나 소표본(n < 30)일 때는 표준정규분포 대신 t-분포 기반의 t-검정(t-test)을 사용합니다."
     },
     {
+      topicId: "bigdata-modeling",
+      keyword: "더빈-왓슨 통계량",
+      difficulty: "medium",
+      type: "short",
+      prompt: "선형 회귀분석의 5대 기본 가정 중 잔차(오차항)들 간의 1차 자기상관(Autocorrelation) 존재 여부를 측정하여 오차항의 독립성을 진단하는 대표적인 통계량은 무엇인가?",
+      answer: "더빈-왓슨 통계량",
+      explanation: "더빈-왓슨(Durbin-Watson) 통계량은 0에서 4 사이 수치로 잔차 간 자기상관 유무 및 독립성을 검정합니다."
+    },
+    {
+      topicId: "bigdata-modeling",
+      keyword: "더빈-왓슨 기준값",
+      difficulty: "hard",
+      type: "short",
+      prompt: "더빈-왓슨(Durbin-Watson) 통계량 산출 수치 범위(0 ~ 4) 중, 회귀 오차항 간에 자기상관(Autocorrelation)이 존재하지 않아 독립성 가정을 완전히 만족함을 나타내는 기준 수치는 얼마인가?",
+      answer: "2",
+      explanation: "더빈-왓슨 통계량 d ≈ 2 * (1 - r) 수식에 따라, 잔차 상관계수 r=0 일 때 d=2 가 되어 자기상관 없음(독립)을 가리킵니다."
+    },
+    {
       topicId: "bigdata-exploration",
       keyword: "Levene 검정",
       difficulty: "hard",
@@ -815,7 +833,43 @@ export const QUESTION_BANK_BY_EXAM: Record<ExamId, QuestionTemplate[]> = {
     },
     {
       topicId: "bigdata-evaluation",
-      keyword: "ROC Curve",
+      keyword: "F1-Score 조화평균 이유",
+      difficulty: "hard",
+      type: "short",
+      prompt: "F1-Score 산출 시 정밀도(Precision)와 재현율(Recall)의 평균을 산술평균이 아닌 조화평균(Harmonic Mean)으로 계산하는 핵심 이유는 무엇인가?",
+      answer: "두 지표 중 어느 한쪽이 0에 가깝게 낮을 경우 수치 착시를 막고 극단적 치우침에 높은 페널티를 부여하기 위함",
+      explanation: "산술평균은 한 지표만 1에 가까워도 평균이 높아지는 착시가 발생하지만, 조화평균은 낮은 지표 쪽에 크게 끌려내려가 두 지표가 모두 균형 있게 높아야만 높은 평가를 받습니다."
+    },
+    {
+      topicId: "bigdata-evaluation",
+      keyword: "F1-Score 수식 계산",
+      difficulty: "medium",
+      type: "short",
+      prompt: "어느 이진 분류 모델의 정밀도(Precision)가 0.8, 재현율(Recall)이 0.6으로 측정되었다. 이때 이 모델의 F1-Score 값은 얼마인가? (소수점 둘째 자리까지 기술)",
+      answer: "0.69",
+      explanation: "F1-Score = 2 * (0.8 * 0.6) / (0.8 + 0.6) = 2 * 0.48 / 1.4 = 0.96 / 1.4 ≈ 0.6857... 소수점 둘째 자리 반올림 시 0.69입니다."
+    },
+    {
+      topicId: "bigdata-evaluation",
+      keyword: "SMOTE",
+      difficulty: "medium",
+      type: "short",
+      prompt: "클래스 불균형(Class Imbalance) 문제를 해결하기 위한 오버샘플링(Oversampling) 기법 중, 소수 클래스 관측치 데이터를 단순히 무작위 복제하는 대신 K-최근접 이웃(K-NN)을 활용하여 두 관측치 간 선분 상에 새로운 인공 샘플(Synthetic Sample)을 생성해 보정하는 알고리즘은 무엇인가?",
+      answer: "SMOTE",
+      explanation: "SMOTE(Synthetic Minority Over-sampling Technique)는 소수 샘플 간 보간(Interpolation)으로 신규 샘플을 생성하여 오버샘플링 시 과적합을 예방합니다."
+    },
+    {
+      topicId: "bigdata-evaluation",
+      keyword: "클래스 불균형",
+      difficulty: "easy",
+      type: "short",
+      prompt: "금융사기 감지(FDS)나 희귀 질병 진단 데이터셋처럼 정상 데이터(99%)와 사기 데이터(1%)의 데이터 양 비율이 극단적으로 불균형하여 모델이 다수 클래스로 편향 예측하게 만드는 현상을 무엇이라 하는가?",
+      answer: "클래스 불균형",
+      explanation: "클래스 불균형(Class Imbalance) 현상이 발생하면 정확도(Accuracy)는 높게 나오지만 실제 분류 성능(F1-Score, Recall)은 급격히 떨어집니다."
+    },
+    {
+      topicId: "bigdata-evaluation",
+      keyword: "ROC-AUC",
       difficulty: "medium",
       type: "short",
       prompt: "이진 분류 모델의 임계값 변화에 따른 TPR(민감도)과 FPR(1-특이도)의 궤적을 2차원 그래프로 나타내고, 그 곡선 아래 면적으로 모델 성능을 종합 평가하는 지표는 무엇인가?",

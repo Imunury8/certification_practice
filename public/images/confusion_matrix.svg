@@ -1,14 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 500" width="100%" height="100%">
-  <rect width="840" height="500" fill="#ffffff" rx="16" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 520" width="100%" height="100%">
+  <rect width="840" height="520" fill="#ffffff" rx="16" />
   
   <style>
     .title-main { font-family: 'Pretendard', sans-serif; font-size: 19px; font-weight: 800; fill: #0f172a; text-anchor: middle; }
     .title-sub { font-family: 'Pretendard', sans-serif; font-size: 16px; font-weight: 700; fill: #334155; text-anchor: middle; }
     .cell-code { font-family: 'Pretendard', sans-serif; font-size: 26px; font-weight: 800; fill: #0f172a; text-anchor: middle; }
     .err-tag { font-family: 'Pretendard', sans-serif; font-size: 14px; font-weight: 800; fill: #db2777; text-anchor: middle; }
-    .formula-title { font-family: 'Pretendard', sans-serif; font-size: 15px; font-weight: 700; fill: #0f172a; text-anchor: middle; }
+    .formula-title { font-family: 'Pretendard', sans-serif; font-size: 15px; font-weight: 800; fill: #0f172a; text-anchor: middle; }
     .formula-sub { font-family: 'Pretendard', sans-serif; font-size: 12px; font-weight: 600; fill: #64748b; text-anchor: middle; }
-    .formula-text { font-family: 'Pretendard', sans-serif; font-size: 14px; font-weight: 700; fill: #2563eb; text-anchor: middle; }
+    .formula-text { font-family: 'Pretendard', sans-serif; font-size: 14px; font-weight: 800; fill: #2563eb; text-anchor: middle; }
     .brace { stroke: #db2777; stroke-width: 2.5; fill: none; stroke-linecap: round; }
   </style>
 
@@ -63,40 +63,48 @@
   <line x1="280" y1="222" x2="645" y2="222" stroke="#f472b6" stroke-width="2" />
 
   <!-- Formula Cells (Right Side) -->
-  <!-- Sensitivity -->
-  <rect x="650" y="105" width="170" height="115" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" rx="8" />
-  <text x="735" y="140" class="formula-title">Sensitivity</text>
-  <line x1="685" y1="172" x2="785" y2="172" stroke="#2563eb" stroke-width="2" />
-  <text x="735" y="165" class="formula-text">TP</text>
-  <text x="735" y="192" class="formula-text">TP + FN</text>
+  <!-- Recall / Sensitivity -->
+  <rect x="650" y="105" width="175" height="115" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" rx="8" />
+  <text x="737" y="135" class="formula-title">Recall (민감도)</text>
+  <text x="737" y="150" class="formula-sub">TP / (TP + FN)</text>
+  <line x1="675" y1="175" x2="800" y2="175" stroke="#2563eb" stroke-width="2" />
+  <text x="737" y="168" class="formula-text">TP</text>
+  <text x="737" y="195" class="formula-text">TP + FN</text>
 
   <!-- Specificity -->
-  <rect x="650" y="225" width="170" height="115" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" rx="8" />
-  <text x="735" y="260" class="formula-title">Specificity</text>
-  <line x1="685" y1="292" x2="785" y2="292" stroke="#2563eb" stroke-width="2" />
-  <text x="735" y="285" class="formula-text">TN</text>
-  <text x="735" y="312" class="formula-text">TN + FP</text>
+  <rect x="650" y="225" width="175" height="115" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" rx="8" />
+  <text x="737" y="255" class="formula-title">Specificity (특이도)</text>
+  <text x="737" y="270" class="formula-sub">TN / (TN + FP)</text>
+  <line x1="675" y1="295" x2="800" y2="295" stroke="#2563eb" stroke-width="2" />
+  <text x="737" y="288" class="formula-text">TN</text>
+  <text x="737" y="315" class="formula-text">TN + FP</text>
 
   <!-- Formula Cells (Bottom Side) -->
   <!-- Precision -->
-  <rect x="280" y="345" width="180" height="135" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" rx="8" />
-  <text x="370" y="378" class="formula-title">Precision</text>
-  <line x1="320" y1="418" x2="420" y2="418" stroke="#2563eb" stroke-width="2" />
-  <text x="370" y="410" class="formula-text">TP</text>
-  <text x="370" y="438" class="formula-text">TP + FP</text>
+  <rect x="280" y="345" width="180" height="160" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" rx="8" />
+  <text x="370" y="375" class="formula-title">Precision (정밀도)</text>
+  <text x="370" y="392" class="formula-sub">양성 예측 중 실제 양성</text>
+  <line x1="315" y1="432" x2="425" y2="432" stroke="#2563eb" stroke-width="2" />
+  <text x="370" y="425" class="formula-text">TP</text>
+  <text x="370" y="452" class="formula-text">TP + FP</text>
 
-  <!-- Negative Predictive Value -->
-  <rect x="465" y="345" width="180" height="135" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" rx="8" />
-  <text x="555" y="372" class="formula-title">Negative Predictive</text>
-  <text x="555" y="388" class="formula-sub">Value</text>
-  <line x1="505" y1="418" x2="605" y2="418" stroke="#2563eb" stroke-width="2" />
-  <text x="555" y="410" class="formula-text">TN</text>
-  <text x="555" y="438" class="formula-text">TN + FN</text>
+  <!-- Accuracy -->
+  <rect x="465" y="345" width="180" height="160" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" rx="8" />
+  <text x="555" y="375" class="formula-title">Accuracy (정확도)</text>
+  <text x="555" y="392" class="formula-sub">전체 중 올바른 예측</text>
+  <line x1="485" y1="432" x2="625" y2="432" stroke="#2563eb" stroke-width="2" />
+  <text x="555" y="425" class="formula-text">TP + TN</text>
+  <text x="555" y="452" class="formula-text">TP + TN + FP + FN</text>
 
-  <!-- Accuracy (Bottom Right) -->
-  <rect x="650" y="345" width="170" height="135" fill="#eff6ff" stroke="#93c5fd" stroke-width="2" rx="8" />
-  <text x="735" y="378" class="formula-title" fill="#1e40af">Accuracy</text>
-  <line x1="665" y1="418" x2="805" y2="418" stroke="#2563eb" stroke-width="2" />
-  <text x="735" y="410" class="formula-text">TP + TN</text>
-  <text x="735" y="438" class="formula-text">TP + TN + FP + FN</text>
+  <!-- F1-SCORE HIGHLIGHT CARD (Bottom Right) -->
+  <rect x="650" y="345" width="175" height="160" fill="#f0fdf4" stroke="#16a34a" stroke-width="2.5" rx="8" />
+  <text x="737" y="372" class="formula-title" fill="#15803d">F1-Score ★</text>
+  <text x="737" y="388" font-family="'Pretendard', sans-serif" font-size="11" font-weight="700" fill="#166534" text-anchor="middle">Precision &amp; Recall 조화평균</text>
+  
+  <text x="737" y="415" font-family="'Pretendard', sans-serif" font-size="13" font-weight="800" fill="#15803d" text-anchor="middle">2 × (P × R) / (P + R)</text>
+
+  <line x1="665" y1="452" x2="810" y2="452" stroke="#16a34a" stroke-width="2" />
+  <text x="737" y="445" font-family="'Pretendard', sans-serif" font-size="13" font-weight="800" fill="#166534" text-anchor="middle">2 × TP</text>
+  <text x="737" y="472" font-family="'Pretendard', sans-serif" font-size="13" font-weight="800" fill="#166534" text-anchor="middle">2×TP + FP + FN</text>
+  <text x="737" y="493" font-family="'Pretendard', sans-serif" font-size="10" font-weight="700" fill="#15803d" text-anchor="middle">(불균형 데이터 필수 평가)</text>
 </svg>

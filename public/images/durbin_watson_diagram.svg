@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 380" width="100%" height="100%">
+  <rect width="780" height="380" fill="#ffffff" rx="12" />
+  
+  <!-- Main Title -->
+  <text x="390" y="32" font-family="'Pretendard', sans-serif" font-size="20" font-weight="800" fill="#0f172a" text-anchor="middle">더빈-왓슨 통계량(Durbin-Watson Statistic)과 잔차 독립성 진단</text>
+
+  <!-- Top Scale Section: 0 ~ 4 Gauge -->
+  <g transform="translate(20, 52)">
+    <rect width="740" height="135" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" rx="10" />
+    <text x="370" y="26" font-family="'Pretendard', sans-serif" font-size="15" font-weight="800" fill="#1e293b" text-anchor="middle">더빈-왓슨 수치 범위 수평선 (0 ~ 4) &amp; 자기상관 판단 기준</text>
+
+    <!-- Base Bar -->
+    <rect x="50" y="48" width="640" height="24" fill="#e2e8f0" rx="6" />
+
+    <!-- Zones -->
+    <!-- Zone 1: Positive Autocorrelation (d -> 0) -->
+    <rect x="50" y="48" width="180" height="24" fill="#fee2e2" rx="4" />
+    <!-- Zone 2: No Autocorrelation (d -> 2) - Highlighted Green -->
+    <rect x="250" y="48" width="240" height="24" fill="#dcfce7" rx="4" />
+    <!-- Zone 3: Negative Autocorrelation (d -> 4) -->
+    <rect x="510" y="48" width="180" height="24" fill="#fef3c7" rx="4" />
+
+    <!-- Ticks & Values -->
+    <line x1="50" y1="45" x2="50" y2="75" stroke="#ef4444" stroke-width="3" />
+    <text x="50" y="92" font-family="'Pretendard', sans-serif" font-size="13" font-weight="800" fill="#dc2626" text-anchor="middle">d ≈ 0</text>
+    <text x="50" y="110" font-family="'Pretendard', sans-serif" font-size="11" font-weight="700" fill="#b91c1c" text-anchor="middle">양(+)의 자기상관 (r ≈ +1)</text>
+
+    <line x1="370" y1="40" x2="370" y2="80" stroke="#16a34a" stroke-width="4" />
+    <circle cx="370" cy="60" r="8" fill="#16a34a" />
+    <text x="370" y="93" font-family="'Pretendard', sans-serif" font-size="14" font-weight="800" fill="#15803d" text-anchor="middle">d ≈ 2 ★ (최적)</text>
+    <text x="370" y="112" font-family="'Pretendard', sans-serif" font-size="12" font-weight="800" fill="#166534" text-anchor="middle">자기상관 없음 (독립성 만족! r ≈ 0)</text>
+
+    <line x1="690" y1="45" x2="690" y2="75" stroke="#f59e0b" stroke-width="3" />
+    <text x="690" y="92" font-family="'Pretendard', sans-serif" font-size="13" font-weight="800" fill="#d97706" text-anchor="middle">d ≈ 4</text>
+    <text x="690" y="110" font-family="'Pretendard', sans-serif" font-size="11" font-weight="700" fill="#b45309" text-anchor="middle">음(-)의 자기상관 (r ≈ -1)</text>
+  </g>
+
+  <!-- Bottom Cards: Formula & Patterns -->
+  <!-- Left Box: Formula & Properties -->
+  <g transform="translate(20, 202)">
+    <rect width="360" height="155" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5" rx="10" />
+    <text x="180" y="26" font-family="'Pretendard', sans-serif" font-size="14" font-weight="800" fill="#1e40af" text-anchor="middle">더빈-왓슨 핵심 근사 수식 &amp; 정의</text>
+
+    <rect x="15" y="38" width="330" height="38" fill="#ffffff" stroke="#93c5fd" stroke-width="1.5" rx="6" />
+    <text x="180" y="62" font-family="'Pretendard', sans-serif" font-size="15" font-weight="800" fill="#1d4ed8" text-anchor="middle">d ≈ 2 × (1 - r)</text>
+    <text x="180" y="88" font-family="'Pretendard', sans-serif" font-size="10" font-weight="600" fill="#3b82f6" text-anchor="middle">(r: 잔차 간 1차 자기상관계수 -1 ≤ r ≤ 1)</text>
+
+    <text x="20" y="110" font-family="'Pretendard', sans-serif" font-size="11" font-weight="700" fill="#1e3a8a">• 검정 목적: 오차항(잔차) 간의 독립성 가정 검정</text>
+    <text x="20" y="128" font-family="'Pretendard', sans-serif" font-size="11" font-weight="700" fill="#1e3a8a">• 적용 데이터: 시계열 데이터 및 순차 관측 데이터</text>
+    <text x="20" y="144" font-family="'Pretendard', sans-serif" font-size="11" font-weight="700" fill="#2563eb">• 문제 해결 대책: 차분(Differencing), 시계열 피처 추가</text>
+  </g>
+
+  <!-- Right Box: Patterns Comparison -->
+  <g transform="translate(400, 202)">
+    <rect width="360" height="155" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" rx="10" />
+    <text x="180" y="26" font-family="'Pretendard', sans-serif" font-size="14" font-weight="800" fill="#1e293b" text-anchor="middle">d 값에 따른 잔차(Residual) 패턴 형태</text>
+
+    <!-- Pattern 1: Positive Autocorrelation -->
+    <g transform="translate(15, 38)">
+      <rect width="100" height="75" fill="#ffffff" stroke="#fecaca" stroke-width="1" rx="4" />
+      <text x="50" y="16" font-family="'Pretendard', sans-serif" font-size="10" font-weight="800" fill="#dc2626" text-anchor="middle">d ➔ 0 (양의 상관)</text>
+      <!-- Continuous curve -->
+      <path d="M 10 50 Q 50 15 90 50" stroke="#ef4444" stroke-width="2" fill="none" />
+      <text x="50" y="68" font-family="'Pretendard', sans-serif" font-size="9" font-weight="700" fill="#b91c1c" text-anchor="middle">같은 방향 지속</text>
+    </g>
+
+    <!-- Pattern 2: No Autocorrelation -->
+    <g transform="translate(130, 38)">
+      <rect width="100" height="75" fill="#ffffff" stroke="#bbf7d0" stroke-width="1.5" rx="4" />
+      <text x="50" y="16" font-family="'Pretendard', sans-serif" font-size="10" font-weight="800" fill="#15803d" text-anchor="middle">d ➔ 2 ★ (독립)</text>
+      <!-- Random noise -->
+      <path d="M 10 40 L 30 20 L 50 60 L 70 30 L 90 45" stroke="#16a34a" stroke-width="2" fill="none" />
+      <text x="50" y="68" font-family="'Pretendard', sans-serif" font-size="9" font-weight="700" fill="#166534" text-anchor="middle">무작위 불규칙</text>
+    </g>
+
+    <!-- Pattern 3: Negative Autocorrelation -->
+    <g transform="translate(245, 38)">
+      <rect width="100" height="75" fill="#ffffff" stroke="#fde68a" stroke-width="1" rx="4" />
+      <text x="50" y="16" font-family="'Pretendard', sans-serif" font-size="10" font-weight="800" fill="#d97706" text-anchor="middle">d ➔ 4 (음의 상관)</text>
+      <!-- Zigzag -->
+      <path d="M 10 20 L 25 60 L 40 20 L 55 60 L 70 20 L 85 60" stroke="#f59e0b" stroke-width="1.5" fill="none" />
+      <text x="50" y="68" font-family="'Pretendard', sans-serif" font-size="9" font-weight="700" fill="#b45309" text-anchor="middle">퐁당퐁당 톱니</text>
+    </g>
+
+    <!-- Key Takeaway -->
+    <text x="180" y="138" font-family="'Pretendard', sans-serif" font-size="11" font-weight="800" fill="#0f172a" text-anchor="middle">★ 시험 핵심: d = 2 에 가까울수록 잔차가 독립적임!</text>
+  </g>
+</svg>

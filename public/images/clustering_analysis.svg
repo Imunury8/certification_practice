@@ -1,0 +1,147 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 380" width="100%" height="100%">
+  <rect width="780" height="380" fill="#ffffff" rx="12" />
+  
+  <!-- Title Header -->
+  <text x="390" y="30" font-family="'Pretendard', -apple-system, sans-serif" font-size="19" font-weight="800" fill="#0f172a" text-anchor="middle">군집 분석 알고리즘 (K-Means, DBSCAN, 계층적 군집) &amp; 평가지표</text>
+
+  <!-- Left Box: Clustering Algorithms Comparison (Non-hierarchical vs Hierarchical) -->
+  <g transform="translate(20, 48)">
+    <rect width="360" height="315" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" rx="10" />
+    <text x="180" y="24" font-family="'Pretendard', sans-serif" font-size="14" font-weight="800" fill="#1e293b" text-anchor="middle">1. 핵심 군집화 알고리즘 분류</text>
+
+    <!-- Sub-Section 1: Non-Hierarchical (K-Means & DBSCAN) -->
+    <g transform="translate(12, 34)">
+      <rect width="336" height="126" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" rx="8" />
+      <text x="12" y="20" font-family="'Pretendard', sans-serif" font-size="12" font-weight="800" fill="#2563eb">① 비계층적 군집분석 (K-Means vs DBSCAN)</text>
+      
+      <!-- K-Means Small Visual -->
+      <g transform="translate(10, 28)">
+        <rect width="152" height="88" fill="#eff6ff" stroke="#bfdbfe" rx="6" />
+        <text x="76" y="18" font-family="'Pretendard', sans-serif" font-size="11" font-weight="800" fill="#1d4ed8" text-anchor="middle">K-Means (중심점 기반)</text>
+        <circle cx="45" cy="50" r="18" fill="#ffffff" stroke="#93c5fd" stroke-dasharray="2,2" />
+        <circle cx="45" cy="50" r="3" fill="#2563eb" />
+        <text x="45" y="53" font-family="'Pretendard', sans-serif" font-size="7" font-weight="800" fill="#1d4ed8" text-anchor="middle">+</text>
+        
+        <circle cx="105" cy="50" r="18" fill="#ffffff" stroke="#93c5fd" stroke-dasharray="2,2" />
+        <circle cx="105" cy="50" r="3" fill="#2563eb" />
+        
+        <text x="76" y="78" font-family="'Pretendard', sans-serif" font-size="9" font-weight="700" fill="#3b82f6" text-anchor="middle">• K 사전지정 | 구형 군집</text>
+      </g>
+
+      <!-- DBSCAN Small Visual -->
+      <g transform="translate(172, 28)">
+        <rect width="154" height="88" fill="#f3e8ff" stroke="#d8b4fe" rx="6" />
+        <text x="77" y="18" font-family="'Pretendard', sans-serif" font-size="11" font-weight="800" fill="#7c3aed" text-anchor="middle">DBSCAN (밀도 기반)</text>
+        
+        <path d="M 25 45 Q 77 30 125 55" fill="none" stroke="#a855f7" stroke-width="6" stroke-linecap="round" />
+        <circle cx="140" cy="40" r="3" fill="#ef4444" /> <!-- Noise -->
+        
+        <text x="77" y="78" font-family="'Pretendard', sans-serif" font-size="9" font-weight="700" fill="#6b21a8" text-anchor="middle">• K 지정 X | 노이즈 분리</text>
+      </g>
+    </g>
+
+    <!-- Sub-Section 2: Hierarchical Clustering & Dendrogram -->
+    <g transform="translate(12, 172)">
+      <rect width="336" height="132" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" rx="8" />
+      <text x="12" y="20" font-family="'Pretendard', sans-serif" font-size="12" font-weight="800" fill="#059669">② 계층적 군집분석 &amp; 덴드로그램 (Dendrogram)</text>
+      <text x="12" y="34" font-family="'Pretendard', sans-serif" font-size="9" font-weight="600" fill="#64748b">• 응집형(Bottom-up) vs 분할형(Top-down) | ★와드(Ward) 연결법 (ESS 최소화)</text>
+
+      <!-- Dendrogram Tree Line Art -->
+      <g transform="translate(20, 42)">
+        <!-- Leaf Labels -->
+        <text x="20" y="78" font-family="'Pretendard', sans-serif" font-size="10" font-weight="800" fill="#065f46" text-anchor="middle">A</text>
+        <text x="70" y="78" font-family="'Pretendard', sans-serif" font-size="10" font-weight="800" fill="#065f46" text-anchor="middle">B</text>
+        <text x="120" y="78" font-family="'Pretendard', sans-serif" font-size="10" font-weight="800" fill="#065f46" text-anchor="middle">C</text>
+        <text x="170" y="78" font-family="'Pretendard', sans-serif" font-size="10" font-weight="800" fill="#065f46" text-anchor="middle">D</text>
+
+        <!-- Vertical lines up from A and B -->
+        <line x1="20" y1="65" x2="20" y2="45" stroke="#10b981" stroke-width="2" />
+        <line x1="70" y1="65" x2="70" y2="45" stroke="#10b981" stroke-width="2" />
+        <!-- Horizontal bridge A-B -->
+        <line x1="20" y1="45" x2="70" y2="45" stroke="#10b981" stroke-width="2" />
+        <!-- Sub-root AB line up -->
+        <line x1="45" y1="45" x2="45" y2="25" stroke="#10b981" stroke-width="2" />
+
+        <!-- Vertical lines up from C and D -->
+        <line x1="120" y1="65" x2="120" y2="52" stroke="#10b981" stroke-width="2" />
+        <line x1="170" y1="65" x2="170" y2="52" stroke="#10b981" stroke-width="2" />
+        <!-- Horizontal bridge C-D -->
+        <line x1="120" y1="52" x2="170" y2="52" stroke="#10b981" stroke-width="2" />
+        <!-- Sub-root CD line up -->
+        <line x1="145" y1="52" x2="145" y2="25" stroke="#10b981" stroke-width="2" />
+
+        <!-- Top root bridge AB-CD -->
+        <line x1="45" y1="25" x2="145" y2="25" stroke="#10b981" stroke-width="2" />
+        <line x1="95" y1="25" x2="95" y2="10" stroke="#047857" stroke-width="2.5" />
+
+        <!-- Annotations -->
+        <g transform="translate(200, 10)">
+          <rect width="95" height="58" fill="#ecfdf5" stroke="#a7f3d0" rx="4" />
+          <text x="47" y="16" font-family="'Pretendard', sans-serif" font-size="9" font-weight="800" fill="#047857" text-anchor="middle">거리 측정법</text>
+          <text x="8" y="32" font-family="'Pretendard', sans-serif" font-size="8" fill="#065f46">• 단일: 최단거리</text>
+          <text x="8" y="44" font-family="'Pretendard', sans-serif" font-size="8" fill="#065f46">• 완전: 최장거리</text>
+          <text x="8" y="54" font-family="'Pretendard', sans-serif" font-size="8" font-weight="800" fill="#047857">• 와드: ESS 최소화</text>
+        </g>
+      </g>
+    </g>
+  </g>
+
+  <!-- Right Box: Clustering Evaluation Metrics (Elbow & Silhouette) -->
+  <g transform="translate(400, 48)">
+    <rect width="360" height="315" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" rx="10" />
+    <text x="180" y="24" font-family="'Pretendard', sans-serif" font-size="14" font-weight="800" fill="#1e293b" text-anchor="middle">2. 군집 평가지표 (엘보우 &amp; 실루엣 계수)</text>
+
+    <!-- Upper Right: Elbow Method Graph -->
+    <g transform="translate(15, 34)">
+      <rect width="330" height="126" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" rx="8" />
+      <text x="15" y="20" font-family="'Pretendard', sans-serif" font-size="12" font-weight="800" fill="#0284c7">① 엘보우 기법 (Elbow Method)</text>
+      <text x="15" y="33" font-family="'Pretendard', sans-serif" font-size="9" font-weight="600" fill="#64748b">SSE(오차제곱합) 감소 폭이 급격히 완만해지는 굴곡점 = 최적 K</text>
+
+      <!-- Axes -->
+      <line x1="45" y1="45" x2="45" y2="108" stroke="#94a3b8" stroke-width="1.5" />
+      <line x1="45" y1="108" x2="310" y2="108" stroke="#94a3b8" stroke-width="1.5" />
+      <text x="35" y="45" font-family="'Pretendard', sans-serif" font-size="8" font-weight="700" fill="#64748b" text-anchor="end">SSE</text>
+      <text x="305" y="120" font-family="'Pretendard', sans-serif" font-size="8" font-weight="700" fill="#64748b">K (군집 수)</text>
+
+      <!-- Grid Ticks K=1..5 -->
+      <text x="75" y="118" font-family="'Pretendard', sans-serif" font-size="8" fill="#64748b">K=1</text>
+      <text x="130" y="118" font-family="'Pretendard', sans-serif" font-size="8" fill="#64748b">K=2</text>
+      <text x="185" y="118" font-family="'Pretendard', sans-serif" font-size="8" fill="#0284c7" font-weight="800">K=3 (Elbow)</text>
+      <text x="240" y="118" font-family="'Pretendard', sans-serif" font-size="8" fill="#64748b">K=4</text>
+      <text x="290" y="118" font-family="'Pretendard', sans-serif" font-size="8" fill="#64748b">K=5</text>
+
+      <!-- Curve Line -->
+      <path d="M 50 50 Q 110 82 185 98 L 240 102 L 290 104" fill="none" stroke="#0284c7" stroke-width="2.5" />
+      <circle cx="50" cy="50" r="3" fill="#0284c7" />
+      <circle cx="110" cy="80" r="3" fill="#0284c7" />
+
+      <!-- Elbow Point Highlight -->
+      <circle cx="185" cy="98" r="6" fill="#ea580c" stroke="#ffffff" stroke-width="1.5" />
+      <line x1="185" y1="98" x2="185" y2="108" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="2,2" />
+      <rect x="155" y="52" width="90" height="18" fill="#ffedd5" stroke="#fed7aa" rx="3" />
+      <text x="200" y="64" font-family="'Pretendard', sans-serif" font-size="9" font-weight="800" fill="#c2410c" text-anchor="middle">★ 최적 K = 3 (Elbow)</text>
+    </g>
+
+    <!-- Lower Right: Silhouette Coefficient -->
+    <g transform="translate(15, 172)">
+      <rect width="330" height="132" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" rx="8" />
+      <text x="15" y="20" font-family="'Pretendard', sans-serif" font-size="12" font-weight="800" fill="#16a34a">② 실루엣 계수 (Silhouette Coefficient)</text>
+      
+      <!-- Formula Box -->
+      <rect x="15" y="28" width="300" height="34" fill="#f0fdf4" stroke="#bbf7d0" rx="5" />
+      <text x="165" y="49" font-family="'Pretendard', sans-serif" font-size="12" font-weight="800" fill="#15803d" text-anchor="middle">s(i) = [ b(i) - a(i) ] / max( a(i), b(i) )</text>
+
+      <!-- Key Concept Breakdown -->
+      <g transform="translate(15, 70)">
+        <rect width="142" height="48" fill="#eff6ff" stroke="#bfdbfe" rx="4" />
+        <text x="10" y="18" font-family="'Pretendard', sans-serif" font-size="10" font-weight="800" fill="#1d4ed8">a(i): 군집 내 평균 거리</text>
+        <text x="10" y="34" font-family="'Pretendard', sans-serif" font-size="9" font-weight="600" fill="#2563eb">응집도 (작을수록 우수)</text>
+      </g>
+      <g transform="translate(173, 70)">
+        <rect width="142" height="48" fill="#fdf2f8" stroke="#fbcfe8" rx="4" />
+        <text x="10" y="18" font-family="'Pretendard', sans-serif" font-size="10" font-weight="800" fill="#be185d">b(i): 타 군집 평균 거리</text>
+        <text x="10" y="34" font-family="'Pretendard', sans-serif" font-size="9" font-weight="600" fill="#db2777">분리도 (클수록 우수)</text>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 380" width="100%" height="100%">
+  <rect width="780" height="380" fill="#ffffff" rx="12" />
+  
+  <!-- Main Title -->
+  <text x="390" y="32" font-family="'Pretendard', sans-serif" font-size="20" font-weight="800" fill="#0f172a" text-anchor="middle">머신러닝 하이퍼파라미터 (Hyperparameter) &amp; 최적화 튜닝 3대 기법</text>
+
+  <!-- Top Box: Parameter vs Hyperparameter -->
+  <g transform="translate(20, 50)">
+    <rect width="740" height="95" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" rx="8" />
+    
+    <!-- Parameter -->
+    <g transform="translate(15, 12)">
+      <rect width="345" height="70" fill="#ffffff" stroke="#93c5fd" stroke-width="1.5" rx="6" />
+      <text x="172" y="28" font-family="'Pretendard', sans-serif" font-size="14" font-weight="800" fill="#1d4ed8" text-anchor="middle">파라미터 (Parameter)</text>
+      <text x="172" y="48" font-family="'Pretendard', sans-serif" font-size="11" font-weight="600" fill="#334155" text-anchor="middle">데이터로부터 모델이 자동 학습하는 매개변수</text>
+      <text x="172" y="63" font-family="'Pretendard', sans-serif" font-size="11" font-weight="700" fill="#2563eb" text-anchor="middle">예: 회귀계수 가중치(w), 절편/편향(b)</text>
+    </g>
+
+    <!-- Hyperparameter -->
+    <g transform="translate(380, 12)">
+      <rect width="345" height="70" fill="#ffffff" stroke="#f472b6" stroke-width="1.5" rx="6" />
+      <text x="172" y="28" font-family="'Pretendard', sans-serif" font-size="14" font-weight="800" fill="#db2777" text-anchor="middle">하이퍼파라미터 (Hyperparameter) ★</text>
+      <text x="172" y="48" font-family="'Pretendard', sans-serif" font-size="11" font-weight="600" fill="#334155" text-anchor="middle">사용자(분석가)가 학습 전 직접 수동 지정하는 설정값</text>
+      <text x="172" y="63" font-family="'Pretendard', sans-serif" font-size="11" font-weight="700" fill="#be185d" text-anchor="middle">예: C, gamma, max_depth, n_estimators, learning_rate</text>
+    </g>
+  </g>
+
+  <!-- Bottom Box: 3 Tuning Methods -->
+  <!-- Card 1: Grid Search -->
+  <g transform="translate(20, 160)">
+    <rect width="235" height="200" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5" rx="10" />
+    <text x="117" y="28" font-family="'Pretendard', sans-serif" font-size="15" font-weight="800" fill="#1e40af" text-anchor="middle">1. 그리드 서치 (Grid Search)</text>
+
+    <!-- Grid Graphic -->
+    <rect x="25" y="42" width="185" height="90" fill="#ffffff" stroke="#bfdbfe" stroke-width="1" rx="6" />
+    <line x1="71" y1="42" x2="71" y2="132" stroke="#93c5fd" />
+    <line x1="117" y1="42" x2="117" y2="132" stroke="#93c5fd" />
+    <line x1="163" y1="42" x2="163" y2="132" stroke="#93c5fd" />
+    <line x1="25" y1="72" x2="210" y2="72" stroke="#93c5fd" />
+    <line x1="25" y1="102" x2="210" y2="102" stroke="#93c5fd" />
+    <!-- All Intersections (Red Points) -->
+    <g fill="#2563eb">
+      <circle cx="71" cy="72" r="4" /><circle cx="117" cy="72" r="4" /><circle cx="163" cy="72" r="4" />
+      <circle cx="71" cy="102" r="4" /><circle cx="117" cy="102" r="4" /><circle cx="163" cy="102" r="4" />
+    </g>
+
+    <text x="117" y="152" font-family="'Pretendard', sans-serif" font-size="11" font-weight="800" fill="#1d4ed8" text-anchor="middle">모든 조합 격자 전수 조사</text>
+    <text x="117" y="170" font-family="'Pretendard', sans-serif" font-size="10" font-weight="600" fill="#334155" text-anchor="middle">확실한 최적 보장 / 시간 급증</text>
+    <text x="117" y="185" font-family="'Pretendard', sans-serif" font-size="10" font-weight="700" fill="#1e40af" text-anchor="middle">GridSearchCV</text>
+  </g>
+
+  <!-- Card 2: Random Search -->
+  <g transform="translate(272, 160)">
+    <rect width="235" height="200" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5" rx="10" />
+    <text x="117" y="28" font-family="'Pretendard', sans-serif" font-size="15" font-weight="800" fill="#166534" text-anchor="middle">2. 랜덤 서치 (Random Search)</text>
+
+    <!-- Random Points Graphic -->
+    <rect x="25" y="42" width="185" height="90" fill="#ffffff" stroke="#bbf7d0" stroke-width="1" rx="6" />
+    <g fill="#16a34a">
+      <circle cx="55" cy="60" r="5" /><circle cx="140" cy="55" r="5" />
+      <circle cx="95" cy="85" r="5" /><circle cx="175" cy="105" r="5" />
+      <circle cx="40" cy="115" r="5" />
+    </g>
+
+    <text x="117" y="152" font-family="'Pretendard', sans-serif" font-size="11" font-weight="800" fill="#15803d" text-anchor="middle">무작위 임의 조합 표본 추출</text>
+    <text x="117" y="170" font-family="'Pretendard', sans-serif" font-size="10" font-weight="600" fill="#334155" text-anchor="middle">시간 단축 / 효율적 탐색</text>
+    <text x="117" y="185" font-family="'Pretendard', sans-serif" font-size="10" font-weight="700" fill="#166534" text-anchor="middle">RandomizedSearchCV</text>
+  </g>
+
+  <!-- Card 3: Bayesian Optimization -->
+  <g transform="translate(525, 160)">
+    <rect width="235" height="200" fill="#fcf4ff" stroke="#f5d0fe" stroke-width="1.5" rx="10" />
+    <text x="117" y="28" font-family="'Pretendard', sans-serif" font-size="15" font-weight="800" fill="#86198f" text-anchor="middle">3. 베이지안 최적화</text>
+
+    <!-- Sequential Probabilistic curve -->
+    <rect x="25" y="42" width="185" height="90" fill="#ffffff" stroke="#f5d0fe" stroke-width="1" rx="6" />
+    <path d="M 35 110 C 70 30, 140 120, 195 50" fill="none" stroke="#a21caf" stroke-width="2" stroke-dasharray="3,3" />
+    <circle cx="115" cy="45" r="7" fill="#86198f" />
+    <text x="115" y="38" font-family="'Pretendard', sans-serif" font-size="9" font-weight="800" fill="#701a75" text-anchor="middle">최적 추정</text>
+
+    <text x="117" y="152" font-family="'Pretendard', sans-serif" font-size="11" font-weight="800" fill="#701a75" text-anchor="middle">이전 탐색 정보 기반 확률적 추천</text>
+    <text x="117" y="170" font-family="'Pretendard', sans-serif" font-size="10" font-weight="600" fill="#334155" text-anchor="middle">가우시안 프로세스 / 베이즈 정리</text>
+    <text x="117" y="185" font-family="'Pretendard', sans-serif" font-size="10" font-weight="700" fill="#86198f" text-anchor="middle">Optuna / Hyperopt</text>
+  </g>
+</svg>

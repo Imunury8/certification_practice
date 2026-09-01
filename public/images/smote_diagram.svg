@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 380" width="100%" height="100%">
+  <rect width="780" height="380" fill="#ffffff" rx="12" />
+  
+  <!-- Main Title -->
+  <text x="390" y="32" font-family="'Pretendard', sans-serif" font-size="20" font-weight="800" fill="#0f172a" text-anchor="middle">클래스 불균형 해소 &amp; SMOTE (Synthetic Minority Over-sampling Technique)</text>
+
+  <!-- Left Card: Class Imbalance Problem -->
+  <g transform="translate(20, 52)">
+    <rect width="360" height="305" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" rx="10" />
+    <text x="180" y="26" font-family="'Pretendard', sans-serif" font-size="15" font-weight="800" fill="#1e293b" text-anchor="middle">1. 클래스 불균형 (Class Imbalance) 현상</text>
+    
+    <!-- Graphic Canvas -->
+    <rect x="15" y="40" width="330" height="150" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" rx="6" />
+
+    <!-- Majority Class (Blue Circles) -->
+    <g fill="#3b82f6">
+      <circle cx="45" cy="70" r="7" /><circle cx="75" cy="60" r="7" /><circle cx="105" cy="80" r="7" />
+      <circle cx="135" cy="55" r="7" /><circle cx="165" cy="90" r="7" /><circle cx="195" cy="65" r="7" />
+      <circle cx="60" cy="110" r="7" /><circle cx="90" cy="135" r="7" /><circle cx="120" cy="115" r="7" />
+      <circle cx="150" cy="140" r="7" /><circle cx="180" cy="120" r="7" /><circle cx="210" cy="145" r="7" />
+      <circle cx="225" cy="90" r="7" /><circle cx="240" cy="125" r="7" /><circle cx="255" cy="70" r="7" />
+    </g>
+    <text x="150" y="170" font-family="'Pretendard', sans-serif" font-size="12" font-weight="800" fill="#1d4ed8" text-anchor="middle">다수 클래스 (Majority Class: 95%)</text>
+
+    <!-- Minority Class (Red Triangles) -->
+    <polygon points="295,70 302,84 288,84" fill="#ef4444" />
+    <polygon points="315,115 322,129 308,129" fill="#ef4444" />
+    <polygon points="280,130 287,144 273,144" fill="#ef4444" />
+    <text x="295" y="170" font-family="'Pretendard', sans-serif" font-size="12" font-weight="800" fill="#dc2626" text-anchor="middle">소수 (5%)</text>
+
+    <!-- Problem Box -->
+    <rect x="15" y="200" width="330" height="90" fill="#fef2f2" stroke="#fecaca" stroke-width="1" rx="6" />
+    <text x="25" y="222" font-family="'Pretendard', sans-serif" font-size="12" font-weight="800" fill="#991b1b">• 문제점: 모델이 다수 클래스만 보수적으로 예측</text>
+    <text x="25" y="242" font-family="'Pretendard', sans-serif" font-size="11" font-weight="600" fill="#475569">• 정확도(Accuracy) 착시 현상 ➔ F1-Score 급락</text>
+    <text x="25" y="262" font-family="'Pretendard', sans-serif" font-size="11" font-weight="700" fill="#b91c1c">• 단순 복제 시: 동일 샘플 중복으로 과대적합 발생</text>
+  </g>
+
+  <!-- Right Card: SMOTE Mechanism -->
+  <g transform="translate(400, 52)">
+    <rect width="360" height="305" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5" rx="10" />
+    <text x="180" y="26" font-family="'Pretendard', sans-serif" font-size="15" font-weight="800" fill="#166534" text-anchor="middle">2. SMOTE 합성 데이터 생성 메커니즘</text>
+
+    <!-- Graphic Canvas -->
+    <rect x="15" y="40" width="330" height="150" fill="#ffffff" stroke="#dcfce7" stroke-width="1" rx="6" />
+
+    <!-- Two Minority Points & Line -->
+    <circle cx="70" cy="130" r="9" fill="#dc2626" />
+    <text x="70" y="155" font-family="'Pretendard', sans-serif" font-size="11" font-weight="800" fill="#b91c1c" text-anchor="middle">소수 샘플 Xᵢ</text>
+
+    <circle cx="260" cy="65" r="9" fill="#dc2626" />
+    <text x="260" y="50" font-family="'Pretendard', sans-serif" font-size="11" font-weight="800" fill="#b91c1c" text-anchor="middle">K-NN 이웃 Xₙₙ</text>
+
+    <!-- Connection Line -->
+    <line x1="70" y1="130" x2="260" y2="65" stroke="#ef4444" stroke-width="2.5" stroke-dasharray="4,2" />
+
+    <!-- Generated Synthetic Point (SMOTE) -->
+    <circle cx="165" cy="97" r="11" fill="#16a34a" stroke="#15803d" stroke-width="3" />
+    <text x="165" y="80" font-family="'Pretendard', sans-serif" font-size="12" font-weight="800" fill="#166534" text-anchor="middle">★ 인공 생성 데이터 Xₙₑw</text>
+
+    <!-- Formula Box -->
+    <rect x="15" y="200" width="330" height="90" fill="#ffffff" stroke="#bbf7d0" stroke-width="1" rx="6" />
+    <text x="25" y="222" font-family="'Pretendard', sans-serif" font-size="13" font-weight="800" fill="#15803d">수식: Xₙₑw = Xᵢ + δ × (Xₙₙ - Xᵢ)</text>
+    <text x="25" y="242" font-family="'Pretendard', sans-serif" font-size="11" font-weight="600" fill="#334155">(δ: [0, 1] 범위의 무작위 난수 가중치)</text>
+    <text x="25" y="262" font-family="'Pretendard', sans-serif" font-size="11" font-weight="700" fill="#166534">• 소수 클래스 간 K-NN 보간으로 과대적합 방지</text>
+  </g>
+</svg>
