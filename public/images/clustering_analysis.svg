@@ -2,86 +2,71 @@
   <rect width="780" height="380" fill="#ffffff" rx="12" />
   
   <!-- Title Header -->
-  <text x="390" y="30" font-family="'Pretendard', -apple-system, sans-serif" font-size="19" font-weight="800" fill="#0f172a" text-anchor="middle">군집 분석 알고리즘 (K-Means, DBSCAN, 계층적 군집) &amp; 평가지표</text>
+  <text x="390" y="30" font-family="'Pretendard', -apple-system, sans-serif" font-size="19" font-weight="800" fill="#0f172a" text-anchor="middle">비계층적 군집 분석 알고리즘 (K-Means, DBSCAN) &amp; 평가지표</text>
 
-  <!-- Left Box: Clustering Algorithms Comparison (Non-hierarchical vs Hierarchical) -->
+  <!-- Left Box: K-Means & DBSCAN (with eps & min_samples) -->
   <g transform="translate(20, 48)">
     <rect width="360" height="315" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" rx="10" />
-    <text x="180" y="24" font-family="'Pretendard', sans-serif" font-size="14" font-weight="800" fill="#1e293b" text-anchor="middle">1. 핵심 군집화 알고리즘 분류</text>
+    <text x="180" y="24" font-family="'Pretendard', sans-serif" font-size="14" font-weight="800" fill="#1e293b" text-anchor="middle">1. K-Means vs DBSCAN (밀도 &amp; 파라미터)</text>
 
-    <!-- Sub-Section 1: Non-Hierarchical (K-Means & DBSCAN) -->
+    <!-- K-Means Summary Card -->
     <g transform="translate(12, 34)">
-      <rect width="336" height="126" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" rx="8" />
-      <text x="12" y="20" font-family="'Pretendard', sans-serif" font-size="12" font-weight="800" fill="#2563eb">① 비계층적 군집분석 (K-Means vs DBSCAN)</text>
-      
-      <!-- K-Means Small Visual -->
-      <g transform="translate(10, 28)">
-        <rect width="152" height="88" fill="#eff6ff" stroke="#bfdbfe" rx="6" />
-        <text x="76" y="18" font-family="'Pretendard', sans-serif" font-size="11" font-weight="800" fill="#1d4ed8" text-anchor="middle">K-Means (중심점 기반)</text>
-        <circle cx="45" cy="50" r="18" fill="#ffffff" stroke="#93c5fd" stroke-dasharray="2,2" />
-        <circle cx="45" cy="50" r="3" fill="#2563eb" />
-        <text x="45" y="53" font-family="'Pretendard', sans-serif" font-size="7" font-weight="800" fill="#1d4ed8" text-anchor="middle">+</text>
-        
-        <circle cx="105" cy="50" r="18" fill="#ffffff" stroke="#93c5fd" stroke-dasharray="2,2" />
-        <circle cx="105" cy="50" r="3" fill="#2563eb" />
-        
-        <text x="76" y="78" font-family="'Pretendard', sans-serif" font-size="9" font-weight="700" fill="#3b82f6" text-anchor="middle">• K 사전지정 | 구형 군집</text>
-      </g>
-
-      <!-- DBSCAN Small Visual -->
-      <g transform="translate(172, 28)">
-        <rect width="154" height="88" fill="#f3e8ff" stroke="#d8b4fe" rx="6" />
-        <text x="77" y="18" font-family="'Pretendard', sans-serif" font-size="11" font-weight="800" fill="#7c3aed" text-anchor="middle">DBSCAN (밀도 기반)</text>
-        
-        <path d="M 25 45 Q 77 30 125 55" fill="none" stroke="#a855f7" stroke-width="6" stroke-linecap="round" />
-        <circle cx="140" cy="40" r="3" fill="#ef4444" /> <!-- Noise -->
-        
-        <text x="77" y="78" font-family="'Pretendard', sans-serif" font-size="9" font-weight="700" fill="#6b21a8" text-anchor="middle">• K 지정 X | 노이즈 분리</text>
-      </g>
+      <rect width="336" height="74" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" rx="6" />
+      <text x="12" y="18" font-family="'Pretendard', sans-serif" font-size="11" font-weight="800" fill="#2563eb">① K-Means (중심점 기반 구형 군집)</text>
+      <text x="12" y="34" font-family="'Pretendard', sans-serif" font-size="9" stroke="none" fill="#475569">• 파라미터: <tspan font-weight="800" fill="#1d4ed8">K (군집 수)</tspan> 사전 지정 필수</text>
+      <text x="12" y="48" font-family="'Pretendard', sans-serif" font-size="9" fill="#475569">• 구형(Spherical) 형태만 가능, 이상치(Outlier)에 왜곡 발생</text>
+      <text x="12" y="62" font-family="'Pretendard', sans-serif" font-size="9" fill="#2563eb" font-weight="700">➔ 거리 기준 중심점(Centroid) 반복 재계산 업데이트</text>
     </g>
 
-    <!-- Sub-Section 2: Hierarchical Clustering & Dendrogram -->
-    <g transform="translate(12, 172)">
-      <rect width="336" height="132" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" rx="8" />
-      <text x="12" y="20" font-family="'Pretendard', sans-serif" font-size="12" font-weight="800" fill="#059669">② 계층적 군집분석 &amp; 덴드로그램 (Dendrogram)</text>
-      <text x="12" y="34" font-family="'Pretendard', sans-serif" font-size="9" font-weight="600" fill="#64748b">• 응집형(Bottom-up) vs 분할형(Top-down) | ★와드(Ward) 연결법 (ESS 최소화)</text>
+    <!-- DBSCAN Detail Card (eps & min_samples focus) -->
+    <g transform="translate(12, 116)">
+      <rect width="336" height="188" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" rx="6" />
+      <text x="12" y="20" font-family="'Pretendard', sans-serif" font-size="12" font-weight="800" fill="#7c3aed">② DBSCAN (밀도 기반 2대 파라미터)</text>
+      
+      <!-- Parameter Box -->
+      <g transform="translate(10, 28)">
+        <rect width="152" height="60" fill="#f3e8ff" stroke="#d8b4fe" rx="5" />
+        <text x="10" y="18" font-family="'Pretendard', sans-serif" font-size="10" font-weight="800" fill="#6b21a8">1. eps (ε, 반경)</text>
+        <text x="10" y="32" font-family="'Pretendard', sans-serif" font-size="8.5" fill="#7e22ce">• 이웃 탐색 반지름 거리</text>
+        <text x="10" y="45" font-family="'Pretendard', sans-serif" font-size="8" fill="#6b21a8">• ↑: 군집병합 | ↓: 노이즈증가</text>
+      </g>
 
-      <!-- Dendrogram Tree Line Art -->
-      <g transform="translate(20, 42)">
-        <!-- Leaf Labels -->
-        <text x="20" y="78" font-family="'Pretendard', sans-serif" font-size="10" font-weight="800" fill="#065f46" text-anchor="middle">A</text>
-        <text x="70" y="78" font-family="'Pretendard', sans-serif" font-size="10" font-weight="800" fill="#065f46" text-anchor="middle">B</text>
-        <text x="120" y="78" font-family="'Pretendard', sans-serif" font-size="10" font-weight="800" fill="#065f46" text-anchor="middle">C</text>
-        <text x="170" y="78" font-family="'Pretendard', sans-serif" font-size="10" font-weight="800" fill="#065f46" text-anchor="middle">D</text>
+      <g transform="translate(172, 28)">
+        <rect width="154" height="60" fill="#fcf4ff" stroke="#f5d0fe" rx="5" />
+        <text x="10" y="18" font-family="'Pretendard', sans-serif" font-size="10" font-weight="800" fill="#a21caf">2. min_samples (minPts)</text>
+        <text x="10" y="32" font-family="'Pretendard', sans-serif" font-size="8.5" fill="#86198f">• Core 되기위한 최소 이웃수</text>
+        <text x="10" y="45" font-family="'Pretendard', sans-serif" font-size="8" fill="#701a75">• ↑: 노이즈증가 | ↓: 노이즈감소</text>
+      </g>
 
-        <!-- Vertical lines up from A and B -->
-        <line x1="20" y1="65" x2="20" y2="45" stroke="#10b981" stroke-width="2" />
-        <line x1="70" y1="65" x2="70" y2="45" stroke="#10b981" stroke-width="2" />
-        <!-- Horizontal bridge A-B -->
-        <line x1="20" y1="45" x2="70" y2="45" stroke="#10b981" stroke-width="2" />
-        <!-- Sub-root AB line up -->
-        <line x1="45" y1="45" x2="45" y2="25" stroke="#10b981" stroke-width="2" />
+      <!-- Visual Diagram: Core, Border, Noise Points -->
+      <g transform="translate(10, 95)">
+        <rect width="316" height="82" fill="#faf5ff" stroke="#e9d5ff" rx="5" />
+        
+        <!-- Core Point with Circle (eps radius) -->
+        <circle cx="50" cy="40" r="28" fill="#e9d5ff" opacity="0.5" stroke="#a855f7" stroke-width="1.5" stroke-dasharray="3,2" />
+        <circle cx="50" cy="40" r="4" fill="#7c3aed" /> <!-- Core -->
+        <circle cx="35" cy="28" r="3" fill="#8b5cf6" />
+        <circle cx="65" cy="25" r="3" fill="#8b5cf6" />
+        <circle cx="60" cy="55" r="3" fill="#8b5cf6" />
+        <circle cx="32" cy="50" r="3" fill="#8b5cf6" />
+        <!-- eps arrow -->
+        <line x1="50" y1="40" x2="78" y2="40" stroke="#7c3aed" stroke-width="1.5" />
+        <text x="64" y="36" font-family="'Pretendard', sans-serif" font-size="7" font-weight="800" fill="#6b21a8">eps</text>
 
-        <!-- Vertical lines up from C and D -->
-        <line x1="120" y1="65" x2="120" y2="52" stroke="#10b981" stroke-width="2" />
-        <line x1="170" y1="65" x2="170" y2="52" stroke="#10b981" stroke-width="2" />
-        <!-- Horizontal bridge C-D -->
-        <line x1="120" y1="52" x2="170" y2="52" stroke="#10b981" stroke-width="2" />
-        <!-- Sub-root CD line up -->
-        <line x1="145" y1="52" x2="145" y2="25" stroke="#10b981" stroke-width="2" />
+        <text x="50" y="74" font-family="'Pretendard', sans-serif" font-size="8.5" font-weight="800" fill="#6b21a8" text-anchor="middle">★ Core Point</text>
+        <text x="50" y="81" font-family="'Pretendard', sans-serif" font-size="7" fill="#7e22ce" text-anchor="middle">(이웃 ≥ min_samples)</text>
 
-        <!-- Top root bridge AB-CD -->
-        <line x1="45" y1="25" x2="145" y2="25" stroke="#10b981" stroke-width="2" />
-        <line x1="95" y1="25" x2="95" y2="10" stroke="#047857" stroke-width="2.5" />
+        <!-- Border Point -->
+        <circle cx="160" cy="40" r="4" fill="#ec4899" />
+        <line x1="78" y1="40" x2="160" y2="40" stroke="#ec4899" stroke-width="1.5" stroke-dasharray="2,2" />
+        <text x="160" y="74" font-family="'Pretendard', sans-serif" font-size="8.5" font-weight="800" fill="#be185d" text-anchor="middle">★ Border Point</text>
+        <text x="160" y="81" font-family="'Pretendard', sans-serif" font-size="7" fill="#9d174d" text-anchor="middle">(Core 반경 내 존재)</text>
 
-        <!-- Annotations -->
-        <g transform="translate(200, 10)">
-          <rect width="95" height="58" fill="#ecfdf5" stroke="#a7f3d0" rx="4" />
-          <text x="47" y="16" font-family="'Pretendard', sans-serif" font-size="9" font-weight="800" fill="#047857" text-anchor="middle">거리 측정법</text>
-          <text x="8" y="32" font-family="'Pretendard', sans-serif" font-size="8" fill="#065f46">• 단일: 최단거리</text>
-          <text x="8" y="44" font-family="'Pretendard', sans-serif" font-size="8" fill="#065f46">• 완전: 최장거리</text>
-          <text x="8" y="54" font-family="'Pretendard', sans-serif" font-size="8" font-weight="800" fill="#047857">• 와드: ESS 최소화</text>
-        </g>
+        <!-- Noise Point -->
+        <circle cx="260" cy="40" r="4" fill="#64748b" />
+        <path d="M 255 35 L 265 45 M 265 35 L 255 45" stroke="#ef4444" stroke-width="2" />
+        <text x="260" y="74" font-family="'Pretendard', sans-serif" font-size="8.5" font-weight="800" fill="#475569" text-anchor="middle">★ Noise Point</text>
+        <text x="260" y="81" font-family="'Pretendard', sans-serif" font-size="7" fill="#dc2626" text-anchor="middle">(Core/Border 아님, 이상치)</text>
       </g>
     </g>
   </g>

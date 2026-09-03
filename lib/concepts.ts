@@ -740,11 +740,14 @@ export const CONCEPTS_BY_EXAM: Record<ExamId, ConceptSection[]> = {
           "비지도학습 비계층적 군집화 알고리즘과 군집 타당성 평가 기준입니다.",
           [
             "K-means: 사전에 설정한 K개의 중심점에 대해 유클리드 거리 기반 중심점 반복 업데이트 (구형 군집).",
-            "DBSCAN: 데이터의 밀도(Density) 기반으로 이상치(노이즈)를 분리하고 복잡한 비구형 군집 탐색.",
+            "DBSCAN 2대 파라미터: eps(ε, 반경)와 min_samples(minPts, 최소 이웃 데이터 개수).",
+            "eps (Epsilon): 핵심점을 기준으로 이웃을 탐색하는 반지름 거리. eps가 클수록 군집 합쳐짐, 작을수록 군집 파편화/노이즈 증가.",
+            "min_samples (minPts): Core Point가 되기 위해 eps 반경 내 존재해야 하는 최소 샘플 수 (자기 자신 포함).",
+            "DBSCAN 3대 포인트: Core Point(반경 내 min_samples 이상), Border Point(Core의 반경 내 경계 데이터), Noise Point(이상치).",
             "엘보우 기법: K값 변화에 따른 SSE(제곱오차합) 굴곡점(Elbow)을 최적 K로 선정.",
             "실루엣 계수 (Silhouette Coefficient): -1에서 +1 사이 값으로, 1에 가까울수록 군집화가 매우 잘 되었음을 의미."
           ],
-          "군집 내 응집도와 군집 간 분리도를 측정하여 -1~1 사이 수치로 나타내는 군집 평가지표는 실루엣 계수입니다.",
+          "DBSCAN의 핵심 파라미터는 반경 eps(ε)와 최소 샘플 수 min_samples(minPts)이며, 이를 기준으로 Core Point, Border Point, Noise Point(이상치)를 구별합니다.",
           "/images/clustering_analysis.svg"
         ),
         item(
