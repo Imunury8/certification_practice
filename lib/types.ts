@@ -1,4 +1,4 @@
-export type ExamId = "infosec-practical" | "bigdata-written" | "bigdata-practical" | "sqlp";
+export type ExamId = "infosec-practical" | "bigdata-written" | "bigdata-practical" | "sqlp" | "hazmat-industrial";
 
 export type TopicId =
   | "design-patterns"
@@ -23,7 +23,17 @@ export type TopicId =
   | "sql-optimizer-plan"
   | "db-lock-concurrency"
   | "programming-languages"
-  | "cohesion-coupling";
+  | "cohesion-coupling"
+  | "hazmat-properties"
+  | "hazmat-class1"
+  | "hazmat-class2"
+  | "hazmat-class3"
+  | "hazmat-class4"
+  | "hazmat-class5"
+  | "hazmat-class6"
+  | "fire-extinction"
+  | "hazmat-general-chem"
+  | "hazmat-law";
 
 export type Difficulty = "easy" | "medium" | "hard";
 

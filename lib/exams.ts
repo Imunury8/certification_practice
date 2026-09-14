@@ -25,4 +25,10 @@ export const EXAMS: ExamInfo[] = [
     description: "데이터베이스 모델링 및 SQL 튜닝 최적화, 실행 계획 분석 중심의 고난도 문제 완벽 대비.",
     category: "전문가",
   },
+  {
+    id: "hazmat-industrial",
+    name: "위험물산업기사",
+    description: "위험물의 성상 및 취급, 화재예방 및 소화방법, 위험물안전관리법령, 일반화학 핵심 개념과 기출 변형 학습.",
+    category: "산업기사",
+  },
 ];

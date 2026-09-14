@@ -140,6 +140,56 @@ export const TOPICS_BY_EXAM: Record<ExamId, Topic[]> = {
       description: "공유/배타 락, 트랜잭션 격리 수준 및 MVCC 동시성 제어 모델을 평가합니다.",
       keywords: ["Isolation Level", "Deadlock", "Undo Segment"],
     }
+  ],
+  "hazmat-industrial": [
+    {
+      id: "hazmat-class1",
+      name: "제1류 위험물 (산화성 고체)",
+      description: "아염소산/염소산/과염소산/무기과산화물 등 산화성 고체의 성질, 지정수량, 무기과산화물 금수성 소화.",
+      keywords: ["아염소산염류(50kg)", "염소산염류(50kg)", "무기과산화물(50kg)", "질산염류(300kg)", "과망간산염류(1000kg)", "주수소화", "O2 방출"],
+    },
+    {
+      id: "hazmat-class2",
+      name: "제2류 위험물 (가연성 고체)",
+      description: "황화린/적린/유황, 철분/금속분/마그네슘, 인화성 고체의 착화 위험, 지정수량 및 수소 가스 발생 금수성.",
+      keywords: ["황화린(100kg)", "적린(100kg)", "유황(100kg)", "철분/마그네슘(500kg)", "인화성고체(1000kg)", "H2 방출"],
+    },
+    {
+      id: "hazmat-class3",
+      name: "제3류 위험물 (자연발화·금수성)",
+      description: "칼륨/나트륨, 황린, 알킬알루미늄, 탄화칼슘(카바이드)의 보관액(물/등유), 수소/아세틸렌/메탄 발생 반응.",
+      keywords: ["칼륨/나트륨(10kg)", "황린(20kg)", "알킬알루미늄(10kg)", "탄화칼슘(300kg)", "등유 보관", "물속 보관", "C2H2/CH4"],
+    },
+    {
+      id: "hazmat-class4",
+      name: "제4류 위험물 (인화성 액체)",
+      description: "특수인화물, 제1~제4석유류, 알코올류, 동식물유류의 인화점 기준, 비수용성/수용성 2배 지정수량, 포소화.",
+      keywords: ["특수인화물(50L)", "제1석유류(200/400L)", "알코올류(400L)", "제2석유류(1000/2000L)", "제3석유류(2000/4000L)", "인화점 사다리"],
+    },
+    {
+      id: "hazmat-class5",
+      name: "제5류 위험물 (자기반응성 물질)",
+      description: "유기과산화물, 질산에스테르류, 니트로화합물의 자체 산소 함유 특성, 대량 주수 냉각소화, 지정수량.",
+      keywords: ["유기과산화물(10kg)", "질산에스테르류(10kg)", "히드록실아민(100kg)", "니트로화합물(200kg)", "질식소화 불가"],
+    },
+    {
+      id: "hazmat-class6",
+      name: "제6류 위험물 (산화성 액체)",
+      description: "과염소산, 과산화수소(36wt% 이상), 질산(비중 1.49 이상)의 불연성·강산화성 특성, 물 희석소화, 지정수량 300kg.",
+      keywords: ["과염소산(300kg)", "과산화수소(300kg)", "질산(300kg)", "희석소화", "비중 > 1"],
+    },
+    {
+      id: "fire-extinction",
+      name: "화재예방과 소화방법",
+      description: "연소의 3요소/4요소, 인화점·연소점·발화점, 4대 소화원리, A·B·C·D급 화재, 분말소화약제, 위험도 공식.",
+      keywords: ["연소 4요소", "인화점<연소점<발화점", "제거/질식/냉각/억제", "제3종 분말", "위험도 H"],
+    },
+    {
+      id: "hazmat-law",
+      name: "위험물안전관리법령 및 배수·혼재",
+      description: "지정수량 배수 계산, 차량 혼재 가능 기준(423/524/61), 안전표지 및 주의사항 게시판 색상, 안전관리자 선임.",
+      keywords: ["지정수량 배수 합산", "혼재 4-2-3 / 5-2-4 / 6-1", "물기엄금(청색)", "화기엄금(적색)", "재선임 30일/신고 14일"],
+    },
   ]
 };
 
@@ -1167,6 +1217,311 @@ export const QUESTION_BANK_BY_EXAM: Record<ExamId, QuestionTemplate[]> = {
       prompt: "Oracle 데이터베이스에서 변경 작업(UPDATE) 중인 세션이 존재하더라도, 다른 읽기 세션이 락(Lock) 대기 없이 해당 변경 전 상태(일관된 과거 버전)의 데이터를 조회할 수 있도록 원본 정보를 임시 저장하는 공간은 어디인가?",
       answer: "Undo Segment",
       explanation: "Oracle은 다중 버전 동시성 제어(MVCC) 모델을 기반으로 변경 데이터의 이전 이미지(Before Image)를 Undo Segment에 적재해 두어 읽기 일관성을 제공하고 블로킹을 배제합니다."
+    }
+  ],
+  "hazmat-industrial": [
+    // 제1류 위험물 (산화성 고체)
+    {
+      topicId: "hazmat-class1",
+      keyword: "무기과산화물",
+      difficulty: "easy",
+      type: "short",
+      prompt: "제1류 위험물(산화성 고체) 중 과산화나트륨 등 알칼리금속의 무기과산화물이 물과 반응했을 때 분출되는 가스는 무엇인가?",
+      answer: "산소",
+      explanation: "무기과산화물은 물과 격렬히 반응하여 가열 반응을 일으키며 산소(O2) 가스를 분출하므로 주수소화가 엄격히 금지됩니다."
+    },
+    {
+      topicId: "hazmat-class1",
+      keyword: "지정수량",
+      difficulty: "medium",
+      type: "short",
+      prompt: "제1류 위험물 중 아염소산염류, 염소산염류, 과염소산염류, 무기과산화물의 법정 지정수량은 얼마인가?",
+      answer: "50kg",
+      explanation: "제1류 위험물 중 아·염·과·무(아염소산/염소산/과염소산/무기과산화물)는 위험등급 I로 지정수량이 50kg입니다."
+    },
+
+    // 제2류 위험물 (가연성 고체)
+    {
+      topicId: "hazmat-class2",
+      keyword: "황화린",
+      difficulty: "medium",
+      type: "short",
+      prompt: "제2류 위험물 중 삼황화린(P4S3), 오황화린(P2S5) 등이 물(H2O)과 접촉했을 때 발생하는 유독성 악취 가스는 무엇인가?",
+      answer: "황화수소",
+      explanation: "황화린류는 물과 반응하여 계란 썩는 냄새가 나는 유독성 가스인 황화수소(H2S)를 발생시킵니다."
+    },
+    {
+      topicId: "hazmat-class2",
+      keyword: "금속분",
+      difficulty: "easy",
+      type: "short",
+      prompt: "제2류 위험물 중 철분, 금속분, 마그네슘 화재 시 물을 뿌리면 안 되는 이유는 어떤 가스가 발생하여 폭발을 유발하기 때문인가?",
+      answer: "수소",
+      explanation: "철분, 마그네슘, 금속분은 물이나 산과 반응하여 가연성 폭발 가스인 수소(H2)를 발생시키므로 마른모래 등으로 질식소화해야 합니다."
+    },
+
+    // 제3류 위험물 (자연발화성 및 금수성)
+    {
+      topicId: "hazmat-class3",
+      keyword: "보호액",
+      difficulty: "easy",
+      type: "short",
+      prompt: "제3류 위험물 중 발화점이 약 34℃로 낮아 공기 중에서 자연발화하므로 반드시 물(약알칼리성) 속에 침하시켜 저장해야 하는 물질은?",
+      answer: "황린",
+      explanation: "황린(P4)은 공기 중 자연발화성이 있어 물속에 보관합니다. 반면 칼륨과 나트륨은 물과 반응하므로 등유나 경유 속에 보관합니다."
+    },
+    {
+      topicId: "hazmat-class3",
+      keyword: "칼륨·나트륨",
+      difficulty: "medium",
+      type: "short",
+      prompt: "제3류 위험물 중 칼륨(K) 및 나트륨(Na)의 산화 및 공기·수분과의 반응을 방지하기 위해 침하시켜 저장하는 보호 액체는 무엇인가?",
+      answer: "등유",
+      explanation: "칼륨과 나트륨은 물 및 공기와 격렬히 반응하므로 반응성이 낮고 비중이 작은 등유, 경유 등의 석유류 액체 속에 보관합니다."
+    },
+    {
+      topicId: "hazmat-class3",
+      keyword: "탄화칼슘",
+      difficulty: "medium",
+      type: "short",
+      prompt: "제3류 위험물인 탄화칼슘(CaC2, 카바이드)이 물(H2O)과 접촉하여 격렬하게 반응할 때 발생하는 가연성 가스는 무엇인가?",
+      answer: "아세틸렌",
+      explanation: "탄화칼슘은 물과 반응하여 아세틸렌(C2H2) 가스를 방출하고 수산화칼슘(Ca(OH)2)을 생성하며 많은 열을 냅니다."
+    },
+    {
+      topicId: "hazmat-class3",
+      keyword: "탄화알루미늄",
+      difficulty: "hard",
+      type: "short",
+      prompt: "제3류 위험물인 탄화알루미늄(Al4C3)이 물과 접촉할 때 생성되는 대표적인 가연성 가스는 무엇인가?",
+      answer: "메탄",
+      explanation: "탄화알루미늄(Al4C3)은 물과 반응하여 메탄(CH4) 가스와 수산화알루미늄을 생성합니다. (참고: 탄화칼슘은 아세틸렌 발생)"
+    },
+
+    // 제4류 위험물 (인화성 액체)
+    {
+      topicId: "hazmat-class4",
+      keyword: "제1석유류",
+      difficulty: "hard",
+      type: "scenario",
+      prompt: "제4류 위험물 중 인화점이 21℃ 미만인 제1석유류에 해당하며, 물에 잘 녹는 수용성 물질(예: 아세톤)의 지정수량은 얼마인가?",
+      answer: "400L",
+      explanation: "제4류 위험물 제1석유류의 지정수량은 비수용성 200L, 수용성 400L 입니다. (아세톤, 피리딘 등이 대표적인 수용성 제1석유류입니다.)"
+    },
+    {
+      topicId: "hazmat-class4",
+      keyword: "이황화탄소",
+      difficulty: "medium",
+      type: "short",
+      prompt: "제4류 위험물 중 특수인화물에 속하며, 가연성 증기 발생을 억제하기 위해 수조(물속)에 넣어 보관하는 물질의 명칭은?",
+      answer: "이황화탄소",
+      explanation: "이황화탄소(CS2)는 인화점(-30℃), 비점(46℃), 발화점(90℃)이 매우 낮으나 물보다 무겁고(비중 1.26) 물에 녹지 않아 물속에 보관합니다."
+    },
+
+    // 제5류 위험물 (자기반응성 물질)
+    {
+      topicId: "hazmat-class5",
+      keyword: "자기반응성",
+      difficulty: "medium",
+      type: "short",
+      prompt: "분자 구조 자체 내에 산소를 함유하고 있어 외부의 공기(산소) 공급 없이도 가열, 충격에 의해 폭발적으로 반응하는 위험물 분류는 몇 류 인가?",
+      answer: "제5류 위험물",
+      explanation: "제5류 위험물은 자기반응성 물질로 유기과산화물, 질산에스테르류 등이 속하며 자체 연소 및 폭발 위험성이 높습니다."
+    },
+    {
+      topicId: "hazmat-class5",
+      keyword: "소화원칙",
+      difficulty: "hard",
+      type: "short",
+      prompt: "제5류 위험물 화재 시 모래를 덮거나 CO2 소화약제를 방출하는 질식소화가 효과가 없는 이유는 무엇 때문인가?",
+      answer: "자체 산소 함유",
+      explanation: "제5류 위험물은 분자 내에 결합된 산소를 자체 보유하고 있어 외부 공기를 차단해도 내부 연소가 지속되므로 대량 주수 냉각소화만 유효합니다."
+    },
+
+    // 제6류 위험물 (산화성 액체)
+    {
+      topicId: "hazmat-class6",
+      keyword: "산화성액체",
+      difficulty: "easy",
+      type: "short",
+      prompt: "과염소산, 과산화수소(36wt% 이상), 질산(비중 1.49 이상)의 3개 품명으로 구성되며, 불연성이지만 강산화제인 위험물 분류는 몇 류인가?",
+      answer: "제6류 위험물",
+      explanation: "제6류 위험물은 산화성 액체로 모두 불연성이며 비중이 1보다 크고 물에 잘 녹으며 지정수량은 300kg입니다."
+    },
+    {
+      topicId: "hazmat-class6",
+      keyword: "과산화수소",
+      difficulty: "medium",
+      type: "short",
+      prompt: "제6류 위험물인 과산화수소의 용기 마개에는 내부 압력 상승으로 인한 폭발을 방지하기 위해 어떤 조치를 취해야 하는가?",
+      answer: "구멍 뚫린 마개",
+      explanation: "과산화수소는 보관 중 미량씩 산소(O2) 가스로 분해되므로 용기 내압 상승을 막기 위해 구멍이 있는 마개(통기성 캡)를 사용합니다."
+    },
+
+    // 화재예방과 소화방법
+    {
+      topicId: "fire-extinction",
+      keyword: "A·B·C·D급 화재",
+      difficulty: "easy",
+      type: "short",
+      prompt: "가솔린, 등유, 아세톤 등 인화성 액체가 타는 화재로, 소화 후 재를 남기지 않으며 황색 표지를 사용하는 화재의 분류는?",
+      answer: "B급 화재",
+      explanation: "B급 화재는 유류화재(황색), A급은 일반화재(백색), C급은 전기화재(청색), D급은 금속화재(무색)로 분류됩니다."
+    },
+    {
+      topicId: "fire-extinction",
+      keyword: "화재 표시 색상",
+      difficulty: "easy",
+      type: "short",
+      prompt: "화재 분류에 따른 소화기 표시 색상에서 일반화재(A급), 유류화재(B급), 전기화재(C급)의 원형 표시 색상을 순서대로 쓰시오.",
+      answer: "백색, 황색, 청색",
+      explanation: "A급(일반)은 백색, B급(유류)은 황색, C급(전기)은 청색입니다. D급(금속)은 별도 표시 색상이 없습니다(무색)."
+    },
+    {
+      topicId: "fire-extinction",
+      keyword: "D급 금속화재",
+      difficulty: "medium",
+      type: "short",
+      prompt: "나트륨, 마그네슘 등 금속 화재(D급 화재) 발생 시 물이나 CO2 소화기를 사용할 수 없다. 이때 사용할 수 있는 가장 대표적인 질식 소화약제는 무엇인가?",
+      answer: "마른모래",
+      explanation: "금속 화재(D급)는 물이나 CO2와 접촉 시 수소나 일산화탄소 발생 및 폭발 위험이 있으므로 마른모래(건조사), 팽창질석, 팽창진주암으로 덮어 질식소화해야 합니다."
+    },
+    {
+      topicId: "fire-extinction",
+      keyword: "C급 전기화재",
+      difficulty: "medium",
+      type: "short",
+      prompt: "통전 중인 변압기, 배전반 등 전기설비 화재(C급 화재)에 물을 직사(봉상 주수)해서는 안 되는 가장 결정적인 이유는 무엇인가?",
+      answer: "감전 위험",
+      explanation: "전기가 통하고 있는 설비에 전도성이 있는 물을 뿌리면 소방 대원에게 전류가 흘러 치명적인 감전 사고를 유발하므로 비전도성 소화약제(CO2, 할론, 분말)를 사용해야 합니다."
+    },
+    {
+      topicId: "fire-extinction",
+      keyword: "분말소화약제",
+      difficulty: "medium",
+      type: "short",
+      prompt: "ABC급 화재(일반·유류·전기)에 두루 사용할 수 있는 제3종 분말소화약제의 주성분은 무엇인가?",
+      answer: "제일인산암모늄",
+      explanation: "제3종 분말소화약제는 제일인산암모늄(NH4H2PO4)이 주성분이며, 분홍색(담홍색)을 띠고 억제 및 질식, 부착막 형성 소화 효과를 가집니다."
+    },
+    {
+      topicId: "fire-extinction",
+      keyword: "소화원리",
+      difficulty: "hard",
+      type: "scenario",
+      prompt: "밀폐 공간에 이산화탄소 소화약제를 방출하여 공기 중의 산소 농도를 15% 이하로 떨어뜨려 불을 끄는 소화 원리는 무엇인가?",
+      answer: "질식소화",
+      explanation: "산소 공급원을 차단하거나 공기 중 산소 농도를 지속 연소 불가 수준(약 15% 이하)으로 떨어뜨려 소화하는 방식을 질식소화라고 합니다."
+    },
+    {
+      topicId: "fire-extinction",
+      keyword: "인화점·발화점",
+      difficulty: "easy",
+      type: "short",
+      prompt: "외부 점화원(불꽃) 없이 물질 자체가 가열되어 스스로 불이 붙어 연소를 시작하는 최저 온도를 무엇이라 하는가?",
+      answer: "발화점",
+      explanation: "외부 불꽃에 의해 불이 붙는 최저 온도는 '인화점(Flash Point)'이고, 점화원 없이 자체 열 축적으로 연소하는 최저 온도는 '발화점(착화점, Ignition Point)'입니다."
+    },
+    {
+      topicId: "fire-extinction",
+      keyword: "소화원리",
+      difficulty: "medium",
+      type: "short",
+      prompt: "할론 소화약제나 분말 소화약제가 화재 시 발생하는 활성 라디칼을 포획하여 연쇄반응을 차단하는 소화 원리를 무엇이라 하는가?",
+      answer: "억제소화",
+      explanation: "연쇄반응을 방해하고 중단시키는 소화 원리를 억제소화 또는 부촉매소화라고 부릅니다."
+    },
+    {
+      topicId: "fire-extinction",
+      keyword: "소화원리",
+      difficulty: "easy",
+      type: "short",
+      prompt: "가스 화재 시 밸브를 잠그거나, 산불 시 방화선을 만들어 나무를 미리 베어내는 소화 방법은 4대 소화 원리 중 어디에 해당하는가?",
+      answer: "제거소화",
+      explanation: "가연성 물질의 공급을 원천적으로 차단하거나 연소 대상물을 없애 불을 끄는 방식을 제거소화라고 합니다."
+    },
+    {
+      topicId: "fire-extinction",
+      keyword: "옥내소화전 수원 계산",
+      difficulty: "hard",
+      type: "scenario",
+      prompt: "어느 위험물 제조소의 1층에 옥내소화전 3개, 2층에 2개가 설치되어 있다. 이 제조소에 확보해야 하는 옥내소화전설비의 최소 수원의 양(저수량)은 몇 m³인가?",
+      answer: "23.4m³",
+      explanation: "옥내소화전 수원의 양 공식은 Q = N × 7.8 m³ 입니다. 가장 많이 설치된 층의 개수 N=3개(최대 5개 한도)이므로 3 × 7.8 = 23.4 m³(23,400 L)를 확보해야 합니다."
+    },
+    {
+      topicId: "fire-extinction",
+      keyword: "옥외소화전 규격",
+      difficulty: "medium",
+      type: "short",
+      prompt: "위험물안전관리법상 옥외소화전설비의 노즐 선단 방수압력(kPa)과 방수량(L/min)의 최소 기준값을 순서대로 쓰시오.",
+      answer: "350kPa, 450L/min",
+      explanation: "옥외소화전은 방수압력 350 kPa 이상, 방수량 450 L/min 이상이어야 합니다. (옥내소화전은 350 kPa 이상, 260 L/min 이상)"
+    },
+    {
+      topicId: "fire-extinction",
+      keyword: "소요단위 계산",
+      difficulty: "hard",
+      type: "scenario",
+      prompt: "외벽이 내화구조인 위험물 제조소(연면적 400m²)에서 제1석유류 비수용성(지정수량 200L) 6,000L를 취급하고 있다. 이 제조소의 총 소화설비 소요단위는 몇 단위인가?",
+      answer: "7단위",
+      explanation: "건축물 소요단위: 내화구조 제조소는 100m²당 1단위이므로 400/100 = 4단위. 위험물 소요단위: 지정수량의 10배당 1단위이므로 6,000/200 = 30배 -> 30/10 = 3단위. 총 소요단위 = 4 + 3 = 7단위입니다."
+    },
+    {
+      topicId: "fire-extinction",
+      keyword: "간이소화용구 능력단위",
+      difficulty: "easy",
+      type: "short",
+      prompt: "간이소화용구(제4소화설비) 중 삽 1개를 상비한 '마른모래 50L 1포'의 소화능력단위는 몇 단위인가?",
+      answer: "0.5단위",
+      explanation: "마른모래 50L(삽 1개 상비)는 0.5단위이며, 팽창질석 또는 팽창진주암 160L(삽 1개 상비)는 1.0단위, 수조 80L(물통 3개 포함)는 1.5단위입니다."
+    },
+
+    // 위험물안전관리법령 및 배수·혼재
+    {
+      topicId: "hazmat-law",
+      keyword: "지정수량",
+      difficulty: "easy",
+      type: "short",
+      prompt: "위험물안전관리법상 위험물의 위험성을 고려하여 대통령령으로 정하는 수량으로, 저장소 설치 허가의 기준이 되는 수량을 무엇이라 하는가?",
+      answer: "지정수량",
+      explanation: "지정수량은 위험물 관련 안전관리 기준 적용의 행정적 단서가 되는 표준 수량입니다."
+    },
+    {
+      topicId: "hazmat-law",
+      keyword: "지정수량 배수 계산",
+      difficulty: "medium",
+      type: "scenario",
+      prompt: "한 저장소에 휘발유(비수용성 제1석유류, 지정수량 200L) 600L와 등유(비수용성 제2석유류, 지정수량 1,000L) 4,000L를 함께 저장하고 있다. 이 저장소의 총 지정수량 배수는 몇 배인가?",
+      answer: "7배",
+      explanation: "휘발유 배수 = 600 / 200 = 3배, 등유 배수 = 4,000 / 1,000 = 4배. 둘의 합산 배수는 3 + 4 = 7배가 됩니다."
+    },
+    {
+      topicId: "hazmat-law",
+      keyword: "혼재 기준",
+      difficulty: "hard",
+      type: "short",
+      prompt: "위험물 운반 차량에서 제1류 위험물과 함께 혼합 적재(혼재)하여 운반할 수 있는 위험물은 제몇 류인가?",
+      answer: "제6류",
+      explanation: "혼재 가능 기준에서 제1류(산화성 고체)는 제6류(산화성 액체)와만 혼재가 가능합니다 (1-6)."
+    },
+    {
+      topicId: "hazmat-law",
+      keyword: "표지 게시판",
+      difficulty: "medium",
+      type: "short",
+      prompt: "제1류 알칼리금속과산화물 또는 제3류 금수성 물질을 취급하는 장소의 주의사항 게시판 색상 기준(바탕색과 문자색)을 바르게 적으시오.",
+      answer: "청색 바탕에 백색 문자",
+      explanation: "물기엄금 게시판은 '청색 바탕에 백색 문자'로 기재해야 합니다. (화기엄금은 적색 바탕에 백색 문자, 화기주의는 황색 바탕에 흑색 문자)"
+    },
+    {
+      topicId: "hazmat-law",
+      keyword: "위험물안전관리자",
+      difficulty: "medium",
+      type: "scenario",
+      prompt: "위험물 제조소등의 관계인이 안전관리자를 해임하거나 퇴직한 경우, 해임/퇴직한 날로부터 며칠 이내에 후임 안전관리자를 재선임해야 하는가?",
+      answer: "30일",
+      explanation: "위험물안전관리자 해임 또는 퇴직 시 30일 이내에 재선임해야 하며, 선임 후 14일 이내에 소방서장에게 신고해야 합니다."
     }
   ]
 };

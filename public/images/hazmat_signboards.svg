@@ -1,0 +1,231 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 700" width="100%" height="100%">
+  <defs>
+    <!-- 그림자 필터 -->
+    <filter id="shadow" x="-4%" y="-4%" width="108%" height="108%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.08" />
+    </filter>
+    <filter id="plate-shadow" x="-5%" y="-5%" width="110%" height="110%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.15" />
+    </filter>
+
+    <!-- 치수선 화살표 마커 -->
+    <marker id="arrow-dim" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 2 L 8 5 L 0 8 z" fill="#64748b" />
+    </marker>
+    <marker id="arrow-dim-rev" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 8 2 L 0 5 L 8 8 z" fill="#64748b" />
+    </marker>
+
+    <!-- 황색 반사 텍스트 필터 -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="0" stdDeviation="2" flood-color="#fef08a" flood-opacity="0.8" />
+    </filter>
+  </defs>
+
+  <!-- 메인 배경 -->
+  <rect width="960" height="700" fill="#f8fafc" rx="16" />
+  <rect x="12" y="12" width="936" height="676" fill="#ffffff" rx="12" stroke="#e2e8f0" stroke-width="1.5" />
+
+  <!-- 상단 헤더 타이틀 -->
+  <g transform="translate(40, 42)">
+    <rect x="0" y="0" width="4" height="28" fill="#ef4444" rx="2" />
+    <text x="14" y="21" font-family="'Pretendard', sans-serif" font-size="20" font-weight="800" fill="#0f172a">위험물 제조소등의 표지 및 게시판 규격·색상 기준</text>
+    <text x="14" y="44" font-family="'Pretendard', sans-serif" font-size="13" font-weight="500" fill="#64748b">위험물안전관리법 시행규칙 [별표 4] 법정 규격 및 바탕·문자 색상 기준</text>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- 1구역: 위험물 제조소등의 표지 & 위험물 안내 게시판 -->
+  <!-- ========================================================================= -->
+  
+  <!-- [1-1] 제조소등의 표지 -->
+  <g transform="translate(40, 110)">
+    <!-- 배경 컨테이너 -->
+    <rect width="425" height="180" fill="#f8fafc" rx="8" stroke="#e2e8f0" stroke-width="1" />
+    <text x="16" y="24" font-family="'Pretendard', sans-serif" font-size="14" font-weight="700" fill="#1e293b">1. 제조소등의 표지판</text>
+    <text x="16" y="42" font-family="'Pretendard', sans-serif" font-size="12" font-weight="500" fill="#64748b">제조소·저장소·취급소 출입구 부착</text>
+
+    <!-- 표지판 본체 (0.6m x 0.3m 비율) -->
+    <g transform="translate(70, 58)">
+      <!-- 볼트 구멍 4개 -->
+      <circle cx="8" cy="8" r="3" fill="#cbd5e1" stroke="#94a3b8" stroke-width="1" />
+      <circle cx="272" cy="8" r="3" fill="#cbd5e1" stroke="#94a3b8" stroke-width="1" />
+      <circle cx="8" cy="62" r="3" fill="#cbd5e1" stroke="#94a3b8" stroke-width="1" />
+      <circle cx="272" cy="62" r="3" fill="#cbd5e1" stroke="#94a3b8" stroke-width="1" />
+
+      <!-- 간판 판재 -->
+      <rect x="0" y="0" width="280" height="70" fill="#ffffff" stroke="#0f172a" stroke-width="3" rx="2" filter="url(#plate-shadow)" />
+      <text x="140" y="44" font-family="'Pretendard', sans-serif" font-size="21" font-weight="900" fill="#0f172a" text-anchor="middle" letter-spacing="4">위 험 물 제 조 소</text>
+
+      <!-- 가로 치수선 (0.6m 이상) -->
+      <line x1="0" y1="84" x2="280" y2="84" stroke="#64748b" stroke-width="1.2" marker-start="url(#arrow-dim-rev)" marker-end="url(#arrow-dim)" />
+      <text x="140" y="98" font-family="'Pretendard', sans-serif" font-size="11" font-weight="600" fill="#475569" text-anchor="middle">한 변 0.6m 이상</text>
+
+      <!-- 세로 치수선 (0.3m 이상) -->
+      <line x1="294" y1="0" x2="294" y2="70" stroke="#64748b" stroke-width="1.2" marker-start="url(#arrow-dim-rev)" marker-end="url(#arrow-dim)" />
+      <text x="304" y="39" font-family="'Pretendard', sans-serif" font-size="11" font-weight="600" fill="#475569" text-anchor="start">0.3m 이상</text>
+    </g>
+
+    <!-- 색상 요약 배지 -->
+    <rect x="70" y="145" width="280" height="24" fill="#f1f5f9" rx="4" stroke="#cbd5e1" stroke-width="1" />
+    <text x="210" y="161" font-family="'Pretendard', sans-serif" font-size="12" font-weight="700" fill="#0f172a" text-anchor="middle">
+      <tspan fill="#475569">색상 기준 : </tspan>
+      <tspan fill="#0f172a" font-weight="800">백색 바탕</tspan>
+      <tspan fill="#475569"> 에 </tspan>
+      <tspan fill="#0f172a" font-weight="800">흑색 문자</tspan>
+    </text>
+  </g>
+
+  <!-- [1-2] 위험물 제조소등 세부 안내 게시판 (법정 5대 기재사항) -->
+  <g transform="translate(495, 110)">
+    <!-- 배경 컨테이너 -->
+    <rect width="425" height="180" fill="#f8fafc" rx="8" stroke="#e2e8f0" stroke-width="1" />
+    <text x="16" y="24" font-family="'Pretendard', sans-serif" font-size="14" font-weight="700" fill="#1e293b">2. 위험물 제조소등 게시판 (법정 5대 사항)</text>
+    <text x="16" y="42" font-family="'Pretendard', sans-serif" font-size="12" font-weight="500" fill="#64748b">취급 품명·최대수량·배수·안전관리자 표시</text>
+
+    <!-- 게시판 표 형태 (0.6m x 0.3m 규격) -->
+    <g transform="translate(55, 52)">
+      <rect x="0" y="0" width="315" height="92" fill="#ffffff" stroke="#0f172a" stroke-width="2" rx="2" filter="url(#plate-shadow)" />
+
+      <!-- 표 내부 그리드 선 -->
+      <line x1="0" y1="18.4" x2="315" y2="18.4" stroke="#cbd5e1" stroke-width="1" />
+      <line x1="0" y1="36.8" x2="315" y2="36.8" stroke="#cbd5e1" stroke-width="1" />
+      <line x1="0" y1="55.2" x2="315" y2="55.2" stroke="#cbd5e1" stroke-width="1" />
+      <line x1="0" y1="73.6" x2="315" y2="73.6" stroke="#cbd5e1" stroke-width="1" />
+      <line x1="105" y1="0" x2="105" y2="92" stroke="#0f172a" stroke-width="1.5" />
+
+      <!-- 1행: 유별 -->
+      <text x="52" y="14" font-family="'Pretendard', sans-serif" font-size="11" font-weight="700" fill="#334155" text-anchor="middle">유 별</text>
+      <text x="120" y="14" font-family="'Pretendard', sans-serif" font-size="11" font-weight="800" fill="#0f172a">제 4 류 (인화성 액체)</text>
+
+      <!-- 2행: 품명 -->
+      <text x="52" y="32" font-family="'Pretendard', sans-serif" font-size="11" font-weight="700" fill="#334155" text-anchor="middle">품 명</text>
+      <text x="120" y="32" font-family="'Pretendard', sans-serif" font-size="11" font-weight="800" fill="#0f172a">제1석유류 (휘발유)</text>
+
+      <!-- 3행: 최대수량 -->
+      <text x="52" y="51" font-family="'Pretendard', sans-serif" font-size="11" font-weight="700" fill="#334155" text-anchor="middle">최 대 수 량</text>
+      <text x="120" y="51" font-family="'Pretendard', sans-serif" font-size="11" font-weight="800" fill="#0f172a">10,000 리터</text>
+
+      <!-- 4행: 지정수량의 배수 -->
+      <text x="52" y="69" font-family="'Pretendard', sans-serif" font-size="11" font-weight="700" fill="#334155" text-anchor="middle">지정수량의 배수</text>
+      <text x="120" y="69" font-family="'Pretendard', sans-serif" font-size="11" font-weight="800" fill="#dc2626">50 배</text>
+
+      <!-- 5행: 안전관리자 -->
+      <text x="52" y="87" font-family="'Pretendard', sans-serif" font-size="11" font-weight="700" fill="#334155" text-anchor="middle">안전관리자 성명</text>
+      <text x="120" y="87" font-family="'Pretendard', sans-serif" font-size="11" font-weight="800" fill="#0f172a">홍 길 동 (직명: 안전책임자)</text>
+    </g>
+
+    <!-- 색상 요약 배지 -->
+    <rect x="55" y="150" width="315" height="22" fill="#f1f5f9" rx="4" stroke="#cbd5e1" stroke-width="1" />
+    <text x="212" y="165" font-family="'Pretendard', sans-serif" font-size="11" font-weight="700" fill="#0f172a" text-anchor="middle">
+      <tspan fill="#475569">규격 : </tspan>0.3m × 0.6m 이상 / <tspan fill="#475569">색상 : </tspan>백색 바탕에 흑색 문자
+    </text>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- 2구역: 방화에 관한 주의사항 게시판 3종 (실기시험 빈출 1순위) -->
+  <!-- ========================================================================= -->
+  <g transform="translate(40, 310)">
+    <rect width="880" height="240" fill="#f8fafc" rx="8" stroke="#e2e8f0" stroke-width="1" />
+    
+    <text x="16" y="25" font-family="'Pretendard', sans-serif" font-size="15" font-weight="800" fill="#1e293b">3. 방화에 관한 주의사항 게시판 3종 (규격: 한 변 0.3m 이상 × 다른 한 변 0.6m 이상)</text>
+    <text x="16" y="43" font-family="'Pretendard', sans-serif" font-size="12" font-weight="500" fill="#64748b">취급하는 위험물의 성질에 따라 해당하는 주의사항 게시판을 반드시 설치해야 합니다.</text>
+
+    <!-- 3-1: 물기엄금 -->
+    <g transform="translate(20, 58)">
+      <!-- 간판 본체 (청색 바탕) -->
+      <rect width="265" height="90" fill="#1d4ed8" stroke="#1e40af" stroke-width="2" rx="4" filter="url(#plate-shadow)" />
+      
+      <!-- 볼트 장식 -->
+      <circle cx="8" cy="8" r="2.5" fill="#93c5fd" />
+      <circle cx="257" cy="8" r="2.5" fill="#93c5fd" />
+      <circle cx="8" cy="82" r="2.5" fill="#93c5fd" />
+      <circle cx="257" cy="82" r="2.5" fill="#93c5fd" />
+
+      <!-- 텍스트 (백색 문자) -->
+      <text x="132" y="56" font-family="'Pretendard', sans-serif" font-size="28" font-weight="900" fill="#ffffff" text-anchor="middle" letter-spacing="6">물기엄금</text>
+
+      <!-- 색상 배지 -->
+      <rect x="0" y="100" width="265" height="22" fill="#eff6ff" rx="4" stroke="#bfdbfe" stroke-width="1" />
+      <text x="132" y="115" font-family="'Pretendard', sans-serif" font-size="12" font-weight="800" fill="#1d4ed8" text-anchor="middle">청색 바탕에 백색 문자</text>
+
+      <!-- 부착 대상 설명 -->
+      <text x="132" y="140" font-family="'Pretendard', sans-serif" font-size="12" font-weight="700" fill="#1e293b" text-anchor="middle">【 부착 대상 위험물 】</text>
+      <text x="132" y="157" font-family="'Pretendard', sans-serif" font-size="11" font-weight="600" fill="#475569" text-anchor="middle">• 제1류 알칼리금속과산화물</text>
+      <text x="132" y="172" font-family="'Pretendard', sans-serif" font-size="11" font-weight="600" fill="#475569" text-anchor="middle">• 제3류 금수성 물질</text>
+    </g>
+
+    <!-- 3-2: 화기주의 -->
+    <g transform="translate(307, 58)">
+      <!-- 간판 본체 (황색 바탕) -->
+      <rect width="265" height="90" fill="#facc15" stroke="#ca8a04" stroke-width="2" rx="4" filter="url(#plate-shadow)" />
+      
+      <!-- 볼트 장식 -->
+      <circle cx="8" cy="8" r="2.5" fill="#854d0e" />
+      <circle cx="257" cy="8" r="2.5" fill="#854d0e" />
+      <circle cx="8" cy="82" r="2.5" fill="#854d0e" />
+      <circle cx="257" cy="82" r="2.5" fill="#854d0e" />
+
+      <!-- 텍스트 (흑색 문자) -->
+      <text x="132" y="56" font-family="'Pretendard', sans-serif" font-size="28" font-weight="900" fill="#0f172a" text-anchor="middle" letter-spacing="6">화기주의</text>
+
+      <!-- 색상 배지 -->
+      <rect x="0" y="100" width="265" height="22" fill="#fefce8" rx="4" stroke="#fef08a" stroke-width="1" />
+      <text x="132" y="115" font-family="'Pretendard', sans-serif" font-size="12" font-weight="800" fill="#a16207" text-anchor="middle">황색 바탕에 흑색 문자</text>
+
+      <!-- 부착 대상 설명 -->
+      <text x="132" y="140" font-family="'Pretendard', sans-serif" font-size="12" font-weight="700" fill="#1e293b" text-anchor="middle">【 부착 대상 위험물 】</text>
+      <text x="132" y="157" font-family="'Pretendard', sans-serif" font-size="11" font-weight="600" fill="#475569" text-anchor="middle">• 제2류 가연성 고체</text>
+      <text x="132" y="172" font-family="'Pretendard', sans-serif" font-size="11" font-weight="600" fill="#dc2626" text-anchor="middle">(인화성 고체 제외)</text>
+    </g>
+
+    <!-- 3-3: 화기엄금 -->
+    <g transform="translate(595, 58)">
+      <!-- 간판 본체 (적색 바탕) -->
+      <rect width="265" height="90" fill="#dc2626" stroke="#991b1b" stroke-width="2" rx="4" filter="url(#plate-shadow)" />
+      
+      <!-- 볼트 장식 -->
+      <circle cx="8" cy="8" r="2.5" fill="#fca5a5" />
+      <circle cx="257" cy="8" r="2.5" fill="#fca5a5" />
+      <circle cx="8" cy="82" r="2.5" fill="#fca5a5" />
+      <circle cx="257" cy="82" r="2.5" fill="#fca5a5" />
+
+      <!-- 텍스트 (백색 문자) -->
+      <text x="132" y="56" font-family="'Pretendard', sans-serif" font-size="28" font-weight="900" fill="#ffffff" text-anchor="middle" letter-spacing="6">화기엄금</text>
+
+      <!-- 색상 배지 -->
+      <rect x="0" y="100" width="265" height="22" fill="#fef2f2" rx="4" stroke="#fecaca" stroke-width="1" />
+      <text x="132" y="115" font-family="'Pretendard', sans-serif" font-size="12" font-weight="800" fill="#dc2626" text-anchor="middle">적색 바탕에 백색 문자</text>
+
+      <!-- 부착 대상 설명 -->
+      <text x="132" y="140" font-family="'Pretendard', sans-serif" font-size="12" font-weight="700" fill="#1e293b" text-anchor="middle">【 부착 대상 위험물 】</text>
+      <text x="132" y="157" font-family="'Pretendard', sans-serif" font-size="11" font-weight="600" fill="#475569" text-anchor="middle">• 제2류 인화성고체 / 제3류 자연발화성</text>
+      <text x="132" y="172" font-family="'Pretendard', sans-serif" font-size="11" font-weight="600" fill="#475569" text-anchor="middle">• 제4류 전체 / 제5류 전체</text>
+    </g>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- 3구역: 위험물 운반차량 표지 (이동탱크저장소 / 적재 차량) -->
+  <!-- ========================================================================= -->
+  <g transform="translate(40, 565)">
+    <rect width="880" height="105" fill="#f8fafc" rx="8" stroke="#e2e8f0" stroke-width="1" />
+    <text x="16" y="24" font-family="'Pretendard', sans-serif" font-size="14" font-weight="700" fill="#1e293b">4. 위험물 운반차량 표지 (이동탱크저장소 등 차량 앞·뒤 부착)</text>
+    <text x="16" y="42" font-family="'Pretendard', sans-serif" font-size="12" font-weight="500" fill="#64748b">규격: 너비 0.6m 이상 × 높이 0.3m 이상</text>
+
+    <!-- 차량 표지판 본체 (흑색 바탕 + 황색 반사문자) -->
+    <g transform="translate(480, 18)">
+      <rect width="250" height="70" fill="#18181b" stroke="#3f3f46" stroke-width="2" rx="3" filter="url(#plate-shadow)" />
+      <!-- 반사 느낌 테두리 -->
+      <rect x="4" y="4" width="242" height="62" fill="none" stroke="#eab308" stroke-width="1.5" stroke-dasharray="8,4" />
+      
+      <!-- 황색 반사 문자 -->
+      <text x="125" y="46" font-family="'Pretendard', sans-serif" font-size="24" font-weight="900" fill="#facc15" text-anchor="middle" letter-spacing="8" filter="url(#glow)">위 험 물</text>
+    </g>
+
+    <!-- 색상 요약 배지 -->
+    <g transform="translate(745, 30)">
+      <rect width="120" height="46" fill="#f1f5f9" rx="4" stroke="#cbd5e1" stroke-width="1" />
+      <text x="60" y="21" font-family="'Pretendard', sans-serif" font-size="12" font-weight="800" fill="#0f172a" text-anchor="middle">흑색 바탕</text>
+      <text x="60" y="38" font-family="'Pretendard', sans-serif" font-size="12" font-weight="800" fill="#ca8a04" text-anchor="middle">황색 반사문자</text>
+    </g>
+  </g>
+</svg>

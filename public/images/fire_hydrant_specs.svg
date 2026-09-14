@@ -1,0 +1,165 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 620" width="100%" height="100%">
+  <defs>
+    <filter id="card-shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.08" />
+    </filter>
+  </defs>
+
+  <!-- 배경 -->
+  <rect width="960" height="620" fill="#f8fafc" rx="16" />
+  <rect x="12" y="12" width="936" height="596" fill="#ffffff" rx="12" stroke="#e2e8f0" stroke-width="1.5" />
+
+  <!-- 상단 헤더 -->
+  <g transform="translate(40, 40)">
+    <rect x="0" y="0" width="4" height="28" fill="#0284c7" rx="2" />
+    <text x="14" y="21" font-family="'Pretendard', sans-serif" font-size="20" font-weight="800" fill="#0f172a">소화전 및 수계 소화설비 핵심 설치 규정 비교</text>
+    <text x="14" y="44" font-family="'Pretendard', sans-serif" font-size="13" font-weight="500" fill="#64748b">위험물안전관리법 [별표 17] 옥내·옥외소화전, 스프링클러 법정 규격 및 수원 계산식</text>
+  </g>
+
+  <!-- 3개 카드 비교 (옥내소화전 / 옥외소화전 / 스프링클러) -->
+  
+  <!-- [카드 1] 옥내소화전설비 -->
+  <g transform="translate(40, 105)">
+    <rect width="280" height="340" fill="#f0fdf4" rx="10" stroke="#86efac" stroke-width="1.5" filter="url(#card-shadow)" />
+    
+    <!-- 카드 헤더 -->
+    <rect x="0" y="0" width="280" height="52" fill="#16a34a" rx="10 10 0 0" />
+    <text x="140" y="32" font-family="'Pretendard', sans-serif" font-size="17" font-weight="800" fill="#ffffff" text-anchor="middle">옥내소화전설비</text>
+
+    <!-- 세부 지표 목록 -->
+    <g transform="translate(18, 70)">
+      <!-- 1. 방수압력 -->
+      <text x="0" y="16" font-family="'Pretendard', sans-serif" font-size="12" font-weight="700" fill="#475569">노즐 선단 방수압력</text>
+      <text x="244" y="16" font-family="'Pretendard', sans-serif" font-size="14" font-weight="900" fill="#15803d" text-anchor="end">350 kPa 이상</text>
+      <line x1="0" y1="26" x2="244" y2="26" stroke="#dcfce7" stroke-width="1" />
+
+      <!-- 2. 방수량 -->
+      <text x="0" y="46" font-family="'Pretendard', sans-serif" font-size="12" font-weight="700" fill="#475569">노즐 선단 방수량</text>
+      <text x="244" y="46" font-family="'Pretendard', sans-serif" font-size="14" font-weight="900" fill="#15803d" text-anchor="end">260 L/min 이상</text>
+      <line x1="0" y1="56" x2="244" y2="56" stroke="#dcfce7" stroke-width="1" />
+
+      <!-- 3. 수평거리 -->
+      <text x="0" y="76" font-family="'Pretendard', sans-serif" font-size="12" font-weight="700" fill="#475569">설치 수평거리</text>
+      <text x="244" y="76" font-family="'Pretendard', sans-serif" font-size="14" font-weight="900" fill="#0f172a" text-anchor="end">25 m 이하 (각 층)</text>
+      <line x1="0" y1="86" x2="244" y2="86" stroke="#dcfce7" stroke-width="1" />
+
+      <!-- 4. 비상전원 -->
+      <text x="0" y="106" font-family="'Pretendard', sans-serif" font-size="12" font-weight="700" fill="#475569">비상전원 작동시간</text>
+      <text x="244" y="106" font-family="'Pretendard', sans-serif" font-size="14" font-weight="900" fill="#0f172a" text-anchor="end">30분 이상</text>
+      <line x1="0" y1="116" x2="244" y2="116" stroke="#dcfce7" stroke-width="1" />
+    </g>
+
+    <!-- 수원 계산 공식 박스 -->
+    <g transform="translate(18, 205)">
+      <rect width="244" height="115" fill="#ffffff" rx="8" stroke="#bbf7d0" stroke-width="1.2" />
+      <text x="122" y="24" font-family="'Pretendard', sans-serif" font-size="13" font-weight="800" fill="#166534" text-anchor="middle">【 수원의 양 (저수량) 공식 】</text>
+      <text x="122" y="52" font-family="'Pretendard', sans-serif" font-size="18" font-weight="900" fill="#dc2626" text-anchor="middle">Q = N × 7.8 m³</text>
+      <text x="122" y="76" font-family="'Pretendard', sans-serif" font-size="11" font-weight="600" fill="#475569" text-anchor="middle">N: 최대 설치 층 소화전 수 (최대 5개)</text>
+      <text x="122" y="96" font-family="'Pretendard', sans-serif" font-size="11" font-weight="500" fill="#64748b" text-anchor="middle">(260 L/min × 30분 = 7,800 L)</text>
+    </g>
+  </g>
+
+  <!-- [카드 2] 옥외소화전설비 -->
+  <g transform="translate(340, 105)">
+    <rect width="280" height="340" fill="#eff6ff" rx="10" stroke="#93c5fd" stroke-width="1.5" filter="url(#card-shadow)" />
+    
+    <!-- 카드 헤더 -->
+    <rect x="0" y="0" width="280" height="52" fill="#2563eb" rx="10 10 0 0" />
+    <text x="140" y="32" font-family="'Pretendard', sans-serif" font-size="17" font-weight="800" fill="#ffffff" text-anchor="middle">옥외소화전설비</text>
+
+    <!-- 세부 지표 목록 -->
+    <g transform="translate(18, 70)">
+      <!-- 1. 방수압력 -->
+      <text x="0" y="16" font-family="'Pretendard', sans-serif" font-size="12" font-weight="700" fill="#475569">노즐 선단 방수압력</text>
+      <text x="244" y="16" font-family="'Pretendard', sans-serif" font-size="14" font-weight="900" fill="#1d4ed8" text-anchor="end">350 kPa 이상</text>
+      <line x1="0" y1="26" x2="244" y2="26" stroke="#dbeafe" stroke-width="1" />
+
+      <!-- 2. 방수량 -->
+      <text x="0" y="46" font-family="'Pretendard', sans-serif" font-size="12" font-weight="700" fill="#475569">노즐 선단 방수량</text>
+      <text x="244" y="46" font-family="'Pretendard', sans-serif" font-size="14" font-weight="900" fill="#1d4ed8" text-anchor="end">450 L/min 이상</text>
+      <line x1="0" y1="56" x2="244" y2="56" stroke="#dbeafe" stroke-width="1" />
+
+      <!-- 3. 수평거리 -->
+      <text x="0" y="76" font-family="'Pretendard', sans-serif" font-size="12" font-weight="700" fill="#475569">설치 수평거리</text>
+      <text x="244" y="76" font-family="'Pretendard', sans-serif" font-size="14" font-weight="900" fill="#0f172a" text-anchor="end">40 m 이하 (각 부분)</text>
+      <line x1="0" y1="86" x2="244" y2="86" stroke="#dbeafe" stroke-width="1" />
+
+      <!-- 4. 소화전함 -->
+      <text x="0" y="106" font-family="'Pretendard', sans-serif" font-size="12" font-weight="700" fill="#475569">소화전함 설치거리</text>
+      <text x="244" y="106" font-family="'Pretendard', sans-serif" font-size="14" font-weight="900" fill="#0f172a" text-anchor="end">보행 5 m 이내</text>
+      <line x1="0" y1="116" x2="244" y2="116" stroke="#dbeafe" stroke-width="1" />
+    </g>
+
+    <!-- 수원 계산 공식 박스 -->
+    <g transform="translate(18, 205)">
+      <rect width="244" height="115" fill="#ffffff" rx="8" stroke="#bfdbfe" stroke-width="1.2" />
+      <text x="122" y="24" font-family="'Pretendard', sans-serif" font-size="13" font-weight="800" fill="#1e40af" text-anchor="middle">【 수원의 양 (저수량) 공식 】</text>
+      <text x="122" y="52" font-family="'Pretendard', sans-serif" font-size="18" font-weight="900" fill="#dc2626" text-anchor="middle">Q = N × 13.5 m³</text>
+      <text x="122" y="76" font-family="'Pretendard', sans-serif" font-size="11" font-weight="600" fill="#475569" text-anchor="middle">N: 옥외소화전 설치 개수 (최대 4개)</text>
+      <text x="122" y="96" font-family="'Pretendard', sans-serif" font-size="11" font-weight="500" fill="#64748b" text-anchor="middle">(450 L/min × 30분 = 13,500 L)</text>
+    </g>
+  </g>
+
+  <!-- [카드 3] 스프링클러설비 -->
+  <g transform="translate(640, 105)">
+    <rect width="280" height="340" fill="#faf5ff" rx="10" stroke="#d8b4fe" stroke-width="1.5" filter="url(#card-shadow)" />
+    
+    <!-- 카드 헤더 -->
+    <rect x="0" y="0" width="280" height="52" fill="#9333ea" rx="10 10 0 0" />
+    <text x="140" y="32" font-family="'Pretendard', sans-serif" font-size="17" font-weight="800" fill="#ffffff" text-anchor="middle">스프링클러설비</text>
+
+    <!-- 세부 지표 목록 -->
+    <g transform="translate(18, 70)">
+      <!-- 1. 방수압력 -->
+      <text x="0" y="16" font-family="'Pretendard', sans-serif" font-size="12" font-weight="700" fill="#475569">헤드 선단 방수압력</text>
+      <text x="244" y="16" font-family="'Pretendard', sans-serif" font-size="14" font-weight="900" fill="#7e22ce" text-anchor="end">100 kPa 이상</text>
+      <line x1="0" y1="26" x2="244" y2="26" stroke="#f3e8ff" stroke-width="1" />
+
+      <!-- 2. 방수량 -->
+      <text x="0" y="46" font-family="'Pretendard', sans-serif" font-size="12" font-weight="700" fill="#475569">헤드 선단 방수량</text>
+      <text x="244" y="46" font-family="'Pretendard', sans-serif" font-size="14" font-weight="900" fill="#7e22ce" text-anchor="end">80 L/min 이상</text>
+      <line x1="0" y1="56" x2="244" y2="56" stroke="#f3e8ff" stroke-width="1" />
+
+      <!-- 3. 방호면적 -->
+      <text x="0" y="76" font-family="'Pretendard', sans-serif" font-size="12" font-weight="700" fill="#475569">헤드 배치 기준</text>
+      <text x="244" y="76" font-family="'Pretendard', sans-serif" font-size="14" font-weight="900" fill="#0f172a" text-anchor="end">정방형/장방형 배치</text>
+      <line x1="0" y1="86" x2="244" y2="86" stroke="#f3e8ff" stroke-width="1" />
+
+      <!-- 4. 작동방식 -->
+      <text x="0" y="106" font-family="'Pretendard', sans-serif" font-size="12" font-weight="700" fill="#475569">주요 방식</text>
+      <text x="244" y="106" font-family="'Pretendard', sans-serif" font-size="14" font-weight="900" fill="#0f172a" text-anchor="end">습식, 건식, 준비작동식</text>
+      <line x1="0" y1="116" x2="244" y2="116" stroke="#f3e8ff" stroke-width="1" />
+    </g>
+
+    <!-- 수원 계산 공식 박스 -->
+    <g transform="translate(18, 205)">
+      <rect width="244" height="115" fill="#ffffff" rx="8" stroke="#e9d5ff" stroke-width="1.2" />
+      <text x="122" y="24" font-family="'Pretendard', sans-serif" font-size="13" font-weight="800" fill="#6b21a8" text-anchor="middle">【 수원의 양 (저수량) 공식 】</text>
+      <text x="122" y="52" font-family="'Pretendard', sans-serif" font-size="18" font-weight="900" fill="#dc2626" text-anchor="middle">Q = N × 2.4 m³</text>
+      <text x="122" y="76" font-family="'Pretendard', sans-serif" font-size="11" font-weight="600" fill="#475569" text-anchor="middle">N: 폐쇄형 헤드 수 (최대 30개)</text>
+      <text x="122" y="96" font-family="'Pretendard', sans-serif" font-size="11" font-weight="500" fill="#64748b" text-anchor="middle">(80 L/min × 30분 = 2,400 L)</text>
+    </g>
+  </g>
+
+  <!-- 하단 요약 바: 소화설비 소요단위 및 간이소화용구 능력단위 -->
+  <g transform="translate(40, 465)">
+    <rect width="880" height="125" fill="#f1f5f9" rx="8" stroke="#cbd5e1" stroke-width="1" />
+    <text x="20" y="26" font-family="'Pretendard', sans-serif" font-size="14" font-weight="800" fill="#0f172a">【 소요단위 및 간이소화용구(제4소화설비) 능력단위 암기 기준 】</text>
+
+    <!-- 좌측: 소요단위 기준 -->
+    <g transform="translate(20, 45)">
+      <rect width="410" height="65" fill="#ffffff" rx="6" stroke="#e2e8f0" stroke-width="1" />
+      <text x="14" y="22" font-family="'Pretendard', sans-serif" font-size="12" font-weight="800" fill="#1e293b">건축물 소요단위 기준 :</text>
+      <text x="20" y="42" font-family="'Pretendard', sans-serif" font-size="11" font-weight="600" fill="#334155">• 제조소·취급소 : 내화구조 <tspan fill="#dc2626" font-weight="800">100 m²</tspan> = 1단위 (비내화 50 m²)</text>
+      <text x="20" y="58" font-family="'Pretendard', sans-serif" font-size="11" font-weight="600" fill="#334155">• 저장소 : 내화구조 <tspan fill="#dc2626" font-weight="800">150 m²</tspan> = 1단위 (비내화 75 m²)</text>
+    </g>
+
+    <!-- 우측: 간이소화용구 능력단위 -->
+    <g transform="translate(450, 45)">
+      <rect width="410" height="65" fill="#ffffff" rx="6" stroke="#e2e8f0" stroke-width="1" />
+      <text x="14" y="22" font-family="'Pretendard', sans-serif" font-size="12" font-weight="800" fill="#1e293b">간이소화용구 능력단위 (제4소화설비) :</text>
+      <text x="20" y="42" font-family="'Pretendard', sans-serif" font-size="11" font-weight="600" fill="#334155">• 마른모래 (삽 1개 상비 50 L 1포) = <tspan fill="#2563eb" font-weight="800">0.5 단위</tspan></text>
+      <text x="20" y="58" font-family="'Pretendard', sans-serif" font-size="11" font-weight="600" fill="#334155">• 팽창질석·진주암 (160 L 1포) = <tspan fill="#2563eb" font-weight="800">1.0 단위</tspan> / 수조(80L) = <tspan fill="#2563eb" font-weight="800">1.5 단위</tspan></text>
+    </g>
+  </g>
+</svg>

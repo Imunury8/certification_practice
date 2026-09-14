@@ -961,3 +961,281 @@ button {
   object-fit: contain;
   border-radius: 4px;
 }
+
+/* ==========================================================================
+   위험물 류별 섹션 & 가독성 개선 UI
+   ========================================================================== */
+.hazmat-quick-nav {
+  padding: 14px 18px;
+  margin-bottom: 20px;
+  border-radius: var(--radius);
+  background: var(--panel);
+}
+
+.quick-nav-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+.quick-nav-header .flame-icon {
+  color: #f97316;
+}
+
+.hazmat-quick-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.hazmat-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 9999px;
+  border: 1px solid var(--line);
+  background: var(--panel-soft);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.hazmat-pill:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-color: var(--primary);
+}
+
+.hazmat-pill .pill-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 7px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: -0.2px;
+}
+
+.hazmat-pill.c1 .pill-badge { background: rgba(245, 158, 11, 0.18); color: #d97706; }
+.hazmat-pill.c2 .pill-badge { background: rgba(234, 88, 12, 0.18); color: #ea580c; }
+.hazmat-pill.c3 .pill-badge { background: rgba(2, 132, 199, 0.18); color: #0284c7; }
+.hazmat-pill.c4 .pill-badge { background: rgba(220, 38, 38, 0.18); color: #dc2626; }
+.hazmat-pill.c5 .pill-badge { background: rgba(147, 51, 234, 0.18); color: #9333ea; }
+.hazmat-pill.c6 .pill-badge { background: rgba(5, 150, 105, 0.18); color: #059669; }
+.hazmat-pill.fire .pill-badge { background: rgba(239, 68, 68, 0.18); color: #ef4444; }
+.hazmat-pill.chem .pill-badge { background: rgba(99, 102, 241, 0.18); color: #6366f1; }
+.hazmat-pill.law .pill-badge { background: rgba(100, 116, 139, 0.18); color: #475569; }
+
+.hazmat-pill.active {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+.hazmat-pill.c1.active { background: rgba(245, 158, 11, 0.14); border-color: #f59e0b; color: #b45309; }
+.hazmat-pill.c2.active { background: rgba(234, 88, 12, 0.14); border-color: #ea580c; color: #c2410c; }
+.hazmat-pill.c3.active { background: rgba(2, 132, 199, 0.14); border-color: #0284c7; color: #0369a1; }
+.hazmat-pill.c4.active { background: rgba(220, 38, 38, 0.14); border-color: #dc2626; color: #b91c1c; }
+.hazmat-pill.c5.active { background: rgba(147, 51, 234, 0.14); border-color: #9333ea; color: #7e22ce; }
+.hazmat-pill.c6.active { background: rgba(5, 150, 105, 0.14); border-color: #059669; color: #047857; }
+.hazmat-pill.fire.active { background: rgba(239, 68, 68, 0.14); border-color: #ef4444; color: #b91c1c; }
+.hazmat-pill.chem.active { background: rgba(99, 102, 241, 0.14); border-color: #6366f1; color: #4338ca; }
+.hazmat-pill.law.active { background: rgba(100, 116, 139, 0.14); border-color: #64748b; color: #334155; }
+
+/* 사이드바 류 태그 */
+.sidebar-num-tag {
+  display: inline-flex;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  background: var(--panel-soft);
+  color: var(--muted);
+  margin-right: 6px;
+  flex-shrink: 0;
+}
+.sidebar-link.active .sidebar-num-tag {
+  background: var(--primary);
+  color: white;
+}
+
+/* 류별 섹션 아이콘 & 배지 */
+.class-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+.class-icon-wrapper.c1 { background: rgba(245, 158, 11, 0.15); color: #f59e0b; }
+.class-icon-wrapper.c2 { background: rgba(234, 88, 12, 0.15); color: #ea580c; }
+.class-icon-wrapper.c3 { background: rgba(2, 132, 199, 0.15); color: #0284c7; }
+.class-icon-wrapper.c4 { background: rgba(220, 38, 38, 0.15); color: #dc2626; }
+.class-icon-wrapper.c5 { background: rgba(147, 51, 234, 0.15); color: #9333ea; }
+.class-icon-wrapper.c6 { background: rgba(5, 150, 105, 0.15); color: #059669; }
+.class-icon-wrapper.fire { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
+.class-icon-wrapper.chem { background: rgba(99, 102, 241, 0.15); color: #6366f1; }
+.class-icon-wrapper.law { background: rgba(100, 116, 139, 0.15); color: #64748b; }
+
+.section-title-wrap {
+  flex: 1;
+}
+.section-meta-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+.class-flag {
+  display: inline-flex;
+  padding: 2px 9px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: -0.2px;
+}
+.class-flag.c1 { background: rgba(245, 158, 11, 0.15); color: #d97706; border: 1px solid rgba(245, 158, 11, 0.3); }
+.class-flag.c2 { background: rgba(234, 88, 12, 0.15); color: #ea580c; border: 1px solid rgba(234, 88, 12, 0.3); }
+.class-flag.c3 { background: rgba(2, 132, 199, 0.15); color: #0284c7; border: 1px solid rgba(2, 132, 199, 0.3); }
+.class-flag.c4 { background: rgba(220, 38, 38, 0.15); color: #dc2626; border: 1px solid rgba(220, 38, 38, 0.3); }
+.class-flag.c5 { background: rgba(147, 51, 234, 0.15); color: #9333ea; border: 1px solid rgba(147, 51, 234, 0.3); }
+.class-flag.c6 { background: rgba(5, 150, 105, 0.15); color: #059669; border: 1px solid rgba(5, 150, 105, 0.3); }
+.class-flag.fire { background: rgba(239, 68, 68, 0.15); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.3); }
+.class-flag.chem { background: rgba(99, 102, 241, 0.15); color: #6366f1; border: 1px solid rgba(99, 102, 241, 0.3); }
+.class-flag.law { background: rgba(100, 116, 139, 0.15); color: #475569; border: 1px solid rgba(100, 116, 139, 0.3); }
+
+.class-key-desc {
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+/* 구조화된 상세 목록 & 태그 배지 */
+.concept-detail-list {
+  list-style: none !important;
+  padding-left: 0 !important;
+  margin: 14px 0 0 0 !important;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.concept-detail-item {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text);
+  position: relative;
+}
+
+.concept-detail-item.sub-bullet {
+  padding-left: 14px;
+  border-left: 2px solid var(--line);
+  margin-left: 4px;
+}
+
+.concept-detail-item.with-tag {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+}
+
+.concept-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+  flex-shrink: 0;
+  letter-spacing: -0.2px;
+}
+
+.concept-tag.tag-mnemonic {
+  background: rgba(147, 51, 234, 0.12);
+  color: #9333ea;
+  border: 1px solid rgba(147, 51, 234, 0.25);
+}
+
+.concept-tag.tag-fire {
+  background: rgba(2, 132, 199, 0.12);
+  color: #0284c7;
+  border: 1px solid rgba(2, 132, 199, 0.25);
+}
+
+.concept-tag.tag-fireclass {
+  font-weight: 800;
+  letter-spacing: -0.2px;
+}
+
+.concept-tag.tag-fireclass.fire-a {
+  background: rgba(148, 163, 184, 0.16);
+  color: var(--text);
+  border: 1px solid rgba(148, 163, 184, 0.45);
+}
+
+.concept-tag.tag-fireclass.fire-b {
+  background: rgba(245, 158, 11, 0.16);
+  color: #d97706;
+  border: 1px solid rgba(245, 158, 11, 0.4);
+}
+
+.concept-tag.tag-fireclass.fire-c {
+  background: rgba(2, 132, 199, 0.16);
+  color: #0284c7;
+  border: 1px solid rgba(2, 132, 199, 0.4);
+}
+
+.concept-tag.tag-fireclass.fire-d {
+  background: rgba(147, 51, 234, 0.16);
+  color: #9333ea;
+  border: 1px solid rgba(147, 51, 234, 0.4);
+}
+
+.concept-tag.tag-fireclass.fire-k {
+  background: rgba(220, 38, 38, 0.16);
+  color: #dc2626;
+  border: 1px solid rgba(220, 38, 38, 0.4);
+}
+
+.concept-tag.tag-alert {
+  background: rgba(220, 38, 38, 0.12);
+  color: #dc2626;
+  border: 1px solid rgba(220, 38, 38, 0.25);
+}
+
+.concept-tag.tag-calc {
+  background: rgba(245, 158, 11, 0.12);
+  color: #d97706;
+  border: 1px solid rgba(245, 158, 11, 0.25);
+}
+
+.concept-tag.tag-qty {
+  background: rgba(16, 185, 129, 0.12);
+  color: #059669;
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+.concept-tag.tag-default {
+  background: var(--panel-soft);
+  color: var(--text);
+  border: 1px solid var(--line);
+  font-weight: 600;
+}
+
+.concept-val {
+  flex: 1;
+  min-width: 220px;
+  word-break: break-word;
+}
+

@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { ArrowRight, ShieldCheck, BarChart3, LineChart, Database } from "lucide-react";
+import { ArrowRight, ShieldCheck, BarChart3, LineChart, Database, Flame } from "lucide-react";
 import { AppHeader } from "@/app/components/AppHeader";
 import { EXAMS } from "@/lib/exams";
 import type { ExamId } from "@/lib/types";
@@ -10,12 +10,14 @@ const examIcons: Record<ExamId, React.ComponentType<{ size?: number; style?: Rea
   "bigdata-written": BarChart3,
   "bigdata-practical": LineChart,
   "sqlp": Database,
+  "hazmat-industrial": Flame,
 };
 
 const categoryBadgeClasses: Record<string, string> = {
   "실기": "badge",
   "필기": "badge warning",
   "전문가": "badge success",
+  "산업기사": "badge warning",
 };
 
 export default function Home() {
