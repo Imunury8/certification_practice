@@ -2,10 +2,12 @@
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import { BookOpen, Flame, Lightbulb, ShieldAlert } from "lucide-react";
+import { BarChart3, BookOpen, CalendarRange, Flame, Lightbulb, Target } from "lucide-react";
 import { AppHeader } from "@/app/components/AppHeader";
 import { CONCEPTS_BY_EXAM } from "@/lib/concepts";
 import { TOPICS_BY_EXAM } from "@/lib/questionBank";
+import { EXAM_TRENDS } from "@/lib/examTrends";
+import { getConceptAnchor } from "@/lib/studyPlanner";
 import type { ConceptItem, ConceptSection } from "@/lib/concepts";
 import type { ExamId } from "@/lib/types";
 
@@ -199,6 +201,7 @@ export default function ConceptsPage() {
   };
 
   const isHazmat = examId === "hazmat-industrial";
+  const trend = EXAM_TRENDS[examId];
 
   return (
     <main className="page">
@@ -213,6 +216,55 @@ export default function ConceptsPage() {
                 : "자격증 시험의 빈출 핵심 개념을 정리했습니다. 문제 풀이 전에 핵심 단서를 먼저 확인하세요."}
             </p>
           </div>
+        </section>
+
+        <section className="trend-analysis panel" aria-labelledby="trend-analysis-title">
+          <div className="trend-analysis-head">
+            <div className="trend-icon"><BarChart3 size={22} /></div>
+            <div>
+              <span className="trend-eyebrow">RECENT 3-YEAR ANALYSIS</span>
+              <h2 id="trend-analysis-title">최근 3년 기출 분석</h2>
+              <p>{trend.headline}</p>
+            </div>
+          </div>
+
+          <div className="trend-meta">
+            <span><CalendarRange size={15} /> {trend.period}</span>
+            <span><Target size={15} /> {trend.basis}</span>
+          </div>
+
+          <div className="trend-topic-grid">
+            {trend.topics.map((trendTopic) => (
+              <a
+                className="trend-topic-card"
+                href={`#${trendTopic.topicId}`}
+                key={`${trendTopic.rank}-${trendTopic.title}`}
+                onClick={(event) => handleSidebarClick(event, trendTopic.topicId)}
+              >
+                <div className="trend-topic-title">
+                  <span className="trend-rank">TOP {trendTopic.rank}</span>
+                  <span className={`trend-level level-${trendTopic.level}`}>{trendTopic.level}</span>
+                </div>
+                <h3>{trendTopic.title}</h3>
+                <div className="trend-keywords">
+                  {trendTopic.keywords.map((keyword) => <span key={keyword}>{keyword}</span>)}
+                </div>
+                <p>{trendTopic.concept}</p>
+                <div className="trend-study-point"><b>공부 포인트</b>{trendTopic.studyPoint}</div>
+              </a>
+            ))}
+          </div>
+
+          <div className="year-trend-grid">
+            {trend.years.map((year) => (
+              <div className="year-trend" key={year.year}>
+                <div><b>{year.year}</b><span>{year.label}</span></div>
+                <p>{year.summary}</p>
+              </div>
+            ))}
+          </div>
+
+          <p className="trend-caution">분석 참고: {trend.caution}</p>
         </section>
 
         {isHazmat && (
@@ -319,7 +371,7 @@ export default function ConceptsPage() {
                       </div>
                       <div className="concept-grid">
                         {group.items.map((item) => (
-                          <div className="concept-card" key={item.term}>
+                          <div className="concept-card" key={item.term} id={getConceptAnchor(section.topicId, item.term)}>
                             <div className="card-head">
                               <h4>{item.term}</h4>
                             </div>
@@ -511,4 +563,3 @@ function getConceptGroups(section: ConceptSection): ConceptGroup[] {
     },
   ];
 }
-

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, BookOpen, FileQuestion } from "lucide-react";
+import { ArrowRight, BookOpen, CalendarDays, FileQuestion } from "lucide-react";
 import { AppHeader } from "@/app/components/AppHeader";
 import { EXAMS } from "@/lib/exams";
 import { TOPICS_BY_EXAM } from "@/lib/questionBank";
@@ -35,7 +35,7 @@ export default async function ExamPage({ params }: ExamPageProps) {
               <span>핵심 주제</span>
             </div>
             <div className="stat">
-              <b>2</b>
+              <b>3</b>
               <span>학습 페이지</span>
             </div>
             <div className="stat">
@@ -46,6 +46,14 @@ export default async function ExamPage({ params }: ExamPageProps) {
         </section>
 
         <section className="landing-grid" aria-label="학습 메뉴">
+          <Link className="landing-card panel" href={`/planner?exam=${exam.id}`}>
+            <CalendarDays size={34} />
+            <h2>학습 계획</h2>
+            <p>날짜와 공부 시간을 정하고, 아직 공부하지 않은 개념과 복습할 내용을 추천받습니다.</p>
+            <span>
+              달력에서 계획 세우기 <ArrowRight size={18} />
+            </span>
+          </Link>
           <Link className="landing-card panel" href={`/exams/${exam.id}/concepts`}>
             <BookOpen size={34} />
             <h2>개념 설명</h2>

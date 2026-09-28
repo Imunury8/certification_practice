@@ -251,6 +251,197 @@ button {
   grid-template-columns: 280px minmax(0, 1fr);
 }
 
+.trend-analysis {
+  margin-bottom: 24px;
+  overflow: hidden;
+  padding: 24px;
+}
+
+.trend-analysis-head {
+  align-items: flex-start;
+  display: flex;
+  gap: 14px;
+}
+
+.trend-icon {
+  align-items: center;
+  background: var(--panel-soft);
+  border-radius: var(--radius);
+  color: var(--primary);
+  display: inline-flex;
+  flex: 0 0 auto;
+  height: 42px;
+  justify-content: center;
+  width: 42px;
+}
+
+.trend-eyebrow {
+  color: var(--primary);
+  display: block;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  margin-bottom: 5px;
+}
+
+.trend-analysis-head h2 {
+  font-size: 24px;
+  margin: 0;
+}
+
+.trend-analysis-head p {
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 7px 0 0;
+}
+
+.trend-meta {
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin: 18px 0;
+  padding-bottom: 16px;
+}
+
+.trend-meta span {
+  align-items: center;
+  color: var(--muted);
+  display: inline-flex;
+  font-size: 13px;
+  gap: 6px;
+}
+
+.trend-topic-grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.trend-topic-card {
+  background: color-mix(in srgb, var(--panel-soft) 38%, var(--panel));
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  color: inherit;
+  display: block;
+  padding: 16px;
+  text-decoration: none;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.trend-topic-card:hover {
+  border-color: var(--primary);
+  transform: translateY(-2px);
+}
+
+.trend-topic-title {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+}
+
+.trend-rank {
+  color: var(--primary);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.trend-level {
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 3px 7px;
+}
+
+.level-최우선 { background: rgba(220, 38, 38, 0.1); color: #dc2626; }
+.level-빈출 { background: rgba(245, 158, 11, 0.13); color: var(--warning); }
+.level-반복 { background: rgba(31, 111, 235, 0.1); color: var(--primary); }
+
+.trend-topic-card h3 {
+  font-size: 17px;
+  margin: 10px 0 9px;
+}
+
+.trend-keywords {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.trend-keywords span {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--text);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 7px;
+}
+
+.trend-topic-card > p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 11px 0;
+}
+
+.trend-study-point {
+  border-top: 1px dashed var(--line);
+  color: var(--text);
+  font-size: 12px;
+  line-height: 1.55;
+  padding-top: 10px;
+}
+
+.trend-study-point b {
+  color: var(--primary);
+  display: block;
+  margin-bottom: 2px;
+}
+
+.year-trend-grid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 16px;
+}
+
+.year-trend {
+  border-left: 3px solid var(--primary);
+  padding: 4px 10px;
+}
+
+.year-trend > div {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+}
+
+.year-trend b { font-size: 15px; }
+
+.year-trend span {
+  color: var(--primary);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.year-trend p {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.55;
+  margin: 6px 0 0;
+}
+
+.trend-caution {
+  background: rgba(245, 158, 11, 0.08);
+  border-radius: var(--radius);
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.55;
+  margin: 16px 0 0;
+  padding: 10px 12px;
+}
+
 .concept-sidebar {
   position: sticky;
   top: 86px;
@@ -803,6 +994,14 @@ button {
 }
 
 @media (max-width: 900px) {
+  .trend-topic-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .year-trend-grid {
+    grid-template-columns: 1fr;
+  }
+
   .intro,
   .workspace,
   .landing-grid {
@@ -903,6 +1102,23 @@ button {
 }
 
 @media (max-width: 620px) {
+  .trend-analysis {
+    padding: 18px;
+  }
+
+  .trend-analysis-head {
+    gap: 10px;
+  }
+
+  .trend-icon {
+    height: 36px;
+    width: 36px;
+  }
+
+  .trend-analysis-head h2 {
+    font-size: 21px;
+  }
+
   .shell {
     padding-left: 16px;
     padding-right: 16px;
@@ -1239,3 +1455,146 @@ button {
   word-break: break-word;
 }
 
+/* 학습 계획 진입점과 공통 메뉴 */
+.topbar-actions {
+  align-items: center;
+  display: flex;
+  flex-shrink: 0;
+  gap: 16px;
+}
+
+.topbar .brand {
+  min-width: 0;
+}
+
+.topbar .brand-mark {
+  flex-shrink: 0;
+}
+
+.topbar .brand > span:last-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.topbar .nav-links a {
+  white-space: nowrap;
+}
+
+.nav-links a[aria-current="page"] {
+  background: var(--panel-soft);
+  color: var(--primary);
+}
+
+.planner-entry {
+  align-items: center;
+  color: var(--text);
+  display: flex;
+  gap: 18px;
+  margin-bottom: 24px;
+  padding: 22px 24px;
+  text-decoration: none;
+  transition: border-color 0.2s;
+}
+
+.planner-entry:hover {
+  border-color: var(--primary);
+}
+
+.planner-entry-icon {
+  align-items: center;
+  background: var(--panel-soft);
+  border-radius: 12px;
+  color: var(--primary);
+  display: flex;
+  flex-shrink: 0;
+  height: 50px;
+  justify-content: center;
+  width: 50px;
+}
+
+.planner-entry h2 {
+  font-size: 21px;
+  margin: 0 0 6px;
+}
+
+.planner-entry p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.planner-entry-action {
+  align-items: center;
+  color: var(--primary);
+  display: flex;
+  flex-shrink: 0;
+  font-size: 14px;
+  font-weight: 800;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.concept-card[id] {
+  scroll-margin-top: 90px;
+}
+
+.concept-card:target {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px var(--primary);
+}
+
+@media (max-width: 900px) {
+  .topbar .brand {
+    font-size: 14px;
+  }
+
+  .topbar-actions {
+    gap: 6px;
+  }
+
+  .topbar .nav-links {
+    gap: 2px;
+  }
+
+  .topbar .nav-links a {
+    padding: 8px;
+  }
+
+  .concept-card[id] {
+    scroll-margin-top: 155px;
+  }
+}
+
+@media (max-width: 620px) {
+  .topbar-actions {
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .topbar .nav-links a {
+    font-size: 13px;
+  }
+
+  .planner-entry {
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 18px;
+  }
+
+  .planner-entry > div {
+    flex: 1;
+    min-width: 160px;
+  }
+
+  .planner-entry-action {
+    justify-content: flex-end;
+    width: 100%;
+  }
+
+  .concept-card[id] {
+    scroll-margin-top: 185px;
+  }
+}

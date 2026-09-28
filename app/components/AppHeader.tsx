@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { BookOpenCheck, Sun, Moon } from "lucide-react";
 import { EXAMS } from "@/lib/exams";
 import type { ExamId } from "@/lib/types";
@@ -11,6 +12,7 @@ interface AppHeaderProps {
 }
 
 export function AppHeader({ examId }: AppHeaderProps) {
+  const pathname = usePathname();
   const currentExam = examId ? EXAMS.find((exam) => exam.id === examId) : null;
   const brandTitle = currentExam ? `${currentExam.name} 학습실` : "자격증명 시험 학습실";
 
@@ -62,13 +64,18 @@ export function AppHeader({ examId }: AppHeaderProps) {
           <span>{brandTitle}</span>
         </Link>
         
-        <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
-          {examId && (
-            <nav className="nav-links" aria-label="주요 메뉴">
-              <Link href={`/exams/${examId}/concepts`}>개념 설명</Link>
-              <Link href={`/exams/${examId}/questions`}>문제 풀이</Link>
-            </nav>
-          )}
+        <div className="topbar-actions">
+          <nav className="nav-links" aria-label="주요 메뉴">
+            <Link href={examId ? `/planner?exam=${examId}` : "/planner"} aria-current={pathname === "/planner" ? "page" : undefined}>
+              학습 계획
+            </Link>
+            {examId && (
+              <>
+                <Link href={`/exams/${examId}/concepts`} aria-current={pathname === `/exams/${examId}/concepts` ? "page" : undefined}>개념 설명</Link>
+                <Link href={`/exams/${examId}/questions`} aria-current={pathname === `/exams/${examId}/questions` ? "page" : undefined}>문제 풀이</Link>
+              </>
+            )}
+          </nav>
           
           <button
             onClick={toggleDarkMode}

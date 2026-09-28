@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { ArrowRight, ShieldCheck, BarChart3, LineChart, Database, Flame } from "lucide-react";
+import { ArrowRight, CalendarDays, ShieldCheck, BarChart3, LineChart, Database, Flame } from "lucide-react";
 import { AppHeader } from "@/app/components/AppHeader";
 import { EXAMS } from "@/lib/exams";
 import type { ExamId } from "@/lib/types";
@@ -45,6 +45,15 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        <Link className="planner-entry panel" href="/planner">
+          <span className="planner-entry-icon"><CalendarDays size={26} /></span>
+          <div>
+            <h2>날짜별 학습 계획</h2>
+            <p>달력에 과목과 시간을 정하고, 오늘의 새 개념과 복습 추천을 받아보세요.</p>
+          </div>
+          <span className="planner-entry-action">계획 세우기 <ArrowRight size={18} /></span>
+        </Link>
 
         <section className="landing-grid" aria-label="시험 선택 목록">
           {EXAMS.map((exam) => {
