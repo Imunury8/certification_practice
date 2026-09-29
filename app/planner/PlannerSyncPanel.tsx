@@ -138,8 +138,8 @@ export function PlannerSyncPanel({
         </form>
       </div>}
 
-      {connected && syncCode && <div className={styles.connectedOptions}>
-        <div className={styles.codeSection}>
+      {connected && <div className={styles.connectedOptions}>
+        {syncCode && <div className={styles.codeSection}>
           <div className={styles.codeRow}>
             <span className={styles.codeLabel}>연결 코드</span>
             <code className={styles.code} aria-label={codeVisible ? undefined : "연결 코드 숨김"}>{codeVisible ? syncCode : "•••• •••• ••••"}</code>
@@ -151,7 +151,7 @@ export function PlannerSyncPanel({
             </div>
           </div>
           <p>이 코드를 아는 사람은 계획을 보고 바꿀 수 있어요. 코드는 개인적으로 보관해주세요.</p>
-        </div>
+        </div>}
         <button type="button" className={styles.textButton} disabled={busy} aria-expanded={confirmDisconnect} onClick={() => setConfirmDisconnect(!confirmDisconnect)}>이 PC의 기존 계획으로 돌아가기</button>
       </div>}
 

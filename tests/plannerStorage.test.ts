@@ -94,7 +94,7 @@ function browser(t: TestContext, initial: Record<string, string> = {}, configure
   return {
     hook, storage, writes, requests, state: () => state,
     handle(fn: Handler) { handler = fn; },
-    failStorage(key: string) { failureKey = key; },
+    failStorage(key: string | null) { failureKey = key; },
     event(key: string | null) { listeners.get("storage")?.({ key }); },
     expireRequests() { for (const callback of [...timers.values()]) callback(); },
     cloudRequests() { return requests.filter((request) => request.url === "/api/planner"); },
@@ -133,6 +133,7 @@ test("cloud creation re-reads existing local records and preserves their exact b
   assert.equal(b.storage.get(LOCAL), original);
   assert.equal(b.storage.get(CONNECTION), CODE);
   assert.ok(b.storage.has(`${CACHE}${CODE}`));
+  assert.deepEqual(b.writes.slice(0, 2), [CONNECTION, `${CACHE}${CODE}`]);
   assert.equal(b.writes.includes(LOCAL), false);
 });
 
@@ -291,15 +292,56 @@ test("requests time out, concurrent actions are serialized, and reload does not 
   assert.equal(b.state().syncCode, null);
 });
 
-test("successful cloud creation retains the code visibly when browser persistence fails", async (t) => {
+test("connection persistence warnings survive reloads, edits and dismissal until a retry saves the code", async (t) => {
   const original = JSON.stringify(plan("local"));
   const b = browser(t, { [LOCAL]: original });
   await b.hook.reload();
   b.failStorage(CONNECTION);
-  b.handle(() => response({ code: CODE, ...snapshot(plan("local")) }, 201));
+  let server = snapshot(plan("local"));
+  b.handle(({ init }) => {
+    if (init.method === "POST") return response({ code: CODE, ...server }, 201);
+    if (init.method === "PUT") {
+      const body = JSON.parse(String(init.body));
+      server = snapshot(body.data, body.revision + 1);
+    }
+    return response(server);
+  });
   assert.equal(await b.hook.createCloud(), true);
   assert.equal(b.state().syncCode, CODE);
   assert.equal(b.state().ready, true);
   assert.match(b.state().storageError!, /코드를 복사/);
+  b.hook.clearError();
+  assert.match(b.state().storageError!, /코드를 복사/);
+
+  const reload = b.hook.reload();
+  assert.match(b.state().storageError!, /코드를 복사/);
+  await reload;
+  assert.match(b.state().storageError!, /코드를 복사/);
+  assert.equal(await b.hook.commit(() => { throw new Error("입력 오류"); }), false);
+  assert.match(b.state().storageError!, /입력 오류/);
+  assert.match(b.state().storageError!, /코드를 복사/);
+  assert.equal(await b.hook.commit((data) => planner.deleteSession(data, "local")), true);
+  assert.match(b.state().storageError!, /코드를 복사/);
+  assert.equal(b.storage.has(CONNECTION), false);
+
+  b.failStorage(null);
+  await b.hook.reload();
+  assert.equal(b.storage.get(CONNECTION), CODE);
+  assert.equal(b.state().storageError, null);
+  assert.equal(b.state().syncCode, CODE);
+  assert.equal(b.state().data.sessions.length, 0);
   assert.equal(b.storage.get(LOCAL), original);
+});
+
+test("cache quota failure still preserves the connection code for the next visit", async (t) => {
+  const b = browser(t);
+  await b.hook.reload();
+  b.failStorage(`${CACHE}${CODE}`);
+  b.handle(() => response({ code: CODE, ...snapshot(plan("cloud")) }, 201));
+  assert.equal(await b.hook.createCloud(), true);
+  assert.equal(b.storage.get(CONNECTION), CODE);
+  assert.equal(b.storage.has(`${CACHE}${CODE}`), false);
+  assert.match(b.state().storageError!, /사본을 보관하지 못했습니다/);
+  assert.doesNotMatch(b.state().storageError!, /코드를 복사/);
+  assert.equal(b.state().syncStatus, "synced");
 });

@@ -10,6 +10,7 @@ const CACHE_PREFIX = "exam-study-planner:cloud:v1:";
 const LOAD_ERROR = "저장된 공부 계획을 불러오지 못했습니다. 기존 데이터는 덮어쓰지 않았습니다. 다시 불러오기를 눌러 주세요.";
 const UNAVAILABLE_ERROR = "아직 서버의 동기화 저장소가 설정되지 않았습니다. 현재 브라우저에서는 계속 공부 계획을 사용할 수 있어요.";
 const CONFLICT_ERROR = "다른 기기에서 계획이 변경되어 최신 기록을 불러왔습니다. 입력 내용을 확인하고 다시 저장해 주세요.";
+const CONNECTION_ERROR = "클라우드에는 저장했지만 이 브라우저에 동기화 코드를 보관하지 못했습니다. 페이지를 닫기 전에 코드를 복사해 주세요.";
 
 type SyncStatus = "local" | "connecting" | "synced" | "offline";
 type PlannerState = {
@@ -62,15 +63,21 @@ function readCache(code: string): CloudSnapshot | null {
   }
 }
 
-function cacheSnapshot(code: string, snapshot: CloudSnapshot, saveConnection = false): string | null {
+function cacheSnapshot(code: string, snapshot: CloudSnapshot, saveConnection: boolean) {
+  let connectionFailed = false;
+  // Save the small, indispensable credential before a cache that may exhaust storage.
+  if (saveConnection) {
+    try { window.localStorage.setItem(CONNECTION_KEY, code); }
+    catch { connectionFailed = true; }
+  }
   let cacheFailed = false;
   try { window.localStorage.setItem(`${CACHE_PREFIX}${code}`, JSON.stringify({ code, ...snapshot })); }
   catch { cacheFailed = true; }
-  if (saveConnection) {
-    try { window.localStorage.setItem(CONNECTION_KEY, code); }
-    catch { return "클라우드에는 저장했지만 이 브라우저에 동기화 코드를 보관하지 못했습니다. 페이지를 닫기 전에 코드를 복사해 주세요."; }
-  }
-  return cacheFailed ? "클라우드에는 저장됐지만 이 브라우저에 오프라인 조회용 사본을 보관하지 못했습니다." : null;
+  return {
+    connectionFailed,
+    warning: connectionFailed ? CONNECTION_ERROR
+      : cacheFailed ? "클라우드에는 저장됐지만 이 브라우저에 오프라인 조회용 사본을 보관하지 못했습니다." : null,
+  };
 }
 
 function errorMessage(error: unknown): string {
@@ -86,6 +93,7 @@ export function useStudyPlanner() {
   const stateRef = useRef(state);
   const mountedRef = useRef(false);
   const codeRef = useRef<string | null | undefined>(undefined);
+  const pendingConnectionRef = useRef<string | null>(null);
   const snapshotRef = useRef<{ code: string; revision: number } | null>(null);
   const generationRef = useRef(0);
   const busyRef = useRef(false);
@@ -96,7 +104,18 @@ export function useStudyPlanner() {
   const publish = useCallback((patch: Partial<PlannerState>) => {
     if (!mountedRef.current) return;
     stateRef.current = { ...stateRef.current, ...patch };
+    if (pendingConnectionRef.current && stateRef.current.syncCode === pendingConnectionRef.current &&
+      !stateRef.current.storageError?.includes(CONNECTION_ERROR)) {
+      stateRef.current.storageError = [stateRef.current.storageError, CONNECTION_ERROR].filter(Boolean).join(" ");
+    }
     setState(stateRef.current);
+  }, []);
+
+  const persistSnapshot = useCallback((code: string, snapshot: CloudSnapshot, saveConnection = false): string | null => {
+    const shouldSaveConnection = saveConnection || pendingConnectionRef.current === code;
+    const result = cacheSnapshot(code, snapshot, shouldSaveConnection);
+    if (shouldSaveConnection) pendingConnectionRef.current = result.connectionFailed ? code : null;
+    return result.warning;
   }, []);
 
   const invalidate = useCallback(() => {
@@ -183,7 +202,7 @@ export function useStudyPlanner() {
         publish({ syncStatus: "connecting", storageError: null });
         const snapshot = await fetchCloud(code);
         if (!isCurrent(generation)) return;
-        const warning = cacheSnapshot(code, snapshot);
+        const warning = persistSnapshot(code, snapshot);
         snapshotRef.current = { code, revision: snapshot.revision };
         publish({ data: snapshot.data, ready: true, syncCode: code, syncStatus: "synced", cloudAvailable: true, storageError: warning });
       } catch (error) {
@@ -195,7 +214,7 @@ export function useStudyPlanner() {
     reloadTaskRef.current = task;
     void task.finally(() => { if (reloadTaskRef.current === task) reloadTaskRef.current = null; });
     return task;
-  }, [checkAvailability, fetchCloud, isCurrent, publish]);
+  }, [checkAvailability, fetchCloud, isCurrent, persistSnapshot, publish]);
 
   useEffect(() => {
     mountedRef.current = true;
@@ -206,6 +225,7 @@ export function useStudyPlanner() {
         invalidate();
         busyRef.current = false;
         codeRef.current = undefined;
+        pendingConnectionRef.current = null;
         publish({ saving: false, ready: false });
         void reload();
       } else if ((event.key === LOCAL_KEY && codeRef.current === null) ||
@@ -277,7 +297,7 @@ export function useStudyPlanner() {
       if (!code) return false;
       const latest = await fetchCloud(code);
       if (!isCurrent(generation)) return false;
-      const cacheWarning = cacheSnapshot(code, latest);
+      const cacheWarning = persistSnapshot(code, latest);
       snapshotRef.current = { code, revision: latest.revision };
       publish({ data: latest.data, ready: true, syncStatus: "synced", cloudAvailable: true, storageError: cacheWarning });
       // The user's form was based on the displayed revision, not this just-fetched one.
@@ -301,7 +321,7 @@ export function useStudyPlanner() {
         if (error instanceof CloudError && error.status === 409) {
           const fresh = await fetchCloud(code);
           if (!isCurrent(generation)) return false;
-          cacheSnapshot(code, fresh);
+          persistSnapshot(code, fresh);
           snapshotRef.current = { code, revision: fresh.revision };
           publish({ data: fresh.data, ready: true, syncStatus: "synced", storageError: CONFLICT_ERROR });
           return false;
@@ -309,7 +329,7 @@ export function useStudyPlanner() {
         throw error;
       }
       if (!isCurrent(generation)) return false;
-      const warning = cacheSnapshot(code, saved);
+      const warning = persistSnapshot(code, saved);
       snapshotRef.current = { code, revision: saved.revision };
       publish({ data: saved.data, ready: true, syncStatus: "synced", storageError: warning });
       return true;
@@ -319,15 +339,15 @@ export function useStudyPlanner() {
     } finally {
       finishMutation(generation);
     }
-  }, [beginMutation, fetchCloud, finishMutation, isCurrent, publish, request]);
+  }, [beginMutation, fetchCloud, finishMutation, isCurrent, persistSnapshot, publish, request]);
 
   const adoptCloud = useCallback((code: string, snapshot: CloudSnapshot) => {
     // Neither connecting nor cloud edits write to the original local-only records.
-    const warning = cacheSnapshot(code, snapshot, true);
+    const warning = persistSnapshot(code, snapshot, true);
     codeRef.current = code;
     snapshotRef.current = { code, revision: snapshot.revision };
     publish({ data: snapshot.data, ready: true, syncCode: code, syncStatus: "synced", cloudAvailable: true, storageError: warning });
-  }, [publish]);
+  }, [persistSnapshot, publish]);
 
   const createCloud = useCallback(async (): Promise<boolean> => {
     if (codeRef.current !== null || !stateRef.current.ready) {
@@ -400,6 +420,7 @@ export function useStudyPlanner() {
     invalidate();
     busyRef.current = false;
     codeRef.current = null;
+    pendingConnectionRef.current = null;
     snapshotRef.current = null;
     try {
       publish({ data: readLocal(), ready: true, saving: false, syncCode: null, syncStatus: "local", storageError: null });
