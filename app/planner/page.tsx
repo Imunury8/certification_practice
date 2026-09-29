@@ -16,6 +16,7 @@ import {
   saveSession, undoSessionCompletion, type StudySession,
 } from "@/lib/studyPlanner";
 import { useStudyPlanner } from "./useStudyPlanner";
+import { PlannerSyncPanel } from "./PlannerSyncPanel";
 import styles from "./planner.module.css";
 
 const WEEKDAYS = ["일", "월", "화", "수", "목", "금", "토"];
@@ -44,7 +45,8 @@ function duration(start: string, end: string) {
 }
 
 export default function PlannerPage() {
-  const { data, ready, storageError, commit, reload, clearError } = useStudyPlanner();
+  const planner = useStudyPlanner();
+  const { data, ready, storageError, saving, commit, reload, clearError } = planner;
   const [today, setToday] = useState("");
   const [selectedDate, setSelectedDate] = useState("");
   const [month, setMonth] = useState("");
@@ -53,6 +55,7 @@ export default function PlannerPage() {
   const [startTime, setStartTime] = useState("09:00");
   const [endTime, setEndTime] = useState("10:00");
   const [editingId, setEditingId] = useState<string | null>(null);
+  const [editingOriginal, setEditingOriginal] = useState<StudySession | null>(null);
   const [deleteId, setDeleteId] = useState<string | null>(null);
   const [notice, setNotice] = useState("");
   const formRef = useRef<HTMLDivElement>(null);
@@ -113,6 +116,7 @@ export default function PlannerPage() {
     setSelectedDate(date);
     setMonth(date.slice(0, 7));
     setEditingId(null);
+    setEditingOriginal(null);
     setDeleteId(null);
     setNotice("");
     clearError();
@@ -126,6 +130,7 @@ export default function PlannerPage() {
 
   function editSession(session: StudySession) {
     setEditingId(session.id);
+    setEditingOriginal(session);
     setExamId(session.examId);
     setTopicId(session.topicId || "");
     setStartTime(session.startTime);
@@ -135,17 +140,23 @@ export default function PlannerPage() {
     formRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
   }
 
-  function submitSession(event: React.FormEvent<HTMLFormElement>) {
+  async function submitSession(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (!ready || !suggestedConcept) return;
+    if (!ready || saving || !suggestedConcept) return;
     setNotice("");
-    const success = commit((current) => saveSession(current, {
-      id: editingId || undefined, date: selectedDate, examId,
-      topicId: topicId || undefined, startTime, endTime, conceptId: suggestedConcept.id,
-    }));
+    const success = await commit((current) => {
+      if (editingOriginal && JSON.stringify(current.sessions.find((session) => session.id === editingOriginal.id)) !== JSON.stringify(editingOriginal)) {
+        throw new Error("다른 PC에서 이 일정을 변경했어요. 수정을 취소한 뒤 최신 일정을 다시 열어주세요.");
+      }
+      return saveSession(current, {
+        id: editingId || undefined, date: selectedDate, examId,
+        topicId: topicId || undefined, startTime, endTime, conceptId: suggestedConcept.id,
+      });
+    });
     if (success) {
       setNotice(editingId ? "일정을 수정했어요." : "학습 일정이 추가됐어요. 다른 과목도 이어서 등록할 수 있어요.");
       setEditingId(null);
+      setEditingOriginal(null);
       const nextHour = Math.min(Number(endTime.slice(0, 2)) + 1, 23);
       if (endTime < "23:00") {
         setStartTime(endTime);
@@ -154,9 +165,26 @@ export default function PlannerPage() {
     }
   }
 
-  function markComplete(session: StudySession) {
-    if (commit((current) => completeSession(current, session.id, localDateKey()))) {
+  async function markComplete(session: StudySession) {
+    setNotice("");
+    if (await commit((current) => completeSession(current, session.id, localDateKey()))) {
       setNotice("학습을 완료했어요. 이 개념은 복습 시기가 되면 다시 추천해요.");
+    }
+  }
+
+  async function undoComplete(session: StudySession) {
+    setNotice("");
+    if (await commit((current) => undoSessionCompletion(current, session.id))) {
+      setNotice("완료를 취소하고 이전 학습 기록으로 되돌렸어요.");
+    }
+  }
+
+  async function removeSession(session: StudySession) {
+    setNotice("");
+    if (await commit((current) => deleteSession(current, session.id))) {
+      setDeleteId(null);
+      if (editingId === session.id) { setEditingId(null); setEditingOriginal(null); }
+      setNotice("일정을 삭제했어요.");
     }
   }
 
@@ -170,10 +198,12 @@ export default function PlannerPage() {
             <h1>하루씩 쌓는 공부 계획</h1>
             <p>날짜를 고르고, 공부할 과목과 시간을 담아보세요.<br className={styles.mobileBreak} /> 다음에 볼 개념은 함께 골라드릴게요.</p>
           </div>
-          <button className={styles.todayButton} onClick={() => today && pickDate(today)} disabled={!today}>
+          <button className={styles.todayButton} onClick={() => today && pickDate(today)} disabled={!today || saving}>
             <CalendarDays size={17} /> 오늘로 이동
           </button>
         </section>
+
+        <PlannerSyncPanel {...planner} />
 
         <section className={styles.stats} aria-label="학습 현황">
           <div><CalendarDays size={20} /><span>이번 달 일정<strong>{ready ? monthSessions.length : "–"}<small>개</small></strong></span></div>
@@ -181,7 +211,7 @@ export default function PlannerPage() {
           <div><RotateCcw size={20} /><span>오늘 복습할 개념<strong>{ready ? dueToday.length : "–"}<small>개</small></strong></span></div>
         </section>
 
-        {storageError && !ready && <div role="alert" className={styles.error}>{storageError}<button onClick={reload}>다시 불러오기</button></div>}
+        {storageError && <div role="alert" className={styles.error}>{storageError}<button disabled={saving} onClick={() => void reload()}>다시 불러오기</button></div>}
         <div role="status" aria-live="polite" className={notice ? styles.notice : styles.srOnly}>{notice}</div>
 
         <div className={styles.workspace}>
@@ -190,8 +220,8 @@ export default function PlannerPage() {
               <div className={styles.calendarHeading}>
                 <h2>{month ? `${month.slice(0, 4)}년 ${Number(month.slice(5))}월` : "달력 불러오는 중"}</h2>
                 <div className={styles.monthControls}>
-                  <button aria-label="이전 달" onClick={() => changeMonth(-1)} disabled={!month}><ChevronLeft size={20} /></button>
-                  <button aria-label="다음 달" onClick={() => changeMonth(1)} disabled={!month}><ChevronRight size={20} /></button>
+                  <button aria-label="이전 달" onClick={() => changeMonth(-1)} disabled={!month || saving}><ChevronLeft size={20} /></button>
+                  <button aria-label="다음 달" onClick={() => changeMonth(1)} disabled={!month || saving}><ChevronRight size={20} /></button>
                 </div>
               </div>
               <div className={styles.weekdays} aria-hidden="true">{WEEKDAYS.map((day) => <span key={day}>{day}</span>)}</div>
@@ -200,7 +230,7 @@ export default function PlannerPage() {
                   const sessions = data.sessions.filter((session) => session.date === date).sort((a, b) => a.startTime.localeCompare(b.startTime));
                   const done = sessions.filter((session) => getSessionCompletion(data, session.id)).length;
                   return (
-                    <button key={date} type="button" onClick={() => pickDate(date)}
+                    <button key={date} type="button" onClick={() => pickDate(date)} disabled={saving}
                       className={`${styles.day} ${date.slice(0, 7) !== month ? styles.outside : ""} ${date === selectedDate ? styles.selected : ""}`}
                       aria-pressed={date === selectedDate} aria-current={date === today ? "date" : undefined}
                       aria-label={`${date} ${readableDate(date)}, 일정 ${sessions.length}개${done ? `, 완료 ${done}개` : ""}`}>
@@ -241,15 +271,15 @@ export default function PlannerPage() {
                     <div className={styles.sessionActions}>
                       {concept && <Link className={styles.textButton} href={conceptHref(concept)}><BookOpen size={15} /> 개념 읽기</Link>}
                       <div>
-                        {completion ? <button className={styles.textButton} onClick={() => { if (commit((current) => undoSessionCompletion(current, session.id))) setNotice("완료를 취소하고 이전 학습 기록으로 되돌렸어요."); }}><RotateCcw size={14} /> 완료 취소</button> : <>
-                          <button className={styles.iconButton} aria-label={`${session.startTime} 일정 수정`} onClick={() => editSession(session)}><Pencil size={15} /></button>
-                          <button className={styles.completeButton} disabled={session.date > today || !ready} title={session.date > today ? "예정일이 되면 완료할 수 있어요" : undefined} onClick={() => markComplete(session)}><Check size={15} /> 학습 완료</button>
+                        {completion ? <button className={styles.textButton} disabled={!ready || saving} onClick={() => void undoComplete(session)}><RotateCcw size={14} /> 완료 취소</button> : <>
+                          <button className={styles.iconButton} disabled={!ready || saving} aria-label={`${session.startTime} 일정 수정`} onClick={() => editSession(session)}><Pencil size={15} /></button>
+                          <button className={styles.completeButton} disabled={session.date > today || !ready || saving} title={session.date > today ? "예정일이 되면 완료할 수 있어요" : undefined} onClick={() => void markComplete(session)}><Check size={15} /> 학습 완료</button>
                         </>}
-                        <button className={styles.iconButton} aria-label={`${session.startTime} 일정 삭제`} onClick={() => setDeleteId(session.id)}><Trash2 size={15} /></button>
+                        <button className={styles.iconButton} disabled={!ready || saving} aria-label={`${session.startTime} 일정 삭제`} onClick={() => setDeleteId(session.id)}><Trash2 size={15} /></button>
                       </div>
                     </div>
                     {!completion && session.date > today && <p className={styles.helper}>예정일이 되면 학습을 완료할 수 있어요.</p>}
-                    {deleteId === session.id && <div className={styles.deleteConfirm}><span>{completion ? "일정만 삭제하고 학습 기록은 보관할까요?" : "이 일정을 삭제할까요?"}</span><button onClick={() => { if (commit((current) => deleteSession(current, session.id))) { setDeleteId(null); if (editingId === session.id) setEditingId(null); setNotice("일정을 삭제했어요."); } }}>삭제</button><button onClick={() => setDeleteId(null)}>취소</button></div>}
+                    {deleteId === session.id && <div className={styles.deleteConfirm}><span>{completion ? "일정만 삭제하고 학습 기록은 보관할까요?" : "이 일정을 삭제할까요?"}</span><button disabled={!ready || saving} onClick={() => void removeSession(session)}>삭제</button><button disabled={saving} onClick={() => setDeleteId(null)}>취소</button></div>}
                   </article>;
                 })}
               </div>}
@@ -260,7 +290,7 @@ export default function PlannerPage() {
             <div className={styles.planForm} ref={formRef}>
               <div className={styles.formHeading}><span className={styles.formIcon}><Plus size={20} /></span><div><h2>{editingId ? "공부 일정 수정" : "공부 일정 추가"}</h2><p>{selectedDate ? readableDate(selectedDate) : "날짜를 선택하세요"}</p></div></div>
               <form onSubmit={submitSession}>
-                <fieldset disabled={!ready || !selectedDate} className={styles.fields}>
+                <fieldset disabled={!ready || !selectedDate || saving} className={styles.fields}>
                   <label htmlFor="plan-exam">자격증<select id="plan-exam" value={examId} onChange={(event) => { setExamId(event.target.value as ExamId); setTopicId(""); }}>
                     {EXAMS.map((exam) => <option key={exam.id} value={exam.id}>{exam.name}</option>)}
                   </select></label>
@@ -284,9 +314,9 @@ export default function PlannerPage() {
                       <Link href={conceptHref(suggestedConcept)} className={styles.textButton}>이론 정리 열기 <ArrowRight size={14} /></Link>
                     </> : <p>{ready ? "지금 추천할 새 개념이나 복습 개념이 없어요. 다른 과목을 선택해보세요." : "학습 기록을 불러오고 있어요."}{ready && nextReview && ` 다음 복습은 ${readableDate(nextReview)}부터예요.`}</p>}
                   </section>
-                  {storageError && ready && <div role="alert" className={styles.formError}>{storageError}</div>}
-                  <button className={styles.addButton} type="submit" disabled={!suggestedConcept}><Plus size={18} />{editingId ? "변경 내용 저장" : "이 개념으로 일정 추가"}</button>
-                  {editingId && <button className={styles.cancelButton} type="button" onClick={() => setEditingId(null)}>수정 취소</button>}
+                  {storageError && ready && <div className={styles.formError}>{storageError}</div>}
+                  <button className={styles.addButton} type="submit" disabled={!suggestedConcept}><Plus size={18} />{saving ? "저장 중…" : editingId ? "변경 내용 저장" : "이 개념으로 일정 추가"}</button>
+                  {editingId && <button className={styles.cancelButton} type="button" onClick={() => { setEditingId(null); setEditingOriginal(null); clearError(); }}>수정 취소</button>}
                 </fieldset>
               </form>
               <p className={styles.helper}>하루에 여러 과목을 추가할 수 있어요. 같은 날의 공부 시간은 겹치지 않게 입력해주세요.</p>
@@ -297,7 +327,7 @@ export default function PlannerPage() {
               <div className={styles.intervals}>{REVIEW_INTERVAL_DAYS.map((days) => <span key={days}>{days}<small>일</small></span>)}</div>
               <p className={styles.helper}>각 간격은 실제 완료한 날부터 계산해요. 30일 단계부터는 30일마다 복습해요.</p>
             </section>
-            <p className={styles.storageNote}>계획과 학습 기록은 이 브라우저에 저장돼요.<br />브라우저 데이터를 지우면 기록도 삭제돼요.</p>
+            <p className={styles.storageNote}>{planner.syncCode ? <>연결 코드를 보관하면 다른 PC에서도 이어서 공부할 수 있어요.<br />저장 완료 후 다른 PC에서 새로 불러와 주세요.</> : <>현재는 이 브라우저에만 저장돼요.<br />다른 PC에서도 보려면 위에서 동기화를 연결해주세요.</>}</p>
           </aside>
         </div>
       </div>
