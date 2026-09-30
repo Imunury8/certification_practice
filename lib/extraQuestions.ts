@@ -14,32 +14,6 @@ function add(topicId: TopicId, difficulty: Difficulty, rows: QuestionRow[]) {
   })));
 }
 
-add("design-patterns", "medium", [
-  ["Builder", "Builder 패턴에서 생성 단계의 순서를 조정하는 역할을 영어로 쓰시오.", "Director", "Director가 Builder의 생성 절차를 조정합니다."],
-  ["Prototype", "Prototype 패턴에서 새 객체를 만드는 핵심 동작은 생성자 호출보다 무엇인가?", "복제", "기존 원형 객체를 복제하여 생성합니다.", ["clone", "클론"]],
-  ["Composite", "Composite 패턴에서 자식이 없는 말단 객체의 역할 이름은?", "Leaf", "Leaf와 Composite가 공통 인터페이스로 처리됩니다.", ["리프"]],
-  ["Composite", "Composite가 주로 표현하는 부분-전체 계층 자료 구조는?", "트리", "개별 객체와 집합을 트리 구조로 구성합니다.", ["Tree"]],
-  ["Decorator", "Decorator는 객체의 기능을 확장할 때 상속 대신 어떤 관계를 활용하는가?", "조합", "객체를 감싸는 조합으로 책임을 동적으로 추가합니다.", ["Composition"]],
-  ["Flyweight", "Flyweight가 대량 객체 사이에 공통 상태를 공유하여 절약하려는 주요 자원은?", "메모리", "공유 가능한 상태를 재사용하여 메모리 사용량을 줄입니다."],
-  ["Proxy", "실제 객체의 생성을 처음 사용할 때까지 미루는 Proxy의 대표 유형은?", "가상 프록시", "Virtual Proxy는 비용이 큰 객체의 생성을 지연합니다.", ["Virtual Proxy"]],
-  ["Command", "Command 패턴의 요청 객체를 호출하는 역할을 영어로 쓰시오.", "Invoker", "Invoker가 Command의 실행을 요청합니다."],
-  ["Command", "Command 패턴에서 실제 업무 처리를 수행하는 객체의 역할을 영어로 쓰시오.", "Receiver", "Command는 Receiver의 동작을 호출해 요청을 처리합니다."],
-  ["Observer", "Observer에서 상태를 유지하고 구독자에게 변화를 통지하는 주체의 역할 이름은?", "Subject", "Subject에 Observer들이 등록됩니다.", ["주체"]],
-  ["Iterator", "Iterator는 컬렉션의 무엇을 노출하지 않으면서 순차 접근을 제공하는가?", "내부 구조", "자료구조가 달라도 공통 순회 인터페이스를 제공합니다."],
-  ["Memento", "Memento 패턴이 되돌리기를 위해 캡슐화하여 보관하는 것은 객체의 무엇인가?", "상태", "특정 시점의 내부 상태를 저장하고 복원합니다.", ["내부 상태"]],
-  ["Bridge", "Bridge는 추상화와 무엇을 분리하여 독립적인 확장을 가능하게 하는가?", "구현", "추상화 계층과 구현 계층을 독립적으로 변경합니다."],
-  ["Strategy", "Strategy와 State 중 실행 중 알고리즘 교체에 초점을 두는 것은?", "Strategy", "Strategy는 알고리즘의 교체, State는 상태에 따른 동작 변경에 초점을 둡니다."],
-  ["State", "State와 Strategy 중 객체의 내부 상태 변화에 따른 동작 변경에 초점을 두는 것은?", "State", "상태 객체로 상태별 동작을 캡슐화합니다."],
-  ["Adapter", "Adapter와 Facade 중 기존 인터페이스를 기대하는 형태로 변환하는 것은?", "Adapter", "Adapter는 호환성 변환, Facade는 통합 창구를 제공합니다."],
-  ["Facade", "Facade와 Adapter 중 여러 서브시스템에 단순한 통합 창구를 제공하는 것은?", "Facade", "Facade는 복잡한 내부 구성요소를 감춥니다."],
-  ["Factory Method", "Factory Method는 실제 생성 객체의 결정을 어느 계층에 위임하는가?", "서브클래스", "하위 클래스가 생성 대상을 결정합니다.", ["하위 클래스"]],
-  ["Abstract Factory", "서로 연관된 제품군을 함께 생성하는 Abstract Factory와 단일 생성 메서드를 하위 클래스에 맡기는 Factory Method 중 제품군 교체에 적합한 것은?", "Abstract Factory", "관련 제품군의 일관된 생성에 적합합니다."],
-  ["Template Method", "Template Method는 알고리즘의 전체 순서를 고정하고 일부 단계를 어디에서 재정의하도록 하는가?", "서브클래스", "상위 클래스는 골격을 정의하고 하위 클래스가 단계를 구현합니다.", ["하위 클래스"]],
-  ["MVC", "MVC에서 사용자에게 보여줄 표현을 담당하는 구성 요소는?", "View", "Model은 데이터, View는 표현, Controller는 입력 흐름을 담당합니다.", ["뷰"]],
-  ["DTO", "계층 사이에서 데이터를 전달하는 객체를 나타내는 약어는?", "DTO", "Data Transfer Object는 데이터 전달을 위한 객체입니다."],
-  ["Dependency Injection", "DI에서 객체가 직접 의존 객체를 만들지 않고 외부에서 무엇을 받는가?", "의존 객체", "외부에서 의존성을 주입받아 결합을 줄입니다.", ["의존성"]],
-]);
-
 add("diagrams", "medium", [
   ["Use Case Diagram", "유스케이스에서 반드시 수행되는 공통 기능을 다른 유스케이스로 포함하는 관계는?", "include", "include는 공통 기능의 포함 관계입니다."],
   ["Use Case Diagram", "특정 조건에서 기본 유스케이스에 선택적인 동작을 추가하는 관계는?", "extend", "extend는 조건부 확장 관계입니다."],

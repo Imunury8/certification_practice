@@ -5,7 +5,7 @@ import { EXTRA_QUESTIONS_BY_TOPIC } from "./extraQuestions";
 
 // Only these sections have individual, unambiguous terms as their theory titles.
 const definitionTopics = new Set<TopicId>([
-  "design-patterns", "diagrams", "osi", "coverage", "security-attacks",
+  "diagrams", "osi", "coverage", "security-attacks",
   "modern-tech", "software-engineering", "cohesion-coupling", "database", "testing",
 ]);
 
@@ -94,24 +94,6 @@ function conceptQuestions(topicId: TopicId, item: ConceptItem): QuestionTemplate
     });
   }
 
-  const useCase = item.details.find((detail) => detail.startsWith("활용: "))?.slice(4);
-  const intent = item.details.find((detail) => detail.startsWith("목적: "))?.slice(4);
-  if (topicId === "design-patterns" && useCase && intent) {
-    questions.push({
-      topicId, keyword: answer, difficulty: "hard", type: "scenario",
-      prompt: `다음 설계 상황에 적합한 패턴을 쓰시오.\n상황: ${hideAnswer(useCase, [answer])}\n설계 목표: ${hideAnswer(intent, [answer])}`,
-      answer, answerAliases: aliases, explanation: `${item.term}: ${item.summary}\n${item.details.join("\n")}`,
-    });
-  }
-  const category = item.summary.match(/^(생성|구조|행위) 패턴\./)?.[1];
-  if (category) {
-    questions.push({
-      topicId, keyword: answer, difficulty: "medium", type: "short",
-      prompt: `${answer}은 GoF의 생성·구조·행위 분류 중 어디에 속하는가? 분류명만 쓰시오.`,
-      answer: category, answerAliases: [`${category} 패턴`], explanation: item.summary,
-    });
-  }
-
   for (const detail of item.details) {
     const separator = detail.indexOf(":");
     if (separator < 0) continue;
@@ -132,7 +114,8 @@ function conceptQuestions(topicId: TopicId, item: ConceptItem): QuestionTemplate
 export const THEORY_QUESTIONS_BY_EXAM = Object.fromEntries(
   Object.entries(CONCEPTS_BY_EXAM).map(([examId, sections]) => [
     examId,
-    sections.flatMap((section) => [
+    // Design-pattern questions use the dedicated practical bank in questionBank.
+    sections.filter((section) => section.topicId !== "design-patterns").flatMap((section) => [
       ...section.items.flatMap((item) => conceptQuestions(section.topicId, item)),
       ...(EXTRA_QUESTIONS_BY_TOPIC[section.topicId] ?? []),
     ]),

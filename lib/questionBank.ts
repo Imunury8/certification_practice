@@ -1,12 +1,13 @@
 import type { QuestionTemplate, Topic, ExamId } from "@/lib/types";
+import { DESIGN_PATTERN_NAMES, DESIGN_PATTERN_QUESTIONS } from "./designPatternQuestions";
 
 export const TOPICS_BY_EXAM: Record<ExamId, Topic[]> = {
   "infosec-practical": [
   {
     id: "design-patterns",
     name: "디자인 패턴",
-    description: "GoF 패턴의 목적, 분류, 대표 패턴 구분을 점검합니다.",
-    keywords: ["Singleton", "Factory Method", "Observer", "Adapter", "Strategy", "Decorator"],
+    description: "특징과 적용 상황을 읽고 GoF 23개 디자인 패턴의 이름을 맞히는 실기 단답형 문제입니다.",
+    keywords: DESIGN_PATTERN_NAMES,
   },
   {
     id: "diagrams",
@@ -195,51 +196,7 @@ export const TOPICS_BY_EXAM: Record<ExamId, Topic[]> = {
 
 export const QUESTION_BANK_BY_EXAM: Record<ExamId, QuestionTemplate[]> = {
   "infosec-practical": [
-  {
-    topicId: "design-patterns",
-    keyword: "Singleton",
-    difficulty: "easy",
-    type: "short",
-    prompt: "클래스의 인스턴스가 하나만 생성되도록 보장하고 전역 접근점을 제공하는 디자인 패턴은 무엇인가?",
-    answer: "Singleton Pattern",
-    explanation: "싱글턴은 생성자를 제한하고 정적 메서드 등을 통해 단일 객체에 접근하게 하는 생성 패턴입니다.",
-  },
-  {
-    topicId: "design-patterns",
-    keyword: "Factory Method",
-    difficulty: "medium",
-    type: "short",
-    prompt: "객체 생성 처리를 서브클래스에 위임해 결합도를 낮추는 패턴으로 가장 적절한 것은?",
-    answer: "Factory Method",
-    explanation: "팩토리 메서드는 생성할 객체의 구체 클래스를 하위 클래스가 결정하게 합니다.",
-  },
-  {
-    topicId: "design-patterns",
-    keyword: "Observer",
-    difficulty: "medium",
-    type: "scenario",
-    prompt: "게시글 변경 시 여러 구독자 화면을 자동으로 갱신하려 한다. 이 요구에 적합한 디자인 패턴은?",
-    answer: "Observer Pattern",
-    explanation: "옵저버는 주체의 상태 변경을 의존 객체들에게 통지하는 행위 패턴입니다.",
-  },
-  {
-    topicId: "design-patterns",
-    keyword: "Adapter",
-    difficulty: "hard",
-    type: "scenario",
-    prompt: "기존 결제 모듈의 인터페이스가 신규 주문 서비스와 맞지 않는다. 기존 코드를 크게 바꾸지 않고 호환시키는 패턴은?",
-    answer: "Adapter Pattern",
-    explanation: "어댑터는 호환되지 않는 인터페이스 사이를 변환해 기존 객체를 재사용하게 합니다.",
-  },
-  {
-    topicId: "design-patterns",
-    keyword: "Strategy",
-    difficulty: "hard",
-    type: "short",
-    prompt: "알고리즘군을 캡슐화하고 실행 시점에 교체할 수 있게 하는 행위 패턴은?",
-    answer: "Strategy Pattern",
-    explanation: "전략 패턴은 할인 정책, 정렬 방식처럼 교체 가능한 알고리즘을 객체로 분리합니다.",
-  },
+  ...DESIGN_PATTERN_QUESTIONS,
   {
     topicId: "diagrams",
     keyword: "Use Case",

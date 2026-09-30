@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { TOPICS_BY_EXAM } from "../lib/questionBank";
+import { CONCEPTS_BY_EXAM } from "../lib/concepts";
 import {
   AiReadyQuestionGenerator, LocalQuestionGenerator, getAvailableQuestionCount,
   isQuestionAnswerCorrect, MAX_QUESTION_COUNT, normalizeQuestionPrompt,
@@ -50,6 +51,35 @@ test("successive batches avoid previously shown questions even after difficulty 
   const second = generator.generate({ ...input, difficulty: "easy", focus: "Observer", previousQuestionIds: first.map((question) => question.id) });
   const firstIds = new Set(first.map((question) => question.id));
   assert.ok(second.every((question) => !firstIds.has(question.id)));
+});
+
+test("every GoF pattern has three practical questions whose answer is the pattern name", () => {
+  const gofNames = CONCEPTS_BY_EXAM["infosec-practical"]
+    .find((section) => section.topicId === "design-patterns")!.items
+    .filter((item) => /^(생성|구조|행위) 패턴\./.test(item.summary)).map((item) => item.term);
+  assert.equal(gofNames.length, 23);
+  assert.equal(getAvailableQuestionCount("infosec-practical", "design-patterns"), 69);
+  for (const difficulty of ["easy", "medium", "hard"] as Difficulty[]) {
+    const questions = generator.generate({ ...input, difficulty, count: gofNames.length });
+    assert.deepEqual(questions.map((question) => question.answer).sort(), [...gofNames].sort());
+    for (const question of questions) {
+      assert.equal(question.difficulty, difficulty);
+      assert.ok(question.prompt.includes("디자인 패턴의 이름을 쓰시오"));
+      assert.ok(!question.prompt.toLowerCase().includes(question.answer.toLowerCase()), question.prompt);
+      assert.ok(!/분류명|역할 이름|중 어디에|중 어느|중 .*것은/.test(question.prompt));
+      assert.ok(isQuestionAnswerCorrect(question, `${question.answer} Pattern`));
+      assert.ok(question.answerAliases?.some((alias) => /[가-힣]/.test(alias)));
+    }
+  }
+});
+
+test("pattern names are accepted in Korean and with the Pattern suffix", () => {
+  const [question] = generator.generate({ ...input, focus: "Singleton", difficulty: "easy", count: 1 });
+  assert.equal(question.answer, "Singleton");
+  for (const answer of ["싱글턴", "싱글톤 패턴", "Singleton Pattern", "singleton"]) {
+    assert.ok(isQuestionAnswerCorrect(question, answer));
+  }
+  for (const answer of ["생성", "Director", "Adapter"]) assert.ok(!isQuestionAnswerCorrect(question, answer));
 });
 
 test("unseen questions take priority over seen questions of the requested difficulty", () => {
