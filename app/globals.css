@@ -603,6 +603,48 @@ button {
   padding: 16px;
 }
 
+.concept-example-tables {
+  display: grid;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.concept-table-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.concept-table-scroll:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.concept-example-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.concept-example-table caption {
+  padding: 0 0 8px;
+  text-align: left;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.concept-example-table th,
+.concept-example-table td {
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.concept-example-table th {
+  background: var(--panel-soft);
+}
+
 .concept-card h4 {
   font-size: 18px;
   margin: 0 0 9px;

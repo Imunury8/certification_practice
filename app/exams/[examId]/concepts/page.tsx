@@ -397,6 +397,25 @@ export default function ConceptsPage() {
                                 <DetailItem key={idx} detail={detail} />
                               ))}
                             </ul>
+                            {item.exampleTables && (
+                              <div className="concept-example-tables">
+                                {item.exampleTables.map((example) => (
+                                  <div className="concept-table-scroll" key={example.caption} tabIndex={0} role="region" aria-label={example.caption}>
+                                    <table className="concept-example-table">
+                                      <caption>{example.caption}</caption>
+                                      <thead>
+                                        <tr>{example.headers.map((header) => <th scope="col" key={header}>{header}</th>)}</tr>
+                                      </thead>
+                                      <tbody>
+                                        {example.rows.map((row, rowIndex) => (
+                                          <tr key={rowIndex}>{row.map((cell, cellIndex) => <td key={cellIndex}>{cell}</td>)}</tr>
+                                        ))}
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                ))}
+                              </div>
+                            )}
                             {item.imageUrl && (
                               <div className="concept-image-container">
                                 {/* eslint-disable-next-line @next/next/no-img-element */}
