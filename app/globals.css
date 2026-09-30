@@ -532,6 +532,30 @@ button {
   grid-template-columns: 1fr;
 }
 
+.osi-illustration {
+  margin: 0 0 24px;
+}
+
+.osi-illustration img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.osi-illustration figcaption {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.osi-illustration a {
+  color: var(--primary);
+  font-weight: 700;
+}
+
 .concept-group {
   display: grid;
   gap: 12px;

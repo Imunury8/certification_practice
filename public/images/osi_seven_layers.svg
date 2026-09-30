@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="960" viewBox="0 0 1100 960" role="img" aria-labelledby="title desc">
+  <title id="title">OSI 7계층: 메시지가 신호가 되어 전달되는 과정</title>
+  <desc id="desc">위에서 아래로 응용, 표현, 세션, 전송, 네트워크, 데이터 링크, 물리 계층을 보여줍니다. 각 계층의 역할, 예시, 전송 단위를 표시합니다. 송신은 7에서 1로 캡슐화하고 수신은 1에서 7로 역캡슐화합니다.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10" fill="#475569"/></marker>
+    <style>text{font-family:'Malgun Gothic','Apple SD Gothic Neo',sans-serif;fill:#183047}.name{font-size:23px;font-weight:700}.sub{font-size:15px;fill:#526579}.role{font-size:19px;font-weight:700}.example{font-size:15px;fill:#526579}.pdu{font-size:17px;font-weight:700}.number{font-size:30px;font-weight:800;fill:white}.icon{fill:none;stroke:#183047;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}</style>
+  </defs>
+  <rect width="1100" height="960" rx="24" fill="#f8fafc"/>
+  <text x="42" y="53" font-size="28" font-weight="800">OSI 7계층 · 메시지에서 신호까지</text>
+  <text x="42" y="84" class="sub">웹에서 “안녕하세요”를 보내면, 아래 계층을 거치며 전송에 필요한 정보가 붙습니다.</text>
+  <text x="84" y="125" class="sub">계층 / 이름</text><text x="436" y="125" class="sub">어떤 일을 할까? · 대표 예시</text><text x="872" y="125" class="sub">전송 단위 (PDU)</text>
+
+  <g transform="translate(42 143)">
+    <rect width="996" height="76" rx="12" fill="#ede9fe"/><rect width="59" height="76" rx="12" fill="#7c3aed"/><text x="20" y="49" class="number">7</text>
+    <g class="icon" transform="translate(76 20)"><rect width="43" height="33" rx="4"/><path d="M0 9h43M8 4h1m6 0h1M10 18h23m-23 8h16"/></g>
+    <text x="138" y="31" class="name">응용 Application</text><text x="138" y="56" class="sub">사용자가 이용하는 네트워크 서비스</text>
+    <text x="394" y="31" class="role">웹·메일·이름 해석 서비스를 제공</text><text x="394" y="56" class="example">HTTP, DNS, SMTP · 프록시, L7 스위치</text><text x="834" y="44" class="pdu">데이터</text>
+  </g>
+  <g transform="translate(42 229)">
+    <rect width="996" height="76" rx="12" fill="#fce7f3"/><rect width="59" height="76" rx="12" fill="#db2777"/><text x="20" y="49" class="number">6</text>
+    <g class="icon" transform="translate(77 19)"><rect x="4" y="16" width="35" height="25" rx="4"/><path d="M12 16V9a10 10 0 0 1 20 0v7M22 26v7"/></g>
+    <text x="138" y="31" class="name">표현 Presentation</text><text x="138" y="56" class="sub">서로 이해하는 형식으로 변환</text>
+    <text x="394" y="31" class="role">문자 변환·암호화·압축</text><text x="394" y="56" class="example">ASCII, JPEG, TLS 기능 · 암호화 장비</text><text x="834" y="44" class="pdu">데이터</text>
+  </g>
+  <g transform="translate(42 315)">
+    <rect width="996" height="76" rx="12" fill="#ffedd5"/><rect width="59" height="76" rx="12" fill="#ea580c"/><text x="20" y="49" class="number">5</text>
+    <g class="icon" transform="translate(77 20)"><path d="M0 0h29v22H12l-8 7v-7H0zM17 12h25v22h-5v6l-8-6H17"/></g>
+    <text x="138" y="31" class="name">세션 Session</text><text x="138" y="56" class="sub">대화의 시작·유지·끝을 관리</text>
+    <text x="394" y="31" class="role">세션 관리·동기점 설정·복구</text><text x="394" y="56" class="example">NetBIOS, RPC의 세션 기능 · 게이트웨이</text><text x="834" y="44" class="pdu">데이터</text>
+  </g>
+  <g transform="translate(42 401)">
+    <rect width="996" height="76" rx="12" fill="#fef3c7"/><rect width="59" height="76" rx="12" fill="#b45309"/><text x="20" y="49" class="number">4</text>
+    <g class="icon" transform="translate(76 23)"><rect y="3" width="12" height="26" rx="2"/><rect x="17" y="3" width="12" height="26" rx="2"/><rect x="34" y="3" width="12" height="26" rx="2"/></g>
+    <text x="138" y="31" class="name">전송 Transport</text><text x="138" y="56" class="sub">포트로 목적지 프로그램을 구분</text>
+    <text x="394" y="31" class="role">분할·재조립 / TCP의 신뢰성 보장</text><text x="394" y="56" class="example">TCP, UDP · L4 스위치, 로드 밸런서</text><text x="834" y="31" class="pdu">TCP: 세그먼트</text><text x="834" y="56" class="pdu">UDP: 데이터그램</text>
+  </g>
+  <g transform="translate(42 487)">
+    <rect width="996" height="76" rx="12" fill="#dcfce7"/><rect width="59" height="76" rx="12" fill="#15803d"/><text x="20" y="49" class="number">3</text>
+    <g class="icon" transform="translate(76 21)"><rect x="13" y="10" width="20" height="15" rx="3"/><path d="M23 10V0m0 25v10M13 17H0m33 0h13M0 17l5-4m-5 4 5 4m41-4-5-4m5 4-5 4"/></g>
+    <text x="138" y="31" class="name">네트워크 Network</text><text x="138" y="56" class="sub">IP 주소로 다른 네트워크까지 전달</text>
+    <text x="394" y="31" class="role">목적지 IP 확인·경로 선택</text><text x="394" y="56" class="example">IP, ICMP, OSPF · 라우터, L3 스위치</text><text x="834" y="44" class="pdu">패킷</text>
+  </g>
+  <g transform="translate(42 573)">
+    <rect width="996" height="76" rx="12" fill="#dbeafe"/><rect width="59" height="76" rx="12" fill="#2563eb"/><text x="20" y="49" class="number">2</text>
+    <g class="icon" transform="translate(76 24)"><rect width="46" height="25" rx="4"/><path d="M7 8h5v9H7zm13 0h5v9h-5zm13 0h5v9h-5z"/></g>
+    <text x="138" y="31" class="name">데이터 링크 Data Link</text><text x="138" y="56" class="sub">MAC 주소로 인접 노드까지 전달</text>
+    <text x="394" y="31" class="role">프레임 구성·오류 검출</text><text x="394" y="56" class="example">Ethernet, PPP · 스위치, 브리지</text><text x="834" y="44" class="pdu">프레임</text>
+  </g>
+  <g transform="translate(42 659)">
+    <rect width="996" height="76" rx="12" fill="#cffafe"/><rect width="59" height="76" rx="12" fill="#0e7490"/><text x="20" y="49" class="number">1</text>
+    <g class="icon" transform="translate(76 22)"><path d="M0 28h8V4h10v24h10V4h10v24h8"/></g>
+    <text x="138" y="31" class="name">물리 Physical</text><text x="138" y="56" class="sub">0과 1을 실제 신호로 바꿔 전달</text>
+    <text x="394" y="31" class="role">전기·빛·무선 신호 전송</text><text x="394" y="56" class="example">RS-232, 100BASE-TX · 허브, 리피터</text><text x="834" y="44" class="pdu">비트 (0 / 1)</text>
+  </g>
+  <path d="M1068 157v559" stroke="#475569" stroke-width="3" marker-end="url(#arrow)"/><text transform="translate(1080 310) rotate(90)" font-size="14">송신 7 → 1 · 캡슐화</text>
+  <rect x="42" y="758" width="996" height="155" rx="14" fill="#fff" stroke="#cbd5e1"/>
+  <text x="63" y="792" font-size="19" font-weight="800">캡슐화 = 다음 계층이 필요한 정보를 겉에 붙이는 과정</text>
+  <rect x="63" y="808" width="650" height="51" rx="7" fill="#dbeafe"/><rect x="159" y="808" width="460" height="51" fill="#dcfce7"/><rect x="255" y="808" width="364" height="51" fill="#fef3c7"/><rect x="351" y="808" width="268" height="51" fill="#ede9fe"/>
+  <text x="76" y="840" font-size="15">L2 헤더</text><text x="172" y="840" font-size="15">IP 헤더</text><text x="269" y="840" font-size="15">TCP 헤더</text><text x="408" y="840" font-size="16" font-weight="700">“안녕하세요”</text><text x="631" y="840" font-size="14">L2 트레일러</text>
+  <text x="738" y="838" font-size="15" font-weight="700">→ 0101… → 실제 신호</text>
+  <text x="63" y="888" class="sub">수신은 1 → 7 역캡슐화 · 각 계층의 정보를 확인하고 제거하여 원래 메시지를 복원합니다.</text>
+  <text x="42" y="941" font-size="13" fill="#64748b">학습용 개념도: 상위 계층의 예시와 장비는 여러 계층 기능을 함께 구현할 수 있습니다. 캡슐화 예시는 TCP/IP 기준입니다.</text>
+</svg>

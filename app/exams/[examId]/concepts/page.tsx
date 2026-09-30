@@ -362,6 +362,22 @@ export default function ConceptsPage() {
                     </div>
                   </div>
 
+                  {section.topicId === "osi" && (
+                    <figure className="osi-illustration">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src="/images/osi_seven_layers.svg"
+                        alt="OSI 7계층의 역할, 대표 프로토콜과 장비, 전송 단위 및 송신 캡슐화와 수신 역캡슐화 과정"
+                        width={1100}
+                        height={960}
+                      />
+                      <figcaption>
+                        송신은 7→1계층, 수신은 1→7계층으로 진행합니다. 그림을 확대하면 프로토콜·장비·단위를 자세히 볼 수 있습니다.
+                        {" "}<a href="/images/osi_seven_layers.svg" target="_blank" rel="noopener noreferrer">일러스트 크게 보기 ↗</a>
+                      </figcaption>
+                    </figure>
+                  )}
+
                   {getConceptGroups(section).map((group) => (
                     <div className="concept-group" key={group.title}>
                       <div className="group-heading">
