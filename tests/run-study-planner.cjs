@@ -15,3 +15,4 @@ require.extensions[".ts"] = (module, filename) => {
 require("./studyPlanner.test.ts");
 require("./plannerCloud.test.ts");
 require("./plannerStorage.test.ts");
+require("./questionGenerator.test.ts");

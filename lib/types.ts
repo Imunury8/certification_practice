@@ -55,6 +55,7 @@ export interface QuestionTemplate {
   answer: string;
   explanation: string;
   choices?: string[];
+  answerAliases?: string[];
 }
 
 export interface Question extends QuestionTemplate {
@@ -70,6 +71,7 @@ export interface GenerateQuestionInput {
   difficulty: Difficulty;
   count: number;
   focus?: string;
+  previousQuestionIds?: string[];
 }
 
 export interface QuestionGenerator {

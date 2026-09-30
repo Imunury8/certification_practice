@@ -1,18 +1,33 @@
 "use client";
 
 import { BrainCircuit, Download, FileQuestion, Sparkles } from "lucide-react";
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState, useEffect, useRef } from "react";
 import { useParams } from "next/navigation";
 import { AppHeader } from "@/app/components/AppHeader";
 import { TOPICS_BY_EXAM } from "@/lib/questionBank";
-import { generateQuestions } from "@/lib/questionGenerator";
-import type { Difficulty, Question, TopicId, ExamId } from "@/lib/types";
+import { generateQuestions, getAvailableQuestionCount, isQuestionAnswerCorrect } from "@/lib/questionGenerator";
+import { readQuestionHistory, recordQuestionHistory } from "@/lib/questionHistory";
+import type { Difficulty, GenerateQuestionInput, Question, TopicId, ExamId } from "@/lib/types";
 
 const difficulties: { label: string; value: Difficulty }[] = [
   { label: "기본", value: "easy" },
   { label: "중간", value: "medium" },
   { label: "실전", value: "hard" },
 ];
+
+const browserHistoryStorage = {
+  getItem: (key: string) => window.localStorage.getItem(key),
+  setItem: (key: string, value: string) => window.localStorage.setItem(key, value),
+};
+
+function generateWithHistory(input: GenerateQuestionInput, history: Record<string, string[]>): Question[] {
+  const examId = input.examId ?? "infosec-practical";
+  const key = `${examId}:${input.topicId}`;
+  const previous = history[key] ?? readQuestionHistory(browserHistoryStorage, examId, input.topicId);
+  const questions = generateQuestions({ ...input, previousQuestionIds: previous });
+  history[key] = recordQuestionHistory(browserHistoryStorage, examId, input.topicId, previous, questions.map((question) => question.id));
+  return questions;
+}
 
 export default function QuestionsPage() {
   const params = useParams();
@@ -29,20 +44,27 @@ export default function QuestionsPage() {
   const [showResult, setShowResult] = useState<Record<string, boolean>>({});
   const [questions, setQuestions] = useState<Question[]>([]);
   const [isCollapsed, setIsCollapsed] = useState(true);
+  const [requestedCount, setRequestedCount] = useState(8);
+  const questionHistory = useRef<Record<string, string[]>>({});
+  const initializedExam = useRef<ExamId | null>(null);
 
   useEffect(() => {
-    if (topics.length > 0) {
+    if (topics.length > 0 && initializedExam.current !== examId) {
+      initializedExam.current = examId;
       const initialTopic = topics[0].id as TopicId;
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setSelectedTopic(initialTopic);
       setQuestions(
-        generateQuestions({
+        generateWithHistory({
           examId,
           topicId: initialTopic,
           difficulty: "medium",
           count: 8,
-        }),
+        }, questionHistory.current),
       );
+      setDifficulty("medium");
+      setCount("8");
+      setFocus("");
+      setRequestedCount(8);
       setAnswers({});
       setShowResult({});
     }
@@ -52,17 +74,19 @@ export default function QuestionsPage() {
     () => topics.find((topic) => topic.id === selectedTopic) ?? topics[0],
     [selectedTopic, topics],
   );
+  const displayedTopic = topics.find((topic) => topic.id === questions[0]?.topicId) ?? activeTopic;
 
   function handleGenerate() {
     setQuestions(
-      generateQuestions({
+      generateWithHistory({
         examId,
         topicId: selectedTopic,
         difficulty,
         count: Number(count),
         focus,
-      }),
+      }, questionHistory.current),
     );
+    setRequestedCount(Number(count));
     setAnswers({});
     setShowResult({});
   }
@@ -94,7 +118,7 @@ export default function QuestionsPage() {
         <section className="intro compact">
           <div>
             <h1>문제 풀이</h1>
-            <p>답을 선택하면 즉시 정답 여부와 해설을 확인할 수 있습니다.</p>
+            <p>정답을 입력하고 제출하면 정답 여부와 해설을 확인할 수 있습니다. 새 문제를 우선 출제합니다.</p>
           </div>
         </section>
 
@@ -129,7 +153,7 @@ export default function QuestionsPage() {
                       type="button"
                     >
                       <span>{topic.name}</span>
-                      <small style={{ marginLeft: "4px" }}>{topic.keywords.length}개 키워드</small>
+                      <small style={{ marginLeft: "4px" }}>{getAvailableQuestionCount(examId, topic.id)}개 문제</small>
                     </button>
                   ))}
                 </div>
@@ -154,7 +178,7 @@ export default function QuestionsPage() {
               <div className="field">
                 <label htmlFor="count">문항 수</label>
                 <select className="select" id="count" onChange={(event) => setCount(event.target.value)} value={count}>
-                  {[5, 8, 10, 15].map((value) => (
+                  {[5, 8, 10, 15, 20, 30, 50].map((value) => (
                     <option key={value} value={value}>
                       {value}문항
                     </option>
@@ -168,7 +192,7 @@ export default function QuestionsPage() {
                   className="textarea"
                   id="focus"
                   onChange={(event) => setFocus(event.target.value)}
-                  placeholder="예: 약술형 위주, 키워드 암기, 실무 예시 포함"
+                  placeholder="예: Observer, 정규화, 교차검증 (해당 키워드 우선 출제)"
                   value={focus}
                 />
               </div>
@@ -185,19 +209,28 @@ export default function QuestionsPage() {
               </div>
 
               <div className="architecture">
-                현재는 내장 문제 은행을 사용합니다. 이후 AI 모델 연동 시 같은 풀이 화면에서 생성형 문제를 받을 수 있습니다.
+                한 세트 안에서는 같은 문제가 나오지 않습니다. 출제 기록은 이 브라우저에 저장하며,
+                아직 보지 않은 문제를 먼저 출제합니다. 전체 문제를 한 번씩 출제하면 오래된 문제부터 복습합니다.
+                선택 난이도의 새 문제가 부족하면 다른 난이도도 포함합니다.
               </div>
             </div>
           </aside>
 
           <section className="results">
-            {activeTopic && (
+            {displayedTopic && (
               <div className="panel toolbar">
                 <div>
-                  <h2>{activeTopic.name}</h2>
-                  <p>{activeTopic.description}</p>
+                  <h2>{displayedTopic.name}</h2>
+                  <p>{displayedTopic.description}</p>
+                  <p aria-live="polite">생성된 문제 {questions.length}문항 · 주제별 문제 {getAvailableQuestionCount(examId, displayedTopic.id)}개</p>
                 </div>
                 <span className="badge warning">선택 난이도: {difficulties.find((d) => d.value === difficulty)?.label}</span>
+              </div>
+            )}
+
+            {questions.length > 0 && questions.length < requestedCount && (
+              <div className="panel" role="status">
+                요청한 {requestedCount}문항보다 출제 가능한 문제가 적어, 중복 없이 {questions.length}문항을 생성했습니다.
               </div>
             )}
 
@@ -213,16 +246,15 @@ export default function QuestionsPage() {
                 const selected = answers[question.id] || "";
                 const isSubmitted = !!showResult[question.id];
                 
-                // 대소문자 및 띄어쓰기를 배제하고 유연하게 채점
-                const isCorrect =
-                  selected.trim().toLowerCase().replace(/\s+/g, "") ===
-                  question.answer.trim().toLowerCase().replace(/\s+/g, "");
+                const isCorrect = isQuestionAnswerCorrect(question, selected);
 
                 return (
                   <article className="question-card" key={question.id}>
                     <div className="question-head">
                       <div className="badges">
                         <span className="badge">Q{index + 1}</span>
+                        <span className="badge">{question.difficultyLabel}</span>
+                        <span className="badge">{question.typeLabel}</span>
                       </div>
                     </div>
                     
