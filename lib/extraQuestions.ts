@@ -216,42 +216,6 @@ add("testing", "hard", [
   ["Black Box Testing", "구현을 보지 않고 할인 조건별 입력과 최종 결제 금액만 검사한다. 테스트 관점은?", "블랙박스", "명세에 따른 입력과 출력을 검사합니다.", ["블랙박스 테스트", "Black Box Testing"]],
 ]);
 
-add("programming-languages", "easy", [
-  ["C", "C에서 변수 x의 주소를 얻는 연산자는?", "&", "주소 연산자 &를 사용합니다."],
-  ["C", "C에서 포인터 p가 가리키는 값을 읽는 연산자는?", "*", "역참조 연산자 *를 사용합니다."],
-  ["C", "C에서 구조체 포인터 p의 멤버 x를 접근할 때 p와 x 사이에 쓰는 연산자는?", "->", "구조체 포인터에는 화살표 연산자를 사용합니다."],
-  ["Java", "Java에서 부모 클래스의 메서드를 자식이 같은 시그니처로 재정의하는 것은?", "오버라이딩", "상속한 메서드를 재정의합니다.", ["Overriding"]],
-  ["Java", "Java에서 메서드 이름은 같고 매개변수 목록이 다른 여러 메서드를 선언하는 것은?", "오버로딩", "매개변수의 수 또는 타입을 다르게 정의합니다.", ["Overloading"]],
-  ["Python", "Python에서 리스트를 역순으로 복사하는 슬라이스 표현은? 변수는 s이다.", "s[::-1]", "음수 간격 -1을 사용해 역순으로 추출합니다."],
-]);
-add("programming-languages", "medium", [
-  ["C", "다음 C 코드의 출력은?\nint x=7; int *p=&x; *p+=3; printf(\"%d\",x);", "10", "p가 x를 가리키므로 x가 3 증가합니다."],
-  ["C", "다음 C 코드의 출력은?\nint a[]={2,4,6,8}; int *p=a; printf(\"%d\",*(p+2));", "6", "*(p+2)는 a[2]입니다."],
-  ["C", "다음 C 코드의 출력은?\nint x=7,y=2; printf(\"%d\",x/y);", "3", "정수 나눗셈은 소수 부분을 버립니다."],
-  ["C", "다음 C 코드의 출력은?\nint x=13; printf(\"%d\",x%5);", "3", "13을 5로 나눈 나머지는 3입니다."],
-  ["C", "다음 C 코드의 출력은?\nint s=0; for(int i=1;i<=4;i++) s+=i; printf(\"%d\",s);", "10", "1+2+3+4=10입니다."],
-  ["Java", "다음 Java 코드의 출력은?\nint x=5; System.out.print(x++);", "5", "후위 증가는 기존 값을 사용한 뒤 증가시킵니다."],
-  ["Java", "다음 Java 코드의 출력은?\nint x=5; System.out.print(++x);", "6", "전위 증가는 증가한 값을 사용합니다."],
-  ["Java", "다음 Java 코드의 출력은?\nint[] a={1,2,3}; System.out.print(a.length);", "3", "배열 원소의 개수는 3입니다."],
-  ["Python", "다음 Python 코드의 출력은?\ns='ABCDE'\nprint(s[1:4])", "BCD", "시작 1은 포함하고 끝 4는 포함하지 않습니다."],
-  ["Python", "다음 Python 코드의 출력은?\ns='ABCDE'\nprint(s[::2])", "ACE", "인덱스 0,2,4의 문자를 추출합니다."],
-  ["Python", "다음 Python 코드의 출력은?\na=[1,2,3,4]\nprint(a[-1])", "4", "-1은 마지막 원소의 인덱스입니다."],
-  ["Python", "다음 Python 코드의 출력은?\nprint(7//2)", "3", "//는 내림 나눗셈이며 양수 7//2는 3입니다."],
-]);
-add("programming-languages", "hard", [
-  ["C", "다음 C 코드의 출력은?\nint a[]={3,5,7}; int *p=a; p++; *p=9; printf(\"%d\",a[1]);", "9", "p++로 두 번째 원소를 가리킨 뒤 그 값을 수정합니다."],
-  ["C", "다음 C 코드의 출력은?\nint s=0; for(int i=1;i<=5;i++){ if(i==3) continue; s+=i; } printf(\"%d\",s);", "12", "3을 제외한 1+2+4+5=12입니다."],
-  ["C", "다음 C 코드의 출력은?\nint f(int n){return n<=1?1:n*f(n-1);}\n/* main 안에서 */ printf(\"%d\",f(4));", "24", "4!=4×3×2×1=24입니다."],
-  ["C", "다음 C 코드의 출력은?\nint x=3; switch(x){case 3:x+=2; case 4:x+=4; break; default:x=0;} printf(\"%d\",x);", "9", "case 3에 break가 없어 case 4까지 이어서 실행합니다."],
-  ["Java", "다음 Java 코드에서 출력되는 문자는?\nclass A { String f(){return \"A\";} }\nclass B extends A { String f(){return \"B\";} }\n// main 안에서\nA a=new B(); System.out.print(a.f());", "B", "인스턴스 메서드는 실제 객체 타입 B의 재정의된 구현을 호출합니다."],
-  ["Java", "다음 Java 코드의 출력은?\nint[] a={1,2}; int[] b=a; b[0]=9; System.out.print(a[0]);", "9", "a와 b는 같은 배열 객체를 참조합니다."],
-  ["Java", "다음 Java 코드의 출력은?\nString s=\"ABCDE\"; System.out.print(s.substring(1,4));", "BCD", "시작 인덱스는 포함하고 끝 인덱스는 제외합니다."],
-  ["Python", "다음 Python 코드의 출력은?\na=[1,2]; b=a; b.append(3); print(len(a))", "3", "두 변수는 같은 리스트를 참조합니다."],
-  ["Python", "다음 Python 코드의 출력은?\na=[1,2]; b=a[:]; b.append(3); print(len(a))", "2", "슬라이싱으로 새 리스트를 만들었으므로 a의 길이는 그대로입니다."],
-  ["Python", "다음 Python 코드의 출력은?\nprint(sum(i*i for i in range(4)))", "14", "0²+1²+2²+3²=14입니다."],
-  ["Python", "다음 Python 코드의 출력은?\ns='ABCDEF'\nprint(s[-2:0:-2])", "EC", "인덱스 4,2를 추출하고 끝 인덱스 0은 제외합니다."],
-]);
-
 add("bigdata-planning", "hard", [
   ["SECI 모델", "숙련자의 경험을 문서와 매뉴얼로 작성했다. SECI의 어느 과정인가?", "표출화", "암묵지를 형식지로 전환합니다.", ["Externalization"]],
   ["SECI 모델", "여러 부서의 문서를 통합해 새로운 지침을 만들었다. SECI의 어느 과정인가?", "연결화", "형식지에서 형식지로 전환합니다.", ["Combination"]],

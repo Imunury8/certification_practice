@@ -39,6 +39,8 @@ export type Difficulty = "easy" | "medium" | "hard";
 
 export type QuestionType = "short" | "scenario";
 
+export type ProgrammingLanguage = "C" | "Java" | "Python";
+
 export interface Topic {
   id: TopicId;
   name: string;
@@ -56,6 +58,8 @@ export interface QuestionTemplate {
   explanation: string;
   choices?: string[];
   answerAliases?: string[];
+  code?: { language: ProgrammingLanguage; source: string };
+  answerFormat?: "code-output";
 }
 
 export interface Question extends QuestionTemplate {
@@ -72,6 +76,7 @@ export interface GenerateQuestionInput {
   count: number;
   focus?: string;
   previousQuestionIds?: string[];
+  programmingLanguage?: ProgrammingLanguage;
 }
 
 export interface QuestionGenerator {

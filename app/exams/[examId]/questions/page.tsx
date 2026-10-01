@@ -7,7 +7,7 @@ import { AppHeader } from "@/app/components/AppHeader";
 import { TOPICS_BY_EXAM } from "@/lib/questionBank";
 import { generateQuestions, getAvailableQuestionCount, isQuestionAnswerCorrect } from "@/lib/questionGenerator";
 import { readQuestionHistory, recordQuestionHistory } from "@/lib/questionHistory";
-import type { Difficulty, GenerateQuestionInput, Question, TopicId, ExamId } from "@/lib/types";
+import type { Difficulty, GenerateQuestionInput, ProgrammingLanguage, Question, TopicId, ExamId } from "@/lib/types";
 
 const difficulties: { label: string; value: Difficulty }[] = [
   { label: "기본", value: "easy" },
@@ -40,6 +40,7 @@ export default function QuestionsPage() {
   const [difficulty, setDifficulty] = useState<Difficulty>("medium");
   const [count, setCount] = useState("8");
   const [focus, setFocus] = useState("");
+  const [programmingLanguage, setProgrammingLanguage] = useState<ProgrammingLanguage | "all">("all");
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [showResult, setShowResult] = useState<Record<string, boolean>>({});
   const [questions, setQuestions] = useState<Question[]>([]);
@@ -64,6 +65,7 @@ export default function QuestionsPage() {
       setDifficulty("medium");
       setCount("8");
       setFocus("");
+      setProgrammingLanguage("all");
       setRequestedCount(8);
       setAnswers({});
       setShowResult({});
@@ -84,6 +86,7 @@ export default function QuestionsPage() {
         difficulty,
         count: Number(count),
         focus,
+        programmingLanguage: programmingLanguage === "all" ? undefined : programmingLanguage,
       }, questionHistory.current),
     );
     setRequestedCount(Number(count));
@@ -158,6 +161,20 @@ export default function QuestionsPage() {
                   ))}
                 </div>
               </div>
+
+              {selectedTopic === "programming-languages" && (
+                <div className="field">
+                  <label htmlFor="programming-language">프로그래밍 언어</label>
+                  <select className="select" id="programming-language" value={programmingLanguage}
+                    onChange={(event) => setProgrammingLanguage(event.target.value as ProgrammingLanguage | "all")}>
+                    <option value="all">C · Java · Python 혼합</option>
+                    <option value="C">C</option>
+                    <option value="Java">Java</option>
+                    <option value="Python">Python</option>
+                  </select>
+                  <small>선택 범위 {getAvailableQuestionCount(examId, selectedTopic, programmingLanguage === "all" ? undefined : programmingLanguage)}문항</small>
+                </div>
+              )}
 
               <div className="field">
                 <span className="label">난이도</span>
@@ -258,10 +275,27 @@ export default function QuestionsPage() {
                       </div>
                     </div>
                     
-                    <h3 style={{ whiteSpace: "pre-wrap" }}>{question.prompt}</h3>
+                    <h3 style={{ whiteSpace: "pre-wrap" }}>
+                      {question.code ? question.prompt.slice(0, -question.code.source.length).trimEnd() : question.prompt}
+                    </h3>
+                    {question.code && (
+                      <pre className="question-code" aria-label={`${question.code.language} 코드`}>
+                        <code>{question.code.source}</code>
+                      </pre>
+                    )}
 
                     <div className="input-group">
-                      <input
+                      {question.code ? (
+                        <textarea
+                          className="text-input code-output-input"
+                          aria-label="출력 결과"
+                          placeholder="출력 결과를 입력하세요. 여러 줄로 입력할 수 있습니다."
+                          rows={3}
+                          value={selected}
+                          onChange={(event) => setAnswers((current) => ({ ...current, [question.id]: event.target.value }))}
+                          disabled={isSubmitted}
+                        />
+                      ) : <input
                         type="text"
                         className="text-input"
                         placeholder="정답을 입력하세요"
@@ -273,7 +307,7 @@ export default function QuestionsPage() {
                             setShowResult((current) => ({ ...current, [question.id]: true }));
                           }
                         }}
-                      />
+                      />}
                       <button
                         className="primary-button check-btn"
                         onClick={() => setShowResult((current) => ({ ...current, [question.id]: true }))}
@@ -293,7 +327,7 @@ export default function QuestionsPage() {
                           내 입력: <code className="code-user">{selected}</code> 
                           | 실제 정답: <code className="code-answer">{question.answer}</code>
                         </p>
-                        <p className="explanation" style={{ marginTop: "8px" }}>{question.explanation}</p>
+                        <p className="explanation" style={{ marginTop: "8px", whiteSpace: "pre-wrap" }}>{question.explanation}</p>
                       </div>
                     )}
                   </article>

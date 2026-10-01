@@ -114,8 +114,8 @@ function conceptQuestions(topicId: TopicId, item: ConceptItem): QuestionTemplate
 export const THEORY_QUESTIONS_BY_EXAM = Object.fromEntries(
   Object.entries(CONCEPTS_BY_EXAM).map(([examId, sections]) => [
     examId,
-    // Design-pattern questions use the dedicated practical bank in questionBank.
-    sections.filter((section) => section.topicId !== "design-patterns").flatMap((section) => [
+    // These topics use dedicated practical banks in questionBank.
+    sections.filter((section) => !["design-patterns", "programming-languages"].includes(section.topicId)).flatMap((section) => [
       ...section.items.flatMap((item) => conceptQuestions(section.topicId, item)),
       ...(EXTRA_QUESTIONS_BY_TOPIC[section.topicId] ?? []),
     ]),
