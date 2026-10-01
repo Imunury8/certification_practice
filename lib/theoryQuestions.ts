@@ -5,7 +5,7 @@ import { EXTRA_QUESTIONS_BY_TOPIC } from "./extraQuestions";
 
 // Only these sections have individual, unambiguous terms as their theory titles.
 const definitionTopics = new Set<TopicId>([
-  "diagrams", "osi", "coverage", "security-attacks",
+  "osi", "coverage", "security-attacks",
   "modern-tech", "software-engineering", "cohesion-coupling", "database", "testing",
 ]);
 
@@ -115,7 +115,7 @@ export const THEORY_QUESTIONS_BY_EXAM = Object.fromEntries(
   Object.entries(CONCEPTS_BY_EXAM).map(([examId, sections]) => [
     examId,
     // These topics use dedicated practical banks in questionBank.
-    sections.filter((section) => !["design-patterns", "programming-languages"].includes(section.topicId)).flatMap((section) => [
+    sections.filter((section) => !["design-patterns", "diagrams", "programming-languages"].includes(section.topicId)).flatMap((section) => [
       ...section.items.flatMap((item) => conceptQuestions(section.topicId, item)),
       ...(EXTRA_QUESTIONS_BY_TOPIC[section.topicId] ?? []),
     ]),

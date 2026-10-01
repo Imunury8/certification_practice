@@ -1,6 +1,7 @@
 import type { QuestionTemplate, Topic, ExamId } from "@/lib/types";
 import { DESIGN_PATTERN_NAMES, DESIGN_PATTERN_QUESTIONS } from "./designPatternQuestions";
 import { PROGRAMMING_QUESTIONS } from "./programmingQuestions";
+import { DIAGRAM_NAMES, DIAGRAM_QUESTIONS } from "./diagramQuestions";
 
 export const TOPICS_BY_EXAM: Record<ExamId, Topic[]> = {
   "infosec-practical": [
@@ -13,8 +14,8 @@ export const TOPICS_BY_EXAM: Record<ExamId, Topic[]> = {
   {
     id: "diagrams",
     name: "다이어그램 종류",
-    description: "UML 구조/행위 다이어그램과 요구사항 분석 산출물을 구분합니다.",
-    keywords: ["Use Case", "Class", "Sequence", "Activity", "State", "ERD"],
+    description: "특징·표기·적용 상황을 읽고 UML과 데이터·절차 모델링 다이어그램 15종의 이름을 맞히는 단답형 문제입니다.",
+    keywords: DIAGRAM_NAMES,
   },
   {
     id: "osi",
@@ -198,42 +199,7 @@ export const TOPICS_BY_EXAM: Record<ExamId, Topic[]> = {
 export const QUESTION_BANK_BY_EXAM: Record<ExamId, QuestionTemplate[]> = {
   "infosec-practical": [
   ...DESIGN_PATTERN_QUESTIONS,
-  {
-    topicId: "diagrams",
-    keyword: "Use Case",
-    difficulty: "easy",
-    type: "short",
-    prompt: "사용자와 시스템 사이의 상호작용 및 시스템 기능을 외부 관점에서 표현하는 UML 다이어그램은?",
-    answer: "Use Case Diagram",
-    explanation: "유스케이스 다이어그램은 액터와 유스케이스 관계를 통해 기능 요구사항을 표현합니다.",
-  },
-  {
-    topicId: "diagrams",
-    keyword: "Sequence",
-    difficulty: "medium",
-    type: "short",
-    prompt: "객체 간 메시지 흐름을 시간 순서대로 표현하는 UML 다이어그램은?",
-    answer: "Sequence Diagram",
-    explanation: "시퀀스 다이어그램은 생명선과 메시지로 객체 간 동적 상호작용을 표현합니다.",
-  },
-  {
-    topicId: "diagrams",
-    keyword: "Class",
-    difficulty: "medium",
-    type: "short",
-    prompt: "클래스의 속성, 연산, 클래스 간 관계를 정적으로 표현하는 UML 구조 다이어그램은?",
-    answer: "Class Diagram",
-    explanation: "클래스 다이어그램은 상속, 연관, 집합, 합성 등 정적 구조를 표현합니다.",
-  },
-  {
-    topicId: "diagrams",
-    keyword: "Activity",
-    difficulty: "hard",
-    type: "scenario",
-    prompt: "업무 처리 절차의 분기, 병합, 병렬 흐름을 모델링하려 한다. 가장 알맞은 다이어그램은?",
-    answer: "Activity Diagram",
-    explanation: "활동 다이어그램은 처리 흐름과 제어 흐름을 표현해 업무 프로세스 모델링에 적합합니다.",
-  },
+  ...DIAGRAM_QUESTIONS,
   {
     topicId: "osi",
     keyword: "Network",

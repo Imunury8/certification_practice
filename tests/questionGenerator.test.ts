@@ -82,6 +82,47 @@ test("pattern names are accepted in Korean and with the Pattern suffix", () => {
   for (const answer of ["생성", "Director", "Adapter"]) assert.ok(!isQuestionAnswerCorrect(question, answer));
 });
 
+test("all 15 diagram types have three name-identification questions with no notation answers", () => {
+  const names = CONCEPTS_BY_EXAM["infosec-practical"]
+    .find((section) => section.topicId === "diagrams")!.items.map((item) => item.term);
+  assert.equal(names.length, 15);
+  assert.equal(getAvailableQuestionCount("infosec-practical", "diagrams"), 45);
+  for (const difficulty of ["easy", "medium", "hard"] as Difficulty[]) {
+    const questions = generator.generate({ ...input, topicId: "diagrams", difficulty, count: names.length });
+    assert.deepEqual(questions.map((question) => question.answer).sort(), [...names].sort());
+    for (const question of questions) {
+      assert.equal(question.difficulty, difficulty);
+      assert.equal(question.type, "short");
+      assert.ok(question.prompt.includes("다이어그램의 이름을 쓰시오"));
+      assert.ok(!question.prompt.toLowerCase().includes(question.answer.toLowerCase()), question.prompt);
+      assert.ok(question.answerAliases?.some((alias) => /[가-힣]/.test(alias)));
+      for (const alias of question.answerAliases ?? []) {
+        if (alias.endsWith("다이어그램")) assert.ok(!question.prompt.includes(alias), question.prompt);
+      }
+    }
+  }
+});
+
+test("diagram grading accepts Korean names and synonyms but rejects roles and other diagram types", () => {
+  const questions = generator.generate({ ...input, topicId: "diagrams", count: 50 });
+  const check = (name: string, accepted: string[], rejected: string[]) => {
+    const question = questions.find((candidate) => candidate.answer === name)!;
+    assert.ok(question, name);
+    for (const answer of accepted) assert.ok(isQuestionAnswerCorrect(question, answer), answer);
+    for (const answer of rejected) assert.ok(!isQuestionAnswerCorrect(question, answer), answer);
+  };
+  check("Use Case Diagram", ["유스케이스 다이어그램", "Use Case"], ["include", "extend"]);
+  check("Class Diagram", ["클래스 다이어그램", "Class"], ["합성", "Object Diagram"]);
+  check("Sequence Diagram", ["시퀀스", "순차 다이어그램"], ["생명선", "통신 다이어그램"]);
+  check("Communication Diagram", ["통신 다이어그램", "Collaboration Diagram"], ["번호", "시퀀스"]);
+  check("Activity Diagram", ["활동 다이어그램"], ["포크", "조인", "스윔레인", "상태 다이어그램"]);
+  check("State Machine Diagram", ["상태 다이어그램", "State Diagram"], ["활동 다이어그램"]);
+  check("Deployment Diagram", ["배치 다이어그램", "배포 다이어그램"], ["컴포넌트 다이어그램"]);
+  check("ERD", ["개체 관계도", "Entity Relationship Diagram"], ["교차 테이블", "DFD"]);
+  check("DFD", ["자료 흐름도", "Data Flow Diagram"], ["데이터 저장소", "순서도"]);
+  check("Flowchart", ["순서도", "Flow Chart"], ["자료 흐름도", "활동 다이어그램"]);
+});
+
 test("unseen questions take priority over seen questions of the requested difficulty", () => {
   const full = generator.generate({ ...input, topicId: "coverage", count: 50 });
   const previous = full.filter((question) => question.difficulty === "medium").map((question) => question.id);
