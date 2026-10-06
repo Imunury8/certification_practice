@@ -17,3 +17,4 @@ require("./plannerCloud.test.ts");
 require("./plannerStorage.test.ts");
 require("./questionGenerator.test.ts");
 require("./programmingQuestions.test.ts");
+require("./appliedQuestions.test.ts");

@@ -2,27 +2,24 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import { PROGRAMMING_EXERCISES, PROGRAMMING_QUESTIONS } from "../lib/programmingQuestions";
 import { LocalQuestionGenerator, getAvailableQuestionCount, isQuestionAnswerCorrect, normalizeQuestionPrompt } from "../lib/questionGenerator";
-import type { Difficulty, GenerateQuestionInput, ProgrammingLanguage } from "../lib/types";
+import type { GenerateQuestionInput, ProgrammingLanguage } from "../lib/types";
 
 const languages: ProgrammingLanguage[] = ["C", "Java", "Python"];
-const levels: Difficulty[] = ["easy", "medium", "hard"];
 const generator = new LocalQuestionGenerator(() => 0.37);
 const input: GenerateQuestionInput = {
-  examId: "infosec-practical", topicId: "programming-languages", difficulty: "medium", count: 12,
+  examId: "infosec-practical", topicId: "programming-languages", count: 12,
 };
 
-test("programming bank has 90 distinct executable exercises, 10 per language and difficulty", () => {
+test("programming bank has 90 distinct executable exercises covering 30 concepts per language", () => {
   assert.equal(PROGRAMMING_EXERCISES.length, 90);
   assert.equal(getAvailableQuestionCount("infosec-practical", "programming-languages"), 90);
   assert.equal(new Set(PROGRAMMING_EXERCISES.map((exercise) => exercise.id)).size, 90);
   assert.equal(new Set(PROGRAMMING_QUESTIONS.map((question) => normalizeQuestionPrompt(question.prompt))).size, 90);
   for (const language of languages) {
     assert.equal(getAvailableQuestionCount("infosec-practical", "programming-languages", language), 30);
-    for (const difficulty of levels) {
-      const exercises = PROGRAMMING_EXERCISES.filter((exercise) => exercise.language === language && exercise.difficulty === difficulty);
-      assert.equal(exercises.length, 10);
-      assert.equal(new Set(exercises.map((exercise) => exercise.concept)).size, 10);
-    }
+    const exercises = PROGRAMMING_EXERCISES.filter((exercise) => exercise.language === language);
+    assert.equal(exercises.length, 30);
+    assert.equal(new Set(exercises.map((exercise) => exercise.concept)).size, 30);
   }
   for (const question of PROGRAMMING_QUESTIONS) {
     assert.equal(question.answerFormat, "code-output");
@@ -35,25 +32,24 @@ test("programming bank has 90 distinct executable exercises, 10 per language and
   }
 });
 
-test("mixed programming sets balance all three languages at each difficulty", () => {
-  for (const difficulty of levels) {
-    const questions = generator.generate({ ...input, difficulty });
-    assert.equal(questions.length, 12);
-    assert.ok(questions.every((question) => question.difficulty === difficulty));
-    for (const language of languages) assert.equal(questions.filter((question) => question.code?.language === language).length, 4);
+test("mixed programming sets balance all three languages without difficulty filtering", () => {
+  for (const count of [6, 12, 30]) {
+    const questions = generator.generate({ ...input, count });
+    assert.equal(questions.length, count);
+    for (const language of languages) assert.equal(questions.filter((question) => question.code?.language === language).length, count / 3);
   }
 });
 
-test("language selection retains difficulty preference and exhausts unseen questions before repeating", () => {
+test("language selection exhausts unseen questions before repeating and shuffles their display", () => {
   for (const language of languages) {
     const first = generator.generate({ ...input, count: 10, programmingLanguage: language });
-    assert.ok(first.every((question) => question.code?.language === language && question.difficulty === "medium"));
+    assert.ok(first.every((question) => question.code?.language === language));
     const history = first.map((question) => question.id);
     const rest = generator.generate({ ...input, count: 50, programmingLanguage: language, previousQuestionIds: history });
     assert.equal(rest.length, 30);
     assert.ok(rest.every((question) => question.code?.language === language));
-    assert.ok(rest.slice(0, 20).every((question) => !history.includes(question.id)));
-    assert.deepEqual(rest.slice(20).map((question) => question.id), history);
+    assert.equal(rest.filter((question) => !history.includes(question.id)).length, 20);
+    assert.deepEqual(rest.filter((question) => history.includes(question.id)).map((question) => question.id).sort(), [...history].sort());
     assert.equal(new Set(rest.map((question) => question.id)).size, 30);
   }
   const [focused] = generator.generate({ ...input, count: 1, focus: "C" });

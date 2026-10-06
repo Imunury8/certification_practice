@@ -2,6 +2,7 @@ import { CONCEPTS_BY_EXAM } from "./concepts";
 import type { ConceptItem } from "./concepts";
 import type { ExamId, QuestionTemplate, TopicId } from "./types";
 import { EXTRA_QUESTIONS_BY_TOPIC } from "./extraQuestions";
+import { APPLIED_QUESTIONS_BY_TOPIC } from "./appliedQuestions";
 
 // Only these sections have individual, unambiguous terms as their theory titles.
 const definitionTopics = new Set<TopicId>([
@@ -118,6 +119,7 @@ export const THEORY_QUESTIONS_BY_EXAM = Object.fromEntries(
     sections.filter((section) => !["design-patterns", "diagrams", "programming-languages"].includes(section.topicId)).flatMap((section) => [
       ...section.items.flatMap((item) => conceptQuestions(section.topicId, item)),
       ...(EXTRA_QUESTIONS_BY_TOPIC[section.topicId] ?? []),
+      ...(APPLIED_QUESTIONS_BY_TOPIC[section.topicId] ?? []),
     ]),
   ]),
 ) as Record<ExamId, QuestionTemplate[]>;

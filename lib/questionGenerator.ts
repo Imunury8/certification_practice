@@ -1,10 +1,8 @@
 import { QUESTION_BANK_BY_EXAM, TOPICS_BY_EXAM } from "./questionBank";
 import { THEORY_QUESTIONS_BY_EXAM } from "./theoryQuestions";
-import type { Difficulty, ExamId, GenerateQuestionInput, ProgrammingLanguage, Question, QuestionGenerator, QuestionTemplate } from "./types";
+import type { ExamId, GenerateQuestionInput, ProgrammingLanguage, Question, QuestionGenerator, QuestionTemplate } from "./types";
 
 const typeLabels = { short: "단답형", scenario: "상황형" } as const;
-const difficultyLabels: Record<Difficulty, string> = { easy: "기본", medium: "중간", hard: "실전" };
-const difficultyOrder: Difficulty[] = ["easy", "medium", "hard"];
 export const MAX_QUESTION_COUNT = 50;
 
 export function normalizeQuestionPrompt(prompt: string): string {
@@ -37,7 +35,7 @@ export function getAvailableQuestionCount(examId: ExamId, topicId: string, langu
     (topicId !== "programming-languages" || !language || question.code?.language === language)).length;
 }
 
-// Content-derived IDs stay the same across order, difficulty settings, and focus changes.
+// Content-derived IDs stay the same across display order and focus changes.
 // Two independent 32-bit hashes keep the keys compact for browser history storage.
 function questionId(examId: ExamId, template: QuestionTemplate): string {
   const content = normalizeQuestionPrompt(template.prompt);
@@ -59,37 +57,34 @@ export class LocalQuestionGenerator implements QuestionGenerator {
     const topic = topics.find((item) => item.id === input.topicId) ?? topics[0];
     const requestedCount = Number.isFinite(input.count) ? Math.trunc(input.count) : 5;
     const count = Math.max(1, Math.min(requestedCount, MAX_QUESTION_COUNT));
-    const difficulty = difficultyOrder.includes(input.difficulty) ? input.difficulty : "medium";
     const candidates = questionBanks[examId].filter((question) => question.topicId === topic.id &&
       (topic.id !== "programming-languages" || !input.programmingLanguage || question.code?.language === input.programmingLanguage));
     const history = new Map((input.previousQuestionIds ?? []).map((id, index) => [id, index]));
     const unseen = candidates.filter((template) => !history.has(questionId(examId, template)));
     const seen = candidates.filter((template) => history.has(questionId(examId, template)));
 
-    // Exhaust unseen questions before returning to earlier ones. Requested
-    // difficulty is preferred, with adjacent levels supplying any shortfall.
-    const levels = [...difficultyOrder].sort((left, right) =>
-      Math.abs(difficultyOrder.indexOf(left) - difficultyOrder.indexOf(difficulty)) -
-      Math.abs(difficultyOrder.indexOf(right) - difficultyOrder.indexOf(difficulty)),
-    );
+    // Draw from the entire topic and exhaust unseen questions first.
     const selected: QuestionTemplate[] = [];
     const keywordCounts = new Map<string, number>();
     const focusTokens = input.focus?.trim().toLowerCase().split(/[\s,，/]+/).filter((token) => token.length > 1 || token === "c") ?? [];
-    for (const level of levels) {
-      this.takeBalanced(unseen.filter((template) => template.difficulty === level), selected, count, keywordCounts, focusTokens);
-    }
+    this.takeBalanced(unseen, selected, count, keywordCounts, focusTokens);
     // History is ordered from oldest to newest, so an exhausted bank rotates
     // into its least recently shown questions without repeats within the batch.
     seen.sort((left, right) => history.get(questionId(examId, left))! - history.get(questionId(examId, right))!);
     selected.push(...seen.slice(0, Math.max(0, count - selected.length)));
 
-    return selected.map((template) => ({
-      ...template,
-      id: questionId(examId, template),
-      topicName: topic.name,
-      typeLabel: typeLabels[template.type],
-      difficultyLabel: difficultyLabels[template.difficulty],
-    }));
+    // Selection priorities must not become a fixed display order, including
+    // when every question is available or the bank has been exhausted.
+    return shuffle(selected, this.random).map((template) => {
+      const { difficulty, ...content } = template;
+      void difficulty;
+      return {
+        ...content,
+        id: questionId(examId, template),
+        topicName: topic.name,
+        typeLabel: typeLabels[template.type],
+      };
+    });
   }
 
   private takeBalanced(
@@ -137,7 +132,7 @@ export function generateQuestions(input: GenerateQuestionInput): Question[] {
   return new LocalQuestionGenerator().generate(input);
 }
 
-export function isQuestionAnswerCorrect(question: QuestionTemplate, answer: string): boolean {
+export function isQuestionAnswerCorrect(question: Pick<QuestionTemplate, "answer" | "answerAliases" | "answerFormat">, answer: string): boolean {
   if (question.answerFormat === "code-output") {
     // Preserve case and separators: "1 2" must not be mistaken for "12".
     // Numeric list formatting may omit spaces around brackets and commas.

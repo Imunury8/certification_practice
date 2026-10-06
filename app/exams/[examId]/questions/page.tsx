@@ -7,13 +7,7 @@ import { AppHeader } from "@/app/components/AppHeader";
 import { TOPICS_BY_EXAM } from "@/lib/questionBank";
 import { generateQuestions, getAvailableQuestionCount, isQuestionAnswerCorrect } from "@/lib/questionGenerator";
 import { readQuestionHistory, recordQuestionHistory } from "@/lib/questionHistory";
-import type { Difficulty, GenerateQuestionInput, ProgrammingLanguage, Question, TopicId, ExamId } from "@/lib/types";
-
-const difficulties: { label: string; value: Difficulty }[] = [
-  { label: "기본", value: "easy" },
-  { label: "중간", value: "medium" },
-  { label: "실전", value: "hard" },
-];
+import type { GenerateQuestionInput, ProgrammingLanguage, Question, TopicId, ExamId } from "@/lib/types";
 
 const browserHistoryStorage = {
   getItem: (key: string) => window.localStorage.getItem(key),
@@ -37,7 +31,6 @@ export default function QuestionsPage() {
   const defaultTopicId = topics[0]?.id || "design-patterns";
 
   const [selectedTopic, setSelectedTopic] = useState<TopicId>(defaultTopicId as TopicId);
-  const [difficulty, setDifficulty] = useState<Difficulty>("medium");
   const [count, setCount] = useState("8");
   const [focus, setFocus] = useState("");
   const [programmingLanguage, setProgrammingLanguage] = useState<ProgrammingLanguage | "all">("all");
@@ -58,11 +51,9 @@ export default function QuestionsPage() {
         generateWithHistory({
           examId,
           topicId: initialTopic,
-          difficulty: "medium",
           count: 8,
         }, questionHistory.current),
       );
-      setDifficulty("medium");
       setCount("8");
       setFocus("");
       setProgrammingLanguage("all");
@@ -83,7 +74,6 @@ export default function QuestionsPage() {
       generateWithHistory({
         examId,
         topicId: selectedTopic,
-        difficulty,
         count: Number(count),
         focus,
         programmingLanguage: programmingLanguage === "all" ? undefined : programmingLanguage,
@@ -98,7 +88,7 @@ export default function QuestionsPage() {
     const payload = questions
       .map((question, index) => {
         return [
-          `${index + 1}. [${question.topicName} / ${question.difficultyLabel}] ${question.prompt}`,
+          `${index + 1}. [${question.topicName}] ${question.prompt}`,
           `정답: ${question.answer}`,
           `해설: ${question.explanation}`,
         ].join("\n");
@@ -177,22 +167,6 @@ export default function QuestionsPage() {
               )}
 
               <div className="field">
-                <span className="label">난이도</span>
-                <div className="segmented">
-                  {difficulties.map((item) => (
-                    <button
-                      className={difficulty === item.value ? "active" : ""}
-                      key={item.value}
-                      onClick={() => setDifficulty(item.value)}
-                      type="button"
-                    >
-                      {item.label}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              <div className="field">
                 <label htmlFor="count">문항 수</label>
                 <select className="select" id="count" onChange={(event) => setCount(event.target.value)} value={count}>
                   {[5, 8, 10, 15, 20, 30, 50].map((value) => (
@@ -227,8 +201,8 @@ export default function QuestionsPage() {
 
               <div className="architecture">
                 한 세트 안에서는 같은 문제가 나오지 않습니다. 출제 기록은 이 브라우저에 저장하며,
-                아직 보지 않은 문제를 먼저 출제합니다. 전체 문제를 한 번씩 출제하면 오래된 문제부터 복습합니다.
-                선택 난이도의 새 문제가 부족하면 다른 난이도도 포함합니다.
+                전체 문제에서 아직 보지 않은 문제를 먼저 출제합니다. 모두 풀면 오래된 문제부터 복습하며,
+                표시 순서는 문제를 생성할 때마다 무작위로 섞습니다.
               </div>
             </div>
           </aside>
@@ -241,7 +215,6 @@ export default function QuestionsPage() {
                   <p>{displayedTopic.description}</p>
                   <p aria-live="polite">생성된 문제 {questions.length}문항 · 주제별 문제 {getAvailableQuestionCount(examId, displayedTopic.id)}개</p>
                 </div>
-                <span className="badge warning">선택 난이도: {difficulties.find((d) => d.value === difficulty)?.label}</span>
               </div>
             )}
 
@@ -270,7 +243,6 @@ export default function QuestionsPage() {
                     <div className="question-head">
                       <div className="badges">
                         <span className="badge">Q{index + 1}</span>
-                        <span className="badge">{question.difficultyLabel}</span>
                         <span className="badge">{question.typeLabel}</span>
                       </div>
                     </div>

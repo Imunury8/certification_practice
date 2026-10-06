@@ -51,7 +51,8 @@ export interface Topic {
 export interface QuestionTemplate {
   topicId: TopicId;
   keyword: string;
-  difficulty: Difficulty;
+  // Legacy authoring metadata; generation and display do not use difficulty.
+  difficulty?: Difficulty;
   type: QuestionType;
   prompt: string;
   answer: string;
@@ -62,17 +63,15 @@ export interface QuestionTemplate {
   answerFormat?: "code-output";
 }
 
-export interface Question extends QuestionTemplate {
+export interface Question extends Omit<QuestionTemplate, "difficulty"> {
   id: string;
   topicName: string;
   typeLabel: string;
-  difficultyLabel: string;
 }
 
 export interface GenerateQuestionInput {
   examId?: ExamId;
   topicId: TopicId;
-  difficulty: Difficulty;
   count: number;
   focus?: string;
   previousQuestionIds?: string[];

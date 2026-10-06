@@ -465,10 +465,6 @@ type Material = [name: string, formula: string, quota: number, unit: string];
 function materials(topicId: TopicId, rows: Material[]) {
   add(topicId, "easy", rows.map(([name, formula]) => [name, `${name}의 화학식은?`, formula, `${name}의 화학식은 ${formula}입니다.`]));
   add(topicId, "medium", rows.map(([name, , quota, unit]) => [name, `${name}의 지정수량은 몇 ${unit}인가? 숫자만 쓰시오.`, String(quota), `${name}이 속한 품명군의 지정수량은 ${quota}${unit}입니다.`]));
-  add(topicId, "hard", rows.map(([name, , quota, unit], index) => {
-    const multiple = index % 3 + 2;
-    return [name, `${name} ${quota * multiple}${unit}을 저장한다. 지정수량을 ${quota}${unit}으로 적용할 때 배수는? 숫자만 쓰시오.`, String(multiple), `저장량/지정수량=${quota * multiple}/${quota}=${multiple}배입니다.`];
-  }));
 }
 materials("hazmat-class1", [
   ["아염소산나트륨", "NaClO2", 50, "kg"], ["염소산칼륨", "KClO3", 50, "kg"],
@@ -528,7 +524,7 @@ const liquidQuotas: [string, number][] = [
   ["수용성 제3석유류", 4000], ["제4석유류", 6000], ["동식물유류", 10000],
 ];
 add("hazmat-class4", "medium", liquidQuotas.map(([name, quota]) => [name, `${name}의 지정수량은 몇 L인가? 숫자만 쓰시오.`, String(quota), `${name}은 ${quota}L입니다.`]));
-add("hazmat-class4", "hard", liquidQuotas.map(([name, quota], index) => {
+add("hazmat-class4", "hard", liquidQuotas.slice(0, 2).map(([name, quota], index) => {
   const multiple = index % 4 + 2;
   return [name, `${name} ${quota * multiple}L를 저장한다. 지정수량 ${quota}L일 때 배수는? 숫자만 쓰시오.`, String(multiple), `${quota * multiple}/${quota}=${multiple}배입니다.`];
 }));
@@ -549,7 +545,7 @@ add("hazmat-class5", "easy", [
 ]);
 const class5Quotas: [string, number][] = [["유기과산화물", 10], ["질산에스테르류", 10], ["니트로화합물", 200], ["히드록실아민", 100], ["히드록실아민염류", 100]];
 add("hazmat-class5", "medium", class5Quotas.map(([name, quota]) => [name, `${name}의 지정수량은 몇 kg인가? 숫자만 쓰시오.`, String(quota), `${name}은 ${quota}kg입니다.`]));
-for (const multiple of [2, 4, 5]) {
+for (const multiple of [2]) {
   add("hazmat-class5", "hard", class5Quotas.map(([name, quota]) => [name, `${name} ${quota * multiple}kg을 저장한다. 지정수량 ${quota}kg일 때 배수는? 숫자만 쓰시오.`, String(multiple), `${quota * multiple}/${quota}=${multiple}배입니다.`]));
 }
 add("hazmat-class5", "medium", [
@@ -571,7 +567,7 @@ add("hazmat-class6", "medium", [
   ["접촉 금지", "제6류 산화성 액체는 가연물·유기물 접촉을 피해야 하는가? 예/아니오로 쓰시오.", "예", "산화 반응으로 화재·폭발 위험이 커질 수 있습니다."],
   ["과산화수소", "과산화수소의 산소 발생 분해를 촉진할 수 있어 혼입을 피하는 것은 금속 불순물인가 순수한 물인가?", "금속 불순물", "불순물은 분해 반응을 촉진할 수 있습니다."],
 ]);
-for (const multiple of [5, 6, 8, 10]) {
+for (const multiple of [5]) {
   add("hazmat-class6", "hard", [["지정수량 배수", `지정수량을 모두 300kg으로 적용하는 과염소산과 질산을 각각 ${multiple * 150}kg 저장한다. 총 배수는? 숫자만 쓰시오.`, String(multiple), `각 ${multiple * 150}/300배를 합해 ${multiple}배입니다.`]]);
 }
 add("hazmat-class6", "hard", [
@@ -602,7 +598,7 @@ add("fire-extinction", "medium", [
   ["인화점", "외부 불꽃을 가까이 대었을 때 순간적으로 불이 붙는 최저 온도는?", "인화점", "점화원 없이 스스로 붙는 발화점과 구분합니다."],
   ["연소점", "점화 후 지속적인 연소를 유지할 수 있는 최저 온도는?", "연소점", "순간적으로 인화하는 온도와 지속 연소 온도를 구분합니다."],
 ]);
-for (const [lower, upper] of [[2, 10], [3, 15], [4, 12], [5, 20]]) {
+for (const [lower, upper] of [[2, 10]]) {
   add("fire-extinction", "hard", [["위험도 계산", `연소하한 ${lower}%, 연소상한 ${upper}%일 때 H=(상한-하한)/하한으로 정의한 위험도는?`, String((upper - lower) / lower), `H=(${upper}-${lower})/${lower}=${(upper - lower) / lower}입니다.`]]);
 }
 add("fire-extinction", "hard", [
@@ -623,9 +619,9 @@ add("hazmat-law", "medium", [
   ["안전관리자", "위험물안전관리자를 선임한 경우 선임일로부터 며칠 이내 신고하는가? 숫자만 쓰시오.", "14", "위험물안전관리법 제15조에 따라 선임일로부터 14일 이내에 신고해야 합니다."],
   ["안전관리자", "안전관리자 해임·퇴직 후 후임자 선임 기한은 며칠인가? 숫자만 쓰시오.", "30", "위험물안전관리법 제15조에 따라 해임·퇴직한 날부터 30일 이내에 선임해야 합니다."],
 ]);
-for (const [gasoline, kerosene] of [[200, 1000], [400, 3000], [800, 2000], [1000, 4000], [1200, 1000], [600, 5000], [200, 6000], [1400, 2000]]) {
+for (const [gasoline, kerosene] of [[200, 1000], [400, 3000]]) {
   add("hazmat-law", "hard", [["혼합 배수", `휘발유 ${gasoline}L(지정수량 200L)와 등유 ${kerosene}L(지정수량 1000L)를 저장한다. 총 지정수량 배수는? 숫자만 쓰시오.`, String(gasoline / 200 + kerosene / 1000), `${gasoline}/200+${kerosene}/1000=${gasoline / 200 + kerosene / 1000}배입니다.`]]);
 }
-for (const [quantity, quota] of [[25, 50], [100, 200], [150, 300], [750, 1000], [200, 400], [4000, 2000], [9000, 6000], [25000, 10000]]) {
+for (const [quantity, quota] of [[25, 50], [750, 1000], [9000, 6000]]) {
   add("hazmat-law", "hard", [["지정수량 배수", `저장량 ${quantity}L, 지정수량 ${quota}L로 주어진 위험물의 지정수량 배수는?`, String(quantity / quota), `${quantity}/${quota}=${quantity / quota}배입니다.`]]);
 }
