@@ -41,6 +41,8 @@ export default function QuestionsPage() {
   const [requestedCount, setRequestedCount] = useState(8);
   const questionHistory = useRef<Record<string, string[]>>({});
   const initializedExam = useRef<ExamId | null>(null);
+  const resultsRef = useRef<HTMLElement | null>(null);
+  const shouldScrollToResults = useRef(false);
 
   useEffect(() => {
     if (topics.length > 0 && initializedExam.current !== examId) {
@@ -63,6 +65,17 @@ export default function QuestionsPage() {
     }
   }, [examId, topics]);
 
+  useEffect(() => {
+    if (!shouldScrollToResults.current || !resultsRef.current) return;
+    shouldScrollToResults.current = false;
+    const headerHeight = document.querySelector(".topbar")?.getBoundingClientRect().height ?? 0;
+    const top = resultsRef.current.getBoundingClientRect().top + window.scrollY - headerHeight - 16;
+    window.scrollTo({
+      top: Math.max(0, top),
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth",
+    });
+  }, [questions]);
+
   const activeTopic = useMemo(
     () => topics.find((topic) => topic.id === selectedTopic) ?? topics[0],
     [selectedTopic, topics],
@@ -82,6 +95,7 @@ export default function QuestionsPage() {
     setRequestedCount(Number(count));
     setAnswers({});
     setShowResult({});
+    shouldScrollToResults.current = true;
   }
 
   function handleExport() {
@@ -207,7 +221,7 @@ export default function QuestionsPage() {
             </div>
           </aside>
 
-          <section className="results">
+          <section className="results" ref={resultsRef}>
             {displayedTopic && (
               <div className="panel toolbar">
                 <div>
