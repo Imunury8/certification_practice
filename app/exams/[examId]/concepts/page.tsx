@@ -404,6 +404,26 @@ export default function ConceptsPage() {
 }
 
 function getConceptGroups(section: ConceptSection): ConceptGroup[] {
+  if (section.topicId === "database") {
+    return [
+      {
+        title: "트랜잭션과 ACID",
+        description: "원자성·일관성·격리성·영속성을 계좌 이체 예시로 이해합니다.",
+        items: section.items.filter((item) => item.term === "Transaction ACID"),
+      },
+      {
+        title: "데이터베이스 이상 현상",
+        description: "중복 데이터가 만드는 삽입·삭제·갱신 이상을 구분합니다.",
+        items: section.items.filter((item) => item.term === "Database Anomaly"),
+      },
+      {
+        title: "정규화와 반정규화",
+        description: "단계별 테이블 분해 예시와 성능을 위한 반정규화를 학습합니다.",
+        items: section.items.filter((item) => item.term !== "Transaction ACID" && item.term !== "Database Anomaly"),
+      },
+    ].filter((group) => group.items.length > 0);
+  }
+
   if (section.topicId.startsWith("hazmat-class")) {
     const mnemonicItem = section.items.find(
       (item) => item.term.includes("암기") || item.term.includes("개요")
