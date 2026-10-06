@@ -206,7 +206,8 @@ export default function ConceptsPage() {
           </div>
         </section>
 
-        <div className="theory-tabs panel" role="tablist" aria-label="이론 주제">
+        <div className="concept-layout">
+        <div className="theory-tabs panel" role="tablist" aria-label="이론 주제" aria-orientation="vertical">
           {[{ id: "analysis", name: "기출 분석" }, ...conceptSections.map((section) => ({
             id: section.topicId,
             name: topics.find((topic) => topic.id === section.topicId)?.name || section.topicId,
@@ -223,8 +224,8 @@ export default function ConceptsPage() {
               onClick={() => selectTopic(tab.id)}
               onKeyDown={(event) => {
                 let next = index;
-                if (event.key === "ArrowRight") next = (index + 1) % tabs.length;
-                else if (event.key === "ArrowLeft") next = (index - 1 + tabs.length) % tabs.length;
+                if (event.key === "ArrowRight" || event.key === "ArrowDown") next = (index + 1) % tabs.length;
+                else if (event.key === "ArrowLeft" || event.key === "ArrowUp") next = (index - 1 + tabs.length) % tabs.length;
                 else if (event.key === "Home") next = 0;
                 else if (event.key === "End") next = tabs.length - 1;
                 else return;
@@ -236,6 +237,7 @@ export default function ConceptsPage() {
           ))}
         </div>
 
+        <div className="theory-tab-content">
         {activeTopic === "analysis" && <section id="analysis" role="tabpanel" tabIndex={0} className="trend-analysis panel" aria-labelledby="tab-analysis">
           <div className="trend-analysis-head">
             <div className="trend-icon"><BarChart3 size={22} /></div>
@@ -286,7 +288,6 @@ export default function ConceptsPage() {
         </section>}
 
 
-        <div className="theory-tab-content">
 
           {/* 우측 본문 콘텐츠 */}
           <div className="concept-content">
@@ -395,6 +396,7 @@ export default function ConceptsPage() {
               );
             })}
           </div>
+        </div>
         </div>
       </div>
     </main>
