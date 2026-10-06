@@ -150,54 +150,42 @@ export default function ConceptsPage() {
   const conceptSections = CONCEPTS_BY_EXAM[examId] || CONCEPTS_BY_EXAM["infosec-practical"];
   const topics = TOPICS_BY_EXAM[examId] || TOPICS_BY_EXAM["infosec-practical"];
 
-  const [activeTopic, setActiveTopic] = useState<string>("");
+  const [selectedAnchor, setSelectedAnchor] = useState("");
+  const activeTopic = conceptSections.find((section) =>
+    section.topicId === selectedAnchor || section.items.some((item) => getConceptAnchor(section.topicId, item.term) === selectedAnchor)
+  )?.topicId || "analysis";
 
   useEffect(() => {
-    const observerOptions = {
-      root: null,
-      rootMargin: "-100px 0px -70% 0px",
-      threshold: 0,
+    const syncHash = () => {
+      try {
+        setSelectedAnchor(decodeURIComponent(window.location.hash.slice(1)));
+      } catch {
+        setSelectedAnchor("");
+      }
     };
-
-    const observerCallback = (entries: IntersectionObserverEntry[]) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveTopic(entry.target.id);
-        }
-      });
+    syncHash();
+    window.addEventListener("hashchange", syncHash);
+    window.addEventListener("popstate", syncHash);
+    return () => {
+      window.removeEventListener("hashchange", syncHash);
+      window.removeEventListener("popstate", syncHash);
     };
+  }, [examId]);
 
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
+  useEffect(() => {
+    if (!selectedAnchor || selectedAnchor === activeTopic) return;
+    const frame = requestAnimationFrame(() => document.getElementById(selectedAnchor)?.scrollIntoView({ block: "start" }));
+    return () => cancelAnimationFrame(frame);
+  }, [selectedAnchor, activeTopic]);
 
-    conceptSections.forEach((section) => {
-      const el = document.getElementById(section.topicId);
-      if (el) observer.observe(el);
-    });
-
-    if (conceptSections.length > 0) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setActiveTopic(conceptSections[0].topicId);
-    }
-
-    return () => observer.disconnect();
-  }, [conceptSections]);
+  const selectTopic = (topicId: string) => {
+    setSelectedAnchor(topicId);
+    window.history.pushState(null, "", `#${topicId}`);
+  };
 
   const handleSidebarClick = (e: React.MouseEvent<HTMLAnchorElement>, topicId: string) => {
     e.preventDefault();
-    const target = document.getElementById(topicId);
-    if (target) {
-      const isMobile = window.innerWidth <= 900;
-      const isTiny = window.innerWidth <= 620;
-      const headerHeight = isTiny ? 96 : 66;
-      const navHeight = isMobile ? 50 : 0;
-      const offsetTop = target.getBoundingClientRect().top + window.scrollY - (headerHeight + navHeight + 16);
-      window.scrollTo({
-        top: offsetTop,
-        behavior: "smooth",
-      });
-      setActiveTopic(topicId);
-      window.history.pushState(null, "", `#${topicId}`);
-    }
+    selectTopic(topicId);
   };
 
   const isHazmat = examId === "hazmat-industrial";
@@ -218,7 +206,37 @@ export default function ConceptsPage() {
           </div>
         </section>
 
-        <section className="trend-analysis panel" aria-labelledby="trend-analysis-title">
+        <div className="theory-tabs panel" role="tablist" aria-label="이론 주제">
+          {[{ id: "analysis", name: "기출 분석" }, ...conceptSections.map((section) => ({
+            id: section.topicId,
+            name: topics.find((topic) => topic.id === section.topicId)?.name || section.topicId,
+          }))].map((tab, index, tabs) => (
+            <button
+              type="button"
+              role="tab"
+              id={`tab-${tab.id}`}
+              aria-controls={tab.id}
+              aria-selected={activeTopic === tab.id}
+              tabIndex={activeTopic === tab.id ? 0 : -1}
+              className={`theory-tab ${activeTopic === tab.id ? "active" : ""}`}
+              key={tab.id}
+              onClick={() => selectTopic(tab.id)}
+              onKeyDown={(event) => {
+                let next = index;
+                if (event.key === "ArrowRight") next = (index + 1) % tabs.length;
+                else if (event.key === "ArrowLeft") next = (index - 1 + tabs.length) % tabs.length;
+                else if (event.key === "Home") next = 0;
+                else if (event.key === "End") next = tabs.length - 1;
+                else return;
+                event.preventDefault();
+                selectTopic(tabs[next].id);
+                document.getElementById(`tab-${tabs[next].id}`)?.focus();
+              }}
+            >{tab.name}</button>
+          ))}
+        </div>
+
+        {activeTopic === "analysis" && <section id="analysis" role="tabpanel" tabIndex={0} className="trend-analysis panel" aria-labelledby="tab-analysis">
           <div className="trend-analysis-head">
             <div className="trend-icon"><BarChart3 size={22} /></div>
             <div>
@@ -265,75 +283,14 @@ export default function ConceptsPage() {
           </div>
 
           <p className="trend-caution">분석 참고: {trend.caution}</p>
-        </section>
+        </section>}
 
-        {isHazmat && (
-          <nav className="hazmat-quick-nav panel" aria-label="위험물 류별 빠른 바로가기">
-            <div className="quick-nav-header">
-              <Flame size={18} className="flame-icon" />
-              <span>류별 빠른 바로가기</span>
-            </div>
-            <div className="hazmat-quick-pills">
-              {conceptSections.map((sec) => {
-                const topic = topics.find((item) => item.id === sec.topicId);
-                const meta = HAZMAT_META_MAP[sec.topicId];
-                const isActive = activeTopic === sec.topicId;
-                const isClass = sec.topicId.startsWith("hazmat-class");
 
-                return (
-                  <a
-                    href={`#${sec.topicId}`}
-                    key={sec.topicId}
-                    className={`hazmat-pill ${meta?.badgeClass || ""} ${isActive ? "active" : ""}`}
-                    onClick={(e) => handleSidebarClick(e, sec.topicId)}
-                  >
-                    {isClass ? (
-                      <>
-                        <span className="pill-badge">{meta?.classNum}</span>
-                        <span className="pill-title">{topic?.name.replace(/제[1-6]류\s*/, "")}</span>
-                      </>
-                    ) : (
-                      <>
-                        <span className="pill-badge sub">{meta?.classNum || "기타"}</span>
-                        <span className="pill-title">{topic?.name}</span>
-                      </>
-                    )}
-                  </a>
-                );
-              })}
-            </div>
-          </nav>
-        )}
-
-        <div className="concept-layout">
-          {/* 좌측 스티키 사이드바 */}
-          <aside className="concept-sidebar panel">
-            <div className="sidebar-title">
-              <h3>{isHazmat ? "위험물 목차" : "이론 목차"}</h3>
-            </div>
-            <nav className="sidebar-nav">
-              {conceptSections.map((section) => {
-                const topic = topics.find((item) => item.id === section.topicId);
-                const meta = HAZMAT_META_MAP[section.topicId];
-                const isActive = activeTopic === section.topicId;
-                return (
-                  <a
-                    href={`#${section.topicId}`}
-                    key={section.topicId}
-                    className={`sidebar-link ${isActive ? "active" : ""} ${meta ? `sidebar-${meta.badgeClass}` : ""}`}
-                    onClick={(e) => handleSidebarClick(e, section.topicId)}
-                  >
-                    {meta?.classNum && <span className="sidebar-num-tag">{meta.classNum}</span>}
-                    <span className="sidebar-link-text">{topic?.name || section.topicId}</span>
-                  </a>
-                );
-              })}
-            </nav>
-          </aside>
+        <div className="theory-tab-content">
 
           {/* 우측 본문 콘텐츠 */}
           <div className="concept-content">
-            {conceptSections.map((section) => {
+            {conceptSections.filter((section) => section.topicId === activeTopic).map((section) => {
               const topic = topics.find((item) => item.id === section.topicId);
               const meta = HAZMAT_META_MAP[section.topicId];
               return (
@@ -341,6 +298,9 @@ export default function ConceptsPage() {
                   className={`panel concept-section ${meta ? `section-${meta.badgeClass}` : ""}`}
                   key={section.topicId}
                   id={section.topicId}
+                  role="tabpanel"
+                  tabIndex={0}
+                  aria-labelledby={`tab-${section.topicId}`}
                 >
                   <div className="section-heading">
                     {meta ? (
