@@ -82,11 +82,11 @@ export default function QuestionsPage() {
   );
   const displayedTopic = topics.find((topic) => topic.id === questions[0]?.topicId) ?? activeTopic;
 
-  function handleGenerate() {
+  function handleGenerate(topicId: TopicId) {
     setQuestions(
       generateWithHistory({
         examId,
-        topicId: selectedTopic,
+        topicId,
         count: Number(count),
         focus,
         programmingLanguage: programmingLanguage === "all" ? undefined : programmingLanguage,
@@ -125,7 +125,7 @@ export default function QuestionsPage() {
         <section className="intro compact">
           <div>
             <h1>문제 풀이</h1>
-            <p>정답을 입력하고 제출하면 정답 여부와 해설을 확인할 수 있습니다. 새 문제를 우선 출제합니다.</p>
+            <p>출제 주제를 누르면 문제가 바로 생성됩니다. 정답을 제출하면 채점 결과와 해설을 확인할 수 있습니다.</p>
           </div>
         </section>
 
@@ -156,6 +156,7 @@ export default function QuestionsPage() {
                       onClick={(e) => {
                         e.stopPropagation();
                         setSelectedTopic(topic.id as TopicId);
+                        handleGenerate(topic.id as TopicId);
                       }}
                       type="button"
                     >
@@ -203,7 +204,7 @@ export default function QuestionsPage() {
               </div>
 
               <div className="actions">
-                <button className="primary-button" onClick={handleGenerate} type="button">
+                <button className="primary-button" onClick={() => handleGenerate(selectedTopic)} type="button">
                   <Sparkles size={18} />
                   문제 생성
                 </button>
@@ -242,7 +243,7 @@ export default function QuestionsPage() {
               <div className="panel empty-state">
                 <div>
                   <FileQuestion size={40} />
-                  <p>설정을 선택하고 문제를 생성하세요.</p>
+                  <p>출제 주제를 선택하면 문제가 바로 생성됩니다.</p>
                 </div>
               </div>
             ) : (
