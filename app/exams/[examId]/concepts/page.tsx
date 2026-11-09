@@ -40,7 +40,7 @@ const HAZMAT_META_MAP: Record<string, HazmatMeta> = {
   "hazmat-class1": {
     classNum: "제1류",
     badge: "제1류 산화성 고체",
-    desc: "불연성 고체 · 강산화제 · 산소 공급원 · 대량 주수소화(무기과산화물 제외)",
+    desc: "산화성 고체 · 연소 촉진 · 알칼리금속 과산화물은 물과의 반응에 주의",
     badgeClass: "c1",
   },
   "hazmat-class2": {
@@ -52,43 +52,43 @@ const HAZMAT_META_MAP: Record<string, HazmatMeta> = {
   "hazmat-class3": {
     classNum: "제3류",
     badge: "제3류 자연발화 및 금수성",
-    desc: "물기엄금 · 자연발화 · 가연성 가스 발생 · 마른모래 질식소화(황린 제외)",
+    desc: "자연발화성 · 금수성 · 황린과 나트륨의 물 반응 비교",
     badgeClass: "c3",
   },
   "hazmat-class4": {
     classNum: "제4류",
     badge: "제4류 인화성 액체",
-    desc: "화기엄금 · 증기비중 > 1 바닥체류 · 포/분말/CO2 질식소화(직사주수 금지)",
+    desc: "인화점 · 수용성과 비수용성 · 증기 체류와 점화원",
     badgeClass: "c4",
   },
   "hazmat-class5": {
     classNum: "제5류",
     badge: "제5류 자기반응성 물질",
-    desc: "자체산소 함유 내부연소 · 폭발성 · 질식소화 불가 · 대량 주수 냉각소화",
+    desc: "가열분해와 폭발 위험 · 시험에 따른 제1종과 제2종",
     badgeClass: "c5",
   },
   "hazmat-class6": {
     classNum: "제6류",
     badge: "제6류 산화성 액체",
-    desc: "불연성 액체 · 강산화제 · 비중 > 1 · 부식성 · 대량 주수 희석소화",
+    desc: "산화성 액체 · 과염소산 · 과산화수소 · 질산",
     badgeClass: "c6",
   },
   "fire-extinction": {
     classNum: "소화",
     badge: "화재예방과 소화방법",
-    desc: "연소의 3/4요소 · 3대 온도 비교 · 4대 소화원리 · 소화약제 분해 반응식",
+    desc: "연소의 조건과 종류 · 3대 온도 · 소화 원리 · 분말소화약제",
     badgeClass: "fire",
   },
   "hazmat-general-chem": {
     classNum: "화학",
     badge: "일반화학 핵심이론",
-    desc: "이상기체 상태방정식 · 기체 밀도/비중 계산 · 산화환원 반응 판정",
+    desc: "몰과 반응식 · 농도 · 기체 · 산·염기 · 산화환원 · 작용기",
     badgeClass: "chem",
   },
   "hazmat-law": {
     classNum: "법령",
     badge: "위험물안전관리법 및 기준",
-    desc: "지정수량 배수 계산식 · 류별 혼재 기준 · 주의사항 게시판 색상 · 안전관리 규정",
+    desc: "지정수량 배수 · 제조소와 저장소 · 설치 허가 · 안전관리자와 정기점검",
     badgeClass: "law",
   },
 };
@@ -146,14 +146,23 @@ function DetailItem({ detail }: { detail: string }) {
 export default function ConceptsPage() {
   const params = useParams();
   const examId = (params?.examId as ExamId) || "infosec-practical";
+  const isHazmat = examId === "hazmat-industrial";
 
   const conceptSections = CONCEPTS_BY_EXAM[examId] || CONCEPTS_BY_EXAM["infosec-practical"];
   const topics = TOPICS_BY_EXAM[examId] || TOPICS_BY_EXAM["infosec-practical"];
+  const analysisTab = { id: "analysis", name: "기출 분석" };
+  const conceptTabs = conceptSections.map((section) => ({
+    id: section.topicId,
+    name: section.title ?? topics.find((topic) => topic.id === section.topicId)?.name ?? section.topicId,
+  }));
+  const tabs = isHazmat ? [...conceptTabs, analysisTab] : [analysisTab, ...conceptTabs];
 
   const [selectedAnchor, setSelectedAnchor] = useState("");
-  const activeTopic = conceptSections.find((section) =>
-    section.topicId === selectedAnchor || section.items.some((item) => getConceptAnchor(section.topicId, item.term) === selectedAnchor)
-  )?.topicId || "analysis";
+  const activeTopic = selectedAnchor === "analysis"
+    ? "analysis"
+    : conceptSections.find((section) =>
+      section.topicId === selectedAnchor || section.items.some((item) => getConceptAnchor(section.topicId, item.term) === selectedAnchor)
+    )?.topicId ?? tabs[0].id;
 
   useEffect(() => {
     const syncHash = () => {
@@ -188,7 +197,6 @@ export default function ConceptsPage() {
     selectTopic(topicId);
   };
 
-  const isHazmat = examId === "hazmat-industrial";
   const trend = EXAM_TRENDS[examId];
 
   return (
@@ -197,10 +205,10 @@ export default function ConceptsPage() {
       <div className="shell">
         <section className="intro compact">
           <div>
-            <h1>{isHazmat ? "위험물 류별 핵심 이론" : "개념 설명"}</h1>
+            <h1>{isHazmat ? "위험물산업기사 필기 이론" : "개념 설명"}</h1>
             <p>
               {isHazmat
-                ? "제1류~제6류 위험물별 성질, 지정수량, 암기 공식과 소화 원리를 류별로 일목요연하게 정리했습니다."
+                ? "필기 입문에서 시험 구조를 확인하고, 화학 계산과 소화 원리, 제1류~제6류 위험물의 성질과 취급을 공부하세요."
                 : "자격증 시험의 빈출 핵심 개념을 정리했습니다. 문제 풀이 전에 핵심 단서를 먼저 확인하세요."}
             </p>
           </div>
@@ -208,10 +216,7 @@ export default function ConceptsPage() {
 
         <div className="concept-layout">
         <div className="theory-tabs panel" role="tablist" aria-label="이론 주제" aria-orientation="vertical">
-          {[{ id: "analysis", name: "기출 분석" }, ...conceptSections.map((section) => ({
-            id: section.topicId,
-            name: topics.find((topic) => topic.id === section.topicId)?.name || section.topicId,
-          }))].map((tab, index, tabs) => (
+          {tabs.map((tab, index) => (
             <button
               type="button"
               role="tab"
@@ -318,8 +323,8 @@ export default function ConceptsPage() {
                           <span className="class-key-desc">{meta.desc}</span>
                         </div>
                       )}
-                      <h2>{topic?.name}</h2>
-                      <p>{topic?.description}</p>
+                      <h2>{section.title ?? topic?.name}</h2>
+                      <p>{section.description ?? topic?.description}</p>
                     </div>
                   </div>
 
@@ -350,7 +355,7 @@ export default function ConceptsPage() {
                         {group.items.map((item) => (
                           <div className="concept-card" key={item.term} id={getConceptAnchor(section.topicId, item.term)}>
                             <div className="card-head">
-                              <h4>{item.term}</h4>
+                              <h4>{item.title ?? item.term}</h4>
                             </div>
                             <p className="concept-summary">{item.summary}</p>
                             <ul className="concept-detail-list">
@@ -380,7 +385,7 @@ export default function ConceptsPage() {
                             {item.imageUrl && (
                               <div className="concept-image-container">
                                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                                <img src={item.imageUrl} alt={item.term} className="concept-image" />
+                                <img src={item.imageUrl} alt={item.title ?? item.term} className="concept-image" />
                               </div>
                             )}
                             <div className="tip">
@@ -392,6 +397,16 @@ export default function ConceptsPage() {
                       </div>
                     </div>
                   ))}
+                  {section.sources && (
+                    <footer className="concept-sources">
+                      <h3>참고 자료</h3>
+                      <ul>
+                        {section.sources.map((source) => (
+                          <li key={source.href}><a href={source.href} target="_blank" rel="noreferrer">{source.label}</a></li>
+                        ))}
+                      </ul>
+                    </footer>
+                  )}
                 </article>
               );
             })}
@@ -469,23 +484,29 @@ function getConceptGroups(section: ConceptSection): ConceptGroup[] {
         item.term.includes("소화원리")) &&
         !fireClassItems.includes(item)
     );
+    const agentItems = section.items.filter((item) => item.term.includes("소화약제"));
     const equipmentItems = section.items.filter(
-      (item) => !fireClassItems.includes(item) && !theoryItems.includes(item)
+      (item) => !fireClassItems.includes(item) && !theoryItems.includes(item) && !agentItems.includes(item)
     );
     return [
       {
-        title: "A·B·C·D·K 화재 분류 & 소화 원칙",
-        description: "일반(A급)·유류(B급)·전기(C급)·금속(D급)·주방(K급) 화재별 대상 가연물, 표시 색상 및 필수 소화 원칙입니다.",
-        items: fireClassItems,
-      },
-      {
-        title: "연소 이론 및 4대 소화 메커니즘",
-        description: "연소의 3·4요소, 인화점·연소점·발화점 비교 및 제거·질식·냉각·억제 소화 원리, 폭발 위험도(H)입니다.",
+        title: "연소의 종류와 소화 원리",
+        description: "고체·액체·기체가 타는 방식, 인화점·연소점·발화점, 네 가지 소화 원리를 구분합니다.",
         items: theoryItems,
       },
       {
+        title: "A·B·C·D·K 화재 분류 & 소화 원칙",
+        description: "일반(A급)·유류(B급)·전기(C급)·금속(D급)·주방(K급) 화재를 구분하고 적응성이 있는 소화기를 확인합니다.",
+        items: fireClassItems,
+      },
+      {
+        title: "분말소화약제와 가스계 소화약제",
+        description: "분말 제1~4종의 주성분, 적응 화재, 열분해 반응과 소화 작용을 익힙니다.",
+        items: agentItems,
+      },
+      {
         title: "소화전·스프링클러 설비 규정 & 수원·소요단위 계산",
-        description: "옥내·옥외소화전 방수량·압력·수원(저수량) 공식, 분말 반응식 및 건축물·위험물 소요단위 계산법입니다.",
+        description: "옥내·옥외소화전 방수량과 압력, 수원 및 소화설비 소요단위 계산을 다룹니다.",
         items: equipmentItems,
       },
     ].filter((g) => g.items.length > 0);
@@ -496,7 +517,10 @@ function getConceptGroups(section: ConceptSection): ConceptGroup[] {
       (item) => item.term.includes("지정수량 배수") || item.term.includes("혼재")
     );
     const facilityItems = section.items.filter(
-      (item) => item.term.includes("표지") || item.term.includes("안전관리자")
+      (item) => /^(제조소|옥내저장소|옥외저장소)의/.test(item.term)
+    );
+    const managementItems = section.items.filter(
+      (item) => /표지|안전관리자|설치 허가|정기점검/.test(item.term)
     );
     const difficultyItems = section.items.filter(
       (item) => item.term.includes("소화난이도") || item.term.includes("경보")
@@ -508,9 +532,14 @@ function getConceptGroups(section: ConceptSection): ConceptGroup[] {
         items: calcItems,
       },
       {
-        title: "표지·게시판 규격 및 안전관리자 규정",
-        description: "제조소 표지, 법정 5대 안내판, 주의사항 3종 색상 규격 및 안전관리자 선임 기한입니다.",
+        title: "제조소·옥내저장소·옥외저장소의 기준",
+        description: "시설별 용도, 안전거리와 보유공지, 구조 및 저장 가능 품목을 비교합니다.",
         items: facilityItems,
+      },
+      {
+        title: "시설 설치와 운영 관리",
+        description: "설치 허가, 완공검사, 표지와 게시판, 안전관리자 선임 및 정기점검을 다룹니다.",
+        items: managementItems,
       },
       {
         title: "소화난이도 등급 및 경보·피난설비",

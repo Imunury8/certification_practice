@@ -265,7 +265,7 @@ export default function PlannerPage() {
                   return <article key={session.id} className={`${styles.session} ${completion ? styles.completed : ""}`} style={{ borderLeftColor: EXAM_COLORS[session.examId] }}>
                     <div className={styles.sessionTop}><span className={styles.sessionTime}><Clock3 size={14} />{session.startTime} – {session.endTime}<small>{duration(session.startTime, session.endTime)}</small></span><span className={completion ? styles.doneBadge : styles.pendingBadge}>{completion ? "완료" : "예정"}</span></div>
                     <p className={styles.subject}>{EXAM_SHORT_NAMES[session.examId]} <span>· {concept?.topicName}</span></p>
-                    <h3>{concept?.term || "개념을 찾을 수 없어요"}</h3>
+                    <h3>{concept?.title ?? concept?.term ?? "개념을 찾을 수 없어요"}</h3>
                     {concept && <p className={styles.summary}>{concept.summary}</p>}
                     {completion && <p className={styles.nextReview}><CheckCircle2 size={14} /> {readableDate(completion.completedOn)} 완료 · 다음 복습 {progress.nextReviewOn && readableDate(progress.nextReviewOn)}</p>}
                     <div className={styles.sessionActions}>
@@ -309,7 +309,7 @@ export default function PlannerPage() {
                     {suggestedConcept ? <>
                       <span className={isReview ? styles.reviewBadge : styles.newBadge}>{isReview ? "다시 볼 시간 · 복습" : "아직 공부하지 않은 개념"}</span>
                       <p className={styles.recommendedTopic}>{suggestedConcept.topicName}</p>
-                      <h4>{suggestedConcept.term}</h4>
+                      <h4>{suggestedConcept.title ?? suggestedConcept.term}</h4>
                       <p>{suggestedConcept.summary}</p>
                       <Link href={conceptHref(suggestedConcept)} className={styles.textButton}>이론 정리 열기 <ArrowRight size={14} /></Link>
                     </> : <p>{ready ? "지금 추천할 새 개념이나 복습 개념이 없어요. 다른 과목을 선택해보세요." : "학습 기록을 불러오고 있어요."}{ready && nextReview && ` 다음 복습은 ${readableDate(nextReview)}부터예요.`}</p>}

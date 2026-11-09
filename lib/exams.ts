@@ -28,7 +28,7 @@ export const EXAMS: ExamInfo[] = [
   {
     id: "hazmat-industrial",
     name: "위험물산업기사",
-    description: "위험물의 성상 및 취급, 화재예방 및 소화방법, 위험물안전관리법령, 일반화학 핵심 개념과 기출 변형 학습.",
+    description: "위험물산업기사 필기 입문. 물질의 물리·화학적 성질, 화재예방과 소화방법, 위험물의 성질 및 취급을 공부합니다.",
     category: "산업기사",
   },
 ];

@@ -95,7 +95,7 @@ export const PLANNER_CONCEPTS: PlannerConcept[] = EXAMS.flatMap((exam) =>
       id: getConceptId(exam.id, section.topicId, concept.term),
       examId: exam.id,
       topicId: section.topicId,
-      topicName: TOPICS_BY_EXAM[exam.id].find((topic) => topic.id === section.topicId)?.name ?? section.topicId,
+      topicName: section.title ?? TOPICS_BY_EXAM[exam.id].find((topic) => topic.id === section.topicId)?.name ?? section.topicId,
     })),
   ),
 );

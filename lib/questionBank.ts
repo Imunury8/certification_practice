@@ -148,13 +148,13 @@ export const TOPICS_BY_EXAM: Record<ExamId, Topic[]> = {
     {
       id: "hazmat-class1",
       name: "제1류 위험물 (산화성 고체)",
-      description: "아염소산/염소산/과염소산/무기과산화물 등 산화성 고체의 성질, 지정수량, 무기과산화물 금수성 소화.",
+      description: "산화성 고체의 성질과 지정수량, 알칼리금속 과산화물의 물 반응.",
       keywords: ["아염소산염류(50kg)", "염소산염류(50kg)", "무기과산화물(50kg)", "질산염류(300kg)", "과망간산염류(1000kg)", "주수소화", "O2 방출"],
     },
     {
       id: "hazmat-class2",
       name: "제2류 위험물 (가연성 고체)",
-      description: "황화린/적린/유황, 철분/금속분/마그네슘, 인화성 고체의 착화 위험, 지정수량 및 수소 가스 발생 금수성.",
+      description: "황화인·적린·황, 철분·금속분·마그네슘, 인화성고체의 지정수량과 소화설비 적응성.",
       keywords: ["황화린(100kg)", "적린(100kg)", "유황(100kg)", "철분/마그네슘(500kg)", "인화성고체(1000kg)", "H2 방출"],
     },
     {
@@ -172,25 +172,25 @@ export const TOPICS_BY_EXAM: Record<ExamId, Topic[]> = {
     {
       id: "hazmat-class5",
       name: "제5류 위험물 (자기반응성 물질)",
-      description: "유기과산화물, 질산에스테르류, 니트로화합물의 자체 산소 함유 특성, 대량 주수 냉각소화, 지정수량.",
-      keywords: ["유기과산화물(10kg)", "질산에스테르류(10kg)", "히드록실아민(100kg)", "니트로화합물(200kg)", "질식소화 불가"],
+      description: "자기반응성 물질의 가열분해 위험, 주요 품명, 시험 등급별 지정수량과 냉각소화.",
+      keywords: ["제1종(10kg)", "제2종(100kg)", "유기과산화물", "질산에스터류", "나이트로화합물", "하이드록실아민"],
     },
     {
       id: "hazmat-class6",
       name: "제6류 위험물 (산화성 액체)",
-      description: "과염소산, 과산화수소(36wt% 이상), 질산(비중 1.49 이상)의 불연성·강산화성 특성, 물 희석소화, 지정수량 300kg.",
-      keywords: ["과염소산(300kg)", "과산화수소(300kg)", "질산(300kg)", "희석소화", "비중 > 1"],
+      description: "산화성 액체의 지정수량 300kg, 과산화수소의 농도 기준과 질산의 비중 기준.",
+      keywords: ["과염소산(300kg)", "과산화수소(36중량% 이상)", "질산(비중 1.49 이상)", "냉각소화"],
     },
     {
       id: "fire-extinction",
       name: "화재예방과 소화방법",
-      description: "연소의 3요소/4요소, 인화점·연소점·발화점, 4대 소화원리, A·B·C·D급 화재, 분말소화약제, 위험도 공식.",
+      description: "연소의 요소와 종류, 인화점·연소점·발화점, 소화 원리, A·B·C·D·K급 화재, 분말소화약제와 위험도 계산을 다룹니다.",
       keywords: ["연소 4요소", "인화점<연소점<발화점", "제거/질식/냉각/억제", "제3종 분말", "위험도 H"],
     },
     {
       id: "hazmat-law",
       name: "위험물안전관리법령 및 배수·혼재",
-      description: "지정수량 배수 계산, 차량 혼재 가능 기준(423/524/61), 안전표지 및 주의사항 게시판 색상, 안전관리자 선임.",
+      description: "지정수량 배수와 혼재, 제조소·옥내저장소·옥외저장소 기준, 설치 허가와 시설 관리.",
       keywords: ["지정수량 배수 합산", "혼재 4-2-3 / 5-2-4 / 6-1", "물기엄금(청색)", "화기엄금(적색)", "재선임 30일/신고 14일"],
     },
   ]
@@ -1126,7 +1126,7 @@ export const QUESTION_BANK_BY_EXAM: Record<ExamId, QuestionTemplate[]> = {
       type: "short",
       prompt: "제1류 위험물(산화성 고체) 중 과산화나트륨 등 알칼리금속의 무기과산화물이 물과 반응했을 때 분출되는 가스는 무엇인가?",
       answer: "산소",
-      explanation: "무기과산화물은 물과 격렬히 반응하여 가열 반응을 일으키며 산소(O2) 가스를 분출하므로 주수소화가 엄격히 금지됩니다."
+      explanation: "과산화나트륨 등 알칼리금속 과산화물이 물과 반응하면 열과 산소(O2)가 발생하므로 주수를 피합니다."
     },
     {
       topicId: "hazmat-class1",
@@ -1153,9 +1153,9 @@ export const QUESTION_BANK_BY_EXAM: Record<ExamId, QuestionTemplate[]> = {
       keyword: "금속분",
       difficulty: "easy",
       type: "short",
-      prompt: "제2류 위험물 중 철분, 금속분, 마그네슘 화재 시 물을 뿌리면 안 되는 이유는 어떤 가스가 발생하여 폭발을 유발하기 때문인가?",
+      prompt: "제2류 위험물인 마그네슘이 뜨거운 물이나 산과 반응하면 발생할 수 있는 가연성 기체는?",
       answer: "수소",
-      explanation: "철분, 마그네슘, 금속분은 물이나 산과 반응하여 가연성 폭발 가스인 수소(H2)를 발생시키므로 마른모래 등으로 질식소화해야 합니다."
+      explanation: "마그네슘이 물이나 산과 반응하면 수소(H2)가 생길 수 있습니다. 철분·금속분·마그네슘을 저장하거나 취급할 때는 물과 산의 접촉을 피합니다."
     },
 
     // 제3류 위험물 (자연발화성 및 금수성)
@@ -1164,7 +1164,7 @@ export const QUESTION_BANK_BY_EXAM: Record<ExamId, QuestionTemplate[]> = {
       keyword: "보호액",
       difficulty: "easy",
       type: "short",
-      prompt: "제3류 위험물 중 발화점이 약 34℃로 낮아 공기 중에서 자연발화하므로 반드시 물(약알칼리성) 속에 침하시켜 저장해야 하는 물질은?",
+      prompt: "제3류 위험물 중 공기 중에서 자연발화할 수 있어 공기를 차단하기 위해 물속에 보관하는 대표 물질은?",
       answer: "황린",
       explanation: "황린(P4)은 공기 중 자연발화성이 있어 물속에 보관합니다. 반면 칼륨과 나트륨은 물과 반응하므로 등유나 경유 속에 보관합니다."
     },
@@ -1204,7 +1204,7 @@ export const QUESTION_BANK_BY_EXAM: Record<ExamId, QuestionTemplate[]> = {
       type: "scenario",
       prompt: "제4류 위험물 중 인화점이 21℃ 미만인 제1석유류에 해당하며, 물에 잘 녹는 수용성 물질(예: 아세톤)의 지정수량은 얼마인가?",
       answer: "400L",
-      explanation: "제4류 위험물 제1석유류의 지정수량은 비수용성 200L, 수용성 400L 입니다. (아세톤, 피리딘 등이 대표적인 수용성 제1석유류입니다.)"
+      explanation: "제1석유류의 지정수량은 비수용성 200L, 수용성 400L입니다. 아세톤은 수용성 예시입니다."
     },
     {
       topicId: "hazmat-class4",
@@ -1213,7 +1213,7 @@ export const QUESTION_BANK_BY_EXAM: Record<ExamId, QuestionTemplate[]> = {
       type: "short",
       prompt: "제4류 위험물 중 특수인화물에 속하며, 가연성 증기 발생을 억제하기 위해 수조(물속)에 넣어 보관하는 물질의 명칭은?",
       answer: "이황화탄소",
-      explanation: "이황화탄소(CS2)는 인화점(-30℃), 비점(46℃), 발화점(90℃)이 매우 낮으나 물보다 무겁고(비중 1.26) 물에 녹지 않아 물속에 보관합니다."
+      explanation: "이황화탄소(CS2)는 물보다 무겁고 물에 잘 녹지 않아 수봉 보관의 예로 나옵니다. 발화점 100℃ 이하 조건에 해당하는 특수인화물입니다."
     },
 
     // 제5류 위험물 (자기반응성 물질)
@@ -1222,18 +1222,18 @@ export const QUESTION_BANK_BY_EXAM: Record<ExamId, QuestionTemplate[]> = {
       keyword: "자기반응성",
       difficulty: "medium",
       type: "short",
-      prompt: "분자 구조 자체 내에 산소를 함유하고 있어 외부의 공기(산소) 공급 없이도 가열, 충격에 의해 폭발적으로 반응하는 위험물 분류는 몇 류 인가?",
+      prompt: "고시로 정하는 시험에서 폭발 위험이나 가열 시 격렬한 분해 위험을 나타내는 자기반응성 물질은 몇 류 위험물인가?",
       answer: "제5류 위험물",
-      explanation: "제5류 위험물은 자기반응성 물질로 유기과산화물, 질산에스테르류 등이 속하며 자체 연소 및 폭발 위험성이 높습니다."
+      explanation: "제5류는 자기반응성 물질이며 유기과산화물과 질산에스터류 등이 해당합니다."
     },
     {
       topicId: "hazmat-class5",
-      keyword: "소화원칙",
+      keyword: "지정수량",
       difficulty: "hard",
       type: "short",
-      prompt: "제5류 위험물 화재 시 모래를 덮거나 CO2 소화약제를 방출하는 질식소화가 효과가 없는 이유는 무엇 때문인가?",
-      answer: "자체 산소 함유",
-      explanation: "제5류 위험물은 분자 내에 결합된 산소를 자체 보유하고 있어 외부 공기를 차단해도 내부 연소가 지속되므로 대량 주수 냉각소화만 유효합니다."
+      prompt: "제5류 위험물 제1종 5kg과 제2종 50kg을 같은 장소에 저장한다. 지정수량 배수의 합은 얼마인가? 숫자만 쓰시오.",
+      answer: "1",
+      explanation: "제1종의 지정수량은 10kg, 제2종은 100kg입니다. 5/10 + 50/100 = 1배로 지정수량 이상에 해당합니다."
     },
 
     // 제6류 위험물 (산화성 액체)
@@ -1242,18 +1242,18 @@ export const QUESTION_BANK_BY_EXAM: Record<ExamId, QuestionTemplate[]> = {
       keyword: "산화성액체",
       difficulty: "easy",
       type: "short",
-      prompt: "과염소산, 과산화수소(36wt% 이상), 질산(비중 1.49 이상)의 3개 품명으로 구성되며, 불연성이지만 강산화제인 위험물 분류는 몇 류인가?",
+      prompt: "과염소산, 과산화수소(36중량% 이상), 질산(비중 1.49 이상)이 대표적인 산화성 액체는 몇 류 위험물인가?",
       answer: "제6류 위험물",
-      explanation: "제6류 위험물은 산화성 액체로 모두 불연성이며 비중이 1보다 크고 물에 잘 녹으며 지정수량은 300kg입니다."
+      explanation: "제6류 위험물은 산화성 액체이며 지정수량은 300kg입니다."
     },
     {
       topicId: "hazmat-class6",
       keyword: "과산화수소",
       difficulty: "medium",
       type: "short",
-      prompt: "제6류 위험물인 과산화수소의 용기 마개에는 내부 압력 상승으로 인한 폭발을 방지하기 위해 어떤 조치를 취해야 하는가?",
-      answer: "구멍 뚫린 마개",
-      explanation: "과산화수소는 보관 중 미량씩 산소(O2) 가스로 분해되므로 용기 내압 상승을 막기 위해 구멍이 있는 마개(통기성 캡)를 사용합니다."
+      prompt: "과산화수소 용액이 제6류 위험물로 분류되는 농도 하한은 몇 중량%인가? 숫자만 쓰시오.",
+      answer: "36",
+      explanation: "과산화수소는 농도 36중량% 이상일 때 제6류 위험물에 해당하며 지정수량은 300kg입니다."
     },
 
     // 화재예방과 소화방법
@@ -1262,27 +1262,28 @@ export const QUESTION_BANK_BY_EXAM: Record<ExamId, QuestionTemplate[]> = {
       keyword: "A·B·C·D급 화재",
       difficulty: "easy",
       type: "short",
-      prompt: "가솔린, 등유, 아세톤 등 인화성 액체가 타는 화재로, 소화 후 재를 남기지 않으며 황색 표지를 사용하는 화재의 분류는?",
+      prompt: "가솔린, 등유, 아세톤 등 인화성 액체가 타는 유류화재의 분류는?",
       answer: "B급 화재",
-      explanation: "B급 화재는 유류화재(황색), A급은 일반화재(백색), C급은 전기화재(청색), D급은 금속화재(무색)로 분류됩니다."
+      explanation: "인화성 액체나 가연성 가스가 타는 유류화재는 B급입니다."
     },
     {
       topicId: "fire-extinction",
-      keyword: "화재 표시 색상",
+      keyword: "소화기 적응 화재 표시",
       difficulty: "easy",
       type: "short",
-      prompt: "화재 분류에 따른 소화기 표시 색상에서 일반화재(A급), 유류화재(B급), 전기화재(C급)의 원형 표시 색상을 순서대로 쓰시오.",
-      answer: "백색, 황색, 청색",
-      explanation: "A급(일반)은 백색, B급(유류)은 황색, C급(전기)은 청색입니다. D급(금속)은 별도 표시 색상이 없습니다(무색)."
+      prompt: "목재·종이가 타는 일반화재, 인화성 액체가 타는 유류화재, 통전 중인 배전반에서 발생한 전기화재의 적응 소화기 표시 문자를 순서대로 쓰시오.",
+      answer: "A, B, C",
+      explanation: "NFTC 101에서 일반화재는 A, 유류화재는 B, 전기화재는 C로 표시합니다."
     },
     {
       topicId: "fire-extinction",
       keyword: "D급 금속화재",
       difficulty: "medium",
       type: "short",
-      prompt: "나트륨, 마그네슘 등 금속 화재(D급 화재) 발생 시 물이나 CO2 소화기를 사용할 수 없다. 이때 사용할 수 있는 가장 대표적인 질식 소화약제는 무엇인가?",
-      answer: "마른모래",
-      explanation: "금속 화재(D급)는 물이나 CO2와 접촉 시 수소나 일산화탄소 발생 및 폭발 위험이 있으므로 마른모래(건조사), 팽창질석, 팽창진주암으로 덮어 질식소화해야 합니다."
+      prompt: "가연성 금속인 마그네슘 합금 화재에 적응성이 있는 소화기에는 어떤 등급 문자가 표시되는가?",
+      answer: "D",
+      answerAliases: ["D급", "D급 화재"],
+      explanation: "NFTC 101에서 금속화재용 소화기는 D로 표시합니다. 소화약제의 적응성은 금속의 종류에 따라 확인합니다."
     },
     {
       topicId: "fire-extinction",
@@ -1300,16 +1301,16 @@ export const QUESTION_BANK_BY_EXAM: Record<ExamId, QuestionTemplate[]> = {
       type: "short",
       prompt: "ABC급 화재(일반·유류·전기)에 두루 사용할 수 있는 제3종 분말소화약제의 주성분은 무엇인가?",
       answer: "제일인산암모늄",
-      explanation: "제3종 분말소화약제는 제일인산암모늄(NH4H2PO4)이 주성분이며, 분홍색(담홍색)을 띠고 억제 및 질식, 부착막 형성 소화 효과를 가집니다."
+      explanation: "제3종은 인산염계 분말이며 대표 주성분은 제일인산암모늄(NH4H2PO4)입니다. 화염의 연쇄반응을 억제하고 고체 표면에 피막을 형성합니다."
     },
     {
       topicId: "fire-extinction",
       keyword: "소화원리",
       difficulty: "hard",
       type: "scenario",
-      prompt: "밀폐 공간에 이산화탄소 소화약제를 방출하여 공기 중의 산소 농도를 15% 이하로 떨어뜨려 불을 끄는 소화 원리는 무엇인가?",
+      prompt: "이산화탄소를 방출해 산소 농도를 낮추고 연소를 멈추게 하는 소화 원리는 무엇인가?",
       answer: "질식소화",
-      explanation: "산소 공급원을 차단하거나 공기 중 산소 농도를 지속 연소 불가 수준(약 15% 이하)으로 떨어뜨려 소화하는 방식을 질식소화라고 합니다."
+      explanation: "산소 공급을 차단하거나 산소 농도를 낮춰 연소를 멈추게 하는 방식은 질식소화입니다."
     },
     {
       topicId: "fire-extinction",
@@ -1370,7 +1371,7 @@ export const QUESTION_BANK_BY_EXAM: Record<ExamId, QuestionTemplate[]> = {
       keyword: "간이소화용구 능력단위",
       difficulty: "easy",
       type: "short",
-      prompt: "간이소화용구(제4소화설비) 중 삽 1개를 상비한 '마른모래 50L 1포'의 소화능력단위는 몇 단위인가?",
+      prompt: "위험물안전관리법 시행규칙 별표 17에 따른 마른모래 50 L(삽 1개 포함)의 소화 능력단위는 얼마인가?",
       answer: "0.5단위",
       explanation: "마른모래 50L(삽 1개 상비)는 0.5단위이며, 팽창질석 또는 팽창진주암 160L(삽 1개 상비)는 1.0단위, 수조 80L(물통 3개 포함)는 1.5단위입니다."
     },
@@ -1399,9 +1400,9 @@ export const QUESTION_BANK_BY_EXAM: Record<ExamId, QuestionTemplate[]> = {
       keyword: "혼재 기준",
       difficulty: "hard",
       type: "short",
-      prompt: "위험물 운반 차량에서 제1류 위험물과 함께 혼합 적재(혼재)하여 운반할 수 있는 위험물은 제몇 류인가?",
+      prompt: "시행규칙 별표 19의 혼재표를 적용할 때 제1류 위험물과 한 차량에 함께 적재할 수 있는 다른 류의 위험물은?",
       answer: "제6류",
-      explanation: "혼재 가능 기준에서 제1류(산화성 고체)는 제6류(산화성 액체)와만 혼재가 가능합니다 (1-6)."
+      explanation: "부표 2에 따르면 제1류와 제6류를 함께 적재할 수 있습니다. 지정수량의 10분의 1 이하인 위험물에는 이 혼재표를 적용하지 않습니다."
     },
     {
       topicId: "hazmat-law",
@@ -1410,7 +1411,7 @@ export const QUESTION_BANK_BY_EXAM: Record<ExamId, QuestionTemplate[]> = {
       type: "short",
       prompt: "제1류 알칼리금속과산화물 또는 제3류 금수성 물질을 취급하는 장소의 주의사항 게시판 색상 기준(바탕색과 문자색)을 바르게 적으시오.",
       answer: "청색 바탕에 백색 문자",
-      explanation: "물기엄금 게시판은 '청색 바탕에 백색 문자'로 기재해야 합니다. (화기엄금은 적색 바탕에 백색 문자, 화기주의는 황색 바탕에 흑색 문자)"
+      explanation: "물기엄금은 청색 바탕에 백색 문자입니다. 화기주의와 화기엄금은 모두 적색 바탕에 백색 문자입니다."
     },
     {
       topicId: "hazmat-law",
@@ -1419,7 +1420,7 @@ export const QUESTION_BANK_BY_EXAM: Record<ExamId, QuestionTemplate[]> = {
       type: "scenario",
       prompt: "위험물 제조소등의 관계인이 안전관리자를 해임하거나 퇴직한 경우, 해임/퇴직한 날로부터 며칠 이내에 후임 안전관리자를 재선임해야 하는가?",
       answer: "30일",
-      explanation: "위험물안전관리자 해임 또는 퇴직 시 30일 이내에 재선임해야 하며, 선임 후 14일 이내에 소방서장에게 신고해야 합니다."
+      explanation: "해임 또는 퇴직한 날부터 30일 이내에 다시 선임하고 선임한 날부터 14일 이내에 소방본부장 또는 소방서장에게 신고합니다."
     }
   ]
 };

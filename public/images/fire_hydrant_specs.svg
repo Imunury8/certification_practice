@@ -44,8 +44,8 @@
       <line x1="0" y1="86" x2="244" y2="86" stroke="#dcfce7" stroke-width="1" />
 
       <!-- 4. 비상전원 -->
-      <text x="0" y="106" font-family="'Pretendard', sans-serif" font-size="12" font-weight="700" fill="#475569">비상전원 작동시간</text>
-      <text x="244" y="106" font-family="'Pretendard', sans-serif" font-size="14" font-weight="900" fill="#0f172a" text-anchor="end">30분 이상</text>
+      <text x="0" y="106" font-family="'Pretendard', sans-serif" font-size="12" font-weight="700" fill="#475569">비상전원</text>
+      <text x="244" y="106" font-family="'Pretendard', sans-serif" font-size="14" font-weight="900" fill="#0f172a" text-anchor="end">설치</text>
       <line x1="0" y1="116" x2="244" y2="116" stroke="#dcfce7" stroke-width="1" />
     </g>
 
@@ -81,12 +81,12 @@
 
       <!-- 3. 수평거리 -->
       <text x="0" y="76" font-family="'Pretendard', sans-serif" font-size="12" font-weight="700" fill="#475569">설치 수평거리</text>
-      <text x="244" y="76" font-family="'Pretendard', sans-serif" font-size="14" font-weight="900" fill="#0f172a" text-anchor="end">40 m 이하 (각 부분)</text>
+      <text x="244" y="76" font-family="'Pretendard', sans-serif" font-size="14" font-weight="900" fill="#0f172a" text-anchor="end">40 m 이하 (건물 1·2층)</text>
       <line x1="0" y1="86" x2="244" y2="86" stroke="#dbeafe" stroke-width="1" />
 
-      <!-- 4. 소화전함 -->
-      <text x="0" y="106" font-family="'Pretendard', sans-serif" font-size="12" font-weight="700" fill="#475569">소화전함 설치거리</text>
-      <text x="244" y="106" font-family="'Pretendard', sans-serif" font-size="14" font-weight="900" fill="#0f172a" text-anchor="end">보행 5 m 이내</text>
+      <!-- 4. 소화전 설치 개수 -->
+      <text x="0" y="106" font-family="'Pretendard', sans-serif" font-size="12" font-weight="700" fill="#475569">최소 설치 개수</text>
+      <text x="244" y="106" font-family="'Pretendard', sans-serif" font-size="14" font-weight="900" fill="#0f172a" text-anchor="end">2개</text>
       <line x1="0" y1="116" x2="244" y2="116" stroke="#dbeafe" stroke-width="1" />
     </g>
 
@@ -111,18 +111,18 @@
     <!-- 세부 지표 목록 -->
     <g transform="translate(18, 70)">
       <!-- 1. 방수압력 -->
-      <text x="0" y="16" font-family="'Pretendard', sans-serif" font-size="12" font-weight="700" fill="#475569">헤드 선단 방수압력</text>
+      <text x="0" y="16" font-family="'Pretendard', sans-serif" font-size="12" font-weight="700" fill="#475569">기본 방사압력</text>
       <text x="244" y="16" font-family="'Pretendard', sans-serif" font-size="14" font-weight="900" fill="#7e22ce" text-anchor="end">100 kPa 이상</text>
       <line x1="0" y1="26" x2="244" y2="26" stroke="#f3e8ff" stroke-width="1" />
 
       <!-- 2. 방수량 -->
-      <text x="0" y="46" font-family="'Pretendard', sans-serif" font-size="12" font-weight="700" fill="#475569">헤드 선단 방수량</text>
+      <text x="0" y="46" font-family="'Pretendard', sans-serif" font-size="12" font-weight="700" fill="#475569">기본 방수량</text>
       <text x="244" y="46" font-family="'Pretendard', sans-serif" font-size="14" font-weight="900" fill="#7e22ce" text-anchor="end">80 L/min 이상</text>
       <line x1="0" y1="56" x2="244" y2="56" stroke="#f3e8ff" stroke-width="1" />
 
-      <!-- 3. 방호면적 -->
-      <text x="0" y="76" font-family="'Pretendard', sans-serif" font-size="12" font-weight="700" fill="#475569">헤드 배치 기준</text>
-      <text x="244" y="76" font-family="'Pretendard', sans-serif" font-size="14" font-weight="900" fill="#0f172a" text-anchor="end">정방형/장방형 배치</text>
+      <!-- 3. 살수밀도 기준 충족 시 -->
+      <text x="0" y="76" font-family="'Pretendard', sans-serif" font-size="12" font-weight="700" fill="#475569">살수밀도 예외</text>
+      <text x="244" y="76" font-family="'Pretendard', sans-serif" font-size="14" font-weight="900" fill="#0f172a" text-anchor="end">50 kPa · 56 L/min</text>
       <line x1="0" y1="86" x2="244" y2="86" stroke="#f3e8ff" stroke-width="1" />
 
       <!-- 4. 작동방식 -->
