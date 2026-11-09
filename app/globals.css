@@ -718,7 +718,7 @@ button {
   background: var(--panel-soft);
 }
 
-:is(#hazmat-properties, #fire-extinction, #hazmat-law) .concept-example-table :is(th, td) {
+:is(#hazmat-properties, #hazmat-general-chem, #fire-extinction, #hazmat-law) .concept-example-table :is(th, td) {
   white-space: normal;
   word-break: keep-all;
 }

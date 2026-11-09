@@ -82,7 +82,7 @@ const HAZMAT_META_MAP: Record<string, HazmatMeta> = {
   "hazmat-general-chem": {
     classNum: "화학",
     badge: "일반화학 핵심이론",
-    desc: "몰과 반응식 · 농도 · 기체 · 산·염기 · 산화환원 · 작용기",
+    desc: "화학물질 명명법 · 몰과 반응식 · 농도 · 기체 · 산·염기 · 산화환원",
     badgeClass: "chem",
   },
   "hazmat-law": {
