@@ -126,7 +126,7 @@ function ConceptCard({ item, anchor, showDiagramFirst }: {
         <div className="concept-example-tables">
           {item.exampleTables.map((example) => (
             <div className="concept-table-scroll" key={example.caption} tabIndex={0} role="region" aria-label={example.caption}>
-              <table className="concept-example-table">
+              <table className={`concept-example-table${example.wide ? " concept-example-table-wide" : ""}`}>
                 <caption>{example.caption}</caption>
                 <thead>
                   <tr>{example.headers.map((header) => <th scope="col" key={header}>{header}</th>)}</tr>
@@ -517,7 +517,7 @@ function getConceptGroups(section: ConceptSection): ConceptGroup[] {
       (item) => item.term.includes("지정수량 배수") || item.term.includes("혼재")
     );
     const facilityItems = section.items.filter(
-      (item) => /^(제조소|옥내저장소|옥외저장소)의/.test(item.term)
+      (item) => /^(제조소(?:등)?|옥내저장소|옥외저장소)의/.test(item.term)
     );
     const managementItems = section.items.filter(
       (item) => /표지|안전관리자|설치 허가|정기점검/.test(item.term)

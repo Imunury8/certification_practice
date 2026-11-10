@@ -732,6 +732,10 @@ button {
   line-height: 1.6;
 }
 
+.concept-example-table-wide {
+  min-width: 620px;
+}
+
 .concept-example-table caption {
   padding: 0 0 8px;
   text-align: left;
