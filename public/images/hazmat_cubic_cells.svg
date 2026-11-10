@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="355" viewBox="0 0 720 355" role="img" aria-labelledby="title desc">
+  <title id="title">단순·체심·면심 입방의 단위격자</title>
+  <desc id="desc">세 입방 구조 모두 꼭짓점 여덟 곳에 원자가 있습니다. 단순 입방의 유효 원자 수는 1개입니다. 체심 입방은 정육면체 내부 중심을 더해 2개입니다. 면심 입방은 앞쪽과 뒤쪽을 포함한 여섯 면의 중심을 각각 반 개씩 더해 4개입니다.</desc>
+  <defs>
+    <g id="cube">
+      <path d="M42 111 78 76H180L144 111Z" fill="#e3edf9"/>
+      <path d="M144 111 180 76V176L144 211Z" fill="#d6e4f4"/>
+      <path d="M42 111H144V211H42Z" fill="#edf4fc"/>
+      <path d="M78 76V176H180M78 176 42 211" fill="none" stroke="#788da7" stroke-width="2.5" stroke-dasharray="5 5"/>
+      <path d="M42 111 78 76H180V176L144 211H42V111H144L180 76M144 111V211" fill="none" stroke="#56728e" stroke-width="2.5" stroke-linejoin="round"/>
+      <g fill="#244e7c" stroke="#fff" stroke-width="2">
+        <circle cx="42" cy="111" r="7.5"/>
+        <circle cx="144" cy="111" r="7.5"/>
+        <circle cx="42" cy="211" r="7.5"/>
+        <circle cx="144" cy="211" r="7.5"/>
+        <circle cx="78" cy="76" r="7.5"/>
+        <circle cx="180" cy="76" r="7.5"/>
+        <circle cx="180" cy="176" r="7.5"/>
+        <circle cx="78" cy="176" r="7.5" fill="#edf4fc" stroke="#244e7c" stroke-dasharray="3 2"/>
+      </g>
+    </g>
+  </defs>
+
+  <rect width="720" height="355" rx="18" fill="#eff4f9"/>
+  <g font-family="system-ui, Malgun Gothic, sans-serif" text-anchor="middle">
+    <g transform="translate(16)">
+      <rect y="17" width="224" height="285" rx="13" fill="#fff" stroke="#bad0e7"/>
+      <text x="112" y="53" fill="#244e7c" font-size="29" font-weight="750">단순 입방</text>
+      <use href="#cube"/>
+      <text x="112" y="255" fill="#142b45" font-size="34" font-weight="800">1개</text>
+      <text x="112" y="286" fill="#435972" font-size="23">8 × 1/8</text>
+    </g>
+    <g transform="translate(248)">
+      <rect y="17" width="224" height="285" rx="13" fill="#fff" stroke="#bad0e7"/>
+      <text x="112" y="53" fill="#244e7c" font-size="29" font-weight="750">체심 입방</text>
+      <use href="#cube"/>
+      <circle cx="111" cy="143.5" r="11" fill="#17806c" stroke="#fff" stroke-width="2.5"/>
+      <text x="112" y="255" fill="#142b45" font-size="34" font-weight="800">2개</text>
+      <text x="112" y="286" fill="#435972" font-size="23">8 × 1/8 + 1</text>
+    </g>
+    <g transform="translate(480)">
+      <rect y="17" width="224" height="285" rx="13" fill="#fff" stroke="#bad0e7"/>
+      <text x="112" y="53" fill="#244e7c" font-size="29" font-weight="750">면심 입방</text>
+      <use href="#cube"/>
+      <g fill="#dcf0eb" stroke="#147461" stroke-width="2.5" stroke-dasharray="3.5 2.5">
+        <circle cx="60" cy="143.5" r="9.5"/>
+        <circle cx="129" cy="126" r="9.5"/>
+        <circle cx="111" cy="193.5" r="9.5"/>
+      </g>
+      <g fill="#17806c" stroke="#fff" stroke-width="2">
+        <circle cx="93" cy="161" r="9.5"/>
+        <circle cx="111" cy="93.5" r="9.5"/>
+        <circle cx="162" cy="143.5" r="9.5"/>
+      </g>
+      <text x="112" y="255" fill="#142b45" font-size="34" font-weight="800">4개</text>
+      <text x="112" y="286" fill="#435972" font-size="23">8 × 1/8 + 6 × 1/2</text>
+    </g>
+    <g fill="#435972" font-size="23" font-weight="650" text-anchor="start">
+      <circle cx="98" cy="328" r="7.5" fill="#244e7c"/>
+      <text x="117" y="336">꼭짓점</text>
+      <circle cx="270" cy="328" r="9" fill="#17806c"/>
+      <text x="289" y="336">체심·면심</text>
+      <circle cx="474" cy="328" r="9" fill="#eff4f9" stroke="#435972" stroke-width="2.5" stroke-dasharray="3.5 2.5"/>
+      <text x="493" y="336">가려진 위치</text>
+    </g>
+  </g>
+</svg>

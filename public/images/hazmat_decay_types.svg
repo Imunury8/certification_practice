@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="430" viewBox="0 0 720 430" role="img" aria-labelledby="title desc">
+  <title id="title">방사성 붕괴에서 방출·흡수되는 입자와 딸핵의 변화</title>
+  <desc id="desc">A는 질량수, Z는 원자번호입니다. 알파 붕괴는 헬륨핵을 방출하며 A가 4, Z가 2 감소합니다. 베타 마이너스 붕괴는 전자를 방출하며 A는 그대로이고 Z가 1 증가합니다. 베타 플러스 붕괴는 양전자를 방출하고, 전자포획은 궤도전자를 흡수합니다. 두 경우 모두 A는 그대로이고 Z가 1 감소합니다. 감마 전이는 감마 광자를 방출하며 A와 Z는 그대로이고 핵의 에너지가 낮아집니다.</desc>
+  <rect width="720" height="430" rx="18" fill="#eff4f9"/>
+  <g font-family="system-ui, Malgun Gothic, sans-serif">
+    <g fill="#435972" font-size="23" font-weight="700">
+      <text x="38" y="45">붕괴 방식</text>
+      <text x="206" y="45">방출·흡수</text>
+      <text x="477" y="45">딸핵의 변화</text>
+    </g>
+
+    <rect x="18" y="62" width="684" height="60" rx="12" fill="#e3edf9" stroke="#bad0e7"/>
+    <g fill="#244e7c" font-size="25">
+      <text x="38" y="101" font-weight="800">α 붕괴</text>
+      <text x="206" y="101">헬륨핵 방출</text>
+      <text x="477" y="101" font-weight="750">A − 4　Z − 2</text>
+    </g>
+
+    <rect x="18" y="130" width="684" height="60" rx="12" fill="#dcf0eb" stroke="#add3ca"/>
+    <g fill="#145c50" font-size="25">
+      <text x="38" y="169" font-weight="800">β⁻ 붕괴</text>
+      <text x="206" y="169">e⁻ 전자 방출</text>
+      <text x="477" y="169" font-weight="750">A 그대로　Z + 1</text>
+    </g>
+
+    <rect x="18" y="198" width="684" height="116" rx="12" fill="#fff1e1" stroke="#e8c4a4"/>
+    <path d="M32 256h397" fill="none" stroke="#e8c4a4" stroke-width="2"/>
+    <rect x="455" y="213" width="232" height="86" rx="10" fill="#ffe5cb"/>
+    <g fill="#79451f" font-size="25">
+      <text x="38" y="236" font-weight="800">β⁺ 붕괴</text>
+      <text x="206" y="236">e⁺ 양전자 <tspan font-weight="800">방출</tspan></text>
+      <text x="38" y="291" font-weight="800">전자포획</text>
+      <text x="206" y="291">e⁻ 궤도전자 <tspan font-weight="800">흡수</tspan></text>
+      <text x="477" y="265" font-weight="750">A 그대로　Z − 1</text>
+    </g>
+
+    <rect x="18" y="322" width="684" height="65" rx="12" fill="#e3edf9" stroke="#bad0e7"/>
+    <g fill="#244e7c" font-size="25">
+      <text x="38" y="364" font-weight="800">γ 전이</text>
+      <text x="206" y="364">γ 광자 방출</text>
+      <text x="477" y="349" font-weight="750">A·Z 그대로</text>
+      <text x="477" y="376" font-size="23">핵 에너지 감소</text>
+    </g>
+
+    <text x="360" y="416" text-anchor="middle" fill="#435972" font-size="23" font-weight="650">A 질량수　·　Z 원자번호</text>
+  </g>
+</svg>

@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="458" viewBox="0 0 720 458" role="img" aria-labelledby="title desc">
+  <title id="title">알코올의 산화와 에스터화로 연결되는 작용기</title>
+  <desc id="desc">1차 알코올인 에탄올(CH₃CH₂OH)을 산화하면 아세트알데하이드(CH₃CHO)를 얻을 수 있고, 더 산화하면 아세트산(CH₃COOH)이 됩니다. 2차 알코올인 2-프로판올(CH₃CH(OH)CH₃)을 산화하면 케톤인 아세톤(CH₃COCH₃)이 됩니다. 아세트산(CH₃COOH)과 에탄올(CH₃CH₂OH)의 에스터화는 아세트산 에틸(CH₃COOCH₂CH₃)과 물(H₂O)을 생성하는 가역 반응입니다.</desc>
+  <rect width="720" height="458" rx="18" fill="#eff4f9"/>
+  <g font-family="system-ui, Malgun Gothic, sans-serif">
+    <rect x="18" y="18" width="684" height="134" rx="13" fill="#e3edf9" stroke="#bad0e7"/>
+    <g fill="#244e7c">
+      <text x="36" y="51" font-size="25" font-weight="800">1차 알코올 → 알데하이드 → 카복실산</text>
+      <g fill="#f7fbff">
+        <rect x="34" y="64" width="181" height="74" rx="9"/>
+        <rect x="271" y="64" width="178" height="74" rx="9"/>
+        <rect x="505" y="64" width="181" height="74" rx="9"/>
+      </g>
+      <g text-anchor="middle">
+        <g font-size="27" font-weight="800">
+          <text x="124" y="96">CH₃CH₂OH</text>
+          <text x="360" y="96">CH₃CHO</text>
+          <text x="596" y="96">CH₃COOH</text>
+        </g>
+        <g font-size="21">
+          <text x="124" y="125">에탄올</text>
+          <text x="360" y="125">아세트알데하이드</text>
+          <text x="596" y="125">아세트산</text>
+        </g>
+        <g font-size="18" font-weight="750">
+          <text x="243" y="96">산화</text>
+          <text x="477" y="96">산화</text>
+        </g>
+      </g>
+      <path d="M224 111h38m-7-6 7 6-7 6m203-6h38m-7-6 7 6-7 6" fill="none" stroke="#244e7c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+
+    <rect x="18" y="162" width="684" height="134" rx="13" fill="#dcf0eb" stroke="#add3ca"/>
+    <g fill="#145c50">
+      <text x="36" y="195" font-size="25" font-weight="800">2차 알코올 → 케톤</text>
+      <g fill="#f4fbf8">
+        <rect x="34" y="208" width="269" height="74" rx="9"/>
+        <rect x="417" y="208" width="269" height="74" rx="9"/>
+      </g>
+      <g text-anchor="middle">
+        <g font-size="27" font-weight="800">
+          <text x="168" y="240">CH₃CH(OH)CH₃</text>
+          <text x="552" y="240">CH₃COCH₃</text>
+        </g>
+        <g font-size="21">
+          <text x="168" y="269">2-프로판올</text>
+          <text x="552" y="269">아세톤</text>
+        </g>
+        <text x="360" y="240" font-size="18" font-weight="750">산화</text>
+      </g>
+      <path d="M316 255h88m-7-6 7 6-7 6" fill="none" stroke="#145c50" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+
+    <rect x="18" y="306" width="684" height="134" rx="13" fill="#fff1e1" stroke="#e8c4a4"/>
+    <g fill="#79451f">
+      <text x="36" y="339" font-size="25" font-weight="800">에스터화 · 카복실산과 알코올</text>
+      <g fill="#fff9f2">
+        <rect x="34" y="352" width="290" height="74" rx="9"/>
+        <rect x="396" y="352" width="290" height="74" rx="9"/>
+      </g>
+      <g text-anchor="middle">
+        <g font-size="24" font-weight="800">
+          <text x="179" y="384">CH₃COOH + CH₃CH₂OH</text>
+          <text x="541" y="384">CH₃COOCH₂CH₃ + H₂O</text>
+        </g>
+        <g font-size="21">
+          <text x="179" y="413">아세트산 + 에탄올</text>
+          <text x="541" y="413">아세트산 에틸 + 물</text>
+        </g>
+      </g>
+      <path d="M334 384h52l-7-6m7 17h-52l7 6" fill="none" stroke="#79451f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+  </g>
+</svg>
