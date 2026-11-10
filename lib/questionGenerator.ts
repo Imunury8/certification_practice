@@ -155,7 +155,7 @@ export function getSelectableChoices(question: Question): string[] {
   return [...question.answer, ...distractors].sort((left, right) => score(question.id, left) - score(question.id, right));
 }
 
-function shuffle<T>(values: T[], random: () => number): T[] {
+export function shuffle<T>(values: T[], random: () => number): T[] {
   const result = [...values];
   for (let index = result.length - 1; index > 0; index -= 1) {
     const other = Math.floor(random() * (index + 1));

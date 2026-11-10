@@ -4,6 +4,7 @@ import { BrainCircuit, Download, FileQuestion, Sparkles } from "lucide-react";
 import { useMemo, useState, useEffect, useRef } from "react";
 import { useParams } from "next/navigation";
 import { AppHeader } from "@/app/components/AppHeader";
+import { HazmatCbt } from "./HazmatCbt";
 import { TOPICS_BY_EXAM } from "@/lib/questionBank";
 import { generateQuestions, getAvailableQuestionCount, isQuestionAnswerCorrect } from "@/lib/questionGenerator";
 import { readQuestionHistory, recordQuestionHistory } from "@/lib/questionHistory";
@@ -27,6 +28,30 @@ export default function QuestionsPage() {
   const params = useParams();
   const examId = (params?.examId as ExamId) || "infosec-practical";
 
+  return (
+    <main className="page">
+      <AppHeader examId={examId} />
+      <div className="shell">
+        {examId === "hazmat-industrial" ? <HazmatQuestions /> : <TopicQuestions examId={examId} />}
+      </div>
+    </main>
+  );
+}
+
+function HazmatQuestions() {
+  const [showTopics, setShowTopics] = useState(false);
+
+  return (
+    <>
+      <div hidden={showTopics}>
+        <HazmatCbt onOpenTopics={() => setShowTopics(true)} />
+      </div>
+      {showTopics && <TopicQuestions examId="hazmat-industrial" onOpenCbt={() => setShowTopics(false)} />}
+    </>
+  );
+}
+
+function TopicQuestions({ examId, onOpenCbt }: { examId: ExamId; onOpenCbt?: () => void }) {
   const topics = TOPICS_BY_EXAM[examId] || TOPICS_BY_EXAM["infosec-practical"];
   const defaultTopicId = topics[0]?.id || "design-patterns";
 
@@ -119,14 +144,13 @@ export default function QuestionsPage() {
   }
 
   return (
-    <main className="page">
-      <AppHeader examId={examId} />
-      <div className="shell">
+    <>
         <section className="intro compact">
           <div>
             <h1>문제 풀이</h1>
             <p>출제 주제를 누르면 문제가 바로 생성됩니다. 정답을 제출하면 채점 결과와 해설을 확인할 수 있습니다.</p>
           </div>
+          {onOpenCbt && <button className="secondary-button" type="button" onClick={onOpenCbt}>필기 CBT로 돌아가기</button>}
         </section>
 
         <section className="workspace">
@@ -323,7 +347,6 @@ export default function QuestionsPage() {
             )}
           </section>
         </section>
-      </div>
-    </main>
+    </>
   );
 }

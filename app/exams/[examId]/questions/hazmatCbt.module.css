@@ -1,0 +1,253 @@
+.intro {
+  align-items: center;
+  justify-items: start;
+}
+
+.subjects {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.subject {
+  display: grid;
+  gap: 4px;
+  padding: 12px 15px;
+  text-align: left;
+  color: var(--text);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  word-break: keep-all;
+}
+
+.subject span,
+.subject small,
+.questionMeta,
+.tally p {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.subject[aria-pressed="true"] {
+  border-color: var(--primary);
+  box-shadow: inset 0 0 0 1px var(--primary);
+  background: var(--panel-soft);
+}
+
+.subject:hover,
+.choice:not([aria-disabled="true"]):hover,
+.number:hover {
+  border-color: var(--primary);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 260px);
+  align-items: start;
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+.question,
+.progress {
+  padding: 20px;
+  overflow-wrap: anywhere;
+}
+
+.questionMeta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.prompt {
+  margin: 14px 0 18px;
+  font-size: clamp(18px, 2.4vw, 22px);
+  line-height: 1.55;
+  white-space: pre-wrap;
+  scroll-margin-top: 140px;
+}
+
+.choices {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.choice {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 48px;
+  padding: 9px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+  color: var(--text);
+  text-align: left;
+  line-height: 1.5;
+}
+
+.choiceNumber {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  flex: 0 0 auto;
+  background: var(--panel-soft);
+  border-radius: 50%;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.choice[aria-disabled="true"] {
+  cursor: default;
+}
+
+.choiceStatus {
+  flex: 0 0 auto;
+  margin-left: auto;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.choice[data-result="correct"],
+.number[data-result="correct"] {
+  border-color: var(--success);
+  background: color-mix(in srgb, var(--success) 10%, var(--panel));
+}
+
+.choice[data-result="incorrect"],
+.number[data-result="incorrect"] {
+  border-color: var(--danger);
+  background: color-mix(in srgb, var(--danger) 10%, var(--panel));
+}
+
+.feedback p {
+  margin: 6px 0 0;
+  line-height: 1.55;
+}
+
+.feedback p:first-of-type {
+  color: var(--text);
+}
+
+.feedback b {
+  margin-right: 4px;
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.navigation button:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.progress h2 {
+  margin: 0 0 10px;
+  font-size: 16px;
+}
+
+.tally {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.tally p,
+.score {
+  margin: 0;
+}
+
+.tally strong,
+.score strong {
+  color: var(--text);
+}
+
+.score {
+  padding-top: 8px;
+  font-size: 14px;
+}
+
+.numbers {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 6px;
+  margin: 14px 0;
+}
+
+.number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.number[aria-current="step"] {
+  outline: 2px solid var(--primary);
+  outline-offset: 1px;
+}
+
+.number svg {
+  flex: 0 0 auto;
+}
+
+.newSet {
+  width: 100%;
+  justify-content: center;
+}
+
+.newSetNote {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.55;
+  word-break: keep-all;
+}
+
+@media (max-width: 700px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+  }
+
+  .subjects {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 6px;
+  }
+
+  .subject {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: baseline;
+    gap: 8px;
+  }
+
+  .question,
+  .progress {
+    padding: 14px;
+  }
+
+  .number {
+    min-height: 42px;
+  }
+}

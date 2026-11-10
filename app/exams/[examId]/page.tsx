@@ -64,8 +64,10 @@ export default async function ExamPage({ params }: ExamPageProps) {
           </Link>
           <Link className="landing-card panel" href={`/exams/${exam.id}/questions`}>
             <FileQuestion size={34} />
-            <h2>문제 풀이</h2>
-            <p>다양한 유형의 맞춤형 기출 변형 문제를 즉시 풀어보고 오답을 분석합니다.</p>
+            <h2>{exam.id === "hazmat-industrial" ? "필기 CBT" : "문제 풀이"}</h2>
+            <p>{exam.id === "hazmat-industrial"
+              ? "과목별 20문항을 4지선다로 풀고, 선택 즉시 정답과 해설을 확인합니다."
+              : "다양한 유형의 맞춤형 기출 변형 문제를 즉시 풀어보고 오답을 분석합니다."}</p>
             <span>
               문제 풀러가기 <ArrowRight size={18} />
             </span>
