@@ -1224,7 +1224,7 @@ export const CONCEPTS_BY_EXAM: Record<ExamId, ConceptSection[]> = {
             headers: ["과목", "입문 학습 범위"],
             rows: [
               ["물질의 물리·화학적 성질", "화학물질 명명법, 몰과 화학 반응식, 농도, 기체, 산·염기, 산화·환원"],
-              ["화재예방과 소화방법", "연소의 조건과 종류, 소화 원리, 분말소화약제"],
+              ["화재예방과 소화방법", "연소의 조건과 종류, 소화 원리, 분말·포소화약제"],
               ["위험물의 성질 및 취급", "제1~6류, 지정수량과 배수, 제조소·저장소의 설치와 관리"],
             ],
           }],
@@ -1493,8 +1493,10 @@ export const CONCEPTS_BY_EXAM: Record<ExamId, ConceptSection[]> = {
       sources: [
         { label: "소방전술Ⅰ 신임교육 교재 · 연소의 형태", href: "https://yw119.gwd.go.kr/egf/bp/board/article/download?fileSeq=1167363" },
         { label: "분말소화설비의 화재안전기술기준 (NFTC 108)", href: "https://www.law.go.kr/LSW/admRulInfoP.do?admRulSeq=2100000250568&chrClsCd=010201" },
-        { label: "소화약제 형식승인 기술기준 제7조 · 착색 기준", href: "https://www.law.go.kr/LSW/admRulLsInfoP.do?admRulSeq=2100000278580" },
-        { label: "위험물안전관리에 관한 세부기준 제136조", href: "https://www.law.go.kr/LSW/admRulLsInfoP.do?admRulSeq=2100000285200" },
+        { label: "소화약제 형식승인 기술기준 · 분말의 착색과 포의 성능", href: "https://www.law.go.kr/LSW/admRulLsInfoP.do?admRulSeq=2100000278580" },
+        { label: "위험물안전관리에 관한 세부기준 제133·136조 · 포·분말", href: "https://www.law.go.kr/LSW/admRulLsInfoP.do?admRulSeq=2100000285200" },
+        { label: "포소화설비의 화재안전기술기준 (NFTC 105)", href: "https://www.law.go.kr/LSW/admRulLsInfoP.do?admRulId=83621&efYd=0" },
+        { label: "미국 노스캐롤라이나 주 소방 교육자료 · 포의 종류와 연료", href: "https://www.ncdoi.com/OSFM/RPD/PT/Documents/Coursework/Ethanol/Module5_ParticipantManuals.pdf" },
         { label: "가천대 소방학 강의자료 · 분말의 대표색", href: "https://contents.kocw.or.kr/KOCW/document/2015/gachon/sonbongsae2/7.pdf#page=10" },
         { label: "FAA · 분말소화약제 성능 비교", href: "https://www.fire.tc.faa.gov/pdf/11-31.pdf" },
         { label: "Angus Fire · Monnex 분말의 작용", href: "https://www.angusfire.co.uk/products-catalogue/monnex-dry-powder" },
@@ -1613,6 +1615,48 @@ export const CONCEPTS_BY_EXAM: Record<ExamId, ConceptSection[]> = {
             ],
           }],
           examTip: "제1~4종 중 A급 일반화재까지 대응하는 것은 인산염 계열의 제3종입니다.",
+        },
+        {
+          term: "포소화약제의 종류와 적용 대상",
+          summary: "포가 액면을 덮으면 가연성 증기의 방출과 공기 접촉이 줄어듭니다. 포에 든 물은 연소면의 열도 흡수합니다.",
+          details: [
+            "기계포는 원액을 물과 섞은 포수용액에 공기를 넣어 만듭니다. 약제는 연료의 성질과 포를 방출하는 설비에 맞춰 선택합니다.",
+            "에탄올·메탄올·아세톤처럼 물과 섞이는 용제는 일반 포의 물을 흡수해 거품층을 무너뜨릴 수 있습니다. 이런 수용성 위험물에는 해당 용제에 적응성이 확인된 내알코올포를 씁니다.",
+            "내알코올포는 용제에 견디도록 만든 포입니다. 고분자형은 용제와 포 사이에 보호막을 만들고, AR-AFFF는 내알코올 성능을 갖춘 수성막포입니다.",
+            "형식승인 기준에서는 대상 수용성 용제별로 소화성능을 시험합니다. 제품에 표시된 대상 용제와 사용농도를 함께 확인합니다.",
+          ],
+          exampleTables: [{
+            caption: "포소화약제별 작용과 대표 사용 대상",
+            headers: ["종류", "작용과 차이", "대표 사용 대상"],
+            rows: [
+              [
+                "단백포 (P)",
+                "단백질 가수분해물을 사용합니다. 열에 견디는 거품층을 만들어 액면을 덮습니다.",
+                "등유·경유 등 비수용성 유류의 저장탱크나 유출 화재",
+              ],
+              [
+                "불화단백포 (FP)",
+                "단백포에 불소계 계면활성제를 더해 연료가 거품에 섞여도 포층이 무너지기 어렵게 합니다.",
+                "비수용성 유류 저장탱크. 위험물 시설의 Ⅲ형 고정식 포방출구에 쓰이는 약제 중 하나",
+              ],
+              [
+                "합성계면활성제포",
+                "합성계면활성제로 거품을 냅니다. 고발포용 제품은 적은 포수용액으로 부피가 큰 포를 만듭니다.",
+                "고발포용 제품은 격납고 등 넓은 공간을 거품으로 채우는 설비에 사용",
+              ],
+              [
+                "수성막포 (AFFF)",
+                "거품과 함께 유류 액면에 얇은 수성막이 빠르게 퍼져 가연성 증기를 억제합니다.",
+                "휘발유·항공유 등 비수용성 탄화수소의 유출 화재",
+              ],
+              [
+                "내알코올포 (AR, 알코올형포)",
+                "수용성 용제와 닿아도 거품층이 쉽게 무너지지 않도록 설계한 포입니다.",
+                "에탄올·메탄올(알코올류), 아세톤(수용성 제1석유류) 등 약제가 승인받은 용제의 화재",
+              ],
+            ],
+          }],
+          examTip: "휘발유와 아세톤은 둘 다 제1석유류입니다. 비수용성 휘발유에는 수성막포가 대표적이고, 수용성 아세톤에는 아세톤에 적응성이 확인된 내알코올포를 씁니다.",
         },
         item(
           "가스계 소화약제",

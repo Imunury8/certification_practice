@@ -76,7 +76,7 @@ const HAZMAT_META_MAP: Record<string, HazmatMeta> = {
   "fire-extinction": {
     classNum: "소화",
     badge: "화재예방과 소화방법",
-    desc: "연소의 조건과 종류 · 3대 온도 · 소화 원리 · 분말소화약제",
+    desc: "연소의 조건과 종류 · 3대 온도 · 소화 원리 · 분말·포소화약제",
     badgeClass: "fire",
   },
   "hazmat-general-chem": {
@@ -513,8 +513,8 @@ function getConceptGroups(section: ConceptSection): ConceptGroup[] {
         items: fireClassItems,
       },
       {
-        title: "분말소화약제와 가스계 소화약제",
-        description: "분말의 종류별 색상, 주성분, 적응 화재와 소화 작용을 비교합니다.",
+        title: "분말·포·가스계 소화약제",
+        description: "약제별 소화 작용과 적용 대상을 비교하고, 수용성 위험물에 적합한 포를 확인합니다.",
         items: agentItems,
       },
       {
