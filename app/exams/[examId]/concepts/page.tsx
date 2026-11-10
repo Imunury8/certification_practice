@@ -374,7 +374,20 @@ export default function ConceptsPage() {
                                       </thead>
                                       <tbody>
                                         {example.rows.map((row, rowIndex) => (
-                                          <tr key={rowIndex}>{row.map((cell, cellIndex) => <td key={cellIndex}>{cell}</td>)}</tr>
+                                          <tr key={rowIndex}>
+                                            {row.map((cell, cellIndex) => (
+                                              <td key={cellIndex}>
+                                                {typeof cell === "string" ? cell : (
+                                                  <span className="concept-table-color">
+                                                    <span className="concept-table-swatches" aria-hidden="true">
+                                                      {cell.swatches.map((color) => <span key={color} style={{ backgroundColor: color }} />)}
+                                                    </span>
+                                                    {cell.label}
+                                                  </span>
+                                                )}
+                                              </td>
+                                            ))}
+                                          </tr>
                                         ))}
                                       </tbody>
                                     </table>
@@ -501,7 +514,7 @@ function getConceptGroups(section: ConceptSection): ConceptGroup[] {
       },
       {
         title: "분말소화약제와 가스계 소화약제",
-        description: "분말 제1~4종의 주성분, 적응 화재, 열분해 반응과 소화 작용을 익힙니다.",
+        description: "분말의 종류별 색상, 주성분, 적응 화재와 소화 작용을 비교합니다.",
         items: agentItems,
       },
       {

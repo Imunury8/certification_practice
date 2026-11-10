@@ -718,6 +718,28 @@ button {
   background: var(--panel-soft);
 }
 
+.concept-table-color,
+.concept-table-swatches {
+  display: inline-flex;
+  align-items: center;
+}
+
+.concept-table-color {
+  gap: 6px;
+}
+
+.concept-table-swatches {
+  flex: 0 0 auto;
+  gap: 3px;
+}
+
+.concept-table-swatches > span {
+  width: 0.75rem;
+  height: 0.75rem;
+  border: 1px solid var(--muted);
+  border-radius: 50%;
+}
+
 :is(#hazmat-properties, #hazmat-general-chem, #fire-extinction, #hazmat-law) .concept-example-table :is(th, td) {
   white-space: normal;
   word-break: keep-all;

@@ -1,5 +1,7 @@
 import type { TopicId, ExamId } from "@/lib/types";
 
+type ConceptTableCell = string | { label: string; swatches: string[] };
+
 export interface ConceptItem {
   // Keep term stable for saved study plans and deep links.
   term: string;
@@ -8,7 +10,7 @@ export interface ConceptItem {
   details: string[];
   examTip: string;
   imageUrl?: string;
-  exampleTables?: { caption: string; headers: string[]; rows: string[][] }[];
+  exampleTables?: { caption: string; headers: string[]; rows: ConceptTableCell[][] }[];
 }
 
 export interface ConceptSection {
@@ -1491,8 +1493,12 @@ export const CONCEPTS_BY_EXAM: Record<ExamId, ConceptSection[]> = {
       sources: [
         { label: "소방전술Ⅰ 신임교육 교재 · 연소의 형태", href: "https://yw119.gwd.go.kr/egf/bp/board/article/download?fileSeq=1167363" },
         { label: "분말소화설비의 화재안전기술기준 (NFTC 108)", href: "https://www.law.go.kr/LSW/admRulInfoP.do?admRulSeq=2100000250568&chrClsCd=010201" },
-        { label: "소화약제의 형식승인 및 제품검사의 기술기준", href: "https://www.law.go.kr/LSW/admRulLsInfoP.do?admRulSeq=2100000278580" },
+        { label: "소화약제 형식승인 기술기준 제7조 · 착색 기준", href: "https://www.law.go.kr/LSW/admRulLsInfoP.do?admRulSeq=2100000278580" },
         { label: "위험물안전관리에 관한 세부기준 제136조", href: "https://www.law.go.kr/LSW/admRulLsInfoP.do?admRulSeq=2100000285200" },
+        { label: "가천대 소방학 강의자료 · 분말의 대표색", href: "https://contents.kocw.or.kr/KOCW/document/2015/gachon/sonbongsae2/7.pdf#page=10" },
+        { label: "FAA · 분말소화약제 성능 비교", href: "https://www.fire.tc.faa.gov/pdf/11-31.pdf" },
+        { label: "Angus Fire · Monnex 분말의 작용", href: "https://www.angusfire.co.uk/products-catalogue/monnex-dry-powder" },
+        { label: "Amerex · Purple-K 제품 안전자료", href: "https://amerex-fire.com/upl/downloads/safety-data-sheets/english/purple-k-f573c47d.pdf" },
         { label: "소화기구의 화재안전기술기준 (NFTC 101)", href: "https://www.law.go.kr/LSW/admRulInfoP.do?admRulSeq=2100000244810" },
         { label: "시행규칙 별표 17 · 소화설비 기준", href: "https://www.law.go.kr/LSW/flDownload.do?bylClsCd=110201&flSeq=154216541&gubun=" },
       ],
@@ -1569,21 +1575,41 @@ export const CONCEPTS_BY_EXAM: Record<ExamId, ConceptSection[]> = {
         {
           term: "소화약제 분류 및 화학 반응식 (1·2·3·4종 분말 & 가스계)",
           title: "분말소화약제의 종류와 작용",
-          summary: "분말소화약제는 불꽃이 유지되는 연쇄반응을 억제합니다. 시험에서는 제1~4종의 주성분과 적응 화재를 함께 구분합니다.",
+          summary: "분말소화약제는 불꽃을 유지하는 연쇄반응을 억제합니다. 종류마다 주성분과 소화 특성이 다르며, 제3종은 가연물 표면에 피막도 형성합니다.",
           details: [
             "제1종의 대표 열분해식은 2NaHCO₃ → Na₂CO₃ + CO₂ + H₂O입니다. 제2종은 2KHCO₃ → K₂CO₃ + CO₂ + H₂O입니다.",
-            "제3종의 인산염은 가열되면 가연물 표면에 피막을 만들어 연소를 억제합니다. 제일인산암모늄의 분해를 단순화한 식은 NH₄H₂PO₄ → HPO₃ + NH₃ + H₂O입니다.",
-            "현행 소화약제 형식승인 기준에서 탄산수소칼륨 계열은 담회색, 인산염 계열은 담홍색 또는 황색으로 착색합니다. 소화기에는 적응 화재가 표시됩니다.",
-            "위험물 제조소등의 분말소화설비에는 별도 기준으로 제5종 분말도 규정되어 있습니다. 위험물의 종류에 따라 약제의 적응성을 확인합니다.",
+            "제3종의 제일인산암모늄 분해를 단순화한 식은 NH₄H₂PO₄ → HPO₃ + NH₃ + H₂O입니다. 메타인산(HPO₃)이 포함된 피막은 가연물의 표면 연소를 억제합니다.",
+            "제1종의 백색과 제4종의 회색·회백색은 학습용 대표색입니다. 국내 형식승인 착색은 탄산수소칼륨이 주성분이면 담회색, 인산염 등이 주성분이면 담홍색 또는 황색입니다.",
+            "일부 자료의 제2종 보라색은 Purple-K처럼 보라색 색소를 넣은 제품에서 볼 수 있습니다. 실제 소화기는 제품에 표시된 주성분과 적응 화재를 확인합니다.",
           ],
           exampleTables: [{
-            caption: "제1~4종 분말의 주성분과 대표 적응 화재",
-            headers: ["종류", "주성분", "대표 적응 화재"],
+            caption: "분말 종류별 색상, 주성분, 적응 화재와 소화 특성",
+            headers: ["종류", "분말 색상", "주성분", "대표 적응 화재", "소화 특성"],
             rows: [
-              ["제1종", "탄산수소나트륨 (NaHCO₃)", "B·C급"],
-              ["제2종", "탄산수소칼륨 (KHCO₃)", "B·C급"],
-              ["제3종", "인산염 (대표 성분 NH₄H₂PO₄, 제일인산암모늄)", "A·B·C급"],
-              ["제4종", "탄산수소칼륨과 요소의 반응생성물", "B·C급"],
+              [
+                "제1종", { label: "백색 (대표색)", swatches: ["#ffffff"] },
+                "탄산수소나트륨 (NaHCO₃)", "B·C급",
+                "나트륨계 분말로 불꽃의 연쇄반응을 억제합니다.",
+              ],
+              [
+                "제2종", { label: "담회색 (형식승인)", swatches: ["#d1d5db"] },
+                "탄산수소칼륨 (KHCO₃)", "B·C급",
+                "칼륨계 분말로, B급 화재 실험에서 제1종보다 적은 질량으로 불꽃을 끌 수 있었습니다.",
+              ],
+              [
+                "제3종", { label: "담홍색 또는 황색 (형식승인)", swatches: ["#f5afc0", "#f5d552"] },
+                "인산염 (대표 성분 제일인산암모늄 NH₄H₂PO₄)", "A·B·C급",
+                "목재·종이 표면에 피막을 만들어 A급 일반화재에도 대응합니다.",
+              ],
+              [
+                "제4종", { label: "회색·회백색 (대표색)", swatches: ["#808890", "#e7e5df"] },
+                "탄산수소칼륨과 요소의 반응생성물", "B·C급",
+                "Monnex 같은 제품은 화염 속에서 입자가 잘게 갈라져 반응 표면이 넓어집니다.",
+              ],
+              [
+                "제5종", "제품별 확인", "대상 위험물에 맞는 약제", "위험물별 적응성 확인",
+                "위험물 제조소등의 분말소화설비에 적용되는 별도 분류입니다.",
+              ],
             ],
           }],
           examTip: "제1~4종 중 A급 일반화재까지 대응하는 것은 인산염 계열의 제3종입니다.",
