@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="300" viewBox="0 0 720 300" role="img" aria-labelledby="title desc">
+  <title id="title">수성막포와 내알코올포의 액면 단면</title>
+  <desc id="desc">왼쪽은 휘발유 위에 수성막과 포층이 형성된 모습입니다. 오른쪽은 아세톤과 포층 사이에 고분자형 내알코올포의 보호막이 생긴 모습입니다.</desc>
+  <rect width="720" height="300" rx="18" fill="#eff4f9"/>
+  <g font-family="system-ui, Malgun Gothic, sans-serif" text-anchor="middle">
+    <g transform="translate(16 16)">
+      <rect width="336" height="268" rx="14" fill="#fff" stroke="#cad5e1"/>
+      <text x="168" y="41" font-size="26" font-weight="800" fill="#142b45">수성막포 (AFFF)</text>
+      <text x="168" y="74" font-size="21" fill="#435972">비수용성 유류</text>
+      <path d="M25 159h286v52a12 12 0 0 1-12 12H37a12 12 0 0 1-12-12Z" fill="#ffdfb8"/>
+      <path d="M25 147h286v13H25Z" fill="#189582"/>
+      <path d="M25 144v-14q18-24 36-4 18-29 40-6 21-26 45-2 21-25 43-2 23-27 46 0 22-25 42-2 19-22 34 5v28Z" fill="#d9f1eb" stroke="#78c4b7" stroke-width="2"/>
+      <path d="M25 144v67a12 12 0 0 0 12 12h262a12 12 0 0 0 12-12v-67" fill="none" stroke="#334c67" stroke-width="3"/>
+      <text x="168" y="137" font-size="21" font-weight="750" fill="#145c50">포층</text>
+      <text x="168" y="201" font-size="24" font-weight="750" fill="#773f19">휘발유</text>
+      <path d="M59 154v85h29" fill="none" stroke="#15776b" stroke-width="2"/>
+      <text x="103" y="247" font-size="21" font-weight="750" fill="#145c50" text-anchor="start">유류 위 수성막</text>
+    </g>
+    <g transform="translate(368 16)">
+      <rect width="336" height="268" rx="14" fill="#fff" stroke="#cad5e1"/>
+      <text x="168" y="41" font-size="26" font-weight="800" fill="#142b45">내알코올포 (AR)</text>
+      <text x="168" y="74" font-size="21" fill="#435972">수용성 용제</text>
+      <path d="M25 159h286v52a12 12 0 0 1-12 12H37a12 12 0 0 1-12-12Z" fill="#dbe8fa"/>
+      <path d="M25 146h286v19H25Z" fill="#7455a4"/>
+      <path d="M25 143v-13q18-24 36-4 18-29 40-6 21-26 45-2 21-25 43-2 23-27 46 0 22-25 42-2 19-22 34 5v27Z" fill="#eee7f9" stroke="#a28dc8" stroke-width="2"/>
+      <path d="M25 143v68a12 12 0 0 0 12 12h262a12 12 0 0 0 12-12v-68" fill="none" stroke="#334c67" stroke-width="3"/>
+      <text x="168" y="137" font-size="21" font-weight="750" fill="#594181">포층</text>
+      <text x="168" y="201" font-size="24" font-weight="750" fill="#244e7c">아세톤</text>
+      <path d="M59 154v85h29" fill="none" stroke="#7455a4" stroke-width="2"/>
+      <text x="103" y="247" font-size="21" font-weight="750" fill="#594181" text-anchor="start">고분자형 보호막</text>
+    </g>
+  </g>
+</svg>

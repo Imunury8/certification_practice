@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="304" viewBox="0 0 720 304" role="img" aria-labelledby="title desc">
+  <title id="title">위험물 제1~6류 분류 지도</title>
+  <desc id="desc">제1류와 제6류는 산화성, 제2류와 제4류는 가연성 고체와 인화성 액체입니다. 제3류는 자연발화성과 금수성, 제5류는 자기반응성을 확인합니다.</desc>
+  <rect width="720" height="304" rx="18" fill="#f1f5f9"/>
+  <g font-family="system-ui, Malgun Gothic, sans-serif">
+    <g transform="translate(16 16)">
+      <rect width="220" height="272" rx="14" fill="#fff" stroke="#cad5e1"/>
+      <path d="M14 0h192a14 14 0 0 1 14 14v38H0V14A14 14 0 0 1 14 0Z" fill="#d9eee9"/>
+      <text x="110" y="34" text-anchor="middle" fill="#12574f" font-size="24" font-weight="750">산화성</text>
+      <g stroke="#15776b" stroke-width="3" stroke-linejoin="round" fill="#daf5ef">
+        <path d="m26 102 16-10 16 10v20l-16 10-16-10Z M26 102l16 10 16-10 M42 112v20"/>
+        <path d="M42 193c0 0-17 19-17 28a17 17 0 1 0 34 0c0-9-17-28-17-28Z"/>
+      </g>
+      <path d="M16 162h188" stroke="#dae4ec"/>
+      <g fill="#142b45">
+        <text x="73" y="106" font-size="24" font-weight="800">제1류</text>
+        <text x="73" y="132" font-size="21">산화성 고체</text>
+        <text x="73" y="210" font-size="24" font-weight="800">제6류</text>
+        <text x="73" y="236" font-size="21">산화성 액체</text>
+      </g>
+    </g>
+    <g transform="translate(250 16)">
+      <rect width="220" height="272" rx="14" fill="#fff" stroke="#cad5e1"/>
+      <path d="M14 0h192a14 14 0 0 1 14 14v38H0V14A14 14 0 0 1 14 0Z" fill="#ffe8d4"/>
+      <text x="110" y="34" text-anchor="middle" fill="#80350f" font-size="24" font-weight="750">가연·인화성</text>
+      <g stroke="#ad541d" stroke-width="3" stroke-linejoin="round" fill="#ffead4">
+        <path d="m26 102 16-10 16 10v20l-16 10-16-10Z M26 102l16 10 16-10 M42 112v20"/>
+        <path d="M42 193c0 0-17 19-17 28a17 17 0 1 0 34 0c0-9-17-28-17-28Z"/>
+      </g>
+      <path d="M16 162h188" stroke="#dae4ec"/>
+      <g fill="#142b45">
+        <text x="73" y="106" font-size="24" font-weight="800">제2류</text>
+        <text x="73" y="132" font-size="21">가연성 고체</text>
+        <text x="73" y="210" font-size="24" font-weight="800">제4류</text>
+        <text x="73" y="236" font-size="21">인화성 액체</text>
+      </g>
+    </g>
+    <g transform="translate(484 16)">
+      <rect width="220" height="272" rx="14" fill="#fff" stroke="#cad5e1"/>
+      <path d="M14 0h192a14 14 0 0 1 14 14v38H0V14A14 14 0 0 1 14 0Z" fill="#e2eafa"/>
+      <text x="110" y="34" text-anchor="middle" fill="#23497b" font-size="24" font-weight="750">발화·반응</text>
+      <g stroke="#355d91" stroke-width="3" stroke-linejoin="round" fill="#e5edfd">
+        <path d="M42 88c0 0-16 17-16 25a16 16 0 0 0 32 0c0-8-16-25-16-25Z"/>
+        <path d="m23 128 38-36" fill="none" stroke-linecap="round"/>
+        <path d="m46 191-21 28h15l-3 19 23-30H45Z"/>
+      </g>
+      <path d="M16 162h188" stroke="#dae4ec"/>
+      <g fill="#142b45">
+        <text x="73" y="106" font-size="24" font-weight="800">제3류</text>
+        <text x="73" y="132" font-size="19">자연발화·금수성</text>
+        <text x="73" y="210" font-size="24" font-weight="800">제5류</text>
+        <text x="73" y="236" font-size="21">자기반응성</text>
+      </g>
+    </g>
+  </g>
+</svg>

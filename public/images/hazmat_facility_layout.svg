@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 320" width="720" height="320" role="img" aria-labelledby="layout-title layout-desc">
+  <title id="layout-title">위험물 시설의 안전거리와 보유공지</title>
+  <desc id="layout-desc">청록색으로 표시한 보유공지는 위험물 시설을 둘러싼 빈 공간이다. 주황색 양방향 화살표는 시설의 외벽에서 부지 밖 주택의 외벽까지 잰 안전거리를 나타낸다.</desc>
+  <defs>
+    <marker id="distance-tip" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto-start-reverse">
+      <path d="M0 0 8 4 0 8Z" fill="#b45309" />
+    </marker>
+  </defs>
+
+  <rect x="1" y="1" width="718" height="318" rx="20" fill="#f8fafc" stroke="#cbd5e1" />
+  <g font-family="'Pretendard', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif">
+    <text x="30" y="39" fill="#172d44" font-size="24" font-weight="750">안전거리와 보유공지</text>
+    <text x="30" y="66" fill="#475569" font-size="15">시설 바깥에 남겨 두는 공간과 보호 대상까지의 거리</text>
+
+    <rect x="28" y="88" width="664" height="172" rx="10" fill="#fff" stroke="#d9e2ec" />
+    <path d="M454 89v170" fill="none" stroke="#64748b" stroke-width="1.5" stroke-dasharray="5 5" />
+
+    <rect x="68" y="106" width="226" height="136" rx="10" fill="#dff5ef" stroke="#16836d" stroke-width="1.5" stroke-dasharray="5 4" />
+    <text x="181" y="130" text-anchor="middle" fill="#075e50" font-size="16" font-weight="750">보유공지</text>
+
+    <rect x="106" y="146" width="150" height="68" rx="4" fill="#244159" />
+    <text x="181" y="186" text-anchor="middle" fill="#fff" font-size="16" font-weight="700">위험물 시설</text>
+
+    <path d="M536 160 592 121 648 160" fill="#e4ebf1" stroke="#244159" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M536 160h112v54H536Z" fill="#eef3f7" stroke="#244159" stroke-width="2" stroke-linejoin="round" />
+    <text x="592" y="192" text-anchor="middle" fill="#172d44" font-size="16" font-weight="700">주택</text>
+
+    <path d="M259 180H533" fill="none" stroke="#b45309" stroke-width="2.5" marker-start="url(#distance-tip)" marker-end="url(#distance-tip)" />
+    <rect x="349" y="142" width="94" height="28" rx="14" fill="#fff3df" stroke="#f4d3a3" />
+    <text x="396" y="161" text-anchor="middle" fill="#8b4407" font-size="15" font-weight="750">안전거리</text>
+
+    <text x="454" y="280" text-anchor="middle" fill="#475569" font-size="13">시설 부지 경계</text>
+    <text x="30" y="299" fill="#075e50" font-size="14" font-weight="650">보유공지 · 시설 둘레의 빈 공간</text>
+    <text x="502" y="299" fill="#8b4407" font-size="14" font-weight="650">안전거리 · 보호 대상까지</text>
+  </g>
+</svg>

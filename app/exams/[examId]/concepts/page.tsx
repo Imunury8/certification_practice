@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import { BarChart3, BookOpen, CalendarRange, Flame, Lightbulb, Target } from "lucide-react";
+import { BarChart3, BookOpen, Boxes, CalendarRange, DropletOff, Droplets, Flame, FlaskConical, Lightbulb, Scale, Target, Zap } from "lucide-react";
 import { AppHeader } from "@/app/components/AppHeader";
 import { CONCEPTS_BY_EXAM } from "@/lib/concepts";
 import { TOPICS_BY_EXAM } from "@/lib/questionBank";
@@ -29,73 +29,21 @@ const behavioralDiagrams = new Set([
   "Interaction Overview Diagram",
 ]);
 
-interface HazmatMeta {
-  classNum: string;
-  badge: string;
-  desc: string;
-  badgeClass: string;
-}
-
-const HAZMAT_META_MAP: Record<string, HazmatMeta> = {
-  "hazmat-class1": {
-    classNum: "제1류",
-    badge: "제1류 산화성 고체",
-    desc: "산화성 고체 · 연소 촉진 · 알칼리금속 과산화물은 물과의 반응에 주의",
-    badgeClass: "c1",
-  },
-  "hazmat-class2": {
-    classNum: "제2류",
-    badge: "제2류 가연성 고체",
-    desc: "가연성 고체 · 강환원제 · 저온 착화 · 주수 냉각소화(철·금·마 제외)",
-    badgeClass: "c2",
-  },
-  "hazmat-class3": {
-    classNum: "제3류",
-    badge: "제3류 자연발화 및 금수성",
-    desc: "자연발화성 · 금수성 · 황린과 나트륨의 물 반응 비교",
-    badgeClass: "c3",
-  },
-  "hazmat-class4": {
-    classNum: "제4류",
-    badge: "제4류 인화성 액체",
-    desc: "인화점 · 수용성과 비수용성 · 증기 체류와 점화원",
-    badgeClass: "c4",
-  },
-  "hazmat-class5": {
-    classNum: "제5류",
-    badge: "제5류 자기반응성 물질",
-    desc: "가열분해와 폭발 위험 · 시험에 따른 제1종과 제2종",
-    badgeClass: "c5",
-  },
-  "hazmat-class6": {
-    classNum: "제6류",
-    badge: "제6류 산화성 액체",
-    desc: "산화성 액체 · 과염소산 · 과산화수소 · 질산",
-    badgeClass: "c6",
-  },
-  "fire-extinction": {
-    classNum: "소화",
-    badge: "화재예방과 소화방법",
-    desc: "연소의 조건과 종류 · 3대 온도 · 소화 원리 · 분말·포소화약제",
-    badgeClass: "fire",
-  },
-  "hazmat-general-chem": {
-    classNum: "화학",
-    badge: "일반화학 핵심이론",
-    desc: "화학물질 명명법 · 몰과 반응식 · 농도 · 기체 · 산·염기 · 산화환원",
-    badgeClass: "chem",
-  },
-  "hazmat-law": {
-    classNum: "법령",
-    badge: "위험물안전관리법 및 기준",
-    desc: "지정수량 배수 · 제조소와 저장소 · 설치 허가 · 안전관리자와 정기점검",
-    badgeClass: "law",
-  },
+const HAZMAT_SECTION_STYLE: Partial<Record<ConceptSection["topicId"], { tone: string; icon: typeof Flame }>> = {
+  "hazmat-class1": { tone: "c1", icon: Boxes },
+  "hazmat-class2": { tone: "c2", icon: Flame },
+  "hazmat-class3": { tone: "c3", icon: DropletOff },
+  "hazmat-class4": { tone: "c4", icon: Droplets },
+  "hazmat-class5": { tone: "c5", icon: Zap },
+  "hazmat-class6": { tone: "c6", icon: FlaskConical },
+  "fire-extinction": { tone: "fire", icon: Flame },
+  "hazmat-general-chem": { tone: "chem", icon: FlaskConical },
+  "hazmat-law": { tone: "law", icon: Scale },
 };
 
 interface ConceptGroup {
   title: string;
-  description: string;
+  description?: string;
   items: ConceptItem[];
 }
 
@@ -140,6 +88,80 @@ function DetailItem({ detail }: { detail: string }) {
     <li className={`concept-detail-item ${isSubBullet ? "sub-bullet" : ""}`}>
       {rawText}
     </li>
+  );
+}
+
+function ConceptCard({ item, anchor, showDiagramFirst }: {
+  item: ConceptItem;
+  anchor: string;
+  showDiagramFirst: boolean;
+}) {
+  const title = item.title ?? item.term;
+  const illustration = item.imageUrl && (
+    <figure className="concept-illustration">
+      <div className="concept-image-container" role="region" aria-label={`${title} 도식`} tabIndex={showDiagramFirst ? 0 : undefined}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={item.imageUrl} alt={item.imageAlt ?? title} className="concept-image" loading="lazy" />
+      </div>
+      {showDiagramFirst && (
+        <figcaption>
+          <span className="concept-illustration-scroll-hint">좌우로 밀어 보기</span>
+          <a href={item.imageUrl} target="_blank" rel="noreferrer" aria-label={`${title} 도식 크게 보기`}>도식 크게 보기</a>
+        </figcaption>
+      )}
+    </figure>
+  );
+
+  return (
+    <div className="concept-card" id={anchor}>
+      <div className="card-head"><h4>{title}</h4></div>
+      <p className="concept-summary">{item.summary}</p>
+      {showDiagramFirst && illustration}
+      {item.details.length > 0 && (
+        <ul className="concept-detail-list">
+          {item.details.map((detail, index) => <DetailItem key={index} detail={detail} />)}
+        </ul>
+      )}
+      {item.exampleTables && (
+        <div className="concept-example-tables">
+          {item.exampleTables.map((example) => (
+            <div className="concept-table-scroll" key={example.caption} tabIndex={0} role="region" aria-label={example.caption}>
+              <table className="concept-example-table">
+                <caption>{example.caption}</caption>
+                <thead>
+                  <tr>{example.headers.map((header) => <th scope="col" key={header}>{header}</th>)}</tr>
+                </thead>
+                <tbody>
+                  {example.rows.map((row, rowIndex) => (
+                    <tr key={rowIndex}>
+                      {row.map((cell, cellIndex) => (
+                        <td key={cellIndex}>
+                          {typeof cell === "string" ? cell : (
+                            <span className="concept-table-color">
+                              <span className="concept-table-swatches" aria-hidden="true">
+                                {cell.swatches.map((color) => <span key={color} style={{ backgroundColor: color }} />)}
+                              </span>
+                              {cell.label}
+                            </span>
+                          )}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ))}
+        </div>
+      )}
+      {!showDiagramFirst && illustration}
+      {item.examTip && (
+        <div className="tip">
+          <Lightbulb size={16} aria-hidden="true" />
+          <span>{item.examTip}</span>
+        </div>
+      )}
+    </div>
   );
 }
 
@@ -200,7 +222,7 @@ export default function ConceptsPage() {
   const trend = EXAM_TRENDS[examId];
 
   return (
-    <main className="page">
+    <main className={isHazmat ? "page hazmat-theory" : "page"}>
       <AppHeader examId={examId} />
       <div className="shell">
         <section className="intro compact">
@@ -298,10 +320,13 @@ export default function ConceptsPage() {
           <div className="concept-content">
             {conceptSections.filter((section) => section.topicId === activeTopic).map((section) => {
               const topic = topics.find((item) => item.id === section.topicId);
-              const meta = HAZMAT_META_MAP[section.topicId];
+              const style = HAZMAT_SECTION_STYLE[section.topicId];
+              const SectionIcon = style?.icon ?? BookOpen;
+              const description = section.description ?? (isHazmat ? undefined : topic?.description);
+              const groups = getConceptGroups(section);
               return (
                 <article
-                  className={`panel concept-section ${meta ? `section-${meta.badgeClass}` : ""}`}
+                  className={`panel concept-section ${style ? `section-${style.tone}` : ""}`}
                   key={section.topicId}
                   id={section.topicId}
                   role="tabpanel"
@@ -309,24 +334,28 @@ export default function ConceptsPage() {
                   aria-labelledby={`tab-${section.topicId}`}
                 >
                   <div className="section-heading">
-                    {meta ? (
-                      <div className={`class-icon-wrapper ${meta.badgeClass}`}>
-                        <Flame size={22} />
+                    {style ? (
+                      <div className={`class-icon-wrapper ${style.tone}`}>
+                        <SectionIcon size={22} aria-hidden="true" />
                       </div>
                     ) : (
-                      <BookOpen size={22} />
+                      <SectionIcon size={22} aria-hidden="true" />
                     )}
                     <div className="section-title-wrap">
-                      {meta && (
-                        <div className="section-meta-row">
-                          <span className={`class-flag ${meta.badgeClass}`}>{meta.badge}</span>
-                          <span className="class-key-desc">{meta.desc}</span>
-                        </div>
-                      )}
                       <h2>{section.title ?? topic?.name}</h2>
-                      <p>{section.description ?? topic?.description}</p>
+                      {description && <p>{description}</p>}
                     </div>
                   </div>
+
+                  {isHazmat && groups.length > 1 && (
+                    <nav className="concept-contents" aria-label="이 탭의 목차">
+                      {groups.map((group) => (
+                        <a key={group.title} href={`#${getConceptAnchor(section.topicId, group.items[0].term)}`}>
+                          {group.title}
+                        </a>
+                      ))}
+                    </nav>
+                  )}
 
                   {section.topicId === "osi" && (
                     <figure className="osi-illustration">
@@ -344,80 +373,35 @@ export default function ConceptsPage() {
                     </figure>
                   )}
 
-                  {getConceptGroups(section).map((group) => (
+                  {groups.map((group) => (
                     <div className="concept-group" key={group.title}>
                       <div className="group-heading">
                         <h3>{group.title}</h3>
-                        <span>{group.items.length}개 항목</span>
-                        <p>{group.description}</p>
+                        {!isHazmat && <span>{group.items.length}개 항목</span>}
+                        {group.description && <p>{group.description}</p>}
                       </div>
                       <div className="concept-grid">
                         {group.items.map((item) => (
-                          <div className="concept-card" key={item.term} id={getConceptAnchor(section.topicId, item.term)}>
-                            <div className="card-head">
-                              <h4>{item.title ?? item.term}</h4>
-                            </div>
-                            <p className="concept-summary">{item.summary}</p>
-                            <ul className="concept-detail-list">
-                              {item.details.map((detail, idx) => (
-                                <DetailItem key={idx} detail={detail} />
-                              ))}
-                            </ul>
-                            {item.exampleTables && (
-                              <div className="concept-example-tables">
-                                {item.exampleTables.map((example) => (
-                                  <div className="concept-table-scroll" key={example.caption} tabIndex={0} role="region" aria-label={example.caption}>
-                                    <table className="concept-example-table">
-                                      <caption>{example.caption}</caption>
-                                      <thead>
-                                        <tr>{example.headers.map((header) => <th scope="col" key={header}>{header}</th>)}</tr>
-                                      </thead>
-                                      <tbody>
-                                        {example.rows.map((row, rowIndex) => (
-                                          <tr key={rowIndex}>
-                                            {row.map((cell, cellIndex) => (
-                                              <td key={cellIndex}>
-                                                {typeof cell === "string" ? cell : (
-                                                  <span className="concept-table-color">
-                                                    <span className="concept-table-swatches" aria-hidden="true">
-                                                      {cell.swatches.map((color) => <span key={color} style={{ backgroundColor: color }} />)}
-                                                    </span>
-                                                    {cell.label}
-                                                  </span>
-                                                )}
-                                              </td>
-                                            ))}
-                                          </tr>
-                                        ))}
-                                      </tbody>
-                                    </table>
-                                  </div>
-                                ))}
-                              </div>
-                            )}
-                            {item.imageUrl && (
-                              <div className="concept-image-container">
-                                {/* eslint-disable-next-line @next/next/no-img-element */}
-                                <img src={item.imageUrl} alt={item.title ?? item.term} className="concept-image" />
-                              </div>
-                            )}
-                            <div className="tip">
-                              <Lightbulb size={16} />
-                              <span>{item.examTip}</span>
-                            </div>
-                          </div>
+                          <ConceptCard
+                            key={item.term}
+                            item={item}
+                            anchor={getConceptAnchor(section.topicId, item.term)}
+                            showDiagramFirst={isHazmat}
+                          />
                         ))}
                       </div>
                     </div>
                   ))}
                   {section.sources && (
                     <footer className="concept-sources">
-                      <h3>참고 자료</h3>
-                      <ul>
-                        {section.sources.map((source) => (
-                          <li key={source.href}><a href={source.href} target="_blank" rel="noreferrer">{source.label}</a></li>
-                        ))}
-                      </ul>
+                      <details>
+                        <summary>참고 자료 <span>{section.sources.length}개</span></summary>
+                        <ul>
+                          {section.sources.map((source) => (
+                            <li key={source.href}><a href={source.href} target="_blank" rel="noreferrer">{source.label}</a></li>
+                          ))}
+                        </ul>
+                      </details>
                     </footer>
                   )}
                 </article>
@@ -461,16 +445,14 @@ function getConceptGroups(section: ConceptSection): ConceptGroup[] {
 
     if (mnemonicItem) {
       groups.push({
-        title: "암기 비법 & 공통 성질",
-        description: "앞 글자 줄임말 암기 공식, 류별 공통 위험 성질, 필수 소화 및 저장 원칙입니다.",
+        title: "공통 성질",
         items: [mnemonicItem],
       });
     }
 
     if (detailItems.length > 0) {
       groups.push({
-        title: "품명별 지정수량 & 핵심 반응",
-        description: "시험에 반드시 출제되는 품명별 지정수량, 물과의 반응 가스, 저장·취급 기준입니다.",
+        title: "지정수량과 주요 반응",
         items: detailItems,
       });
     }
@@ -480,7 +462,6 @@ function getConceptGroups(section: ConceptSection): ConceptGroup[] {
       : [
           {
             title: "핵심 개념",
-            description: "위험물 취급 핵심 이론입니다.",
             items: section.items,
           },
         ];
@@ -503,26 +484,30 @@ function getConceptGroups(section: ConceptSection): ConceptGroup[] {
     );
     return [
       {
-        title: "연소의 종류와 소화 원리",
-        description: "고체·액체·기체가 타는 방식, 인화점·연소점·발화점, 네 가지 소화 원리를 구분합니다.",
+        title: "연소와 소화 원리",
         items: theoryItems,
       },
       {
-        title: "A·B·C·D·K 화재 분류 & 소화 원칙",
-        description: "일반(A급)·유류(B급)·전기(C급)·금속(D급)·주방(K급) 화재를 구분하고 적응성이 있는 소화기를 확인합니다.",
+        title: "화재 등급",
         items: fireClassItems,
       },
       {
-        title: "분말·포·가스계 소화약제",
-        description: "약제별 소화 작용과 적용 대상을 비교하고, 수용성 위험물에 적합한 포를 확인합니다.",
+        title: "분말·포·가스계 약제",
         items: agentItems,
       },
       {
-        title: "소화전·스프링클러 설비 규정 & 수원·소요단위 계산",
-        description: "옥내·옥외소화전 방수량과 압력, 수원 및 소화설비 소요단위 계산을 다룹니다.",
+        title: "소화설비와 수원 계산",
         items: equipmentItems,
       },
     ].filter((g) => g.items.length > 0);
+  }
+
+  if (section.topicId === "hazmat-general-chem") {
+    const naming = section.items.filter((item) => /^(화학물질 명명법|위험물의 현행 품명)/.test(item.term));
+    return [
+      { title: "명명법과 품명", items: naming },
+      { title: "반응·농도·기체", items: section.items.filter((item) => !naming.includes(item)) },
+    ].filter((group) => group.items.length > 0);
   }
 
   if (section.topicId === "hazmat-law") {
@@ -540,23 +525,19 @@ function getConceptGroups(section: ConceptSection): ConceptGroup[] {
     );
     return [
       {
-        title: "지정수량 배수 및 혼재 기준",
-        description: "제조소등 판정을 위한 배수 합산 계산식 및 위험물 혼재 가능 짝꿍 공식입니다.",
+        title: "지정수량과 혼재",
         items: calcItems,
       },
       {
-        title: "제조소·옥내저장소·옥외저장소의 기준",
-        description: "시설별 용도, 안전거리와 보유공지, 구조 및 저장 가능 품목을 비교합니다.",
+        title: "제조소와 저장소",
         items: facilityItems,
       },
       {
-        title: "시설 설치와 운영 관리",
-        description: "설치 허가, 완공검사, 표지와 게시판, 안전관리자 선임 및 정기점검을 다룹니다.",
+        title: "설치와 운영 관리",
         items: managementItems,
       },
       {
-        title: "소화난이도 등급 및 경보·피난설비",
-        description: "제조소등의 규모별 소화난이도 등급(I, II, III) 및 자동화재탐지설비 등 법정 의무 설비입니다.",
+        title: "소화난이도와 경보설비",
         items: difficultyItems,
       },
     ].filter((g) => g.items.length > 0);

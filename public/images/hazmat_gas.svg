@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="280" viewBox="0 0 720 280" role="img" aria-labelledby="title desc">
+  <title id="title">가스계 약제가 작용하는 세 가지 지점</title>
+  <desc id="desc">이산화탄소와 IG 계열은 공기를 희석합니다. HFC와 FK 계열은 주로 화염의 열을 흡수합니다. 할론은 화염의 연쇄반응을 억제합니다.</desc>
+  <rect width="720" height="280" rx="18" fill="#eff4f9"/>
+  <g font-family="system-ui, Malgun Gothic, sans-serif" text-anchor="middle" fill="#142b45">
+    <g transform="translate(16 16)">
+      <rect width="220" height="248" rx="14" fill="#fff" stroke="#cad5e1"/>
+      <text x="110" y="44" font-size="25" font-weight="800">CO₂ · IG</text>
+      <rect x="35" y="68" width="150" height="96" rx="14" fill="#e4eefb" stroke="#b0c9e7"/>
+      <g fill="#6d95bd">
+        <circle cx="60" cy="91" r="6"/>
+        <circle cx="87" cy="135" r="7"/>
+        <circle cx="154" cy="91" r="6"/>
+        <circle cx="160" cy="141" r="7"/>
+        <circle cx="124" cy="94" r="6"/>
+        <circle cx="59" cy="138" r="5"/>
+      </g>
+      <text x="113" y="131" font-size="28" font-weight="750" fill="#1b527e">O₂ ↓</text>
+      <text x="110" y="210" font-size="26" font-weight="800">산소 희석</text>
+    </g>
+    <g transform="translate(250 16)">
+      <rect width="220" height="248" rx="14" fill="#fff" stroke="#cad5e1"/>
+      <text x="110" y="44" font-size="25" font-weight="800">HFC · FK</text>
+      <rect x="35" y="68" width="150" height="96" rx="14" fill="#fff0e3" stroke="#edc8a9"/>
+      <path d="M96 146c-13-8-17-21-9-34 4-6 11-12 12-25 10 6 16 14 15 25 5-2 8-6 9-10 10 13 13 33-2 42-8 5-17 6-25 2Z" fill="#f6a66a" stroke="#a94720" stroke-width="2"/>
+      <path d="M75 114H52m0 0 8-7m-8 7 8 7m85-7h23m0 0-8-7m8 7-8 7" fill="none" stroke="#963b16" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="110" y="210" font-size="26" font-weight="800">열 흡수</text>
+    </g>
+    <g transform="translate(484 16)">
+      <rect width="220" height="248" rx="14" fill="#fff" stroke="#cad5e1"/>
+      <text x="110" y="44" font-size="25" font-weight="800">할론</text>
+      <rect x="35" y="68" width="150" height="96" rx="14" fill="#f0e9f9" stroke="#d1c2e6"/>
+      <g fill="none" stroke="#624b91" stroke-width="5" stroke-linecap="round">
+        <path d="m90 104-16 16a12 12 0 0 0 17 17l13-13m12-16 13-13a12 12 0 0 1 17 17l-16 16"/>
+        <path d="m100 89 6 10m20 34 6 10m-18-55v9m6 43v8" stroke-width="3"/>
+      </g>
+      <text x="110" y="210" font-size="26" font-weight="800">연쇄반응 억제</text>
+    </g>
+  </g>
+</svg>
