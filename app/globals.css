@@ -1441,6 +1441,16 @@ button {
   margin: 12px 0 16px;
 }
 
+.concept-image-reference {
+  margin-top: 14px;
+}
+
+.concept-image-reference summary {
+  color: var(--primary);
+  cursor: pointer;
+  font-weight: 700;
+}
+
 .hazmat-theory .concept-image-container {
   margin: 0;
   padding: clamp(4px, 1.4vw, 12px);

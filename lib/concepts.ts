@@ -11,6 +11,7 @@ export interface ConceptItem {
   examTip: string;
   imageUrl?: string;
   imageAlt?: string;
+  imageDisclosure?: string;
   exampleTables?: { caption: string; headers: string[]; rows: ConceptTableCell[][]; wide?: boolean }[];
 }
 
@@ -1769,6 +1770,8 @@ export const CONCEPTS_BY_EXAM: Record<ExamId, ConceptSection[]> = {
         { label: "IUPAC · 무기·유기화합물 명명법 요약", href: "https://iupac.org/what-we-do/nomenclature/brief-guides/" },
         { label: "OpenStax · 이온 화합물, 분자 화합물 및 산의 명명법", href: "https://openstax.org/books/chemistry-2e/pages/2-7-chemical-nomenclature" },
         { label: "IUCr · 7가지 결정계와 단위격자의 축과 각", href: "https://journals.iucr.org/j/issues/2026/01/00/dv5028/" },
+        { label: "한국지질자원연구원 지질박물관 · 광물 예시와 6분류 전시", href: "https://www.kigam.re.kr/menu.es?mid=b60205160000" },
+        { label: "IUCr · 삼방정계와 육방정계의 관계", href: "https://journals.iucr.org/j/issues/2026/01/00/dv5029/index.html" },
         { label: "OpenStax · 결정성 고체의 격자 구조", href: "https://openstax.org/books/chemistry-2e/pages/10-6-lattice-structures-in-crystalline-solids" },
         { label: "IAEA · 핵의 방사성 붕괴 (§1.4.6~1.4.10)", href: "https://www-pub.iaea.org/mtcd/publications/pdf/pub1617web-1294055.pdf" },
         { label: "위험물안전관리법 시행령 별표 1 · 법정 품명", href: "https://www.law.go.kr/LSW/flDownload.do?bylClsCd=110201&flSeq=166025439&gubun=" },
@@ -1923,26 +1926,30 @@ export const CONCEPTS_BY_EXAM: Record<ExamId, ConceptSection[]> = {
         },
         {
           term: "7가지 결정계와 축의 관계",
-          summary: "결정계는 결정의 대칭에 따라 나눕니다. 관례적인 단위격자의 모서리 길이와 그 사이 각도를 비교하면 각 결정계의 특징을 익힐 수 있습니다.",
+          summary: "결정계는 결정의 대칭에 따라 나눕니다. 표의 결정형은 각 결정계에서 볼 수 있는 모양의 예입니다.",
+          imageUrl: "/images/hazmat_crystal_systems_reference.png",
+          imageAlt: "EnCyber의 6분류 자료입니다. 등축·정방·육방·사방·단사·삼사정계의 축, 결정형 그림, 광물 예시가 있습니다.",
+          imageDisclosure: "첨부 원본 보기 (EnCyber 6분류)",
           details: [
             "a, b, c는 단위격자 모서리 길이입니다. α는 b와 c, β는 c와 a, γ는 a와 b 사이의 각입니다.",
-            "표에서 ‘독립’은 대칭에 의해 서로 같거나 특정 각도로 고정될 필요가 없다는 뜻입니다.",
-            "삼방정계도 육방축으로 나타낼 수 있습니다. 이때 단위격자 모양이 육방정계와 같을 수 있으므로 3회 회전 대칭과 6회 회전 또는 회전반전 대칭을 구분합니다.",
+            "‘독립’인 길이와 각도는 대칭으로 값이 정해지지 않습니다. 육방정계의 4축 표기에서 밑면의 a₁·a₂·a₃는 길이가 같고 서로 120°를 이루며, c축은 밑면에 수직입니다.",
+            "첨부 원본의 6분류는 삼방과 육방을 함께 다룹니다.",
           ],
           exampleTables: [{
-            caption: "결정계별 단위격자 축과 각도",
-            headers: ["결정계", "축 길이", "축 사이 각도"],
+            caption: "결정계별 축·각도, 결정형과 광물 예",
+            wide: true,
+            headers: ["결정계", "축과 각도", "결정형 예", "광물·물질 예"],
             rows: [
-              ["입방정계(등축정계)", "a = b = c", "α = β = γ = 90°"],
-              ["정방정계", "a = b, c는 독립", "α = β = γ = 90°"],
-              ["사방정계(직방정계)", "a, b, c 독립", "α = β = γ = 90°"],
-              ["육방정계", "a = b, c는 독립", "α = β = 90°, γ = 120°"],
-              ["삼방정계", "육방축은 육방정계와 같음. 능면체축은 a = b = c", "육방축은 육방정계와 같음. 능면체축은 α = β = γ"],
-              ["단사정계(b축 기준)", "a, b, c 독립", "α = γ = 90°, β는 독립"],
-              ["삼사정계", "a, b, c 독립", "α, β, γ 독립"],
+              ["입방정계(등축정계)", "a = b = c, α = β = γ = 90°", "정육면체", "금강석, 형석, 암염"],
+              ["정방정계", "a = b, c는 독립. α = β = γ = 90°", "정사각기둥", "백색 주석(β-Sn), 지르콘"],
+              ["사방정계(직방정계)", "a, b, c 독립. α = β = γ = 90°", "직육면체", "사방황(α-S₈), 황옥"],
+              ["육방정계", "a = b, c는 독립. α = β = 90°, γ = 120°", "육각기둥", "2H 흑연"],
+              ["삼방정계", "육방축은 육방정계와 같은 조건. 능면체축을 쓰면 a = b = c, α = β = γ", "능면체(방해석의 예)", "α-석영, 방해석"],
+              ["단사정계(b축 기준)", "a, b, c 독립. α = γ = 90°, β는 독립", "한 방향으로 기운 각기둥", "정장석, 투휘석"],
+              ["삼사정계", "a, b, c와 α, β, γ가 각각 독립", "비스듬한 평행육면체", "조장석(사장석의 한 종류)"],
             ],
           }],
-          examTip: "세 각이 모두 90°인 입방·정방·사방은 축 길이 조건으로 구별합니다.",
+          examTip: "삼방정계와 육방정계를 구분할 때는 회전 대칭을 확인합니다. 육방정계에는 6회 회전축 또는 6회 회전반전축이 있습니다.",
         },
         {
           term: "입방 단위격자 3종과 원자 수",

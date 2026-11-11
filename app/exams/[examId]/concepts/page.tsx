@@ -116,7 +116,7 @@ function ConceptCard({ item, anchor, showDiagramFirst }: {
     <div className="concept-card" id={anchor}>
       <div className="card-head"><h4>{title}</h4></div>
       <p className="concept-summary">{item.summary}</p>
-      {showDiagramFirst && illustration}
+      {showDiagramFirst && !item.imageDisclosure && illustration}
       {item.details.length > 0 && (
         <ul className="concept-detail-list">
           {item.details.map((detail, index) => <DetailItem key={index} detail={detail} />)}
@@ -154,7 +154,12 @@ function ConceptCard({ item, anchor, showDiagramFirst }: {
           ))}
         </div>
       )}
-      {!showDiagramFirst && illustration}
+      {item.imageDisclosure && illustration ? (
+        <details className="concept-image-reference">
+          <summary>{item.imageDisclosure}</summary>
+          {illustration}
+        </details>
+      ) : !showDiagramFirst && illustration}
       {item.examTip && (
         <div className="tip">
           <Lightbulb size={16} aria-hidden="true" />
