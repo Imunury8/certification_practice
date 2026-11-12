@@ -97,26 +97,27 @@ function ConceptCard({ item, anchor, showDiagramFirst }: {
   showDiagramFirst: boolean;
 }) {
   const title = item.title ?? item.term;
-  const illustration = item.imageUrl && (
+  const renderIllustration = (url: string, alt: string, label: string) => (
     <figure className="concept-illustration">
-      <div className="concept-image-container" role="region" aria-label={`${title} 도식`} tabIndex={showDiagramFirst ? 0 : undefined}>
+      <div className="concept-image-container" role="region" aria-label={label} tabIndex={showDiagramFirst ? 0 : undefined}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={item.imageUrl} alt={item.imageAlt ?? title} className="concept-image" loading="lazy" />
+        <img src={url} alt={alt} className="concept-image" loading="lazy" />
       </div>
       {showDiagramFirst && (
         <figcaption>
           <span className="concept-illustration-scroll-hint">좌우로 밀어 보기</span>
-          <a href={item.imageUrl} target="_blank" rel="noreferrer" aria-label={`${title} 도식 크게 보기`}>도식 크게 보기</a>
+          <a href={url} target="_blank" rel="noreferrer" aria-label={`${label} 크게 보기`}>도식 크게 보기</a>
         </figcaption>
       )}
     </figure>
   );
+  const illustration = item.imageUrl && renderIllustration(item.imageUrl, item.imageAlt ?? title, `${title} 도식`);
 
   return (
     <div className="concept-card" id={anchor}>
       <div className="card-head"><h4>{title}</h4></div>
       <p className="concept-summary">{item.summary}</p>
-      {showDiagramFirst && !item.imageDisclosure && illustration}
+      {showDiagramFirst && illustration}
       {item.details.length > 0 && (
         <ul className="concept-detail-list">
           {item.details.map((detail, index) => <DetailItem key={index} detail={detail} />)}
@@ -154,12 +155,13 @@ function ConceptCard({ item, anchor, showDiagramFirst }: {
           ))}
         </div>
       )}
-      {item.imageDisclosure && illustration ? (
+      {!showDiagramFirst && illustration}
+      {item.referenceImage && (
         <details className="concept-image-reference">
-          <summary>{item.imageDisclosure}</summary>
-          {illustration}
+          <summary>{item.referenceImage.label}</summary>
+          {renderIllustration(item.referenceImage.url, item.referenceImage.alt, `${title} 첨부 원본`)}
         </details>
-      ) : !showDiagramFirst && illustration}
+      )}
       {item.examTip && (
         <div className="tip">
           <Lightbulb size={16} aria-hidden="true" />
