@@ -511,11 +511,13 @@ function getConceptGroups(section: ConceptSection): ConceptGroup[] {
 
   if (section.topicId === "hazmat-general-chem") {
     const naming = section.items.filter((item) => /^(화학물질 명명법|위험물의 현행 품명|탄화수소와 유기화합물의 작용기)/.test(item.term));
+    const isomers = section.items.filter((item) => item.term.startsWith("이성질체"));
     const structure = section.items.filter((item) => /^(7가지 결정계|입방 단위격자|방사성 붕괴)/.test(item.term));
     return [
       { title: "명명법과 작용기", items: naming },
+      { title: "이성질체", items: isomers },
       { title: "결정계와 방사성 붕괴", items: structure },
-      { title: "반응·농도·기체", items: section.items.filter((item) => !naming.includes(item) && !structure.includes(item)) },
+      { title: "반응·농도·기체", items: section.items.filter((item) => !naming.includes(item) && !isomers.includes(item) && !structure.includes(item)) },
     ].filter((group) => group.items.length > 0);
   }
 

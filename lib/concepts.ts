@@ -1225,7 +1225,7 @@ export const CONCEPTS_BY_EXAM: Record<ExamId, ConceptSection[]> = {
             caption: "큐넷 필기 과목과 처음 익힐 내용",
             headers: ["과목", "입문 학습 범위"],
             rows: [
-              ["물질의 물리·화학적 성질", "화학물질 명명법과 작용기, 결정계, 방사성 붕괴, 몰과 화학 반응식, 농도, 기체, 산·염기"],
+              ["물질의 물리·화학적 성질", "화학물질 명명법과 작용기, 이성질체, 결정계, 방사성 붕괴, 몰과 화학 반응식, 농도, 기체, 산·염기"],
               ["화재예방과 소화방법", "연소의 조건과 종류, 소화 원리, 분말·포·가스계 소화약제"],
               ["위험물의 성질 및 취급", "제1~6류, 지정수량과 배수, 제조소·저장소의 설치와 관리"],
             ],
@@ -1764,7 +1764,7 @@ export const CONCEPTS_BY_EXAM: Record<ExamId, ConceptSection[]> = {
     {
       topicId: "hazmat-general-chem",
       title: "물질의 물리·화학적 성질",
-      description: "화학식과 물질 이름을 읽고, 결정계와 방사성 붕괴를 구분하며, 몰·농도·기체의 기초 계산을 익힙니다.",
+      description: "화학식과 물질 이름을 읽고, 이성질체·결정계·방사성 붕괴를 구분하며, 몰·농도·기체의 기초 계산을 익힙니다.",
       sources: [
         { label: "대한화학회 · 화합물 명명법", href: "https://kchem.org/iupacname" },
         { label: "IUPAC · 무기·유기화합물 명명법 요약", href: "https://iupac.org/what-we-do/nomenclature/brief-guides/" },
@@ -1783,6 +1783,10 @@ export const CONCEPTS_BY_EXAM: Record<ExamId, ConceptSection[]> = {
         { label: "OpenStax · 기체 상태방정식", href: "https://openstax.org/books/chemistry-2e/pages/9-2-relating-pressure-volume-amount-and-temperature-the-ideal-gas-law" },
         { label: "OpenStax · pH와 pOH", href: "https://openstax.org/books/chemistry-2e/pages/14-2-ph-and-poh" },
         { label: "OpenStax · 유기화합물의 작용기", href: "https://openstax.org/books/organic-chemistry/pages/3-1-functional-groups" },
+        { label: "IUPAC · 구조 이성질체", href: "https://goldbook.iupac.org/terms/view/C01285" },
+        { label: "OpenStax · 구조·입체 이성질체", href: "https://openstax.org/books/organic-chemistry/pages/5-9-a-review-of-isomerism" },
+        { label: "OpenStax · E/Z 표기", href: "https://openstax.org/books/organic-chemistry/pages/7-5-alkene-stereochemistry-and-the-e-z-designation" },
+        { label: "OpenStax · R/S 배치와 순위 규칙", href: "https://openstax.org/books/organic-chemistry/pages/5-5-sequence-rules-for-specifying-configuration" },
         { label: "OpenStax · 알코올 산화", href: "https://openstax.org/books/organic-chemistry/pages/17-7-oxidation-of-alcohols" },
         { label: "OpenStax · 카복실산의 에스터화", href: "https://openstax.org/books/organic-chemistry/pages/21-3-reactions-of-carboxylic-acids" },
       ],
@@ -2056,7 +2060,6 @@ export const CONCEPTS_BY_EXAM: Record<ExamId, ConceptSection[]> = {
           imageAlt: "에탄올은 산화되어 아세트알데하이드와 아세트산으로, 2-프로판올은 아세톤으로 바뀔 수 있습니다. 아세트산과 에탄올의 에스터화에서는 아세트산 에틸과 물이 생깁니다.",
           details: [
             "탄화수소는 탄소와 수소로만 이루어집니다. 고리가 없는 알케인의 일반식은 CₙH₂ₙ₊₂이며, 메테인(CH₄)과 프로페인(C₃H₈)이 그 예입니다.",
-            "분자식이 같은 C₂H₆O라도 CH₃CH₂–OH는 에탄올이고 CH₃–O–CH₃는 다이메틸 에터입니다. 산소에 어떤 원자가 직접 붙어 있는지 확인합니다.",
             "산화 조건에 따라 1차 알코올에서 알데하이드가 생기고 더 산화되면 카복실산이 됩니다. 2차 알코올을 산화하면 케톤이 됩니다.",
             "카복실산과 알코올을 산 촉매로 반응시키면 카복실산 에스터와 물이 생길 수 있습니다. 예를 들어 아세트산과 에탄올에서 아세트산 에틸을 얻습니다.",
           ],
@@ -2075,6 +2078,37 @@ export const CONCEPTS_BY_EXAM: Record<ExamId, ConceptSection[]> = {
             ],
           }],
           examTip: "질산에스터는 탄소와 질소 사이에 산소가 있습니다. 나이트로화합물에서는 탄소에 질소가 직접 붙습니다.",
+        },
+        {
+          term: "이성질체 ① 구조 이성질체",
+          summary: "이성질체는 분자식이 같으면서 원자 연결이나 공간 배열이 다른 화합물입니다. 원자 연결이 다르면 구조 이성질체입니다.",
+          details: [
+            "먼저 분자식의 원소 종류와 개수를 비교합니다. 분자식이 같으면 탄소 골격, 작용기나 다중결합의 위치, 작용기의 종류를 차례로 확인합니다.",
+          ],
+          exampleTables: [{
+            caption: "구조 이성질체의 대표 예",
+            wide: true,
+            headers: ["종류", "같은 분자식", "구조식과 차이"],
+            rows: [
+              ["골격(사슬) 이성질체", "C₄H₁₀", "뷰테인 CH₃CH₂CH₂CH₃와 2-메틸프로페인 (CH₃)₃CH. 곧은 사슬과 가지 달린 사슬입니다."],
+              ["위치 이성질체", "C₄H₁₀O", "뷰탄-1-올 CH₃CH₂CH₂CH₂OH와 뷰탄-2-올 CH₃CH(OH)CH₂CH₃. –OH가 붙은 위치가 다릅니다."],
+              ["작용기 이성질체", "C₂H₆O", "에탄올 CH₃CH₂–OH와 다이메틸 에터 CH₃–O–CH₃. 각각 알코올과 에터입니다."],
+            ],
+          }],
+          examTip: "CH₃CH₂CH=CH₂와 CH₂=CHCH₂CH₃는 같은 뷰트-1-엔입니다. 구조식을 어느 쪽에서 읽든 각 원자의 연결이 같은지 확인합니다.",
+        },
+        {
+          term: "이성질체 ② 입체 이성질체",
+          summary: "입체 이성질체는 분자식과 원자 연결이 같고 공간 배열이 다릅니다. 뷰트-2-엔의 기하 이성질체와 뷰탄-2-올의 거울상 이성질체가 대표 예입니다.",
+          imageUrl: "/images/hazmat_stereoisomers.png",
+          imageAlt: "뷰트-2-엔의 시스형은 두 메틸기가 이중결합의 같은 쪽에 있고, 트랜스형은 반대쪽에 있습니다. 뷰탄-2-올의 두 거울상은 하이드록시기가 앞으로, 수소가 뒤로 향하며 왼쪽과 오른쪽의 에틸기와 메틸기 위치가 서로 바뀝니다.",
+          details: [
+            "탄소–탄소 이중결합은 자유롭게 회전하기 어렵습니다. 뷰트-2-엔에서 두 메틸기가 같은 쪽이면 시스, 반대쪽이면 트랜스입니다. 이중결합 양쪽 탄소에 각각 서로 다른 두 치환기가 있어야 E/Z를 구분할 수 있습니다.",
+            "E/Z는 이중결합의 각 탄소에서 우선순위가 높은 치환기를 하나씩 고릅니다. 두 치환기가 같은 쪽이면 Z, 반대쪽이면 E입니다. 뷰트-2-엔에서는 메틸기의 순위가 수소보다 높습니다.",
+            "거울상 이성질체(광학 이성질체)는 서로 겹쳐지지 않는 거울상 관계입니다. 뷰탄-2-올의 2번 탄소에는 –OH, 에틸기, 메틸기, H가 붙습니다. 가장 낮은 순위의 H를 뒤로 두고 –OH → 에틸기 → 메틸기가 시계 방향이면 R, 반시계 방향이면 S입니다.",
+            "R/S는 공간 배치를, (+)/(−)는 편광면의 회전 방향을 표시합니다. 같은 조건에서 두 거울상은 편광면을 서로 반대 방향으로 같은 각도만큼 회전시키므로 1:1로 섞은 라세미 혼합물의 순광회전은 0입니다.",
+          ],
+          examTip: "뷰트-1-엔의 말단 이중결합 탄소에는 H가 두 개 붙어 있으므로 E/Z가 생기지 않습니다.",
         },
       ]
     },

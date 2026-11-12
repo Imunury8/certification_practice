@@ -239,4 +239,32 @@ export const HAZMAT_CHEM_CBT: HazmatCbtQuestion[] = [
     correctIndex: 1,
     explanation: "아세트산의 CH₃–C(=O)– 부분이 에탄올에서 온 –O–CH₂CH₃와 결합합니다. 카복실산 에스터의 특징은 –C(=O)–O– 연결입니다.",
   },
+  {
+    id: "chem-35",
+    prompt: "뷰테인(CH₃CH₂CH₂CH₃)과 2-메틸프로페인((CH₃)₃CH)의 이성질 관계는?",
+    choices: ["위치 이성질", "골격 이성질", "작용기 이성질", "기하 이성질"],
+    correctIndex: 1,
+    explanation: "둘 다 C₄H₁₀이지만 뷰테인의 탄소 사슬은 곧고 2-메틸프로페인의 탄소 사슬에는 가지가 있습니다.",
+  },
+  {
+    id: "chem-36",
+    prompt: "같은 탄소 골격에서 –OH가 붙은 위치만 다른 두 화합물은?",
+    choices: ["에탄올과 프로판-1-올", "펜테인과 2-메틸뷰테인", "에탄올과 다이메틸 에터", "뷰탄-1-올과 뷰탄-2-올"],
+    correctIndex: 3,
+    explanation: "두 화합물 모두 가지 없는 탄소 4개짜리 사슬을 가진 C₄H₁₀O입니다. –OH가 각각 1번과 2번 탄소에 붙어 있어 위치 이성질체입니다.",
+  },
+  {
+    id: "chem-37",
+    prompt: "사슬형 포도당과 과당의 분자식은 모두 C₆H₁₂O₆이다. 포도당에는 알데하이드기, 과당에는 케톤기가 있다. 이 차이에 해당하는 이성질 관계는?",
+    choices: ["작용기 이성질", "골격 이성질", "기하 이성질", "거울상 이성질"],
+    correctIndex: 0,
+    explanation: "사슬형 포도당은 끝에 –CHO가 있고, 사슬형 과당은 사슬 내부에 C=O가 있습니다. 분자식은 같고 작용기의 종류가 다릅니다.",
+  },
+  {
+    id: "chem-38",
+    prompt: "다음 중 탄소–탄소 이중결합을 기준으로 기하 이성질체가 존재하는 화합물은?",
+    choices: ["CH₂=CHCH₂CH₃", "(CH₃)₂C=CH₂", "CH₃CH=CHCH₃", "CH₃CH₂CH₂CH₃"],
+    correctIndex: 2,
+    explanation: "CH₃CH=CHCH₃의 이중결합 양쪽 탄소에는 각각 H와 CH₃가 붙어 있습니다. 두 CH₃가 같은 쪽이면 cis, 반대쪽이면 trans입니다.",
+  },
 ];
