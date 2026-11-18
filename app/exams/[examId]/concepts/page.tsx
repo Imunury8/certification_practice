@@ -528,8 +528,11 @@ function getConceptGroups(section: ConceptSection): ConceptGroup[] {
     const facilityItems = section.items.filter(
       (item) => /^(제조소(?:등)?|옥내저장소|옥외저장소)의/.test(item.term)
     );
+    const signItems = section.items.filter(
+      (item) => /표지|게시판|^차량의/.test(item.term)
+    );
     const managementItems = section.items.filter(
-      (item) => /표지|안전관리자|설치 허가|정기점검/.test(item.term)
+      (item) => !signItems.includes(item) && /안전관리자|설치 허가|정기점검/.test(item.term)
     );
     const difficultyItems = section.items.filter(
       (item) => item.term.includes("소화난이도") || item.term.includes("경보")
@@ -542,6 +545,10 @@ function getConceptGroups(section: ConceptSection): ConceptGroup[] {
       {
         title: "제조소와 저장소",
         items: facilityItems,
+      },
+      {
+        title: "표지와 게시판",
+        items: signItems,
       },
       {
         title: "설치와 운영 관리",

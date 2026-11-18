@@ -1,0 +1,199 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="1285" viewBox="0 0 760 1285" role="img" aria-labelledby="title desc">
+  <title id="title">위험물 운송·운반 경고 그림문자 10종</title>
+  <desc id="desc">한 변 25센티미터 이상인 마름모 모양 경고 그림문자의 대표 도식입니다. 하단 번호의 높이는 2.5센티미터 이상입니다. 폭발성 물질, 인화성 액체, 인화성 고체, 자연발화성 물질, 금수성 물질, 산화성 물질, 유기과산화물, 독성 물질, 감염성 물질, 부식성 물질의 색상과 기호를 비교합니다. 4.1·4.2·4.3의 하단 번호는 모두 4이며, 6.1·6.2의 하단 번호는 모두 6입니다.</desc>
+  <metadata>위험물 운송·운반 시의 위험성 경고표지에 관한 기준 별표 3. https://www.law.go.kr/LSW/admRulBylInfoPLinkR.do?bylSeq=1899528&amp;admRulSeq=2100000097089&amp;viewerPopYn=Y</metadata>
+  <defs>
+    <path id="diamond" d="M0-80 80 0 0 80-80 0Z"/>
+    <clipPath id="diamond-clip"><use href="#diamond"/></clipPath>
+    <g id="flame" fill-rule="evenodd">
+      <path d="M0-38C-3-22-17-25-12-8C-20-12-19-22-17-29C-32-15-39-3-33 12C-30 29-14 36 0 36C22 36 35 19 30 0C27-10 18-14 18-25C12-15 10-6 5 0C7-20 6-26 0-38ZM0 10C-1 17-10 18-10 24C-10 30-5 32 0 32C9 32 14 23 9 17C8 24 4 25 4 25C5 18 3 15 0 10Z"/>
+    </g>
+    <g id="explosion" fill="#111">
+      <path d="M-35 24-14 8-31-12-7-3-6-38 5-13 28-29 18-3 43 3 21 12 32 36 11 25-1 39-8 20-34 29Z"/>
+      <path d="m-42-25 8 3-5 7-8-4Zm68-19 6 6-6 6-7-7ZM39 22l9 4-5 8-9-5Z"/>
+      <circle cx="-25" cy="-42" r="4"/>
+      <circle cx="41" cy="-18" r="3.5"/>
+      <path d="m-47 4 13 1M13-43l-3 13" fill="none" stroke="#111" stroke-width="4"/>
+    </g>
+    <g id="skull" fill="#111">
+      <path d="m-36 22 65 20 3-7-65-20Z"/>
+      <path d="m-32 42 65-20-3-7-65 20Z"/>
+      <g>
+        <circle cx="-35" cy="17" r="5"/><circle cx="-39" cy="23" r="5"/>
+        <circle cx="34" cy="37" r="5"/><circle cx="30" cy="43" r="5"/>
+        <circle cx="-35" cy="37" r="5"/><circle cx="-31" cy="43" r="5"/>
+        <circle cx="35" cy="17" r="5"/><circle cx="39" cy="23" r="5"/>
+      </g>
+      <path d="M0-41C-22-41-30-28-29-13C-28-4-24 2-16 4L-14 16H14L16 4C24 2 28-4 29-13C30-28 22-41 0-41Z"/>
+      <g fill="#fff">
+        <ellipse cx="-12" cy="-14" rx="8" ry="9" transform="rotate(-12 -12 -14)"/>
+        <ellipse cx="12" cy="-14" rx="8" ry="9" transform="rotate(12 12 -14)"/>
+        <path d="m0-9-5 9H5Z"/>
+        <path d="M-9 7v9M-3 6v10M3 6v10M9 7v9" fill="none" stroke="#fff" stroke-width="2.5"/>
+      </g>
+    </g>
+    <mask id="biohazard-mask" maskUnits="userSpaceOnUse" x="-50" y="-50" width="100" height="100">
+      <rect x="-50" y="-50" width="100" height="100" fill="#fff"/>
+      <circle cx="0" cy="-30" r="20" fill="#000"/>
+      <circle cx="0" cy="-30" r="20" fill="#000" transform="rotate(120)"/>
+      <circle cx="0" cy="-30" r="20" fill="#000" transform="rotate(240)"/>
+    </mask>
+    <g id="biohazard" fill="#111">
+      <g mask="url(#biohazard-mask)">
+        <circle cx="0" cy="-19" r="25"/>
+        <circle cx="0" cy="-19" r="25" transform="rotate(120)"/>
+        <circle cx="0" cy="-19" r="25" transform="rotate(240)"/>
+      </g>
+      <circle r="16" fill="none" stroke="#111" stroke-width="4"/>
+      <circle r="7.5" fill="#fff"/>
+    </g>
+    <g id="corrosion" stroke="#111" stroke-width="3" stroke-linejoin="round">
+      <path d="m-35-42 24 13c6 3 3 11-3 8l-25-12Z" fill="#fff"/>
+      <path d="m7-48 28 14c6 3 3 11-3 8L3-40Z" fill="#fff"/>
+      <path d="m-35-36 22 12M8-42l25 13" fill="none"/>
+      <g fill="#111" stroke="none">
+        <path d="M-11-18c-1.5 4-3.5 6-3.5 8a3.5 3.5 0 0 0 7 0c0-2-2-4-3.5-8ZM33-20c-1.5 4-3.5 6-3.5 8a3.5 3.5 0 0 0 7 0c0-2-2-4-3.5-8Z"/>
+        <path d="M-47-4H-5V0H-47Z"/>
+        <path d="M7-9H21L27-14c3-2 5 0 5 3l3 4 14 2v5H27L18-5H7c-5 0-5-4 0-4Z"/>
+      </g>
+      <path d="m-29-5 4 3 4-3 4 3 3-3" fill="#fff" stroke="#fff" stroke-width="1.5"/>
+    </g>
+    <g id="card"><rect width="232" height="268" rx="13" fill="#fff" stroke="#bad0e7"/></g>
+  </defs>
+
+  <rect width="760" height="1285" rx="18" fill="#eff4f9"/>
+  <g font-family="system-ui, Malgun Gothic, sans-serif" text-anchor="middle">
+    <text x="380" y="38" fill="#142b45" font-size="29" font-weight="800">위험물 운송·운반 경고 그림문자</text>
+    <text x="380" y="73" fill="#244e7c" font-size="23" font-weight="700">한 변 25 cm 이상 · 하단 번호 높이 2.5 cm 이상</text>
+    <text x="380" y="102" fill="#435972" font-size="20">국제 운송 분류·구분에 따른 대표 도식</text>
+
+    <g transform="translate(20 119)">
+      <use href="#card"/>
+      <text x="116" y="31" fill="#142b45" font-size="24" font-weight="750">폭발성 물질</text>
+      <text x="116" y="58" fill="#435972" font-size="21">1.1–1.3</text>
+      <g transform="translate(116 151)">
+        <use href="#diamond" fill="#f7941d" stroke="#111" stroke-width="2"/>
+        <use href="#explosion" transform="translate(0 -16) scale(.88)"/>
+        <text y="63" fill="#111" font-size="27" font-weight="800">1</text>
+      </g>
+      <text x="116" y="254" fill="#435972" font-size="20">주황색 · 폭발 기호</text>
+    </g>
+    <g transform="translate(264 119)">
+      <use href="#card"/>
+      <text x="116" y="31" fill="#142b45" font-size="24" font-weight="750">인화성 액체</text>
+      <text x="116" y="58" fill="#435972" font-size="21">3</text>
+      <g transform="translate(116 151)">
+        <use href="#diamond" fill="#e52529" stroke="#111" stroke-width="2"/>
+        <use href="#flame" fill="#fff" transform="translate(0 -15) scale(.92)"/>
+        <text y="63" fill="#fff" font-size="27" font-weight="800">3</text>
+      </g>
+      <text x="116" y="254" fill="#435972" font-size="20">적색 · 흰 불꽃</text>
+    </g>
+    <g transform="translate(508 119)">
+      <use href="#card"/>
+      <text x="116" y="31" fill="#142b45" font-size="24" font-weight="750">인화성 고체</text>
+      <text x="116" y="58" fill="#435972" font-size="21">4.1</text>
+      <g transform="translate(116 151)">
+        <use href="#diamond" fill="#fff"/>
+        <g clip-path="url(#diamond-clip)" fill="#e52529">
+          <rect x="-66" y="-80" width="12" height="160"/><rect x="-46" y="-80" width="12" height="160"/>
+          <rect x="-26" y="-80" width="12" height="160"/><rect x="-6" y="-80" width="12" height="160"/>
+          <rect x="14" y="-80" width="12" height="160"/><rect x="34" y="-80" width="12" height="160"/>
+          <rect x="54" y="-80" width="12" height="160"/>
+        </g>
+        <use href="#diamond" fill="none" stroke="#111" stroke-width="2"/>
+        <use href="#flame" fill="#111" transform="translate(0 -15) scale(.92)"/>
+        <text y="63" fill="#111" font-size="27" font-weight="800">4</text>
+      </g>
+      <text x="116" y="254" fill="#435972" font-size="20">백색 · 적색 세로줄 7개</text>
+    </g>
+
+    <g transform="translate(20 401)">
+      <use href="#card"/>
+      <text x="116" y="31" fill="#142b45" font-size="24" font-weight="750">자연발화성 물질</text>
+      <text x="116" y="58" fill="#435972" font-size="21">4.2</text>
+      <g transform="translate(116 151)">
+        <use href="#diamond" fill="#fff"/>
+        <path d="M-80 0H80L0 80Z" fill="#e52529"/>
+        <use href="#diamond" fill="none" stroke="#111" stroke-width="2"/>
+        <use href="#flame" fill="#111" transform="translate(0 -22) scale(.65)"/>
+        <text y="63" fill="#111" font-size="27" font-weight="800">4</text>
+      </g>
+      <text x="116" y="254" fill="#435972" font-size="20">위 백색 · 아래 적색</text>
+    </g>
+    <g transform="translate(264 401)">
+      <use href="#card"/>
+      <text x="116" y="31" fill="#142b45" font-size="24" font-weight="750">금수성 물질</text>
+      <text x="116" y="58" fill="#435972" font-size="21">4.3</text>
+      <g transform="translate(116 151)">
+        <use href="#diamond" fill="#0067b1" stroke="#111" stroke-width="2"/>
+        <use href="#flame" fill="#fff" transform="translate(0 -15) scale(.92)"/>
+        <text y="63" fill="#fff" font-size="27" font-weight="800">4</text>
+      </g>
+      <text x="116" y="254" fill="#435972" font-size="20">청색 · 흰 불꽃</text>
+    </g>
+    <g transform="translate(508 401)">
+      <use href="#card"/>
+      <text x="116" y="31" fill="#142b45" font-size="24" font-weight="750">산화성 물질</text>
+      <text x="116" y="58" fill="#435972" font-size="21">5.1</text>
+      <g transform="translate(116 151)">
+        <use href="#diamond" fill="#ffd52a" stroke="#111" stroke-width="2"/>
+        <use href="#flame" fill="#111" transform="translate(0 -25) scale(.65)"/>
+        <circle cy="15" r="17" fill="none" stroke="#111" stroke-width="5"/>
+        <text y="57" fill="#111" font-size="25" font-weight="800">5.1</text>
+      </g>
+      <text x="116" y="254" fill="#435972" font-size="20">황색 · 원 위의 불꽃</text>
+    </g>
+
+    <g transform="translate(20 683)">
+      <use href="#card"/>
+      <text x="116" y="31" fill="#142b45" font-size="24" font-weight="750">유기과산화물</text>
+      <text x="116" y="58" fill="#435972" font-size="21">5.2</text>
+      <g transform="translate(116 151)">
+        <use href="#diamond" fill="#e52529"/>
+        <path d="M-80 0H80L0 80Z" fill="#ffd52a"/>
+        <use href="#diamond" fill="none" stroke="#111" stroke-width="2"/>
+        <use href="#flame" fill="#fff" transform="translate(0 -22) scale(.65)"/>
+        <text y="57" fill="#111" font-size="25" font-weight="800">5.2</text>
+      </g>
+      <text x="116" y="254" fill="#435972" font-size="20">위 적색 · 아래 황색</text>
+    </g>
+    <g transform="translate(264 683)">
+      <use href="#card"/>
+      <text x="116" y="31" fill="#142b45" font-size="24" font-weight="750">독성 물질</text>
+      <text x="116" y="58" fill="#435972" font-size="21">6.1</text>
+      <g transform="translate(116 151)">
+        <use href="#diamond" fill="#fff" stroke="#111" stroke-width="2"/>
+        <use href="#skull" transform="translate(0 -14) scale(.83)"/>
+        <text y="63" fill="#111" font-size="27" font-weight="800">6</text>
+      </g>
+      <text x="116" y="254" fill="#435972" font-size="20">백색 · 해골과 교차 뼈</text>
+    </g>
+    <g transform="translate(508 683)">
+      <use href="#card"/>
+      <text x="116" y="31" fill="#142b45" font-size="24" font-weight="750">감염성 물질</text>
+      <text x="116" y="58" fill="#435972" font-size="21">6.2</text>
+      <g transform="translate(116 151)">
+        <use href="#diamond" fill="#fff" stroke="#111" stroke-width="2"/>
+        <use href="#biohazard" transform="translate(0 -11) scale(.9)"/>
+        <text y="63" fill="#111" font-size="27" font-weight="800">6</text>
+      </g>
+      <text x="116" y="254" fill="#435972" font-size="20">백색 · 생물학적 위험</text>
+    </g>
+
+    <g transform="translate(264 965)">
+      <use href="#card"/>
+      <text x="116" y="31" fill="#142b45" font-size="24" font-weight="750">부식성 물질</text>
+      <text x="116" y="58" fill="#435972" font-size="21">8</text>
+      <g transform="translate(116 151)">
+        <use href="#diamond" fill="#fff"/>
+        <path d="M-80 0H80L0 80Z" fill="#111"/>
+        <use href="#diamond" fill="none" stroke="#111" stroke-width="2"/>
+        <use href="#corrosion"/>
+        <text y="63" fill="#fff" font-size="27" font-weight="800">8</text>
+      </g>
+      <text x="116" y="254" fill="#435972" font-size="20">위 백색 · 아래 흑색</text>
+    </g>
+    <text x="380" y="1268" fill="#435972" font-size="20">법령의 색상·기호를 학습용으로 다시 그린 대표 도식</text>
+  </g>
+</svg>
