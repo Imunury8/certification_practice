@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="352" viewBox="0 0 720 352" role="img" aria-labelledby="title desc">
+  <title id="title">제4류 인화성 액체의 증발과 인화</title>
+  <desc id="desc">액체에서 증발한 증기가 공기와 연소 범위 안의 혼합기를 만들고 불꽃이나 정전기 등의 점화원을 만나면 인화할 수 있습니다. 액체 비중은 물, 증기 비중은 같은 온도와 압력의 공기를 기준으로 비교하므로 두 비중을 구별합니다.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 8 4 0 8Z" fill="#435972"/></marker>
+    <marker id="vaporArrow" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="m0 0 7 3.5L0 7Z" fill="#ad541d"/></marker>
+  </defs>
+  <rect width="720" height="352" rx="18" fill="#eff4f9"/>
+  <g font-family="Malgun Gothic, sans-serif" text-anchor="middle" fill="#142b45">
+    <text x="360" y="36" font-size="28" font-weight="700">제4류 · 액체 위의 증기가 인화</text>
+    <rect x="16" y="60" width="200" height="202" rx="14" fill="#fff" stroke="#cad5e1"/>
+    <rect x="260" y="60" width="200" height="202" rx="14" fill="#fff" stroke="#cad5e1"/>
+    <rect x="504" y="60" width="200" height="202" rx="14" fill="#fff" stroke="#cad5e1"/>
+    <text x="116" y="94" font-size="24" font-weight="700">액체의 증발</text>
+    <text x="360" y="94" font-size="24" font-weight="700">증기 + 공기</text>
+    <text x="604" y="94" font-size="24" font-weight="700">점화원</text>
+    <g stroke-linejoin="round" stroke-linecap="round">
+      <path d="M65 137v66h102v-66" fill="#f8fafc" stroke="#435972" stroke-width="3"/>
+      <path d="M68 176q24-7 48 0t48 0v24H68Z" fill="#f6a66a"/>
+      <g fill="none" stroke="#ad541d" stroke-width="3" marker-end="url(#vaporArrow)">
+        <path d="M89 164v-41"/><path d="M116 164v-50"/><path d="M143 164v-41"/>
+      </g>
+      <g fill="none" stroke="#435972" stroke-width="3" marker-end="url(#arrow)">
+        <path d="M223 161h29"/><path d="M468 161h28"/>
+      </g>
+      <rect x="284" y="116" width="152" height="86" rx="16" fill="#f8fafc" stroke="#b0c9e7" stroke-width="2" stroke-dasharray="5 5"/>
+      <g fill="#6d95bd">
+        <circle cx="303" cy="135" r="7"/><circle cx="341" cy="185" r="7"/><circle cx="416" cy="134" r="7"/><circle cx="381" cy="156" r="7"/><circle cx="307" cy="180" r="7"/>
+      </g>
+      <g fill="#f6a66a" stroke="#ad541d" stroke-width="1.5">
+        <circle cx="335" cy="145" r="7"/><circle cx="375" cy="129" r="7"/><circle cx="411" cy="181" r="7"/><circle cx="363" cy="183" r="7"/><circle cx="307" cy="158" r="7"/>
+      </g>
+      <path d="M542 177c-14-9-16-24-7-38 6-8 11-16 12-27 14 10 21 22 18 35 6-3 9-8 10-13 12 17 14 35-2 44-10 6-22 5-31-1Z" fill="#f6a66a" stroke="#a94720" stroke-width="2.5"/>
+      <path d="m652 113-23 39h20l-8 31 34-44h-23l13-26Z" fill="#e2eafa" stroke="#355d91" stroke-width="2.5"/>
+    </g>
+    <text x="116" y="238" font-size="24">증기 발생</text>
+    <text x="360" y="238" font-size="24">연소 범위 안</text>
+    <text x="553" y="214" font-size="24">불꽃</text>
+    <text x="654" y="214" font-size="24">정전기</text>
+    <text x="604" y="246" font-size="24" font-weight="700" fill="#963b16">인화 가능</text>
+    <rect x="16" y="280" width="336" height="56" rx="12" fill="#fff0e3"/>
+    <rect x="368" y="280" width="336" height="56" rx="12" fill="#deebfa"/>
+    <text x="184" y="316" font-size="24">액체 비중 · 물 = 1</text>
+    <text x="536" y="316" font-size="24">증기 비중 · 공기 = 1</text>
+  </g>
+</svg>

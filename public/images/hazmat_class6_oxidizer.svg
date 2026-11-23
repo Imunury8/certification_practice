@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="352" viewBox="0 0 720 352" role="img" aria-labelledby="title desc">
+  <title id="title">제4류·제5류·제6류의 화재 위험 역할 비교</title>
+  <desc id="desc">제4류 인화성 액체는 연료 역할을 하며 증기가 공기와 섞여 연소합니다. 제5류 자기반응성 물질은 자기분해로 열과 가스가 발생할 수 있습니다. 제6류 산화성 액체는 산화제로서 가연물의 연소를 촉진합니다. 물질 자체가 비가연성이어도 화재 위험이 없다는 뜻은 아닙니다.</desc>
+  <rect width="720" height="352" rx="18" fill="#eff4f9"/>
+  <g font-family="Malgun Gothic, sans-serif" fill="#142b45">
+    <text x="360" y="35" text-anchor="middle" font-size="28" font-weight="700">제4·5·6류 · 화재에서의 역할</text>
+    <rect x="16" y="54" width="688" height="76" rx="14" fill="#fff" stroke="#cad5e1"/>
+    <rect x="16" y="140" width="688" height="76" rx="14" fill="#fff" stroke="#cad5e1"/>
+    <rect x="16" y="226" width="688" height="76" rx="14" fill="#fff" stroke="#cad5e1"/>
+    <rect x="16" y="54" width="112" height="76" rx="14" fill="#ffe8d4"/>
+    <rect x="16" y="140" width="112" height="76" rx="14" fill="#e2eafa"/>
+    <rect x="16" y="226" width="112" height="76" rx="14" fill="#d9eee9"/>
+    <g text-anchor="middle" font-size="26" font-weight="700">
+      <text x="72" y="102" fill="#80350f">제4류</text>
+      <text x="72" y="188" fill="#23497b">제5류</text>
+      <text x="72" y="274" fill="#12574f">제6류</text>
+    </g>
+    <g stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M163 77h15v-9h21v12l9 9v28h-45Zm15 0 20 20m-19-8 19 19" fill="#ffead4" stroke="#ad541d"/>
+      <g fill="#e5edfd" stroke="#355d91">
+        <path d="m163 164 12 10m25 8 12 10" fill="none"/>
+        <circle cx="158" cy="160" r="8"/><circle cx="178" cy="177" r="8"/>
+        <circle cx="198" cy="179" r="8"/><circle cx="216" cy="196" r="8"/>
+      </g>
+      <path d="m185 158 5 7-5 7m10 13-5 7 5 7" fill="none" stroke="#ad541d"/>
+      <circle cx="187" cy="276" r="14" fill="#daf5ef" stroke="#15776b"/>
+      <path d="M179 259c-7-7-5-13 1-20 3-3 5-7 5-11 10 7 12 14 10 20 4-2 6-5 6-7 7 9 8 16 0 20" fill="#a3ded2" stroke="#15776b"/>
+    </g>
+    <g font-size="26" font-weight="700">
+      <text x="242" y="85" fill="#80350f">연료</text>
+      <text x="242" y="171" fill="#23497b">자기분해</text>
+      <text x="242" y="257" fill="#12574f">산화제</text>
+    </g>
+    <g font-size="24">
+      <text x="242" y="116">증기가 공기와 섞여 연소</text>
+      <text x="242" y="202">자체 반응으로 열·가스 발생 가능</text>
+      <text x="242" y="288">가연물의 연소를 촉진</text>
+    </g>
+    <text x="360" y="335" text-anchor="middle" font-size="24">비가연성이라고 화재 위험이 없는 것은 아니다</text>
+  </g>
+</svg>

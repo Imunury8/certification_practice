@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="352" viewBox="0 0 720 352" role="img" aria-labelledby="title desc">
+  <title id="title">제5류 자기반응성 물질의 발열 분해와 냉각</title>
+  <desc id="desc">가열로 분해가 시작되면 분해열이 온도를 높여 분해를 더 촉진할 수 있습니다. 이 열의 순환에 냉각으로 열을 제거하는 작용을 대비했습니다. 외부 공기 차단만으로 자기분해를 억제하기는 어렵습니다.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 8 4 0 8Z" fill="#435972"/></marker>
+    <marker id="heatArrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 8 4 0 8Z" fill="#ad541d"/></marker>
+    <marker id="coolArrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 8 4 0 8Z" fill="#15776b"/></marker>
+  </defs>
+  <rect width="720" height="352" rx="18" fill="#eff4f9"/>
+  <g font-family="Malgun Gothic, sans-serif" text-anchor="middle" fill="#142b45">
+    <text x="360" y="35" font-size="28" font-weight="700">제5류 · 분해열이 분해를 촉진</text>
+    <text x="486" y="68" font-size="24" font-weight="700" fill="#963b16">분해 촉진</text>
+    <path d="M604 103V79H356v24" fill="none" stroke="#ad541d" stroke-width="3" stroke-linejoin="round" marker-end="url(#heatArrow)"/>
+    <rect x="24" y="108" width="176" height="96" rx="14" fill="#fff" stroke="#cad5e1"/>
+    <rect x="264" y="108" width="184" height="96" rx="14" fill="#fff" stroke="#cad5e1"/>
+    <rect x="512" y="108" width="184" height="96" rx="14" fill="#fff0e3" stroke="#edc8a9"/>
+    <text x="112" y="140" font-size="26" font-weight="700">가열</text>
+    <text x="356" y="140" font-size="26" font-weight="700">분해</text>
+    <text x="604" y="145" font-size="26" font-weight="700" fill="#963b16">발열</text>
+    <text x="604" y="182" font-size="24">온도 상승</text>
+    <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <g stroke="#435972" stroke-width="3" marker-end="url(#arrow)">
+        <path d="M210 156h43"/><path d="M458 156h43"/>
+      </g>
+      <path d="M78 187c-12-12 12-12 0-25m34 25c-12-12 12-12 0-25m34 25c-12-12 12-12 0-25" stroke="#ad541d" stroke-width="3"/>
+      <path d="M307 174h22m55 0h22" stroke="#355d91" stroke-width="4"/>
+      <path d="m344 164-6 10 9 10m22-20 6 10-9 10" stroke="#ad541d" stroke-width="3"/>
+      <path d="M604 208v17" stroke="#15776b" stroke-width="3" marker-end="url(#coolArrow)"/>
+    </g>
+    <g fill="#deebfa" stroke="#355d91" stroke-width="2.5">
+      <circle cx="302" cy="174" r="10"/><circle cx="329" cy="174" r="10"/>
+      <circle cx="383" cy="174" r="10"/><circle cx="410" cy="174" r="10"/>
+    </g>
+    <rect x="264" y="232" width="432" height="47" rx="12" fill="#d8f0eb" stroke="#b2d9d0"/>
+    <text x="480" y="263" font-size="24" font-weight="700" fill="#12574f">냉각 · 열 제거 → 온도 상승 억제</text>
+    <rect x="24" y="296" width="672" height="40" rx="10" fill="#fff"/>
+    <text x="360" y="324" font-size="24">공기 차단만으로 자기분해를 억제하기 어렵다</text>
+  </g>
+</svg>
