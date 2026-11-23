@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="352" viewBox="0 0 720 352" role="img" aria-labelledby="title desc">
+  <title id="title">제2류 가연성 고체의 표면적과 연소 속도</title>
+  <desc id="desc">같은 물질과 질량을 비교하면 덩어리보다 분말의 전체 표면적이 큽니다. 공기와 접촉하는 면적이 커져 연소가 빨라질 수 있습니다. 제2류에는 황, 적린, 인화성고체와 금속분말 등이 있으며, 금속분말의 소화에는 물에 대한 적응성을 개별 확인해야 합니다.</desc>
+  <rect width="720" height="352" rx="18" fill="#eff4f9"/>
+  <g font-family="Malgun Gothic, sans-serif" text-anchor="middle" fill="#142b45">
+    <text x="360" y="35" font-size="28" font-weight="700">제2류 · 분말은 접촉 면적이 커진다</text>
+    <text x="360" y="66" font-size="24">같은 물질·질량을 비교</text>
+    <rect x="16" y="83" width="336" height="138" rx="14" fill="#fff" stroke="#cad5e1"/>
+    <rect x="368" y="83" width="336" height="138" rx="14" fill="#fff" stroke="#cad5e1"/>
+    <text x="184" y="113" font-size="24" font-weight="700">덩어리</text>
+    <text x="536" y="113" font-size="24" font-weight="700">분말</text>
+    <g fill="#deebfa" stroke="#355d91" stroke-width="2.5" stroke-linejoin="round">
+      <path d="m137 144 65-20 32 20-65 20Z"/>
+      <path d="M137 144v44l32 20v-44m0 44 65-20v-44"/>
+      <path d="m169 164 65-20" fill="none"/>
+    </g>
+    <g fill="#f6c398" stroke="#ad541d" stroke-width="2">
+      <circle cx="477" cy="142" r="9"/><circle cx="516" cy="137" r="9"/><circle cx="558" cy="143" r="9"/><circle cx="595" cy="138" r="9"/>
+      <circle cx="495" cy="168" r="9"/><circle cx="537" cy="170" r="9"/><circle cx="579" cy="170" r="9"/>
+      <circle cx="477" cy="196" r="9"/><circle cx="517" cy="199" r="9"/><circle cx="558" cy="197" r="9"/><circle cx="598" cy="199" r="9"/>
+    </g>
+    <text x="360" y="249" font-size="24" font-weight="700">표면적·공기 접촉 증가 → 연소가 빨라질 수 있음</text>
+    <rect x="16" y="265" width="336" height="72" rx="12" fill="#deebfa"/>
+    <rect x="368" y="265" width="336" height="72" rx="12" fill="#fff0e3"/>
+    <text x="184" y="294" font-size="24" font-weight="700">품명에 따라 구분</text>
+    <text x="184" y="324" font-size="24">황·적린·인화성고체</text>
+    <text x="536" y="294" font-size="24" font-weight="700" fill="#963b16">금속분말</text>
+    <text x="536" y="324" font-size="24">물 소화 적응성 확인</text>
+  </g>
+</svg>

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="352" viewBox="0 0 720 352" role="img" aria-labelledby="title desc">
+  <title id="title">제1류 산화성 고체의 연소 촉진과 소화 적응성</title>
+  <desc id="desc">제1류 산화성 고체는 산화제로 작용하여 가연물의 연소를 촉진할 수 있습니다. 대부분의 품명은 주수 냉각을 적용하지만 알칼리금속 과산화물은 물과의 접촉을 주의해야 합니다. 소화설비는 개별 품명의 적응성을 확인합니다.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 8 4 0 8Z" fill="#435972"/></marker>
+  </defs>
+  <rect width="720" height="352" rx="18" fill="#eff4f9"/>
+  <g font-family="Malgun Gothic, sans-serif" text-anchor="middle" fill="#142b45">
+    <text x="360" y="36" font-size="28" font-weight="700">제1류 · 가연물의 연소를 촉진</text>
+    <rect x="16" y="58" width="688" height="174" rx="14" fill="#fff" stroke="#cad5e1"/>
+    <text x="134" y="91" font-size="24" font-weight="700">산화성 고체</text>
+    <g fill="#d8f0eb" stroke="#15776b" stroke-width="2.5" stroke-linejoin="round">
+      <path d="m75 163 15-36 37 8 8 36-34 13Z"/>
+      <path d="m120 150 22-39 32 14 13 41-34 19Z"/>
+      <path d="m90 127 18 22-7 35m34-13-27-22m34-38 11 35 34 20m-34-20 21-21" fill="none"/>
+    </g>
+    <text x="242" y="155" font-size="34" font-weight="700">+</text>
+    <g transform="translate(0 -12)" stroke="#ad541d" stroke-width="2.5" stroke-linejoin="round">
+      <path d="m295 162 66-20 39 17-66 21Z" fill="#ffe8d4"/>
+      <path d="M295 162v21l39 18v-21m0 21 66-21v-21" fill="#f6c398"/>
+      <path d="M337 142c-7-8-6-15 0-23 4-5 7-9 8-15 11 10 19 20 14 30 5-2 8-6 10-10 7 12 7 22-4 27-11 5-22 1-28-9Z" fill="#f6a66a"/>
+    </g>
+    <path d="M425 151h49" fill="none" stroke="#435972" stroke-width="3" marker-end="url(#arrow)"/>
+    <path d="M552 172c-22-16-23-36-8-57 8-10 15-21 16-34 23 17 34 35 27 54 10-4 16-12 18-20 20 25 20 49-3 63-17 10-36 6-50-6Z" fill="#f6a66a" stroke="#ad541d" stroke-width="2.5" stroke-linejoin="round"/>
+    <text x="134" y="215" font-size="24">산화 작용</text>
+    <text x="348" y="215" font-size="24">가연물</text>
+    <text x="585" y="215" font-size="24" font-weight="700" fill="#963b16">연소 촉진</text>
+    <rect x="16" y="246" width="336" height="70" rx="12" fill="#d8f0eb"/>
+    <rect x="368" y="246" width="336" height="70" rx="12" fill="#fff0e3"/>
+    <text x="184" y="274" font-size="24" font-weight="700" fill="#12574f">대부분의 품명</text>
+    <text x="184" y="304" font-size="24">주수 냉각</text>
+    <text x="536" y="274" font-size="24" font-weight="700" fill="#963b16">알칼리금속 과산화물</text>
+    <text x="536" y="304" font-size="24">물 접촉 주의</text>
+    <text x="360" y="342" font-size="24">소화설비는 품명별 적응성 확인</text>
+  </g>
+</svg>

@@ -54,7 +54,7 @@ export function HazmatCbt({ onOpenTopics }: { onOpenTopics: () => void }) {
 
   function startNewSet() {
     const previousIds = new Set(attempt.questions.map(({ id }) => id));
-    const unused = subject.questions.filter(({ id }) => !previousIds.has(id));
+    const unused = shuffle(subject.questions.filter(({ id }) => !previousIds.has(id)), Math.random);
     const review = shuffle(attempt.questions, Math.random);
     const questions = [...unused, ...review].slice(0, HAZMAT_CBT_SET_SIZE);
     const next = createAttempt(shuffle(questions, Math.random));
