@@ -125,32 +125,40 @@ function ConceptCard({ item, anchor, showDiagramFirst }: {
       )}
       {item.exampleTables && (
         <div className="concept-example-tables">
-          {item.exampleTables.map((example) => (
-            <div className="concept-table-scroll" key={example.caption} tabIndex={0} role="region" aria-label={example.caption}>
-              <table className={`concept-example-table${example.wide ? " concept-example-table-wide" : ""}`}>
-                <caption>{example.caption}</caption>
-                <thead>
-                  <tr>{example.headers.map((header) => <th scope="col" key={header}>{header}</th>)}</tr>
-                </thead>
-                <tbody>
-                  {example.rows.map((row, rowIndex) => (
-                    <tr key={rowIndex}>
-                      {row.map((cell, cellIndex) => (
-                        <td key={cellIndex}>
-                          {typeof cell === "string" ? cell : (
+          {item.exampleTables.map((example, tableIndex) => (
+            <div className="concept-table-block" key={example.caption}>
+              {example.comparison && (
+                <p className="concept-comparison-hint" id={`${anchor}-table-hint-${tableIndex}`}>
+                  좌우로 밀어 비교하세요. 류 이름은 고정되어 있고, 제4류의 /는 비수용성 / 수용성 순서입니다.
+                </p>
+              )}
+              <div className="concept-table-scroll" tabIndex={0} role="region" aria-label={example.caption} aria-describedby={example.comparison ? `${anchor}-table-hint-${tableIndex}` : undefined}>
+                <table className={`concept-example-table${example.wide ? " concept-example-table-wide" : ""}${example.comparison ? " concept-example-table-comparison" : ""}`}>
+                  <caption>{example.caption}</caption>
+                  <thead>
+                    <tr>{example.headers.map((header) => <th scope="col" key={header}>{header}</th>)}</tr>
+                  </thead>
+                  <tbody>
+                    {example.rows.map((row, rowIndex) => (
+                      <tr key={rowIndex}>
+                        {row.map((cell, cellIndex) => {
+                          const content = typeof cell === "string" ? cell : (
                             <span className="concept-table-color">
                               <span className="concept-table-swatches" aria-hidden="true">
                                 {cell.swatches.map((color) => <span key={color} style={{ backgroundColor: color }} />)}
                               </span>
                               {cell.label}
                             </span>
-                          )}
-                        </td>
-                      ))}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+                          );
+                          return example.comparison && cellIndex === 0
+                            ? <th scope="row" key={cellIndex}>{content}</th>
+                            : <td key={cellIndex}>{content}</td>;
+                        })}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           ))}
         </div>

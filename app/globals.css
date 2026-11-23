@@ -720,6 +720,10 @@ button {
   overflow-x: auto;
 }
 
+.concept-table-block {
+  min-width: 0;
+}
+
 .concept-table-scroll:focus-visible {
   outline: 2px solid var(--primary);
   outline-offset: 2px;
@@ -788,6 +792,57 @@ button {
 
 .hazmat-theory .concept-example-table td:first-child {
   font-weight: 700;
+}
+
+.concept-comparison-hint {
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.concept-example-table-comparison {
+  min-width: 1040px;
+  table-layout: fixed;
+}
+
+.hazmat-theory .concept-example-table-comparison :is(th, td) {
+  vertical-align: top;
+  white-space: pre-line;
+}
+
+.concept-example-table-comparison :is(th, td):first-child {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  width: 96px;
+  background: var(--panel);
+  box-shadow: 2px 0 0 var(--line);
+}
+
+.concept-example-table-comparison thead th:first-child {
+  background: var(--panel-soft);
+}
+
+.concept-example-table-comparison tbody tr:nth-child(even) > th {
+  background: color-mix(in srgb, var(--panel-soft) 55%, var(--panel));
+}
+
+.concept-example-table-comparison thead th:nth-child(2) {
+  width: 260px;
+}
+
+@media (max-width: 600px) {
+  .concept-example-table-comparison {
+    min-width: 792px;
+  }
+
+  .concept-example-table-comparison :is(th, td):first-child {
+    width: 72px;
+  }
+
+  .concept-example-table-comparison thead th:nth-child(2) {
+    width: 180px;
+  }
 }
 
 .hazmat-theory :is(.concept-card, .concept-group) {
