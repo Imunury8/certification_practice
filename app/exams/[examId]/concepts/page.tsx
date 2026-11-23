@@ -511,7 +511,7 @@ function getConceptGroups(section: ConceptSection): ConceptGroup[] {
         items: agentItems,
       },
       {
-        title: "소화설비와 수원 계산",
+        title: "소화설비·소요단위·수원",
         items: equipmentItems,
       },
     ].filter((g) => g.items.length > 0);

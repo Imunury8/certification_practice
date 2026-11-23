@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="352" viewBox="0 0 720 352" role="img" aria-labelledby="title desc">
+  <title id="title">내화구조 외벽인 취급소의 건축물 소요단위 계산</title>
+  <desc id="desc">외벽이 내화구조인 취급소의 건축물은 연면적 100제곱미터가 1소요단위입니다. 그림의 1층 바닥면적은 120제곱미터, 2층 바닥면적은 80제곱미터입니다. 두 층의 면적을 합한 연면적 200제곱미터를 기준 면적 100제곱미터로 나누면 2소요단위입니다. 소요단위는 필요한 소화 능력을 나타내며 소화기의 개수와 구별합니다.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 8 4 0 8Z" fill="#435972"/></marker>
+  </defs>
+  <rect width="720" height="352" rx="18" fill="#eff4f9"/>
+  <g font-family="Malgun Gothic, sans-serif" text-anchor="middle" fill="#142b45">
+    <text x="360" y="36" font-size="28" font-weight="700">취급소 · 외벽이 내화구조인 경우</text>
+    <rect x="16" y="60" width="200" height="204" rx="14" fill="#fff" stroke="#cad5e1"/>
+    <rect x="260" y="60" width="200" height="204" rx="14" fill="#fff" stroke="#cad5e1"/>
+    <rect x="504" y="60" width="200" height="204" rx="14" fill="#d8f0eb" stroke="#b2d9d0"/>
+
+    <text x="116" y="94" font-size="24" font-weight="700">각 층 바닥면적</text>
+    <g stroke="#355d91" stroke-width="3" stroke-linejoin="round">
+      <rect x="34" y="112" width="164" height="132" fill="#deebfa"/>
+      <path d="M34 178h164M29 108h174M28 246h176" fill="none"/>
+    </g>
+    <text x="116" y="154" font-size="24">2층 80 m²</text>
+    <text x="116" y="220" font-size="24">1층 120 m²</text>
+
+    <g fill="none" stroke="#435972" stroke-width="3" marker-end="url(#arrow)">
+      <path d="M224 166h28"/><path d="M468 166h28"/>
+    </g>
+    <text x="360" y="94" font-size="26" font-weight="700">연면적</text>
+    <text x="360" y="143" font-size="26">120 + 80</text>
+    <text x="360" y="188" font-size="28" font-weight="700">= 200 m²</text>
+    <text x="360" y="238" font-size="24">각 층 면적의 합</text>
+
+    <text x="604" y="94" font-size="24" font-weight="700" fill="#12574f">기준 100 m²</text>
+    <text x="604" y="152" font-size="26">200 ÷ 100</text>
+    <text x="604" y="214" font-size="28" font-weight="700" fill="#12574f">2 소요단위</text>
+
+    <rect x="16" y="283" width="688" height="52" rx="12" fill="#fff0e3"/>
+    <text x="360" y="317" font-size="24" font-weight="700" fill="#963b16">소요단위 ≠ 소화기 개수</text>
+  </g>
+</svg>
