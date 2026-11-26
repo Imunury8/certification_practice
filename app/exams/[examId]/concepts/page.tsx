@@ -227,6 +227,11 @@ export default function ConceptsPage() {
   const selectTopic = (topicId: string) => {
     setSelectedAnchor(topicId);
     window.history.pushState(null, "", `#${topicId}`);
+    requestAnimationFrame(() => {
+      if (window.location.hash === `#${topicId}`) {
+        window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+      }
+    });
   };
 
   const handleSidebarClick = (e: React.MouseEvent<HTMLAnchorElement>, topicId: string) => {
